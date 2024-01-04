@@ -1,0 +1,85 @@
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "dagger.hilt.android.plugin"
+apply plugin: "com.google.devtools.ksp"
+
+configurations {
+    releaseImplementation
+    stagingImplementation
+    debugImplementation
+    releaseApi
+    stagingApi
+    debugApi
+}
+
+dependencies {
+    coreLibraryDesugaring libs.android.desugarJdkLibs
+
+    implementation platform(libs.androidx.compose.bom)
+    implementation libs.bundles.androidCommon
+
+    debugApi libs.androidx.compose.ui.tooling
+
+    ksp libs.hilt.android.compiler
+    implementation libs.hilt.android
+    kspTest libs.hilt.android.compiler
+    kspAndroidTest libs.hilt.android.compiler
+
+    androidTestImplementation libs.kotlin.test
+    testImplementation libs.kotlin.test
+}
+
+android {
+    compileSdkVersion libs.versions.androidMaxSdkVersion.get().toInteger()
+
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.composeCompiler.get()
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion libs.versions.androidMinSdkVersion.get().toInteger()
+        targetSdkVersion libs.versions.androidMaxSdkVersion.get().toInteger()
+        vectorDrawables {
+            useSupportLibrary = true
+        }
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    packagingOptions {
+        resources {
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+            excludes.add("/META-INF/versions/**")
+            pickFirsts.add("tinylog.properties")
+        }
+    }
+
+    lint {
+        quiet = true
+        abortOnError = false
+        ignoreWarnings = true
+        checkReleaseBuilds false
+        checkDependencies = false
+    }
+}

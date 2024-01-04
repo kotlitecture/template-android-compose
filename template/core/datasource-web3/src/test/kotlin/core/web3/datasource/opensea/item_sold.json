@@ -1,0 +1,111 @@
+{
+  "event": "item_sold",
+  "payload": {
+    "event_type": "item_sold",
+    "payload": {
+      "closing_date": "2023-06-12T20:15:11.000000+00:00",
+      "collection": {
+        "slug": "psydelvenft"
+      },
+      "event_timestamp": "2023-06-12T20:15:11.000000+00:00",
+      "is_private": false,
+      "item": {
+        "chain": {
+          "name": "matic"
+        },
+        "metadata": {
+          "animation_url": "https://openseauserdata.com/files/35a0a84ae67e6bc7971229ab8fa113d6.mp4",
+          "image_url": "https://i.seadn.io/gcs/files/09df4ab384edb852e8bcc0715ba7b58d.gif?w=500&auto=format",
+          "metadata_url": "ipfs://bafybeiexdlyuuh6zmnsafn6zd2563nupdcobanx2acefzvg62u36ecp3ua/1877.json",
+          "name": "Psydelve Caps #1877"
+        },
+        "nft_id": "matic/0x92cef2d51eef7f5272a374266113564bffa46548/1877",
+        "permalink": "https://opensea.io/assets/matic/0x92cef2d51eef7f5272a374266113564bffa46548/1877"
+      },
+      "listing_type": null,
+      "maker": {
+        "address": "0xd04c6e927b142c3662326e564b9fb8a6640acc8f"
+      },
+      "order_hash": "0xfcea5c2e5477560f2a412bf08919713d7127ea33ad10147595585b25bc695401",
+      "payment_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "decimals": 18,
+        "eth_price": "0.000365140000000",
+        "name": "Matic",
+        "symbol": "MATIC",
+        "usd_price": "0.631900000000000000"
+      },
+      "protocol_address": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "protocol_data": {
+        "parameters": {
+          "conduitKey": "0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000",
+          "consideration": [
+            {
+              "endAmount": "38395500000000000000",
+              "identifierOrCriteria": "0",
+              "itemType": 0,
+              "recipient": "0xD04c6E927b142c3662326e564b9FB8a6640AcC8F",
+              "startAmount": "38395500000000000000",
+              "token": "0x0000000000000000000000000000000000000000"
+            },
+            {
+              "endAmount": "1072500000000000000",
+              "identifierOrCriteria": "0",
+              "itemType": 0,
+              "recipient": "0x0000a26b00c1F0DF003000390027140000fAa719",
+              "startAmount": "1072500000000000000",
+              "token": "0x0000000000000000000000000000000000000000"
+            },
+            {
+              "endAmount": "308880000000000000",
+              "identifierOrCriteria": "0",
+              "itemType": 0,
+              "recipient": "0x1Eca4dD8EcB97b45054c81438f6f49D18Ce4F343",
+              "startAmount": "308880000000000000",
+              "token": "0x0000000000000000000000000000000000000000"
+            },
+            {
+              "endAmount": "3123120000000000000",
+              "identifierOrCriteria": "0",
+              "itemType": 0,
+              "recipient": "0xF0D39866827453bc8F4714D3937Cc9C2B35c979c",
+              "startAmount": "3123120000000000000",
+              "token": "0x0000000000000000000000000000000000000000"
+            }
+          ],
+          "counter": 0,
+          "endTime": "1689080445",
+          "offer": [
+            {
+              "endAmount": "1",
+              "identifierOrCriteria": "1877",
+              "itemType": 2,
+              "startAmount": "1",
+              "token": "0x92cEf2d51eEf7f5272a374266113564bffA46548"
+            }
+          ],
+          "offerer": "0xd04c6e927b142c3662326e564b9fb8a6640acc8f",
+          "orderType": 0,
+          "salt": "0x360c6ebe0000000000000000000000000000000000000000cb25d595cfc12514",
+          "startTime": "1686586468",
+          "totalOriginalConsiderationItems": 4,
+          "zone": "0x0000000000000000000000000000000000000000",
+          "zoneHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "signature": null
+      },
+      "quantity": 1,
+      "sale_price": "42900000000000000000",
+      "taker": {
+        "address": "0x90c3307468867ebee4e7f7ad8cd81dba0f97d94e"
+      },
+      "transaction": {
+        "hash": "0x7c05fdc8dab608adde34dd601fb6ddbb5d2b7fa97fb4dc8ea89ffcaee112985d",
+        "timestamp": "2023-06-12T20:15:11.000000+00:00"
+      }
+    },
+    "sent_at": "2023-06-12T20:15:12.037813+00:00"
+  },
+  "ref": null,
+  "topic": "collection:*"
+}

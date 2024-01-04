@@ -1,0 +1,11 @@
+apply from: "${project.rootDir}/gradle/android/library.gradle"
+
+android {
+    namespace = "core.datasource"
+}
+
+dependencies {
+    api project(":core:data")
+    api libs.bundles.androidData
+    testImplementation project(":core:testing")
+}

@@ -1,0 +1,13 @@
+apply from: "${project.rootDir}/gradle/android/library.gradle"
+
+android {
+    namespace = "core.datasource.work"
+}
+
+dependencies {
+    api project(":core:datasource")
+    api libs.androidx.work.runtime
+    api libs.androidx.work.runtime.ktx
+    api libs.androidx.work.multiprocess
+    testImplementation project(":core:testing")
+}

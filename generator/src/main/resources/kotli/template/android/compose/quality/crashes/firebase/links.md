@@ -1,0 +1,2 @@
+- [Official documentation](https://firebase.google.com/docs/crashlytics)
+- [Configuration instruction](https://firebase.google.com/docs/crashlytics/get-started?platform=android)

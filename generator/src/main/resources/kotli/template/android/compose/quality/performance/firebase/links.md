@@ -1,0 +1,2 @@
+- [Official documentation](https://firebase.google.com/docs/perf-mon)
+- [Configuration instruction](https://firebase.google.com/docs/perf-mon/get-started-android)

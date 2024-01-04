@@ -1,0 +1,71 @@
+{
+  "collection": {
+    "banner_image_url": "https://i.seadn.io/gcs/files/be72b9c7b859a94afed4b45a5f918ab7.png?w=500&auto=format",
+    "chat_url": null,
+    "created_date": "2023-06-23T10:31:03.913268+00:00",
+    "default_to_fiat": false,
+    "description": "A Message from Employee Resources: Welcome to the extraordinary world of BiG iNC. As the Employee Resources Director of our esteemed corporation, I am thrilled to present this unique collection of fifteen thousand of our beloved employees—a veritable menagerie of creatures, each one of whom plays a pivotal role in our company's success. Within these frames, you will witness a captivating blend of nature's grace and the business world's elegance. Each portrait encapsulates the individual personalities, diverse talents, and specific responsibilities that contribute to our organization's vibrant culture. From our C-suite to the newest and shiniest recruit, each one of them have seamlessly integrated into our corporate environment.",
+    "dev_buyer_fee_basis_points": "0",
+    "dev_seller_fee_basis_points": "500",
+    "discord_url": null,
+    "display_data": {
+      "card_display_style": "cover",
+      "images": null
+    },
+    "external_url": "https://burn.biginc.business/",
+    "featured": false,
+    "featured_image_url": "https://i.seadn.io/gcs/files/be72b9c7b859a94afed4b45a5f918ab7.png?w=500&auto=format",
+    "hidden": false,
+    "safelist_request_status": "verified",
+    "image_url": "https://i.seadn.io/gcs/files/861db1ad64c2f17a14cff54f3f1f4e5a.png?w=500&auto=format",
+    "is_subject_to_whitelist": false,
+    "large_image_url": "https://i.seadn.io/gcs/files/be72b9c7b859a94afed4b45a5f918ab7.png?w=500&auto=format",
+    "medium_username": null,
+    "name": "BiG iNC",
+    "only_proxied_transfers": false,
+    "opensea_buyer_fee_basis_points": "0",
+    "opensea_seller_fee_basis_points": 250,
+    "payout_address": "0x12392f348d27488637886e26f8add0a8eddd368f",
+    "require_email": false,
+    "short_description": null,
+    "slug": "biginc",
+    "telegram_url": null,
+    "twitter_username": "biginc",
+    "instagram_username": null,
+    "wiki_url": null,
+    "is_nsfw": false,
+    "fees": {
+      "seller_fees": {
+        "0x12392f348d27488637886e26f8add0a8eddd368f": 500
+      },
+      "opensea_fees": {
+        "0x0000a26b00c1f0df003000390027140000faa719": 250
+      }
+    },
+    "is_rarity_enabled": true,
+    "is_creator_fees_enforced": true
+  },
+  "address": "0x895688bf87d73cc7da27852221799d31b027e300",
+  "asset_contract_type": "non-fungible",
+  "chain_identifier": "ethereum",
+  "created_date": "2023-06-22T23:45:02.820316",
+  "name": "BiGiNCChar",
+  "nft_version": null,
+  "opensea_version": null,
+  "owner": 433122213,
+  "schema_name": "ERC721",
+  "symbol": "BiG",
+  "total_supply": "0",
+  "description": "A Message from Employee Resources: Welcome to the extraordinary world of BiG iNC. As the Employee Resources Director of our esteemed corporation, I am thrilled to present this unique collection of fifteen thousand of our beloved employees—a veritable menagerie of creatures, each one of whom plays a pivotal role in our company's success. Within these frames, you will witness a captivating blend of nature's grace and the business world's elegance. Each portrait encapsulates the individual personalities, diverse talents, and specific responsibilities that contribute to our organization's vibrant culture. From our C-suite to the newest and shiniest recruit, each one of them have seamlessly integrated into our corporate environment.",
+  "external_link": "https://burn.biginc.business/",
+  "image_url": "https://i.seadn.io/gcs/files/861db1ad64c2f17a14cff54f3f1f4e5a.png?w=500&auto=format",
+  "default_to_fiat": false,
+  "dev_buyer_fee_basis_points": 0,
+  "dev_seller_fee_basis_points": 500,
+  "only_proxied_transfers": false,
+  "opensea_buyer_fee_basis_points": 0,
+  "opensea_seller_fee_basis_points": 250,
+  "buyer_fee_basis_points": 0,
+  "seller_fee_basis_points": 750,
+  "payout_address": "0x12392f348d27488637886e26f8add0a8eddd368f"
+}

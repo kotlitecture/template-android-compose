@@ -1,0 +1,48 @@
+plugins {
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.android.test)
+    alias(libs.plugins.android.baselineprofile)
+}
+
+android {
+    namespace 'app.baselineprofile'
+    compileSdk libs.versions.androidMaxSdkVersion.get().toInteger()
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdk 28
+        targetSdk libs.versions.androidMaxSdkVersion.get().toInteger()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    targetProjectPath = ":app"
+
+    testOptions.managedDevices.devices {
+        pixel6Api34(com.android.build.api.dsl.ManagedVirtualDevice) {
+            device = "Pixel 6"
+            apiLevel = libs.versions.androidMaxSdkVersion.get().toInteger()
+            systemImageSource = "google"
+        }
+    }
+}
+
+baselineProfile {
+    managedDevices += "pixel6Api34"
+    useConnectedDevices = false
+}
+
+dependencies {
+    implementation libs.junit
+    implementation libs.uiautomator
+    implementation libs.espresso.core
+    implementation libs.benchmark.macro.junit4
+}

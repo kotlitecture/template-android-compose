@@ -1,0 +1,1 @@
+{"query":"{\npools(\norderBy: createdAtTimestamp, \norderDirection: desc,\nwhere: {\ntoken1_: { symbol: \"WETH\" },\ncreatedAtTimestamp_gt: 1693390955\n}) {\nid\ntoken0 {\nid\nsymbol\n}\ntoken1 {\nid\nsymbol\n}\nliquidity\nfeeTier\ncreatedAtTimestamp\nsqrtPrice\ntoken0Price\ntoken1Price\ntxCount\ntotalValueLockedETH\ntotalValueLockedUSD\nvolumeUSD\n}\n}"}

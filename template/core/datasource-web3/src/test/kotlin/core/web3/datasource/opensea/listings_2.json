@@ -1,0 +1,604 @@
+{
+  "next": null,
+  "previous": null,
+  "orders": [
+    {
+      "created_date": "2023-06-05T11:45:50.704879",
+      "closing_date": "2023-09-05T11:45:11",
+      "listing_time": 1685965544,
+      "expiration_time": 1693914311,
+      "order_hash": "0x103e80bc5549c54f0b245913a1ceccf7817448f879793252e2af532632797265",
+      "protocol_data": {
+        "parameters": {
+          "offerer": "0x3ed479daf6474cff1ef272e033d4b12a3eaae53b",
+          "offer": [
+            {
+              "itemType": 2,
+              "token": "0x8c6dEf540b83471664Edc6d5Cf75883986932674",
+              "identifierOrCriteria": "7608",
+              "startAmount": "1",
+              "endAmount": "1"
+            }
+          ],
+          "consideration": [
+            {
+              "itemType": 0,
+              "token": "0x0000000000000000000000000000000000000000",
+              "identifierOrCriteria": "0",
+              "startAmount": "369075000000000000",
+              "endAmount": "369075000000000000",
+              "recipient": "0x3ED479daF6474CfF1EF272e033D4b12a3EAae53B"
+            },
+            {
+              "itemType": 0,
+              "token": "0x0000000000000000000000000000000000000000",
+              "identifierOrCriteria": "0",
+              "startAmount": "9975000000000000",
+              "endAmount": "9975000000000000",
+              "recipient": "0x0000a26b00c1F0DF003000390027140000fAa719"
+            },
+            {
+              "itemType": 0,
+              "token": "0x0000000000000000000000000000000000000000",
+              "identifierOrCriteria": "0",
+              "startAmount": "19950000000000000",
+              "endAmount": "19950000000000000",
+              "recipient": "0x12392F348d27488637886E26f8aDD0A8EDdd368F"
+            }
+          ],
+          "startTime": "1685965544",
+          "endTime": "1693914311",
+          "orderType": 0,
+          "zone": "0x004C00500000aD104D7DBd00e3ae0A5C00560C00",
+          "zoneHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "salt": "0x360c6ebe0000000000000000000000000000000000000000e4d9b598f5c05d6b",
+          "conduitKey": "0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000",
+          "totalOriginalConsiderationItems": 3,
+          "counter": 0
+        },
+        "signature": null
+      },
+      "protocol_address": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "current_price": "399000000000000000",
+      "maker": {
+        "user": 1170411,
+        "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/3.png",
+        "address": "0x3ed479daf6474cff1ef272e033d4b12a3eaae53b",
+        "config": ""
+      },
+      "taker": null,
+      "maker_fees": [
+        {
+          "account": {
+            "user": null,
+            "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/29.png",
+            "address": "0x0000a26b00c1f0df003000390027140000faa719",
+            "config": ""
+          },
+          "basis_points": "250"
+        },
+        {
+          "account": {
+            "user": null,
+            "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/6.png",
+            "address": "0x12392f348d27488637886e26f8add0a8eddd368f",
+            "config": ""
+          },
+          "basis_points": "500"
+        }
+      ],
+      "taker_fees": [],
+      "side": "ask",
+      "order_type": "basic",
+      "cancelled": false,
+      "finalized": false,
+      "marked_invalid": false,
+      "remaining_quantity": 1,
+      "relay_id": "T3JkZXJWMlR5cGU6MTAwNzc0MDQwNjM=",
+      "criteria_proof": null,
+      "maker_asset_bundle": {
+        "assets": [
+          {
+            "id": 1172452477,
+            "token_id": "7608",
+            "num_sales": 0,
+            "background_color": null,
+            "image_url": "https://i.seadn.io/gcs/files/d56c3aaf3d52c7634801fe50965f4edc.png?w=500&auto=format",
+            "image_preview_url": "https://i.seadn.io/gcs/files/d56c3aaf3d52c7634801fe50965f4edc.png?w=500&auto=format",
+            "image_thumbnail_url": "https://i.seadn.io/gcs/files/d56c3aaf3d52c7634801fe50965f4edc.png?w=500&auto=format",
+            "image_original_url": "ipfs://QmSifFzarzzen5Vv4TWWhpN56VksqZrF3Bmuuc4gdGTEv1/7608.png",
+            "animation_url": null,
+            "animation_original_url": null,
+            "name": "goblintown #7608",
+            "description": "AAAAAAAUUUUUGGGHHHHH gobblins goblinns GOBLINNNNNNNNns wekm ta goblintown yoo sniksnakr DEJEN RATS oooooh rats are yummmz dis a NEFTEEE O GOBBLINGS on da BLOKCHIN wat? oh. crustybutt da goblinking say GEE EMMM DEDJEN RUTS an queenie saay HLLO SWEATIES ok dats all byeby",
+            "external_link": null,
+            "asset_contract": {
+              "address": "0x8c6def540b83471664edc6d5cf75883986932674",
+              "asset_contract_type": "non-fungible",
+              "chain_identifier": "ethereum",
+              "created_date": "2023-04-15T13:17:01.373404",
+              "name": "goblintown",
+              "nft_version": null,
+              "opensea_version": null,
+              "owner": 433122213,
+              "schema_name": "ERC721",
+              "symbol": "GOBLIN",
+              "total_supply": "0",
+              "description": "AAAAAAAUUUUUGGGHHHHH gobblins goblinns GOBLINNNNNNNNns wekm ta goblintown yoo sniksnakr DEJEN RATS oooooh rats are yummmz dis a NEFTEEE O GOBBLINGS on da BLOKCHIN wat? oh. crustybutt da goblinking say GEE EMMM DEDJEN RUTS an queenie saay HLLO SWEATIES ok dats all byeby\r\n\r\ncum say hi ta other gobs at [https://onlygobs.chat](https://onlygobs.chat)",
+              "external_link": "https://goblintown.wtf/",
+              "image_url": "https://i.seadn.io/gae/cb_wdEAmvry_noTfeuQzhqKpghhZWQ_sEhuGS9swM03UM8QMEVJrndu0ZRdLFgGVqEPeCUzOHGTUllxug9U3xdvt0bES6VFdkRCKPqg?w=500&auto=format",
+              "default_to_fiat": false,
+              "dev_buyer_fee_basis_points": 0,
+              "dev_seller_fee_basis_points": 500,
+              "only_proxied_transfers": false,
+              "opensea_buyer_fee_basis_points": 0,
+              "opensea_seller_fee_basis_points": 250,
+              "buyer_fee_basis_points": 0,
+              "seller_fee_basis_points": 750,
+              "payout_address": "0x12392f348d27488637886e26f8add0a8eddd368f"
+            },
+            "permalink": "https://opensea.io/assets/ethereum/0x8c6def540b83471664edc6d5cf75883986932674/7608",
+            "collection": {
+              "banner_image_url": "https://i.seadn.io/gae/U1IY0rRHvXZ9K7fqDgBBJVnkJhlv0YrL0aMfYzY4XzTkWGyWroq8-GymDy_1e3S17Ze_FPIwg9yjheKxp42SSzUBrp_744yrA16XHKo?w=500&auto=format",
+              "chat_url": null,
+              "created_date": "2022-05-19T16:36:48.568970+00:00",
+              "default_to_fiat": false,
+              "description": "AAAAAAAUUUUUGGGHHHHH gobblins goblinns GOBLINNNNNNNNns wekm ta goblintown yoo sniksnakr DEJEN RATS oooooh rats are yummmz dis a NEFTEEE O GOBBLINGS on da BLOKCHIN wat? oh. crustybutt da goblinking say GEE EMMM DEDJEN RUTS an queenie saay HLLO SWEATIES ok dats all byeby\r\n\r\ncum say hi ta other gobs at [https://onlygobs.chat](https://onlygobs.chat)",
+              "dev_buyer_fee_basis_points": "0",
+              "dev_seller_fee_basis_points": "500",
+              "discord_url": null,
+              "display_data": {
+                "card_display_style": "contain",
+                "images": null
+              },
+              "external_url": "https://goblintown.wtf/",
+              "featured": false,
+              "featured_image_url": "https://i.seadn.io/gae/cb_wdEAmvry_noTfeuQzhqKpghhZWQ_sEhuGS9swM03UM8QMEVJrndu0ZRdLFgGVqEPeCUzOHGTUllxug9U3xdvt0bES6VFdkRCKPqg?w=500&auto=format",
+              "hidden": false,
+              "safelist_request_status": "verified",
+              "image_url": "https://i.seadn.io/gae/cb_wdEAmvry_noTfeuQzhqKpghhZWQ_sEhuGS9swM03UM8QMEVJrndu0ZRdLFgGVqEPeCUzOHGTUllxug9U3xdvt0bES6VFdkRCKPqg?w=500&auto=format",
+              "is_subject_to_whitelist": false,
+              "large_image_url": "https://i.seadn.io/gae/cb_wdEAmvry_noTfeuQzhqKpghhZWQ_sEhuGS9swM03UM8QMEVJrndu0ZRdLFgGVqEPeCUzOHGTUllxug9U3xdvt0bES6VFdkRCKPqg?w=500&auto=format",
+              "medium_username": null,
+              "name": "goblintown.wtf",
+              "only_proxied_transfers": false,
+              "opensea_buyer_fee_basis_points": "0",
+              "opensea_seller_fee_basis_points": 250,
+              "payout_address": "0x12392f348d27488637886e26f8add0a8eddd368f",
+              "require_email": false,
+              "short_description": null,
+              "slug": "goblintownwtf",
+              "telegram_url": null,
+              "twitter_username": null,
+              "instagram_username": null,
+              "wiki_url": null,
+              "is_nsfw": false,
+              "fees": {
+                "seller_fees": {
+                  "0x12392f348d27488637886e26f8add0a8eddd368f": 500
+                },
+                "opensea_fees": {
+                  "0x0000a26b00c1f0df003000390027140000faa719": 250
+                }
+              },
+              "is_rarity_enabled": false,
+              "is_creator_fees_enforced": true
+            },
+            "decimals": null,
+            "token_metadata": "ipfs://QmdxDAXQZn7LtbTCrfLgYX2YbWHGi2t7UQwqSEpt45YEh2/7608",
+            "is_nsfw": false,
+            "owner": null
+          }
+        ],
+        "maker": null,
+        "slug": null,
+        "name": null,
+        "description": null,
+        "external_link": null,
+        "asset_contract": null,
+        "permalink": null,
+        "seaport_sell_orders": null
+      },
+      "taker_asset_bundle": {
+        "assets": [
+          {
+            "id": 13689077,
+            "token_id": "0",
+            "num_sales": 8,
+            "background_color": null,
+            "image_url": "https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg",
+            "image_preview_url": "https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg",
+            "image_thumbnail_url": "https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg",
+            "image_original_url": "https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg",
+            "animation_url": null,
+            "animation_original_url": null,
+            "name": "Ether",
+            "description": "",
+            "external_link": null,
+            "asset_contract": {
+              "address": "0x0000000000000000000000000000000000000000",
+              "asset_contract_type": "fungible",
+              "chain_identifier": "ethereum",
+              "created_date": "2019-08-02T23:41:09.503168",
+              "name": "Ether",
+              "nft_version": null,
+              "opensea_version": null,
+              "owner": null,
+              "schema_name": "ERC20",
+              "symbol": "ETH",
+              "total_supply": null,
+              "description": null,
+              "external_link": null,
+              "image_url": null,
+              "default_to_fiat": false,
+              "dev_buyer_fee_basis_points": 0,
+              "dev_seller_fee_basis_points": 0,
+              "only_proxied_transfers": false,
+              "opensea_buyer_fee_basis_points": 0,
+              "opensea_seller_fee_basis_points": 250,
+              "buyer_fee_basis_points": 0,
+              "seller_fee_basis_points": 250,
+              "payout_address": null
+            },
+            "permalink": "https://opensea.io/assets/ethereum/0x0000000000000000000000000000000000000000/0",
+            "collection": {
+              "banner_image_url": null,
+              "chat_url": null,
+              "created_date": "2022-08-11T13:34:04.673691+00:00",
+              "default_to_fiat": false,
+              "description": null,
+              "dev_buyer_fee_basis_points": "0",
+              "dev_seller_fee_basis_points": "0",
+              "discord_url": null,
+              "display_data": {
+                "card_display_style": "contain",
+                "images": []
+              },
+              "external_url": null,
+              "featured": false,
+              "featured_image_url": null,
+              "hidden": true,
+              "safelist_request_status": "not_requested",
+              "image_url": null,
+              "is_subject_to_whitelist": false,
+              "large_image_url": null,
+              "medium_username": null,
+              "name": "OpenSea PaymentAssets",
+              "only_proxied_transfers": false,
+              "opensea_buyer_fee_basis_points": "0",
+              "opensea_seller_fee_basis_points": 250,
+              "payout_address": null,
+              "require_email": false,
+              "short_description": null,
+              "slug": "opensea-paymentassets",
+              "telegram_url": null,
+              "twitter_username": null,
+              "instagram_username": null,
+              "wiki_url": null,
+              "is_nsfw": false,
+              "fees": {
+                "seller_fees": {},
+                "opensea_fees": {
+                  "0x0000a26b00c1f0df003000390027140000faa719": 250
+                }
+              },
+              "is_rarity_enabled": false,
+              "is_creator_fees_enforced": false
+            },
+            "decimals": 18,
+            "token_metadata": null,
+            "is_nsfw": false,
+            "owner": null
+          }
+        ],
+        "maker": null,
+        "slug": null,
+        "name": null,
+        "description": null,
+        "external_link": null,
+        "asset_contract": null,
+        "permalink": null,
+        "seaport_sell_orders": null
+      }
+    },
+    {
+      "created_date": "2023-05-19T11:02:03.667179",
+      "closing_date": "2023-11-15T11:01:11",
+      "listing_time": 1684494071,
+      "expiration_time": 1700046071,
+      "order_hash": "0x00165d3adbd4936d1b1904180a69110f9324f8b51fff02e853c442060a88a90d",
+      "protocol_data": {
+        "parameters": {
+          "offerer": "0x3ed479daf6474cff1ef272e033d4b12a3eaae53b",
+          "offer": [
+            {
+              "itemType": 2,
+              "token": "0x8c6dEf540b83471664Edc6d5Cf75883986932674",
+              "identifierOrCriteria": "7608",
+              "startAmount": "1",
+              "endAmount": "1"
+            }
+          ],
+          "consideration": [
+            {
+              "itemType": 0,
+              "token": "0x0000000000000000000000000000000000000000",
+              "identifierOrCriteria": "0",
+              "startAmount": "619750000000000000",
+              "endAmount": "619750000000000000",
+              "recipient": "0x3ED479daF6474CfF1EF272e033D4b12a3EAae53B"
+            },
+            {
+              "itemType": 0,
+              "token": "0x0000000000000000000000000000000000000000",
+              "identifierOrCriteria": "0",
+              "startAmount": "16750000000000000",
+              "endAmount": "16750000000000000",
+              "recipient": "0x0000a26b00c1F0DF003000390027140000fAa719"
+            },
+            {
+              "itemType": 0,
+              "token": "0x0000000000000000000000000000000000000000",
+              "identifierOrCriteria": "0",
+              "startAmount": "33500000000000000",
+              "endAmount": "33500000000000000",
+              "recipient": "0x62ac2DbBD306610fF8652B9e0D1A310B6C6AFa0f"
+            }
+          ],
+          "startTime": "1684494071",
+          "endTime": "1700046071",
+          "orderType": 0,
+          "zone": "0x004C00500000aD104D7DBd00e3ae0A5C00560C00",
+          "zoneHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "salt": "0x360c6ebe00000000000000000000000000000000000000007b9dd93c1415dee6",
+          "conduitKey": "0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000",
+          "totalOriginalConsiderationItems": 3,
+          "counter": 0
+        },
+        "signature": null
+      },
+      "protocol_address": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "current_price": "670000000000000000",
+      "maker": {
+        "user": 1170411,
+        "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/3.png",
+        "address": "0x3ed479daf6474cff1ef272e033d4b12a3eaae53b",
+        "config": ""
+      },
+      "taker": null,
+      "maker_fees": [
+        {
+          "account": {
+            "user": null,
+            "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/29.png",
+            "address": "0x0000a26b00c1f0df003000390027140000faa719",
+            "config": ""
+          },
+          "basis_points": "250"
+        },
+        {
+          "account": {
+            "user": 33855175,
+            "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/25.png",
+            "address": "0x62ac2dbbd306610ff8652b9e0d1a310b6c6afa0f",
+            "config": "verified"
+          },
+          "basis_points": "500"
+        }
+      ],
+      "taker_fees": [],
+      "side": "ask",
+      "order_type": "basic",
+      "cancelled": false,
+      "finalized": false,
+      "marked_invalid": false,
+      "remaining_quantity": 1,
+      "relay_id": "T3JkZXJWMlR5cGU6OTYwOTY3Nzk0Mg",
+      "criteria_proof": null,
+      "maker_asset_bundle": {
+        "assets": [
+          {
+            "id": 1172452477,
+            "token_id": "7608",
+            "num_sales": 0,
+            "background_color": null,
+            "image_url": "https://i.seadn.io/gcs/files/d56c3aaf3d52c7634801fe50965f4edc.png?w=500&auto=format",
+            "image_preview_url": "https://i.seadn.io/gcs/files/d56c3aaf3d52c7634801fe50965f4edc.png?w=500&auto=format",
+            "image_thumbnail_url": "https://i.seadn.io/gcs/files/d56c3aaf3d52c7634801fe50965f4edc.png?w=500&auto=format",
+            "image_original_url": "ipfs://QmSifFzarzzen5Vv4TWWhpN56VksqZrF3Bmuuc4gdGTEv1/7608.png",
+            "animation_url": null,
+            "animation_original_url": null,
+            "name": "goblintown #7608",
+            "description": "AAAAAAAUUUUUGGGHHHHH gobblins goblinns GOBLINNNNNNNNns wekm ta goblintown yoo sniksnakr DEJEN RATS oooooh rats are yummmz dis a NEFTEEE O GOBBLINGS on da BLOKCHIN wat? oh. crustybutt da goblinking say GEE EMMM DEDJEN RUTS an queenie saay HLLO SWEATIES ok dats all byeby",
+            "external_link": null,
+            "asset_contract": {
+              "address": "0x8c6def540b83471664edc6d5cf75883986932674",
+              "asset_contract_type": "non-fungible",
+              "chain_identifier": "ethereum",
+              "created_date": "2023-04-15T13:17:01.373404",
+              "name": "goblintown",
+              "nft_version": null,
+              "opensea_version": null,
+              "owner": 433122213,
+              "schema_name": "ERC721",
+              "symbol": "GOBLIN",
+              "total_supply": "0",
+              "description": "AAAAAAAUUUUUGGGHHHHH gobblins goblinns GOBLINNNNNNNNns wekm ta goblintown yoo sniksnakr DEJEN RATS oooooh rats are yummmz dis a NEFTEEE O GOBBLINGS on da BLOKCHIN wat? oh. crustybutt da goblinking say GEE EMMM DEDJEN RUTS an queenie saay HLLO SWEATIES ok dats all byeby\r\n\r\ncum say hi ta other gobs at [https://onlygobs.chat](https://onlygobs.chat)",
+              "external_link": "https://goblintown.wtf/",
+              "image_url": "https://i.seadn.io/gae/cb_wdEAmvry_noTfeuQzhqKpghhZWQ_sEhuGS9swM03UM8QMEVJrndu0ZRdLFgGVqEPeCUzOHGTUllxug9U3xdvt0bES6VFdkRCKPqg?w=500&auto=format",
+              "default_to_fiat": false,
+              "dev_buyer_fee_basis_points": 0,
+              "dev_seller_fee_basis_points": 500,
+              "only_proxied_transfers": false,
+              "opensea_buyer_fee_basis_points": 0,
+              "opensea_seller_fee_basis_points": 250,
+              "buyer_fee_basis_points": 0,
+              "seller_fee_basis_points": 750,
+              "payout_address": "0x12392f348d27488637886e26f8add0a8eddd368f"
+            },
+            "permalink": "https://opensea.io/assets/ethereum/0x8c6def540b83471664edc6d5cf75883986932674/7608",
+            "collection": {
+              "banner_image_url": "https://i.seadn.io/gae/U1IY0rRHvXZ9K7fqDgBBJVnkJhlv0YrL0aMfYzY4XzTkWGyWroq8-GymDy_1e3S17Ze_FPIwg9yjheKxp42SSzUBrp_744yrA16XHKo?w=500&auto=format",
+              "chat_url": null,
+              "created_date": "2022-05-19T16:36:48.568970+00:00",
+              "default_to_fiat": false,
+              "description": "AAAAAAAUUUUUGGGHHHHH gobblins goblinns GOBLINNNNNNNNns wekm ta goblintown yoo sniksnakr DEJEN RATS oooooh rats are yummmz dis a NEFTEEE O GOBBLINGS on da BLOKCHIN wat? oh. crustybutt da goblinking say GEE EMMM DEDJEN RUTS an queenie saay HLLO SWEATIES ok dats all byeby\r\n\r\ncum say hi ta other gobs at [https://onlygobs.chat](https://onlygobs.chat)",
+              "dev_buyer_fee_basis_points": "0",
+              "dev_seller_fee_basis_points": "500",
+              "discord_url": null,
+              "display_data": {
+                "card_display_style": "contain",
+                "images": null
+              },
+              "external_url": "https://goblintown.wtf/",
+              "featured": false,
+              "featured_image_url": "https://i.seadn.io/gae/cb_wdEAmvry_noTfeuQzhqKpghhZWQ_sEhuGS9swM03UM8QMEVJrndu0ZRdLFgGVqEPeCUzOHGTUllxug9U3xdvt0bES6VFdkRCKPqg?w=500&auto=format",
+              "hidden": false,
+              "safelist_request_status": "verified",
+              "image_url": "https://i.seadn.io/gae/cb_wdEAmvry_noTfeuQzhqKpghhZWQ_sEhuGS9swM03UM8QMEVJrndu0ZRdLFgGVqEPeCUzOHGTUllxug9U3xdvt0bES6VFdkRCKPqg?w=500&auto=format",
+              "is_subject_to_whitelist": false,
+              "large_image_url": "https://i.seadn.io/gae/cb_wdEAmvry_noTfeuQzhqKpghhZWQ_sEhuGS9swM03UM8QMEVJrndu0ZRdLFgGVqEPeCUzOHGTUllxug9U3xdvt0bES6VFdkRCKPqg?w=500&auto=format",
+              "medium_username": null,
+              "name": "goblintown.wtf",
+              "only_proxied_transfers": false,
+              "opensea_buyer_fee_basis_points": "0",
+              "opensea_seller_fee_basis_points": 250,
+              "payout_address": "0x12392f348d27488637886e26f8add0a8eddd368f",
+              "require_email": false,
+              "short_description": null,
+              "slug": "goblintownwtf",
+              "telegram_url": null,
+              "twitter_username": null,
+              "instagram_username": null,
+              "wiki_url": null,
+              "is_nsfw": false,
+              "fees": {
+                "seller_fees": {
+                  "0x12392f348d27488637886e26f8add0a8eddd368f": 500
+                },
+                "opensea_fees": {
+                  "0x0000a26b00c1f0df003000390027140000faa719": 250
+                }
+              },
+              "is_rarity_enabled": false,
+              "is_creator_fees_enforced": true
+            },
+            "decimals": null,
+            "token_metadata": "ipfs://QmdxDAXQZn7LtbTCrfLgYX2YbWHGi2t7UQwqSEpt45YEh2/7608",
+            "is_nsfw": false,
+            "owner": null
+          }
+        ],
+        "maker": null,
+        "slug": null,
+        "name": null,
+        "description": null,
+        "external_link": null,
+        "asset_contract": null,
+        "permalink": null,
+        "seaport_sell_orders": null
+      },
+      "taker_asset_bundle": {
+        "assets": [
+          {
+            "id": 13689077,
+            "token_id": "0",
+            "num_sales": 8,
+            "background_color": null,
+            "image_url": "https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg",
+            "image_preview_url": "https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg",
+            "image_thumbnail_url": "https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg",
+            "image_original_url": "https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg",
+            "animation_url": null,
+            "animation_original_url": null,
+            "name": "Ether",
+            "description": "",
+            "external_link": null,
+            "asset_contract": {
+              "address": "0x0000000000000000000000000000000000000000",
+              "asset_contract_type": "fungible",
+              "chain_identifier": "ethereum",
+              "created_date": "2019-08-02T23:41:09.503168",
+              "name": "Ether",
+              "nft_version": null,
+              "opensea_version": null,
+              "owner": null,
+              "schema_name": "ERC20",
+              "symbol": "ETH",
+              "total_supply": null,
+              "description": null,
+              "external_link": null,
+              "image_url": null,
+              "default_to_fiat": false,
+              "dev_buyer_fee_basis_points": 0,
+              "dev_seller_fee_basis_points": 0,
+              "only_proxied_transfers": false,
+              "opensea_buyer_fee_basis_points": 0,
+              "opensea_seller_fee_basis_points": 250,
+              "buyer_fee_basis_points": 0,
+              "seller_fee_basis_points": 250,
+              "payout_address": null
+            },
+            "permalink": "https://opensea.io/assets/ethereum/0x0000000000000000000000000000000000000000/0",
+            "collection": {
+              "banner_image_url": null,
+              "chat_url": null,
+              "created_date": "2022-08-11T13:34:04.673691+00:00",
+              "default_to_fiat": false,
+              "description": null,
+              "dev_buyer_fee_basis_points": "0",
+              "dev_seller_fee_basis_points": "0",
+              "discord_url": null,
+              "display_data": {
+                "card_display_style": "contain",
+                "images": []
+              },
+              "external_url": null,
+              "featured": false,
+              "featured_image_url": null,
+              "hidden": true,
+              "safelist_request_status": "not_requested",
+              "image_url": null,
+              "is_subject_to_whitelist": false,
+              "large_image_url": null,
+              "medium_username": null,
+              "name": "OpenSea PaymentAssets",
+              "only_proxied_transfers": false,
+              "opensea_buyer_fee_basis_points": "0",
+              "opensea_seller_fee_basis_points": 250,
+              "payout_address": null,
+              "require_email": false,
+              "short_description": null,
+              "slug": "opensea-paymentassets",
+              "telegram_url": null,
+              "twitter_username": null,
+              "instagram_username": null,
+              "wiki_url": null,
+              "is_nsfw": false,
+              "fees": {
+                "seller_fees": {},
+                "opensea_fees": {
+                  "0x0000a26b00c1f0df003000390027140000faa719": 250
+                }
+              },
+              "is_rarity_enabled": false,
+              "is_creator_fees_enforced": false
+            },
+            "decimals": 18,
+            "token_metadata": null,
+            "is_nsfw": false,
+            "owner": null
+          }
+        ],
+        "maker": null,
+        "slug": null,
+        "name": null,
+        "description": null,
+        "external_link": null,
+        "asset_contract": null,
+        "permalink": null,
+        "seaport_sell_orders": null
+      }
+    }
+  ]
+}

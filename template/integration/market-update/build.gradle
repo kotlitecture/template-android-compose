@@ -1,0 +1,10 @@
+apply from: "${project.rootDir}/gradle/android/library.gradle"
+
+android {
+    namespace = "core.datasource.market.update"
+}
+
+dependencies {
+    implementation project(":core:datasource")
+    api libs.google.app.update
+}

@@ -1,0 +1,16 @@
+apply from: "${project.rootDir}/gradle/kotlin/library.gradle"
+apply plugin: "io.spring.dependency-management"
+apply plugin: "org.springframework.boot"
+
+processResources {
+    from('../template') {
+        into("kotli/templates/${rootProject.name}")
+        exclude "**/.gradle"
+        exclude "**/build"
+    }
+}
+
+dependencies {
+    api libs.kotli.engine
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}

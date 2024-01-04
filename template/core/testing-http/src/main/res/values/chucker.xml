@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chucker_name" translatable="false">App Monitoring</string>
+    <string name="chucker_network_notification_category" translatable="false">HTTP activity</string>
+    <string name="chucker_network_tutorial" translatable="false">No HTTP activity yet :(</string>
+    <string name="chucker_check_readme" translatable="false" />
+    <string name="chucker_setup" translatable="false" />
+
+    <color name="chucker_background_span_color">#FFfff8c3</color>
+    <color name="chucker_chessboard_even_square_dark">#182531</color>
+    <color name="chucker_chessboard_even_square_light">#F8FAFC</color>
+    <color name="chucker_chessboard_odd_square_dark">#01101D</color>
+    <color name="chucker_chessboard_odd_square_light">#D2DADF</color>
+    <color name="chucker_color_background">#ffffff</color>
+    <color name="chucker_color_error">#FFF2645C</color>
+    <color name="chucker_color_on_background">#000000</color>
+    <color name="chucker_color_on_error">#ffffff</color>
+    <color name="chucker_color_on_primary">#ffffff</color>
+    <color name="chucker_color_on_secondary">#000000</color>
+    <color name="chucker_color_on_surface">#000000</color>
+    <color name="chucker_color_primary">#FF223526</color>
+    <color name="chucker_color_primary_variant">#FF223526</color>
+    <color name="chucker_color_secondary">#FF3478F6</color>
+    <color name="chucker_color_surface">#ffffff</color>
+    <color name="chucker_foreground_span_color">#FFF2645C</color>
+    <color name="chucker_status_300">#FF3478F6</color>
+    <color name="chucker_status_400">#FFF2AD5C</color>
+    <color name="chucker_status_500">#B71C1C</color>
+    <color name="chucker_status_default">#212121</color>
+    <color name="chucker_status_error">#FFF2645C</color>
+    <color name="chucker_status_requested">#9E9E9E</color>
+</resources>

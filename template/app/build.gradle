@@ -1,0 +1,108 @@
+apply from: "${project.rootDir}/gradle/android/application.gradle"
+apply plugin: "com.google.firebase.appdistribution" // {firebase-distribution}
+apply plugin: "com.google.firebase.firebase-perf" // {firebase-perf}
+apply plugin: "com.google.firebase.crashlytics" // {firebase-crashlytics}
+apply plugin: "com.google.gms.google-services" // {google-services}
+apply plugin: "androidx.baselineprofile" // {baselineprofile}
+apply plugin: "com.github.triplet.play" // {google-play-distribution}
+apply plugin: "io.objectbox" // {objectbox}
+
+dependencies {
+    implementation project(":core:ui")
+    implementation project(":core:data")
+    implementation project(":core:testing-http") // {testing-http}
+    implementation project(":integration:firebase-crashlytics") // {firebase-crashlytics}
+    implementation project(":integration:firebase-analytics") // {firebase-analytics}
+    implementation project(":integration:firebase-config") // {firebase-config}
+    implementation project(":integration:firebase-perf") // {firebase-perf}
+    implementation project(":integration:market-update") // {market-update}
+    implementation project(":integration:market-review") // {market-review}
+    implementation project(":workflow:webtonative") // {workflow-webtonative}
+    testImplementation project(":core:testing")
+    baselineProfile project(':baselineprofile') // {baselineprofile}
+}
+
+android {
+    namespace = "app"
+    defaultConfig {
+        applicationId = "kotli.app" // {applicationId}
+        versionName = System.getProperty("versionNameExt") ?: "0.0.1"
+        versionCode = (System.getProperty("versionCodeExt") ?: "1").toInteger()
+    }
+
+    signingConfigs {
+        register("staging") {
+            storeFile = file("assemble/staging.keystore")
+            keyAlias = "androiddebugkey"
+            storePassword = "android"
+            keyPassword = "android"
+        }
+        release {
+            storeFile = file("assemble/release.keystore")
+            keyAlias = "androidreleasekey"
+            storePassword = "android"
+            keyPassword = "android"
+        }
+    }
+
+    buildTypes {
+        named("debug") {
+            signingConfig signingConfigs.getByName("staging")
+            applicationIdSuffix = ".debug"
+
+            debuggable true
+            // start {firebase-distribution-debug}
+            firebaseAppDistribution {
+                artifactType = "APK"
+                groups = "feature-developers"
+                serviceCredentialsFile = "appDistributionCredentials.json"
+            }
+            // end {firebase-distribution-debug}
+        }
+
+        register("staging") {
+            initWith(debug)
+            matchingFallbacks.add("debug")
+
+            signingConfig signingConfigs.getByName("staging")
+            applicationIdSuffix = ".staging"
+
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            // start {firebase-distribution-staging}
+            firebaseAppDistribution {
+                artifactType = "APK"
+                groups = "feature-testers"
+                serviceCredentialsFile = "appDistributionCredentials.json"
+            }
+            // end {firebase-distribution-staging}
+        }
+
+        named("release") {
+            signingConfig signingConfigs.getByName("release")
+            applicationIdSuffix = ""
+
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+    }
+}
+
+// start {baselineprofile-config}
+baselineProfile {
+    automaticGenerationDuringBuild true
+    saveInSrc true
+}
+// end {baselineprofile-config}
+
+// start {google-play-distribution-config}
+play {
+    serviceAccountCredentials.set(file("assemble/google-play-publisher.json"))
+    releaseStatus.set(com.github.triplet.gradle.androidpublisher.ReleaseStatus.DRAFT)
+    track.set("internal")
+}
+// end {google-play-distribution-config}

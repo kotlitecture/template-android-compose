@@ -1,0 +1,94 @@
+{
+  ConstraintSets: {
+    start: {
+      statusBarBg: {
+        width: 'spread',
+        height: 'wrap',
+        top: ['parent', 'top'],
+        start: ['parent', 'start'],
+        end: ['parent', 'end']
+      },
+      toolbarBg: {
+        width: 'spread',
+        height: 56,
+        top: ['statusBarBg', 'bottom'],
+        start: ['parent', 'start'],
+        end: ['parent', 'end']
+      },
+      profileIcon: {
+        width: 40,
+        height: 40,
+        top: ['toolbarBg', 'top'],
+        bottom: ['toolbarBg', 'bottom'],
+        start: ['parent', 'start', 16]
+      },
+      notificationsIcon: {
+        scaleX: 1,
+        scaleY: 1,
+        top: ['toolbarBg', 'top'],
+        bottom: ['toolbarBg', 'bottom'],
+        end: ['parent', 'end', 16]
+      },
+      shareIcon: {
+        scaleX: 1,
+        scaleY: 1,
+        top: ['toolbarBg', 'top'],
+        bottom: ['toolbarBg', 'bottom'],
+        end: ['notificationsIcon', 'start', 8]
+      },
+      contentView: {
+        width: 'spread',
+        height: 'spread',
+        top: ['parent', 'top'],
+        bottom: ['parent','bottom'],
+        start: ['parent', 'start'],
+        end: ['parent', 'end']
+      }
+    },
+    end: {
+      statusBarBg: {
+        width: 'spread',
+        height: 'wrap',
+        top: ['parent', 'top'],
+        start: ['parent', 'start'],
+        end: ['parent', 'end']
+      },
+      toolbarBg: {
+        width: 'spread',
+        height: 40,
+        top: ['statusBarBg', 'bottom'],
+        start: ['parent', 'start'],
+        end: ['parent', 'end']
+      },
+      profileIcon: {
+        width: 32,
+        height: 32,
+        top: ['toolbarBg', 'top'],
+        bottom: ['toolbarBg', 'bottom'],
+        start: ['parent', 'start', 16]
+      },
+      notificationsIcon: {
+        scaleX: 0.8,
+        scaleY: 0.8,
+        top: ['toolbarBg', 'top'],
+        bottom: ['toolbarBg', 'bottom'],
+        end: ['parent', 'end', 8]
+      },
+      shareIcon: {
+        scaleX: 0.8,
+        scaleY: 0.8,
+        top: ['toolbarBg', 'top'],
+        bottom: ['toolbarBg', 'bottom'],
+        end: ['notificationsIcon', 'start', 4]
+      },
+      contentView: {
+        width: 'spread',
+        height: 'spread',
+        top: ['parent', 'top'],
+        bottom: ['parent','bottom'],
+        start: ['parent', 'start'],
+        end: ['parent', 'end']
+      }
+    }
+  }
+}

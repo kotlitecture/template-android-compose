@@ -1,0 +1,13 @@
+apply from: "${project.rootDir}/gradle/android/library.gradle"
+
+android {
+    namespace = "core.testing.http"
+}
+
+dependencies {
+    debugImplementation libs.chucker
+    stagingImplementation libs.chucker
+    releaseImplementation libs.chucker.release
+    implementation project(":core:essentials")
+    testImplementation project(":core:testing")
+}

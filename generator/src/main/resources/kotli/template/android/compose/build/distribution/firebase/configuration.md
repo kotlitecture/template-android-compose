@@ -1,0 +1,1 @@
+https://firebase.google.com/docs/app-distribution/add-remove-search-testers?platform=android

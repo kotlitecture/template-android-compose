@@ -1,0 +1,9 @@
+apply from: "${project.rootDir}/gradle/kotlin/library.gradle"
+apply plugin: "io.gatling.gradle"
+
+gatling {
+    simulations = {
+//        include "**/simulation/Guest**"
+        include "**/simulation/SignIn**"
+    }
+}
