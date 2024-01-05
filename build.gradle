@@ -25,9 +25,11 @@ tasks.register('cleanAll') {
     doLast {
         def dirs = []
         project.rootDir.eachDirRecurse { dir ->
-            if (dir.getName() == "build" && dir.parentFile.listFiles().any { it.getName() == "build.gradle" }) {
-                println("delete dir >> ${dir}")
-                dirs.add(dir)
+            if (dir.getName() == "build" && dir.parentFile.listFiles().any { it.getName().startsWith("build.gradle") }) {
+                if(!dirs.any { it.path.startsWith(dir.path) }) {
+                    println("delete dir >> ${dir}")
+                    dirs.add(dir)
+                }
             }
         }
         delete(dirs)
