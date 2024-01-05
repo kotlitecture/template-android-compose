@@ -44,7 +44,11 @@ import org.springframework.stereotype.Component
 @Component
 class TemplateGenerator : AbstractTemplateGenerator() {
 
-    override fun getId(): String = "android-compose"
+    companion object {
+        const val ID = "template-android-compose"
+    }
+
+    override fun getId(): String = ID
 
     override val type: LayerType = LayerType.Android
 
