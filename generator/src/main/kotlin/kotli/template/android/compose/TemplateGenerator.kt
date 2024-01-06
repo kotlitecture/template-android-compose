@@ -41,7 +41,7 @@ import kotli.template.android.compose.workflow.update.UpdateProvider
 import kotli.template.android.compose.workflow.webtonative.WebToNativeProvider
 import org.springframework.stereotype.Component
 
-@Component
+@Component(TemplateGenerator.ID)
 class TemplateGenerator : AbstractTemplateGenerator() {
 
     companion object {
