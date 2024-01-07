@@ -52,8 +52,6 @@ class TemplateGenerator : AbstractTemplateGenerator() {
 
     override val type: LayerType = LayerType.Android
 
-    override val templatePath: String = "kotli/templates/template-android-compose"
-
     override fun createProviders(): List<IFeatureProvider> = listOf(
         // appearance
         L10NProvider(),
