@@ -42,7 +42,7 @@ googleAppUpdate = "2.1.0"
 googlePlayPublisher = "3.8.6"
 googleServicesAuth = "20.7.0"
 gson = "2.10.1"
-hilt = "2.49"
+hilt = "2.50"
 javaxInject = "1"
 junit = "1.1.5"
 junit4 = "4.13.2"
@@ -248,9 +248,9 @@ kotlinTest = [
 ]
 
 [plugins]
-android-application = "com.android.application:8.2.0"
+android-application = "com.android.application:8.2.1"
 android-baselineprofile = "androidx.baselineprofile:1.2.2"
-android-test = "com.android.test:8.2.0"
+android-test = "com.android.test:8.2.1"
 firebase-appdistribution = "com.google.firebase.appdistribution:4.0.1"
 firebase-crashlytics = "com.google.firebase.crashlytics:2.9.9"
 firebase-perf = "com.google.firebase.firebase-perf:1.4.2"
