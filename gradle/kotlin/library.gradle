@@ -6,6 +6,14 @@ dependencies {
     testImplementation libs.bundles.kotlinTest
 }
 
+jar {
+    manifest {
+        attributes(
+                'Implementation-Version': archiveVersion
+        )
+    }
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -31,7 +39,7 @@ java {
 }
 
 javadoc {
-    if(JavaVersion.current().isJava9Compatible()) {
+    if (JavaVersion.current().isJava9Compatible()) {
         options.addBooleanOption('html5', true)
     }
 }
