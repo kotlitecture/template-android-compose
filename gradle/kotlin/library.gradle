@@ -1,4 +1,4 @@
-apply plugin: "org.jetbrains.kotlin.jvm"
+apply plugin: 'org.jetbrains.kotlin.jvm'
 apply plugin: 'maven-publish'
 
 dependencies {
@@ -16,18 +16,41 @@ jar {
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        maven(MavenPublication) {
             artifactId = rootProject.name
             from components.java
+            pom {
+                name = 'Android Compose Template'
+                description = 'Kotli Android Compose Template'
+                url = 'https://github.com/kotlitecture/template-android-compose'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/kotlitecture/template-android-compose/blob/main/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'aleksha'
+                        name = 'Aleksha'
+                        email = 'kotlitecture@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/kotlitecture/template-android-compose.git'
+                    developerConnection = 'scm:git:ssh://github.com/kotlitecture/template-android-compose.git'
+                    url = 'https://github.com/kotlitecture/template-android-compose'
+                }
+            }
         }
     }
     repositories {
         maven {
-            name = "OSSRH"
-            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            name = "GA"
+            url "https://us-maven.pkg.dev/kotlitecture/kotli-maven"
             credentials {
-                username = '<USERNAME>'
-                password = '<PASSWORD>'
+                username = '_json_key_base64'
+                password = findProperty('artifactRegistryMavenSecret')
             }
         }
     }
@@ -36,6 +59,10 @@ publishing {
 java {
     withJavadocJar()
     withSourcesJar()
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
 }
 
 javadoc {
