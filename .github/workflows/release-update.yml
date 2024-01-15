@@ -14,8 +14,6 @@ jobs:
     steps:
       - run: yes | sdkmanager --licenses --sdk_root=$ANDROID_HOME
       - uses: actions/checkout@v4
-        with:
-          lfs: true
       - uses: actions/setup-java@v4
         with:
           java-version: 17
