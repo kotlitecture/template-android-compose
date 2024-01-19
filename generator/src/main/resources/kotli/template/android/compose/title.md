@@ -1,1 +1,1 @@
-Android Application (Compose)
+Android Application
