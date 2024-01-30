@@ -1,5 +1,5 @@
 [versions]
-kotli = "0.0.5"
+kotli = "0.0.6"
 kotlin = "1.9.22"
 kotlinxCoroutines = "1.7.3"
 logback = "1.4.14"
@@ -27,5 +27,5 @@ logging = [
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 spring-boot = "org.springframework.boot:3.2.2"
-version-catalog-update = "nl.littlerobots.version-catalog-update:0.8.3"
-version-catalog-versions = "com.github.ben-manes.versions:0.50.0"
+version-catalog-update = "nl.littlerobots.version-catalog-update:0.8.4"
+version-catalog-versions = "com.github.ben-manes.versions:0.51.0"
