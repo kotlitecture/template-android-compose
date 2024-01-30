@@ -1,2 +1,0 @@
-- [Official documentation](https://firebase.google.com/docs/analytics)
-- [Configuration instruction](https://firebase.google.com/docs/analytics/get-started)

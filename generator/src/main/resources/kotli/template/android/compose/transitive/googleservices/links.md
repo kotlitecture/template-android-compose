@@ -1,2 +1,0 @@
-- [Official documentation](https://cloud.google.com/)
-- [Configuration instruction](https://firebase.google.com/docs/android/setup)

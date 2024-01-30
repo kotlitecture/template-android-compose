@@ -1,2 +1,0 @@
-- [Official documentation](https://firebase.google.com/docs/remote-config)
-- [Configuration instruction](https://firebase.google.com/docs/remote-config/get-started?platform=android)

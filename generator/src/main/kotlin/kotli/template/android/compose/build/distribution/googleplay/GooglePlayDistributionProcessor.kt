@@ -6,6 +6,8 @@ import kotli.engine.TemplateContext
 class GooglePlayDistributionProcessor : FeatureProcessor() {
 
     override val id: String = ID
+    override fun getWebUrl(context: TemplateContext): String = "https://github.com/Triple-T/gradle-play-publisher"
+    override fun getIntegrationUrl(context: TemplateContext): String = "https://github.com/Triple-T/gradle-play-publisher?tab=readme-ov-file#quickstart-guide"
 
     override fun doApply(context: TemplateContext) {
         context.apply("app/build.gradle") {

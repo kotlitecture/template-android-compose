@@ -1,2 +1,0 @@
-- [Official documentation](https://developer.android.com/topic/performance/baselineprofiles/overview)
-- [Configuration instruction](https://developer.android.com/topic/performance/baselineprofiles/configure-baselineprofiles)

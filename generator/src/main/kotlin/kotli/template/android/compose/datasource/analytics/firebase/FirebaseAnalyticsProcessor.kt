@@ -3,9 +3,9 @@ package kotli.template.android.compose.datasource.analytics.firebase
 import kotli.engine.FeatureProcessor
 import kotli.engine.IFeatureProcessor
 import kotli.engine.TemplateContext
+import kotli.template.android.compose.quality.crashes.firebase.FirebaseCrashlyticsProcessor
 import kotli.template.android.compose.transitive.firebase.FirebaseProcessor
 import kotli.template.android.compose.transitive.googleservices.GoogleServicesProcessor
-import kotli.template.android.compose.quality.crashes.firebase.FirebaseCrashlyticsProcessor
 
 class FirebaseAnalyticsProcessor : FeatureProcessor() {
 
@@ -13,6 +13,8 @@ class FirebaseAnalyticsProcessor : FeatureProcessor() {
     private val appStartup = "app/src/main/kotlin/app/AppStartupInitializer.kt"
 
     override val id: String = ID
+    override fun getWebUrl(context: TemplateContext): String = "https://firebase.google.com/docs/analytics"
+    override fun getIntegrationUrl(context: TemplateContext): String = "https://firebase.google.com/docs/analytics/get-started"
 
     override fun dependencies(): List<Class<out IFeatureProcessor>> = listOf(
         GoogleServicesProcessor::class.java,

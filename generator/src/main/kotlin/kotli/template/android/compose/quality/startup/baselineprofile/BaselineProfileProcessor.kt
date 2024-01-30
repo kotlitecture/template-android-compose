@@ -6,6 +6,8 @@ import kotli.engine.TemplateContext
 class BaselineProfileProcessor : FeatureProcessor() {
 
     override val id: String = ID
+    override fun getWebUrl(context: TemplateContext): String = "https://developer.android.com/topic/performance/baselineprofiles/overview"
+    override fun getIntegrationUrl(context: TemplateContext): String = "https://developer.android.com/topic/performance/baselineprofiles/configure-baselineprofiles"
 
     override fun doApply(context: TemplateContext) {
         context.apply("settings.gradle") {

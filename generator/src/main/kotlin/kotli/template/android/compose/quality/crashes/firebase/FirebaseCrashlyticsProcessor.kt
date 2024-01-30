@@ -11,6 +11,8 @@ class FirebaseCrashlyticsProcessor : FeatureProcessor() {
     private val appStartup = "app/src/main/kotlin/app/AppStartupInitializer.kt"
 
     override val id: String = ID
+    override fun getWebUrl(context: TemplateContext): String = "https://firebase.google.com/docs/crashlytics"
+    override fun getIntegrationUrl(context: TemplateContext): String = "https://firebase.google.com/docs/crashlytics/get-started?platform=android"
 
     override fun dependencies(): List<Class<out IFeatureProcessor>> = listOf(
         GoogleServicesProcessor::class.java,

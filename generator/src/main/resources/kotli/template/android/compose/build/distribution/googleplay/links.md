@@ -1,2 +1,0 @@
-- [Official documentation](https://github.com/Triple-T/gradle-play-publisher)
-- [Configuration instruction](https://github.com/Triple-T/gradle-play-publisher?tab=readme-ov-file#quickstart-guide)

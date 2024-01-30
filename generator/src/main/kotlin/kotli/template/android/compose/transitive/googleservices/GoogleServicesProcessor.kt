@@ -6,6 +6,8 @@ import kotli.engine.TemplateContext
 class GoogleServicesProcessor : FeatureProcessor() {
 
     override val id: String = ID
+    override fun getWebUrl(context: TemplateContext): String = "https://cloud.google.com/"
+    override fun getIntegrationUrl(context: TemplateContext): String = "https://firebase.google.com/docs/android/setup"
 
     override fun getConfiguration(context: TemplateContext): String? {
         return super.getConfiguration(context)?.replace("kotli.app", context.layer.namespace)

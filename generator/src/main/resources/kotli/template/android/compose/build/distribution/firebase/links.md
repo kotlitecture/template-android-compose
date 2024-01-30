@@ -1,2 +1,0 @@
-- [Official documentation](https://firebase.google.com/docs/app-distribution)
-- [Configuration instruction](https://firebase.google.com/docs/app-distribution/android/distribute-gradle)
