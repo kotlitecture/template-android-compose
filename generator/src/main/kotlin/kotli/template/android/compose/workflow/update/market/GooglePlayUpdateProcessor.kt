@@ -1,9 +1,9 @@
 package kotli.template.android.compose.workflow.update.market
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.TemplateContext
 
-class GooglePlayUpdateProcessor : FeatureProcessor() {
+class GooglePlayUpdateProcessor : AbstractFeatureProcessor() {
 
     override val id: String = ID
 

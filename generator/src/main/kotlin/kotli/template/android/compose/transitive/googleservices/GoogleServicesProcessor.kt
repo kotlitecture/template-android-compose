@@ -1,9 +1,9 @@
 package kotli.template.android.compose.transitive.googleservices
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.TemplateContext
 
-class GoogleServicesProcessor : FeatureProcessor() {
+class GoogleServicesProcessor : AbstractFeatureProcessor() {
 
     override val id: String = ID
     override fun getWebUrl(context: TemplateContext): String = "https://cloud.google.com/"

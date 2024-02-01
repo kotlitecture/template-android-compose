@@ -1,10 +1,10 @@
 package kotli.template.android.compose.workflow.kyc
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class KycProvider : FeatureProvider() {
+class KycProvider : AbstractFeatureProvider() {
 
     override val id: String = "kyc"
 

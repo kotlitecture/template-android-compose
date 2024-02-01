@@ -1,10 +1,10 @@
 package kotli.template.android.compose.workflow.onboarding
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class OnboardingProvider : FeatureProvider() {
+class OnboardingProvider : AbstractFeatureProvider() {
 
     override val id: String = "onboarding"
 

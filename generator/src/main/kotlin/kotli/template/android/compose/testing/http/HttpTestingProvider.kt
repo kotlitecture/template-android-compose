@@ -1,10 +1,10 @@
 package kotli.template.android.compose.testing.http
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class HttpTestingProvider : FeatureProvider() {
+class HttpTestingProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
 

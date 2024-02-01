@@ -1,10 +1,10 @@
 package kotli.template.android.compose.appearance.l10n
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class L10NProvider : FeatureProvider() {
+class L10NProvider : AbstractFeatureProvider() {
 
     override val id: String = "l10n_flow"
 

@@ -1,10 +1,10 @@
 package kotli.template.android.compose.datasource.messaging
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class MessagingProvider : FeatureProvider() {
+class MessagingProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
 

@@ -1,10 +1,10 @@
 package kotli.template.android.compose.workflow.pincode
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class PincodeProvider : FeatureProvider() {
+class PincodeProvider : AbstractFeatureProvider() {
 
     override val id: String = "pincode"
 

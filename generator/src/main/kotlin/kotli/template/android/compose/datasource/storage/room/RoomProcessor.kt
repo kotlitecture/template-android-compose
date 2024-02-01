@@ -1,10 +1,10 @@
 package kotli.template.android.compose.datasource.storage.room
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.IFeatureProcessor
 import kotli.engine.TemplateContext
 
-class RoomProcessor : FeatureProcessor() {
+class RoomProcessor : AbstractFeatureProcessor() {
 
     override val id: String = ID
 

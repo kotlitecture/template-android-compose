@@ -1,11 +1,11 @@
 package kotli.template.android.compose.testing.loadtests
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 import kotli.template.android.compose.testing.loadtests.gatling.GatlingProcessor
 
-class LoadTestsProvider : FeatureProvider() {
+class LoadTestsProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
 

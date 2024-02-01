@@ -1,9 +1,9 @@
 package kotli.template.android.compose.quality.startup.baselineprofile
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.TemplateContext
 
-class BaselineProfileProcessor : FeatureProcessor() {
+class BaselineProfileProcessor : AbstractFeatureProcessor() {
 
     override val id: String = ID
     override fun getWebUrl(context: TemplateContext): String = "https://developer.android.com/topic/performance/baselineprofiles/overview"

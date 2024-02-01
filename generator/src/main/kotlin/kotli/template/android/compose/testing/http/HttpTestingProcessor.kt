@@ -1,11 +1,11 @@
 package kotli.template.android.compose.testing.http
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.IFeatureProcessor
 import kotli.engine.TemplateContext
 import kotli.template.android.compose.datasource.http.HttpProcessor
 
-class HttpTestingProcessor : FeatureProcessor() {
+class HttpTestingProcessor : AbstractFeatureProcessor() {
 
     override val id: String = ID
 

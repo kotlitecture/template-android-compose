@@ -1,10 +1,10 @@
 package kotli.template.android.compose.workflow.payments
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class PaymentsProvider : FeatureProvider() {
+class PaymentsProvider : AbstractFeatureProvider() {
 
     override val id: String = "payments"
 

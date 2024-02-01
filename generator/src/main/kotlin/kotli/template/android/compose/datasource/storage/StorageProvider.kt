@@ -1,12 +1,12 @@
 package kotli.template.android.compose.datasource.storage
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 import kotli.template.android.compose.datasource.storage.objectbox.ObjectBoxProcessor
 import kotli.template.android.compose.datasource.storage.room.RoomProcessor
 
-class StorageProvider : FeatureProvider() {
+class StorageProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
 

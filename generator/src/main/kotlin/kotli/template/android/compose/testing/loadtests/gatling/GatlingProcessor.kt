@@ -1,9 +1,9 @@
 package kotli.template.android.compose.testing.loadtests.gatling
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.TemplateContext
 
-class GatlingProcessor : FeatureProcessor() {
+class GatlingProcessor : AbstractFeatureProcessor() {
 
     override val id: String = ID
 

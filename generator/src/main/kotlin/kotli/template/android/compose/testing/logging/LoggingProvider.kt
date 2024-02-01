@@ -1,10 +1,10 @@
 package kotli.template.android.compose.testing.logging
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class LoggingProvider : FeatureProvider() {
+class LoggingProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
 

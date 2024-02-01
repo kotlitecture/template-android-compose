@@ -1,12 +1,12 @@
 package kotli.template.android.compose.datasource.config.firebase
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.IFeatureProcessor
 import kotli.engine.TemplateContext
 import kotli.template.android.compose.transitive.firebase.FirebaseProcessor
 import kotli.template.android.compose.transitive.googleservices.GoogleServicesProcessor
 
-class FirebaseConfigProcessor : FeatureProcessor() {
+class FirebaseConfigProcessor : AbstractFeatureProcessor() {
 
     private val appConfig = "app/src/main/kotlin/app/datasource/config/AppConfigSource.kt"
     private val appStartup = "app/src/main/kotlin/app/AppStartupInitializer.kt"

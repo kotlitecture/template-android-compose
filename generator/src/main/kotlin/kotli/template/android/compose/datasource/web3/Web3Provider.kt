@@ -1,10 +1,10 @@
 package kotli.template.android.compose.datasource.web3
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class Web3Provider : FeatureProvider() {
+class Web3Provider : AbstractFeatureProvider() {
 
     override val id: String = ID
 

@@ -1,9 +1,9 @@
 package kotli.template.android.compose.build.distribution.googleplay
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.TemplateContext
 
-class GooglePlayDistributionProcessor : FeatureProcessor() {
+class GooglePlayDistributionProcessor : AbstractFeatureProcessor() {
 
     override val id: String = ID
     override fun getWebUrl(context: TemplateContext): String = "https://github.com/Triple-T/gradle-play-publisher"

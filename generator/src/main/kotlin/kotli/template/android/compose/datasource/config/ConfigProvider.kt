@@ -1,11 +1,11 @@
 package kotli.template.android.compose.datasource.config
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 import kotli.template.android.compose.datasource.config.firebase.FirebaseConfigProcessor
 
-class ConfigProvider : FeatureProvider() {
+class ConfigProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
 

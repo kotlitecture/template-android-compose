@@ -1,10 +1,10 @@
 package kotli.template.android.compose.appearance.splash
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class SplashProvider : FeatureProvider() {
+class SplashProvider : AbstractFeatureProvider() {
 
     override val id: String = "splash"
 

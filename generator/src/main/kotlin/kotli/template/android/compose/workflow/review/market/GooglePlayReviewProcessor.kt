@@ -1,9 +1,9 @@
 package kotli.template.android.compose.workflow.review.market
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.TemplateContext
 
-class GooglePlayReviewProcessor : FeatureProcessor() {
+class GooglePlayReviewProcessor : AbstractFeatureProcessor() {
 
     override val id: String = ID
 

@@ -1,10 +1,10 @@
 package kotli.template.android.compose.ui.preview
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class PreviewProvider : FeatureProvider() {
+class PreviewProvider : AbstractFeatureProvider() {
 
     override val id: String = "preview"
 

@@ -1,11 +1,11 @@
 package kotli.template.android.compose.quality.performance
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 import kotli.template.android.compose.quality.performance.firebase.FirebasePerformanceProcessor
 
-class PerformanceProvider : FeatureProvider() {
+class PerformanceProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
 

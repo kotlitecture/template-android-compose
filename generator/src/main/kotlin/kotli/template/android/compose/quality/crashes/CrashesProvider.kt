@@ -1,11 +1,11 @@
 package kotli.template.android.compose.quality.crashes
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 import kotli.template.android.compose.quality.crashes.firebase.FirebaseCrashlyticsProcessor
 
-class CrashesProvider : FeatureProvider() {
+class CrashesProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
 

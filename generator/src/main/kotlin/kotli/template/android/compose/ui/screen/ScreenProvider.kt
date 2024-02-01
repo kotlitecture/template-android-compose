@@ -1,10 +1,10 @@
 package kotli.template.android.compose.ui.screen
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class ScreenProvider : FeatureProvider() {
+class ScreenProvider : AbstractFeatureProvider() {
 
     override val id: String = "screen"
 

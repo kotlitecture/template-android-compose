@@ -50,7 +50,7 @@ class TemplateGeneratorTest {
             generator = generator
         )
         val context = TemplateContext(
-            path = buildPath(),
+            target = buildPath(),
             layer = app
         )
         context.generateAndGradlew("signingReport", "assembleDebug")
@@ -66,7 +66,7 @@ class TemplateGeneratorTest {
             features = generator.getAllFeatures()
         )
         val context = TemplateContext(
-            path = buildPath(),
+            target = buildPath(),
             layer = app
         )
 //        context.generateAndGradlew("gradlew", "signingReport", "testDebugUnitTest", "assembleDebug")

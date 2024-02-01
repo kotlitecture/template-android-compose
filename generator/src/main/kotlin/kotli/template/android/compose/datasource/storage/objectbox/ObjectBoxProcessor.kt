@@ -1,10 +1,10 @@
 package kotli.template.android.compose.datasource.storage.objectbox
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.IFeatureProcessor
 import kotli.engine.TemplateContext
 
-class ObjectBoxProcessor : FeatureProcessor() {
+class ObjectBoxProcessor : AbstractFeatureProcessor() {
 
     override val id: String = ID
 

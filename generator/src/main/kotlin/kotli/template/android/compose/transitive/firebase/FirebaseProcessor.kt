@@ -1,9 +1,9 @@
 package kotli.template.android.compose.transitive.firebase
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.TemplateContext
 
-class FirebaseProcessor : FeatureProcessor() {
+class FirebaseProcessor : AbstractFeatureProcessor() {
 
     override val id: String = ID
 

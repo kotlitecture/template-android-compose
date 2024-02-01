@@ -1,9 +1,9 @@
 package kotli.template.android.compose.datasource.work
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.TemplateContext
 
-class WorkProcessor : FeatureProcessor() {
+class WorkProcessor : AbstractFeatureProcessor() {
 
     override val id: String = ID
 

@@ -1,10 +1,10 @@
 package kotli.template.android.compose.appearance.theme
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class ThemeProvider : FeatureProvider() {
+class ThemeProvider : AbstractFeatureProvider() {
 
     override val id: String = "theme"
 

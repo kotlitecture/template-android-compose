@@ -1,10 +1,10 @@
 package kotli.template.android.compose.datasource.work
 
-import kotli.engine.FeatureProvider
+import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
 import kotli.engine.model.FeatureType
 
-class WorkProvider : FeatureProvider() {
+class WorkProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
 

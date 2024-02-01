@@ -1,12 +1,12 @@
 package kotli.template.android.compose.quality.performance.firebase
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.IFeatureProcessor
 import kotli.engine.TemplateContext
 import kotli.template.android.compose.transitive.firebase.FirebaseProcessor
 import kotli.template.android.compose.transitive.googleservices.GoogleServicesProcessor
 
-class FirebasePerformanceProcessor : FeatureProcessor() {
+class FirebasePerformanceProcessor : AbstractFeatureProcessor() {
 
     override val id: String = ID
     override fun getWebUrl(context: TemplateContext): String = "https://firebase.google.com/docs/perf-mon"

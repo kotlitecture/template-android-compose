@@ -1,9 +1,9 @@
 package kotli.template.android.compose.workflow.webtonative
 
-import kotli.engine.FeatureProcessor
+import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.TemplateContext
 
-class WebToNativeProcessor : FeatureProcessor() {
+class WebToNativeProcessor : AbstractFeatureProcessor() {
 
     override val id: String = ID
 
