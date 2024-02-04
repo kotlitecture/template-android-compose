@@ -2,8 +2,11 @@
 
 package kotli.template.android.compose
 
+import kotli.engine.Kotli
 import kotli.engine.TemplateContext
 import kotli.engine.model.Layer
+import kotli.engine.test.generateAndGradlew
+import kotli.engine.test.getAllFeatures
 import org.junit.jupiter.api.Assertions
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -37,7 +40,7 @@ class TemplateGeneratorTest {
             generator = generator
         )
         val output = ByteArrayOutputStream()
-        TemplateContext(layer = app).generateAndZip(output)
+        Kotli(app).generateAndZip(output)
         Assertions.assertTrue(output.size() > 50000)
     }
 
@@ -49,11 +52,11 @@ class TemplateGeneratorTest {
             name = "app-android",
             generator = generator
         )
-        val context = TemplateContext(
+        val kotli = Kotli(
             target = buildPath(),
             layer = app
         )
-        context.generateAndGradlew("signingReport", "assembleDebug")
+        kotli.generateAndGradlew("signingReport", "assembleDebug")
     }
 
     @Test
@@ -65,13 +68,13 @@ class TemplateGeneratorTest {
             generator = generator,
             features = generator.getAllFeatures()
         )
-        val context = TemplateContext(
+        val kotli = Kotli(
             target = buildPath(),
             layer = app
         )
-//        context.generateAndGradlew("gradlew", "signingReport", "testDebugUnitTest", "assembleDebug")
-        context.generateAndGradlew("signingReport", "assembleDebug")
-//        context.generateAndGradlew("gradlew", "assembleRelease")
+//        kotli.generateAndGradlew("gradlew", "signingReport", "testDebugUnitTest", "assembleDebug")
+        kotli.generateAndGradlew("signingReport", "assembleDebug")
+//        kotli.generateAndGradlew("gradlew", "assembleRelease")
     }
 
 }
