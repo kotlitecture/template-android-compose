@@ -5,7 +5,7 @@ import kotli.engine.TemplateContext
 
 class FirebaseProcessor : AbstractFeatureProcessor() {
 
-    override val id: String = ID
+    override fun getId(): String = ID
 
     override fun doApply(context: TemplateContext) {
     }

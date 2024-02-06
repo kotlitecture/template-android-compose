@@ -8,7 +8,7 @@ import kotli.template.android.compose.transitive.googleservices.GoogleServicesPr
 
 class FirebasePerformanceProcessor : AbstractFeatureProcessor() {
 
-    override val id: String = ID
+    override fun getId(): String = ID
     override fun getWebUrl(context: TemplateContext): String = "https://firebase.google.com/docs/perf-mon"
     override fun getIntegrationUrl(context: TemplateContext): String = "https://firebase.google.com/docs/perf-mon/get-started-android"
 

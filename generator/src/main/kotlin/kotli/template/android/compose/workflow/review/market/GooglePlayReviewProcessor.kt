@@ -5,7 +5,7 @@ import kotli.engine.TemplateContext
 
 class GooglePlayReviewProcessor : AbstractFeatureProcessor() {
 
-    override val id: String = ID
+    override fun getId(): String = ID
 
     override fun doApply(context: TemplateContext) {
         context.apply("settings.gradle") {

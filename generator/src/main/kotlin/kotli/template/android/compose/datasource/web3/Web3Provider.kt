@@ -2,12 +2,13 @@ package kotli.template.android.compose.datasource.web3
 
 import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
+import kotli.engine.IFeatureType
 import kotli.engine.model.FeatureType
 
 class Web3Provider : AbstractFeatureProvider() {
 
-    override val id: String = ID
-    override val type: FeatureType = FeatureType.DataSource
+    override fun getId(): String = ID
+    override fun getType(): IFeatureType = FeatureType.DataSource
 
     override fun createProcessors(): List<IFeatureProcessor> = listOf(
         Web3Processor()

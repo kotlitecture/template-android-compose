@@ -11,7 +11,7 @@ class FirebaseConfigProcessor : AbstractFeatureProcessor() {
     private val appConfig = "app/src/main/kotlin/app/datasource/config/AppConfigSource.kt"
     private val appStartup = "app/src/main/kotlin/app/AppStartupInitializer.kt"
 
-    override val id: String = ID
+    override fun getId(): String = ID
     override fun getWebUrl(context: TemplateContext): String = "https://firebase.google.com/docs/remote-config"
     override fun getIntegrationUrl(context: TemplateContext): String = "https://firebase.google.com/docs/remote-config/get-started?platform=android"
 

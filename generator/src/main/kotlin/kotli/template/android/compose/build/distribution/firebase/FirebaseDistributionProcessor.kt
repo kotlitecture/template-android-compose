@@ -8,7 +8,7 @@ import kotli.template.android.compose.transitive.googleservices.GoogleServicesPr
 
 class FirebaseDistributionProcessor : AbstractFeatureProcessor() {
 
-    override val id: String = ID
+    override fun getId(): String = ID
     override fun getWebUrl(context: TemplateContext): String = "https://firebase.google.com/docs/app-distribution"
     override fun getIntegrationUrl(context: TemplateContext): String = "https://firebase.google.com/docs/app-distribution/android/distribute-gradle"
 

@@ -2,13 +2,14 @@ package kotli.template.android.compose.build.gradle
 
 import kotli.engine.AbstractFeatureProvider
 import kotli.engine.IFeatureProcessor
+import kotli.engine.IFeatureType
 import kotli.engine.model.FeatureType
 
 class GradleProvider : AbstractFeatureProvider() {
 
-    override val id: String = ID
-    override val multiple: Boolean = false
-    override val type: FeatureType = FeatureType.Build
+    override fun getId(): String = ID
+    override fun isMultiple(): Boolean = false
+    override fun getType(): IFeatureType = FeatureType.Build
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()
 

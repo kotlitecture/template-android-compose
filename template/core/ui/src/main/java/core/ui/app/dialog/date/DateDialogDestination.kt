@@ -6,7 +6,7 @@ import core.ui.app.navigation.Strategy
 
 class DateDialogDestination : Destination<Unit>() {
 
-    override val id: String = "date_dialog_screen"
+    override fun getId(): String = "date_dialog_screen"
     override val dataType: Class<Unit> = Unit.javaClass
     override val strategy: Strategy = Strategy.SingleInstance
     override fun doRegister(builder: NavGraphBuilder) = dialog(builder) { DateRangeDialogScreen() }

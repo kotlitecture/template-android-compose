@@ -7,7 +7,7 @@ import core.ui.app.navigation.Strategy
 class HintDialogDestination : Destination<HintDialogDestination.Data>() {
 
     override val savable: Boolean = false
-    override val id: String = "hint_dialog_screen"
+    override fun getId(): String = "hint_dialog_screen"
     override val dataType: Class<Data> = Data::class.java
     override val strategy: Strategy = Strategy.NewInstance
     override fun doRegister(builder: NavGraphBuilder) = dialog(builder) { HintDialogScreen(it) }

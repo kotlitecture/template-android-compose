@@ -5,7 +5,7 @@ import kotli.engine.TemplateContext
 
 class HttpProcessor : AbstractFeatureProcessor() {
 
-    override val id: String = ID
+    override fun getId(): String = ID
 
     override fun doApply(context: TemplateContext) {
         context.apply("app/src/main/kotlin/app/App.kt") {

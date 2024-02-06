@@ -2,6 +2,7 @@ package kotli.template.android.compose
 
 import kotli.engine.AbstractTemplateGenerator
 import kotli.engine.IFeatureProvider
+import kotli.engine.ILayerType
 import kotli.engine.TemplateContext
 import kotli.engine.model.LayerType
 import kotli.template.android.compose.appearance.l10n.L10NProvider
@@ -44,13 +45,9 @@ import org.springframework.stereotype.Component
 @Component(TemplateGenerator.ID)
 class TemplateGenerator : AbstractTemplateGenerator() {
 
-    companion object {
-        const val ID = "template-android-compose"
-    }
-
-    override val id: String = ID
-    override val type: LayerType = LayerType.Android
-    override val webUrl: String = "https://github.com/kotlitecture/template-android-compose"
+    override fun getId(): String = ID
+    override fun getType(): ILayerType = LayerType.Android
+    override fun getWebUrl(): String = "https://github.com/kotlitecture/template-android-compose"
 
     override fun createProviders(): List<IFeatureProvider> = listOf(
         // appearance
@@ -113,4 +110,9 @@ class TemplateGenerator : AbstractTemplateGenerator() {
             replaceLine("{projectName}") { "rootProject.name = '${context.layer.name}'" }
         }
     }
+
+    companion object {
+        const val ID = "template-android-compose"
+    }
+
 }

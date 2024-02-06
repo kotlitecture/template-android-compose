@@ -12,7 +12,7 @@ class FirebaseAnalyticsProcessor : AbstractFeatureProcessor() {
     private val appAnalytics = "app/src/main/kotlin/app/datasource/analytics/AppAnalyticsSource.kt"
     private val appStartup = "app/src/main/kotlin/app/AppStartupInitializer.kt"
 
-    override val id: String = ID
+    override fun getId(): String = ID
     override fun getWebUrl(context: TemplateContext): String = "https://firebase.google.com/docs/analytics"
     override fun getIntegrationUrl(context: TemplateContext): String = "https://firebase.google.com/docs/analytics/get-started"
 

@@ -145,7 +145,7 @@ class SampleUseCase @Inject constructor() : UseCase<Unit, Map<String, String>>()
 @Singleton
 class SampleGlobalUseCase @Inject constructor() : GlobalUseCase<String, Map<String, String>>() {
 
-    override val id: String = "global"
+    override fun getId(): String = "global"
 
     override suspend fun doProceed(context: Context<String, Map<String, String>>) {
         val map = mutableMapOf<String, String>()

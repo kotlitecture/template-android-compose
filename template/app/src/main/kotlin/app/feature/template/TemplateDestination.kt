@@ -5,7 +5,7 @@ import core.ui.app.navigation.Destination
 import core.ui.app.navigation.Strategy
 
 class TemplateDestination : Destination<Unit>() {
-    override val id: String = "template_screen"
+    override fun getId(): String = "template_screen"
     override val dataType: Class<Unit> = Unit.javaClass
     override val strategy: Strategy = Strategy.NewInstance
     override fun doRegister(builder: NavGraphBuilder) = screen(builder) { TemplateScreen() }

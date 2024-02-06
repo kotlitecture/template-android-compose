@@ -7,7 +7,7 @@ import kotli.template.android.compose.datasource.http.HttpProcessor
 
 class HttpTestingProcessor : AbstractFeatureProcessor() {
 
-    override val id: String = ID
+    override fun getId(): String = ID
 
     override fun dependencies(): List<Class<out IFeatureProcessor>> = listOf(
         HttpProcessor::class.java

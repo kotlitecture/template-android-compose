@@ -6,7 +6,7 @@ import kotli.engine.TemplateContext
 
 class ObjectBoxProcessor : AbstractFeatureProcessor() {
 
-    override val id: String = ID
+    override fun getId(): String = ID
 
     override fun dependencies(): List<Class<out IFeatureProcessor>> = listOf(
     )

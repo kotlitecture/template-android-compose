@@ -5,7 +5,7 @@ import kotli.engine.TemplateContext
 
 class GoogleServicesProcessor : AbstractFeatureProcessor() {
 
-    override val id: String = ID
+    override fun getId(): String = ID
     override fun getWebUrl(context: TemplateContext): String = "https://cloud.google.com/"
     override fun getIntegrationUrl(context: TemplateContext): String = "https://firebase.google.com/docs/android/setup"
 
