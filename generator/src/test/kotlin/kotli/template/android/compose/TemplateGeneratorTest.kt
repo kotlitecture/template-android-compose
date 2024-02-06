@@ -71,9 +71,9 @@ class TemplateGeneratorTest {
             target = buildPath(),
             layer = app
         )
-//        context.generateAndGradlew("gradlew", "signingReport", "testDebugUnitTest", "assembleDebug")
+//        kotli.generateAndGradlew("gradlew", "signingReport", "testDebugUnitTest", "assembleDebug")
         kotli.generateAndGradlew("signingReport", "assembleDebug")
-//        context.generateAndGradlew("gradlew", "assembleRelease")
+//        kotli.generateAndGradlew("gradlew", "assembleRelease")
     }
 
 }
