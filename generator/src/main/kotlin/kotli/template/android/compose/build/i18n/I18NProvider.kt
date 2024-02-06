@@ -7,7 +7,7 @@ import kotli.engine.model.FeatureType
 class I18NProvider : AbstractFeatureProvider() {
 
     override val id: String = "i18n"
-
+    override val multiple: Boolean = false
     override val type: FeatureType = FeatureType.Build
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()

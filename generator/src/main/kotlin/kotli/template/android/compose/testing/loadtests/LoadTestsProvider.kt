@@ -8,7 +8,7 @@ import kotli.template.android.compose.testing.loadtests.gatling.GatlingProcessor
 class LoadTestsProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
-
+    override val multiple: Boolean = false
     override val type: FeatureType = FeatureType.Testing
 
     override fun createProcessors(): List<IFeatureProcessor> = listOf(

@@ -7,10 +7,8 @@ import kotli.engine.model.FeatureType
 class PreviewProvider : AbstractFeatureProvider() {
 
     override val id: String = "preview"
-
+    override val multiple: Boolean = true
     override val type: FeatureType = FeatureType.UI
-
-    override fun isMultiple(): Boolean = true
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()
 }

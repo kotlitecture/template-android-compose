@@ -7,7 +7,7 @@ import kotli.engine.model.FeatureType
 class VcsProvider : AbstractFeatureProvider() {
 
     override val id: String = "vcs"
-
+    override val multiple: Boolean = false
     override val type: FeatureType = FeatureType.Build
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()

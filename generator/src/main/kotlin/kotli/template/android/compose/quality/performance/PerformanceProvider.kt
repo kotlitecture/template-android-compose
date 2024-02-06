@@ -8,7 +8,7 @@ import kotli.template.android.compose.quality.performance.firebase.FirebasePerfo
 class PerformanceProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
-
+    override val multiple: Boolean = true
     override val type: FeatureType = FeatureType.Quality
 
     override fun createProcessors(): List<IFeatureProcessor> = listOf(

@@ -8,7 +8,7 @@ import kotli.template.android.compose.quality.crashes.firebase.FirebaseCrashlyti
 class CrashesProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
-
+    override val multiple: Boolean = false
     override val type: FeatureType = FeatureType.Quality
 
     override fun createProcessors(): List<IFeatureProcessor> = listOf(

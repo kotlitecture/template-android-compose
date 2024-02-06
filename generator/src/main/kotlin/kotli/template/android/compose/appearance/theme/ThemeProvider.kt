@@ -7,7 +7,6 @@ import kotli.engine.model.FeatureType
 class ThemeProvider : AbstractFeatureProvider() {
 
     override val id: String = "theme"
-
     override val type: FeatureType = FeatureType.Appearance
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()

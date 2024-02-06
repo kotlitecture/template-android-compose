@@ -48,11 +48,9 @@ class TemplateGenerator : AbstractTemplateGenerator() {
         const val ID = "template-android-compose"
     }
 
-    override fun getId(): String = ID
-
+    override val id: String = ID
     override val type: LayerType = LayerType.Android
-
-    override fun getRepositoryUrl(): String = "https://github.com/kotlitecture/template-android-compose"
+    override val webUrl: String = "https://github.com/kotlitecture/template-android-compose"
 
     override fun createProviders(): List<IFeatureProvider> = listOf(
         // appearance

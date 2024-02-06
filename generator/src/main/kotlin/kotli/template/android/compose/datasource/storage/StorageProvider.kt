@@ -9,10 +9,8 @@ import kotli.template.android.compose.datasource.storage.room.RoomProcessor
 class StorageProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
-
+    override val multiple: Boolean = true
     override val type: FeatureType = FeatureType.DataSource
-
-    override fun isMultiple(): Boolean = true
 
     override fun createProcessors(): List<IFeatureProcessor> = listOf(
         ObjectBoxProcessor(),

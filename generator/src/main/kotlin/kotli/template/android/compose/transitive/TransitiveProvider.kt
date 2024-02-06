@@ -9,10 +9,8 @@ import kotli.template.android.compose.transitive.googleservices.GoogleServicesPr
 class TransitiveProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
-
+    override val multiple: Boolean = true
     override val type: FeatureType = FeatureType.Transitive
-
-    override fun isMultiple(): Boolean = true
 
     override fun createProcessors(): List<IFeatureProcessor> = listOf(
         GoogleServicesProcessor(),

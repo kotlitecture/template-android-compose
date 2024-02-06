@@ -8,7 +8,6 @@ import kotli.template.android.compose.workflow.review.market.GooglePlayReviewPro
 class ReviewProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
-
     override val type: FeatureType = FeatureType.Workflow
 
     override fun createProcessors(): List<IFeatureProcessor> = listOf(

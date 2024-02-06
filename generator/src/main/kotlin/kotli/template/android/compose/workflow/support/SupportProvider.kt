@@ -7,7 +7,6 @@ import kotli.engine.model.FeatureType
 class SupportProvider : AbstractFeatureProvider() {
 
     override val id: String = "support"
-
     override val type: FeatureType = FeatureType.Workflow
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()

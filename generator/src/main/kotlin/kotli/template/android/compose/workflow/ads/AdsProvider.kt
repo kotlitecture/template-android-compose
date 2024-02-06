@@ -7,7 +7,7 @@ import kotli.engine.model.FeatureType
 class AdsProvider : AbstractFeatureProvider() {
 
     override val id: String = "ads"
-
+    override val multiple: Boolean = true
     override val type: FeatureType = FeatureType.Workflow
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()

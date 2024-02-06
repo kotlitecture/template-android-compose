@@ -7,7 +7,7 @@ import kotli.engine.model.FeatureType
 class HttpTestingProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
-
+    override val multiple: Boolean = true
     override val type: FeatureType = FeatureType.Testing
 
     override fun createProcessors(): List<IFeatureProcessor> = listOf(

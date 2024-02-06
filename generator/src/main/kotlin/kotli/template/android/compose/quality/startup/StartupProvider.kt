@@ -8,10 +8,8 @@ import kotli.template.android.compose.quality.startup.baselineprofile.BaselinePr
 class StartupProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
-
+    override val multiple: Boolean = true
     override val type: FeatureType = FeatureType.Quality
-
-    override fun isMultiple(): Boolean = true
 
     override fun createProcessors(): List<IFeatureProcessor> = listOf(
         BaselineProfileProcessor()

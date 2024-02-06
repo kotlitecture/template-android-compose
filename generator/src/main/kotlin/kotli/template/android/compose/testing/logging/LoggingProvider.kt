@@ -7,7 +7,7 @@ import kotli.engine.model.FeatureType
 class LoggingProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
-
+    override val multiple: Boolean = false
     override val type: FeatureType = FeatureType.Testing
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()

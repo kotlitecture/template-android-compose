@@ -7,7 +7,7 @@ import kotli.engine.model.FeatureType
 class GradleProvider : AbstractFeatureProvider() {
 
     override val id: String = ID
-
+    override val multiple: Boolean = false
     override val type: FeatureType = FeatureType.Build
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()
