@@ -13,7 +13,7 @@ class DistributionProvider : AbstractFeatureProvider() {
 
     override fun isMultiple(): Boolean = true
 
-    override fun getType(): IFeatureType = FeatureType.Build
+    override fun getType(): IFeatureType = FeatureType.DevOps
 
     override fun createProcessors(): List<IFeatureProcessor> = listOf(
         FirebaseDistributionProcessor(),

@@ -9,7 +9,7 @@ import kotli.template.android.compose.workflow.update.market.GooglePlayUpdatePro
 class UpdateProvider : AbstractFeatureProvider() {
 
     override fun getId(): String = ID
-    override fun getType(): IFeatureType = FeatureType.Workflow
+    override fun getType(): IFeatureType = FeatureType.UserFlow
 
     override fun createProcessors(): List<IFeatureProcessor> = listOf(
         GooglePlayUpdateProcessor()

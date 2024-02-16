@@ -2,6 +2,7 @@ package kotli.template.android.compose.workflow.update.market
 
 import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.TemplateContext
+import kotli.engine.extensions.applyVersionCatalog
 
 class GooglePlayUpdateProcessor : AbstractFeatureProcessor() {
 

@@ -3,6 +3,7 @@ package kotli.template.android.compose.testing.http
 import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.IFeatureProcessor
 import kotli.engine.TemplateContext
+import kotli.engine.extensions.applyVersionCatalog
 import kotli.template.android.compose.datasource.http.HttpProcessor
 
 class HttpTestingProcessor : AbstractFeatureProcessor() {

@@ -2,6 +2,7 @@ package kotli.template.android.compose.datasource.work
 
 import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.TemplateContext
+import kotli.engine.extensions.applyVersionCatalog
 
 class WorkProcessor : AbstractFeatureProcessor() {
 

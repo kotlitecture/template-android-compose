@@ -8,7 +8,7 @@ import kotli.engine.model.FeatureType
 class MessagingProvider : AbstractFeatureProvider() {
 
     override fun getId(): String = ID
-    override fun getType(): IFeatureType = FeatureType.DataSource
+    override fun getType(): IFeatureType = FeatureType.DataFlow
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()
 

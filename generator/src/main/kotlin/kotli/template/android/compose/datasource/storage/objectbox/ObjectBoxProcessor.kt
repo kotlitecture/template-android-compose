@@ -1,15 +1,12 @@
 package kotli.template.android.compose.datasource.storage.objectbox
 
 import kotli.engine.AbstractFeatureProcessor
-import kotli.engine.IFeatureProcessor
 import kotli.engine.TemplateContext
+import kotli.engine.extensions.applyVersionCatalog
 
 class ObjectBoxProcessor : AbstractFeatureProcessor() {
 
-    override fun getId(): String = ID
-
-    override fun dependencies(): List<Class<out IFeatureProcessor>> = listOf(
-    )
+    override fun getId(): String = "objectbox"
 
     override fun doApply(context: TemplateContext) {
         context.apply("build.gradle") {
@@ -30,10 +27,6 @@ class ObjectBoxProcessor : AbstractFeatureProcessor() {
         context.applyVersionCatalog {
             removeLine("objectbox")
         }
-    }
-
-    companion object {
-        const val ID = "objectbox"
     }
 
 }

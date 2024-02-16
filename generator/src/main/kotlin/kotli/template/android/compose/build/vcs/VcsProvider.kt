@@ -9,7 +9,7 @@ class VcsProvider : AbstractFeatureProvider() {
 
     override fun getId(): String = "vcs"
     override fun isMultiple(): Boolean = false
-    override fun getType(): IFeatureType = FeatureType.Build
+    override fun getType(): IFeatureType = FeatureType.DevOps
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()
 }

@@ -2,6 +2,7 @@ package kotli.template.android.compose.transitive.firebase
 
 import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.TemplateContext
+import kotli.engine.extensions.applyVersionCatalog
 
 class FirebaseProcessor : AbstractFeatureProcessor() {
 

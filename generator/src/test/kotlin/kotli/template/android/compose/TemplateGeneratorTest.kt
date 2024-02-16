@@ -3,9 +3,9 @@
 package kotli.template.android.compose
 
 import kotli.engine.Kotli
+import kotli.engine.extensions.generateAndGradlew
+import kotli.engine.extensions.getAllFeatures
 import kotli.engine.model.Layer
-import kotli.engine.test.generateAndGradlew
-import kotli.engine.test.getAllFeatures
 import org.junit.jupiter.api.Assertions
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -34,9 +34,9 @@ class TemplateGeneratorTest {
     fun `compose template in memory`() {
         val app = Layer(
             id = UUID.randomUUID().toString(),
+            generatorId = generator.getId(),
             namespace = "my.app",
             name = "app-android",
-            generator = generator
         )
         val output = ByteArrayOutputStream()
         Kotli(app).generateAndZip(output)
@@ -47,9 +47,9 @@ class TemplateGeneratorTest {
     fun `compose template without features`() {
         val app = Layer(
             id = UUID.randomUUID().toString(),
+            generatorId = generator.getId(),
             namespace = "my.app",
             name = "app-android",
-            generator = generator
         )
         val kotli = Kotli(
             target = buildPath(),
@@ -61,11 +61,11 @@ class TemplateGeneratorTest {
     @Test
     fun `compose template with all features`() {
         val app = Layer(
+            features = generator.getAllFeatures(),
             id = UUID.randomUUID().toString(),
+            generatorId = generator.getId(),
             namespace = "my.app",
             name = "app-android",
-            generator = generator,
-            features = generator.getAllFeatures()
         )
         val kotli = Kotli(
             target = buildPath(),

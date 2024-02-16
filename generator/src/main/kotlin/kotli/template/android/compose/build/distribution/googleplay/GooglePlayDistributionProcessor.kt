@@ -2,6 +2,7 @@ package kotli.template.android.compose.build.distribution.googleplay
 
 import kotli.engine.AbstractFeatureProcessor
 import kotli.engine.TemplateContext
+import kotli.engine.extensions.applyVersionCatalog
 
 class GooglePlayDistributionProcessor : AbstractFeatureProcessor() {
 

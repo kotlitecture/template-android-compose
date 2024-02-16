@@ -9,7 +9,7 @@ class I18NProvider : AbstractFeatureProvider() {
 
     override fun getId(): String = "i18n"
     override fun isMultiple(): Boolean = false
-    override fun getType(): IFeatureType = FeatureType.Build
+    override fun getType(): IFeatureType = FeatureType.DevOps
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()
 }

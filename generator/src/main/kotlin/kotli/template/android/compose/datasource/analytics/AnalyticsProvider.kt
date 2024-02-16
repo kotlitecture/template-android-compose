@@ -10,7 +10,7 @@ class AnalyticsProvider : AbstractFeatureProvider() {
 
     override fun getId(): String = ID
     override fun isMultiple(): Boolean = true
-    override fun getType(): IFeatureType = FeatureType.DataSource
+    override fun getType(): IFeatureType = FeatureType.DataFlow
 
     override fun createProcessors(): List<IFeatureProcessor> = listOf(
         FirebaseAnalyticsProcessor()

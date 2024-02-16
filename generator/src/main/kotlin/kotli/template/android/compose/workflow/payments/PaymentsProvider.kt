@@ -8,7 +8,7 @@ import kotli.engine.model.FeatureType
 class PaymentsProvider : AbstractFeatureProvider() {
 
     override fun getId(): String = "payments"
-    override fun getType(): IFeatureType = FeatureType.Workflow
+    override fun getType(): IFeatureType = FeatureType.UserFlow
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()
 }

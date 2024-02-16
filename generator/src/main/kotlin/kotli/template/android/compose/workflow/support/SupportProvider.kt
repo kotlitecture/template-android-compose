@@ -8,7 +8,7 @@ import kotli.engine.model.FeatureType
 class SupportProvider : AbstractFeatureProvider() {
 
     override fun getId(): String = "support"
-    override fun getType(): IFeatureType = FeatureType.Workflow
+    override fun getType(): IFeatureType = FeatureType.UserFlow
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()
 }

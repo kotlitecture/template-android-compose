@@ -9,7 +9,7 @@ class AdsProvider : AbstractFeatureProvider() {
 
     override fun getId(): String = "ads"
     override fun isMultiple(): Boolean = true
-    override fun getType(): IFeatureType = FeatureType.Workflow
+    override fun getType(): IFeatureType = FeatureType.UserFlow
 
     override fun createProcessors(): List<IFeatureProcessor> = emptyList()
 }
