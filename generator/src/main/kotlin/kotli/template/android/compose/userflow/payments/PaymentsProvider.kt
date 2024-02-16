@@ -1,0 +1,14 @@
+package kotli.template.android.compose.userflow.payments
+
+import kotli.engine.AbstractFeatureProvider
+import kotli.engine.IFeatureProcessor
+import kotli.engine.IFeatureType
+import kotli.engine.model.FeatureType
+
+class PaymentsProvider : AbstractFeatureProvider() {
+
+    override fun getId(): String = "payments"
+    override fun getType(): IFeatureType = FeatureType.UserFlow
+
+    override fun createProcessors(): List<IFeatureProcessor> = emptyList()
+}

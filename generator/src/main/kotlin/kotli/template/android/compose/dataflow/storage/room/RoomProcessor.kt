@@ -1,0 +1,29 @@
+package kotli.template.android.compose.dataflow.storage.room
+
+import kotli.engine.AbstractFeatureProcessor
+import kotli.engine.IFeatureProcessor
+import kotli.engine.TemplateContext
+import kotli.engine.extensions.applyVersionCatalog
+
+class RoomProcessor : AbstractFeatureProcessor() {
+
+    override fun getId(): String = ID
+
+    override fun dependencies(): List<Class<out IFeatureProcessor>> = listOf(
+    )
+
+    override fun doApply(context: TemplateContext) {
+
+    }
+
+    override fun doRemove(context: TemplateContext) {
+        context.applyVersionCatalog {
+            removeLine("room")
+        }
+    }
+
+    companion object {
+        const val ID = "room"
+    }
+
+}

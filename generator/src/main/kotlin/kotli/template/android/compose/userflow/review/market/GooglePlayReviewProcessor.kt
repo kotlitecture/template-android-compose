@@ -1,45 +1,42 @@
-package kotli.template.android.compose.testing.http
+package kotli.template.android.compose.userflow.review.market
 
 import kotli.engine.AbstractFeatureProcessor
-import kotli.engine.IFeatureProcessor
 import kotli.engine.TemplateContext
 import kotli.engine.extensions.applyVersionCatalog
-import kotli.template.android.compose.dataflow.http.HttpProcessor
 
-class HttpTestingProcessor : AbstractFeatureProcessor() {
+class GooglePlayReviewProcessor : AbstractFeatureProcessor() {
 
     override fun getId(): String = ID
 
-    override fun dependencies(): List<Class<out IFeatureProcessor>> = listOf(
-        HttpProcessor::class.java
-    )
-
     override fun doApply(context: TemplateContext) {
         context.apply("settings.gradle") {
-            cleanupLine("{testing-http}")
+            cleanupLine("{market-review}")
         }
         context.apply("app/build.gradle") {
-            cleanupLine("{testing-http}")
+            cleanupLine("{market-review}")
         }
     }
 
     override fun doRemove(context: TemplateContext) {
         context.apply("settings.gradle") {
-            removeLine("{testing-http}")
+            removeLine("{market-review}")
         }
         context.apply("app/build.gradle") {
-            removeLine("{testing-http}")
+            removeLine("{market-review}")
         }
-        context.apply("core/testing-http") {
+        context.apply("integration/market-review") {
+            remove()
+        }
+        context.apply("app/src/main/kotlin/di/ProvidesReviewSource.kt") {
             remove()
         }
         context.applyVersionCatalog {
-            removeLine("chucker")
+            removeLine("googleAppReview")
         }
     }
 
     companion object {
-        const val ID = "testing-http"
+        const val ID = "google-play-review"
     }
 
 }
