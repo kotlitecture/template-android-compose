@@ -3,7 +3,6 @@ package kotli.template.android.compose.devops.distribution.firebase
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateContext
-import kotli.engine.extensions.onAddVersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedBlock
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveMarkedBlock
@@ -23,26 +22,26 @@ class FirebaseDistributionProcessor : BaseFeatureProcessor() {
     )
 
     override fun doApply(context: TemplateContext) {
-        context.onApplyRule("app/build.gradle",
+        context.onApplyRules("app/build.gradle",
             CleanupMarkedLine("{firebase-distribution}"),
             CleanupMarkedBlock("{firebase-distribution-debug}"),
             CleanupMarkedBlock("{firebase-distribution-staging}")
         )
-        context.onApplyRule("build.gradle",
+        context.onApplyRules("build.gradle",
             CleanupMarkedLine("{firebase-distribution}")
         )
     }
 
     override fun doRemove(context: TemplateContext) {
-        context.onApplyRule("app/build.gradle",
+        context.onApplyRules("app/build.gradle",
             RemoveMarkedLine("{firebase-distribution}"),
             RemoveMarkedBlock("{firebase-distribution-debug}"),
             RemoveMarkedBlock("{firebase-distribution-staging}")
         )
-        context.onApplyRule("build.gradle",
+        context.onApplyRules("build.gradle",
             RemoveMarkedLine("{firebase-distribution}")
         )
-        context.onAddVersionCatalogRules(
+        context.onApplyVersionCatalogRules(
             RemoveMarkedLine("appdistribution")
         )
     }

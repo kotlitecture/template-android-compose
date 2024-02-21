@@ -104,13 +104,13 @@ class TemplateGenerator : BaseTemplateGenerator() {
     )
 
     override fun doPrepare(context: TemplateContext) {
-        context.onApplyRule("app/build.gradle",
+        context.onApplyRules("app/build.gradle",
             ReplaceMarkedLine(
                 marker = "{applicationId}",
                 replacer = { "applicationId = '${context.layer.namespace}'" }
             )
         )
-        context.onApplyRule("settings.gradle",
+        context.onApplyRules("settings.gradle",
             ReplaceMarkedLine(
                 marker = "{projectName}",
                 replacer = { "rootProject.name = '${context.layer.name}'" }

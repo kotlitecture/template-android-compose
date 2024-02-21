@@ -2,7 +2,6 @@ package kotli.template.android.compose.quality.startup.baselineprofile
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateContext
-import kotli.engine.extensions.onAddVersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedBlock
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
@@ -17,36 +16,36 @@ class BaselineProfileProcessor : BaseFeatureProcessor() {
     override fun getIntegrationUrl(context: TemplateContext): String = "https://developer.android.com/topic/performance/baselineprofiles/configure-baselineprofiles"
 
     override fun doApply(context: TemplateContext) {
-        context.onApplyRule("settings.gradle",
+        context.onApplyRules("settings.gradle",
             CleanupMarkedLine("{baselineprofile}")
         )
-        context.onApplyRule("build.gradle",
+        context.onApplyRules("build.gradle",
             CleanupMarkedLine("{baselineprofile}")
         )
-        context.onApplyRule("app/build.gradle",
+        context.onApplyRules("app/build.gradle",
             CleanupMarkedLine("{baselineprofile}"),
             CleanupMarkedBlock("{baselineprofile-config}")
         )
-        context.onApplyRule("baselineprofile/src/main/java/app/baselineprofile/BaselineProfileGenerator.kt",
+        context.onApplyRules("baselineprofile/src/main/java/app/baselineprofile/BaselineProfileGenerator.kt",
             ReplaceText("kotli.app") { context.layer.namespace }
         )
     }
 
     override fun doRemove(context: TemplateContext) {
-        context.onApplyRule("settings.gradle",
+        context.onApplyRules("settings.gradle",
             RemoveMarkedLine("{baselineprofile}")
         )
-        context.onApplyRule("build.gradle",
+        context.onApplyRules("build.gradle",
             RemoveMarkedLine("{baselineprofile}")
         )
-        context.onApplyRule("app/build.gradle",
+        context.onApplyRules("app/build.gradle",
             RemoveMarkedLine("{baselineprofile}"),
             RemoveMarkedBlock("{baselineprofile-config}")
         )
-        context.onApplyRule("baselineprofile",
+        context.onApplyRules("baselineprofile",
             RemoveFile()
         )
-        context.onAddVersionCatalogRules(
+        context.onApplyVersionCatalogRules(
             RemoveMarkedLine("benchmarkMacroJunit4"),
             RemoveMarkedLine("baselineprofile"),
             RemoveMarkedLine("uiautomator"),

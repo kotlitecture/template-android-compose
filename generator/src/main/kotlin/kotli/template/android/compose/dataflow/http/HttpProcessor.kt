@@ -13,7 +13,7 @@ class HttpProcessor : BaseFeatureProcessor() {
     override fun getId(): String = ID
 
     override fun doApply(context: TemplateContext) {
-        context.onApplyRule("app/src/main/kotlin/app/App.kt",
+        context.onApplyRules("app/src/main/kotlin/app/App.kt",
             CleanupMarkedLine("{httpSource-import}"),
             CleanupMarkedBlock("{httpSource-inject}"),
             CleanupMarkedBlock("{httpSource-client}")
@@ -21,8 +21,8 @@ class HttpProcessor : BaseFeatureProcessor() {
     }
 
     override fun doRemove(context: TemplateContext) {
-        context.onApplyRule("app/src/main/kotlin/di/ProvidesHttp.kt", RemoveFile())
-        context.onApplyRule("app/src/main/kotlin/app/App.kt",
+        context.onApplyRules("app/src/main/kotlin/di/ProvidesHttp.kt", RemoveFile())
+        context.onApplyRules("app/src/main/kotlin/app/App.kt",
             RemoveMarkedLine("{httpSource-import}"),
             RemoveMarkedBlock("{httpSource-inject}"),
             RemoveMarkedBlock("{httpSource-client}")

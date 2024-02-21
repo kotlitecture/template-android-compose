@@ -3,7 +3,6 @@ package kotli.template.android.compose.dataflow.config.firebase
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateContext
-import kotli.engine.extensions.onAddVersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -25,19 +24,19 @@ class FirebaseConfigProcessor : BaseFeatureProcessor() {
     )
 
     override fun doApply(context: TemplateContext) {
-        context.onApplyRule(appConfig, CleanupMarkedLine("{firebase-config}"))
-        context.onApplyRule(appStartup, CleanupMarkedLine("{firebase-config}"))
-        context.onApplyRule("settings.gradle", CleanupMarkedLine("{firebase-config}"))
-        context.onApplyRule("app/build.gradle", CleanupMarkedLine("{firebase-config}"))
+        context.onApplyRules(appConfig, CleanupMarkedLine("{firebase-config}"))
+        context.onApplyRules(appStartup, CleanupMarkedLine("{firebase-config}"))
+        context.onApplyRules("settings.gradle", CleanupMarkedLine("{firebase-config}"))
+        context.onApplyRules("app/build.gradle", CleanupMarkedLine("{firebase-config}"))
     }
 
     override fun doRemove(context: TemplateContext) {
-        context.onApplyRule(appConfig, RemoveMarkedLine("{firebase-config}"))
-        context.onApplyRule(appStartup, RemoveMarkedLine("{firebase-config}"))
-        context.onApplyRule("settings.gradle", RemoveMarkedLine("{firebase-config}"))
-        context.onApplyRule("app/build.gradle", RemoveMarkedLine("{firebase-config}"))
-        context.onApplyRule("integration/firebase-config", RemoveFile())
-        context.onAddVersionCatalogRules(RemoveMarkedLine("firebase-config"))
+        context.onApplyRules(appConfig, RemoveMarkedLine("{firebase-config}"))
+        context.onApplyRules(appStartup, RemoveMarkedLine("{firebase-config}"))
+        context.onApplyRules("settings.gradle", RemoveMarkedLine("{firebase-config}"))
+        context.onApplyRules("app/build.gradle", RemoveMarkedLine("{firebase-config}"))
+        context.onApplyRules("integration/firebase-config", RemoveFile())
+        context.onApplyVersionCatalogRules(RemoveMarkedLine("firebase-config"))
     }
 
     companion object {

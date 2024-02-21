@@ -3,7 +3,6 @@ package kotli.template.android.compose.dataflow.analytics.firebase
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateContext
-import kotli.engine.extensions.onAddVersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -27,19 +26,19 @@ class FirebaseAnalyticsProcessor : BaseFeatureProcessor() {
     )
 
     override fun doApply(context: TemplateContext) {
-        context.onApplyRule(appAnalytics, CleanupMarkedLine("{firebase-analytics}"))
-        context.onApplyRule(appStartup, CleanupMarkedLine("{firebase-analytics}"))
-        context.onApplyRule("settings.gradle", CleanupMarkedLine("{firebase-analytics}"))
-        context.onApplyRule("app/build.gradle", CleanupMarkedLine("{firebase-analytics}"))
+        context.onApplyRules(appAnalytics, CleanupMarkedLine("{firebase-analytics}"))
+        context.onApplyRules(appStartup, CleanupMarkedLine("{firebase-analytics}"))
+        context.onApplyRules("settings.gradle", CleanupMarkedLine("{firebase-analytics}"))
+        context.onApplyRules("app/build.gradle", CleanupMarkedLine("{firebase-analytics}"))
     }
 
     override fun doRemove(context: TemplateContext) {
-        context.onApplyRule(appAnalytics, RemoveMarkedLine("{firebase-analytics}"))
-        context.onApplyRule(appStartup, RemoveMarkedLine("{firebase-analytics}"))
-        context.onApplyRule("settings.gradle", RemoveMarkedLine("{firebase-analytics}"))
-        context.onApplyRule("app/build.gradle", RemoveMarkedLine("{firebase-analytics}"))
-        context.onApplyRule("integration/firebase-analytics", RemoveFile())
-        context.onAddVersionCatalogRules(RemoveMarkedLine("firebase-analytics"))
+        context.onApplyRules(appAnalytics, RemoveMarkedLine("{firebase-analytics}"))
+        context.onApplyRules(appStartup, RemoveMarkedLine("{firebase-analytics}"))
+        context.onApplyRules("settings.gradle", RemoveMarkedLine("{firebase-analytics}"))
+        context.onApplyRules("app/build.gradle", RemoveMarkedLine("{firebase-analytics}"))
+        context.onApplyRules("integration/firebase-analytics", RemoveFile())
+        context.onApplyVersionCatalogRules(RemoveMarkedLine("firebase-analytics"))
     }
 
     companion object {

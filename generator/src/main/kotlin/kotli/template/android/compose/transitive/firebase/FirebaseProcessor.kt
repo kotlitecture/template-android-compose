@@ -2,7 +2,6 @@ package kotli.template.android.compose.transitive.firebase
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateContext
-import kotli.engine.extensions.onAddVersionCatalogRules
 import kotli.engine.template.rule.RemoveMarkedLine
 
 class FirebaseProcessor : BaseFeatureProcessor() {
@@ -13,7 +12,7 @@ class FirebaseProcessor : BaseFeatureProcessor() {
     }
 
     override fun doRemove(context: TemplateContext) {
-        context.onAddVersionCatalogRules(RemoveMarkedLine("firebaseBom"))
+        context.onApplyVersionCatalogRules(RemoveMarkedLine("firebaseBom"))
     }
 
     companion object {

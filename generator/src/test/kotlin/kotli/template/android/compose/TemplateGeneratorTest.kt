@@ -3,11 +3,10 @@
 package kotli.template.android.compose
 
 import kotli.engine.DefaultTemplateRegistry
-import kotli.engine.extensions.getAllFeatures
 import kotli.engine.model.Layer
-import kotli.flow.DefaultTemplateFlow
-import kotli.flow.GradleCmdTemplateFlow
-import kotli.flow.ZipTemplateFlow
+import kotli.flow.FileOutputFlow
+import kotli.flow.GradleExecutionFlow
+import kotli.flow.ZipOutputFlow
 import org.junit.jupiter.api.Assertions
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -37,7 +36,7 @@ class TemplateGeneratorTest {
     @Test
     fun `compose template in memory`() {
         val output = ByteArrayOutputStream()
-        val flow = DefaultTemplateFlow(
+        val flow = FileOutputFlow(
             layer = Layer(
                 id = UUID.randomUUID().toString(),
                 generatorId = generator.getId(),
@@ -46,13 +45,13 @@ class TemplateGeneratorTest {
             ),
             registry = registry,
         )
-        ZipTemplateFlow(flow, output).proceed()
+        ZipOutputFlow(flow, output).proceed()
         Assertions.assertTrue(output.size() > 50000)
     }
 
     @Test
     fun `compose template without features`() {
-        val flow = DefaultTemplateFlow(
+        val flow = FileOutputFlow(
             layer = Layer(
                 id = UUID.randomUUID().toString(),
                 generatorId = generator.getId(),
@@ -62,14 +61,13 @@ class TemplateGeneratorTest {
             layerPath = buildPath(),
             registry = registry
         )
-        GradleCmdTemplateFlow(flow, arrayOf("signingReport", "assembleDebug")).proceed()
+        GradleExecutionFlow(flow, arrayOf("signingReport", "assembleDebug")).proceed()
     }
 
     @Test
     fun `compose template with all features`() {
-        val flow = DefaultTemplateFlow(
+        val flow = FileOutputFlow(
             layer = Layer(
-                features = generator.getAllFeatures(),
                 id = UUID.randomUUID().toString(),
                 generatorId = generator.getId(),
                 namespace = "my.app",
@@ -77,10 +75,11 @@ class TemplateGeneratorTest {
             ),
             layerPath = buildPath(),
             registry = registry,
+            fatLayer = true
         )
-        GradleCmdTemplateFlow(flow, arrayOf("signingReport", "assembleDebug")).proceed()
-//        GradleCmdTemplateFlow(flow, arrayOf("signingReport", "assembleRelease")).proceed()
-//        GradleCmdTemplateFlow(flow, arrayOf("signingReport", "testDebugUnitTest", "assembleDebug")).proceed()
+        GradleExecutionFlow(flow, arrayOf("signingReport", "assembleDebug")).proceed()
+//        GradleExecutionFlow(flow, arrayOf("signingReport", "assembleRelease")).proceed()
+//        GradleExecutionFlow(flow, arrayOf("signingReport", "testDebugUnitTest", "assembleDebug")).proceed()
     }
 
 }

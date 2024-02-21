@@ -2,7 +2,6 @@ package kotli.template.android.compose.transitive.googleservices
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateContext
-import kotli.engine.extensions.onAddVersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -19,16 +18,16 @@ class GoogleServicesProcessor : BaseFeatureProcessor() {
     }
 
     override fun doApply(context: TemplateContext) {
-        context.onApplyRule("app/build.gradle", CleanupMarkedLine("{google-services}"))
-        context.onApplyRule("build.gradle", CleanupMarkedLine("{google-services}"))
-        context.onApplyRule("app/google-services.json", ReplaceText("kotli.app") { context.layer.namespace })
+        context.onApplyRules("app/build.gradle", CleanupMarkedLine("{google-services}"))
+        context.onApplyRules("build.gradle", CleanupMarkedLine("{google-services}"))
+        context.onApplyRules("app/google-services.json", ReplaceText("kotli.app") { context.layer.namespace })
     }
 
     override fun doRemove(context: TemplateContext) {
-        context.onApplyRule("app/build.gradle", RemoveMarkedLine("{google-services}"))
-        context.onApplyRule("build.gradle", RemoveMarkedLine("{google-services}"))
-        context.onApplyRule("app/google-services.json", RemoveFile())
-        context.onAddVersionCatalogRules(RemoveMarkedLine("google-services"))
+        context.onApplyRules("app/build.gradle", RemoveMarkedLine("{google-services}"))
+        context.onApplyRules("build.gradle", RemoveMarkedLine("{google-services}"))
+        context.onApplyRules("app/google-services.json", RemoveFile())
+        context.onApplyVersionCatalogRules(RemoveMarkedLine("google-services"))
     }
 
     companion object {
