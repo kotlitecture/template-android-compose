@@ -1,13 +1,16 @@
 package kotli.template.android.compose.quality.crashes.firebase
 
-import kotli.engine.AbstractFeatureProcessor
-import kotli.engine.IFeatureProcessor
+import kotli.engine.BaseFeatureProcessor
+import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateContext
-import kotli.engine.extensions.applyVersionCatalog
+import kotli.engine.extensions.onAddVersionCatalogRules
+import kotli.engine.template.rule.CleanupMarkedLine
+import kotli.engine.template.rule.RemoveFile
+import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.transitive.firebase.FirebaseProcessor
 import kotli.template.android.compose.transitive.googleservices.GoogleServicesProcessor
 
-class FirebaseCrashlyticsProcessor : AbstractFeatureProcessor() {
+class FirebaseCrashlyticsProcessor : BaseFeatureProcessor() {
 
     private val appStartup = "app/src/main/kotlin/app/AppStartupInitializer.kt"
 
@@ -15,51 +18,27 @@ class FirebaseCrashlyticsProcessor : AbstractFeatureProcessor() {
     override fun getWebUrl(context: TemplateContext): String = "https://firebase.google.com/docs/crashlytics"
     override fun getIntegrationUrl(context: TemplateContext): String = "https://firebase.google.com/docs/crashlytics/get-started?platform=android"
 
-    override fun dependencies(): List<Class<out IFeatureProcessor>> = listOf(
+    override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         GoogleServicesProcessor::class.java,
         FirebaseProcessor::class.java
     )
 
     override fun doApply(context: TemplateContext) {
-        context.apply(appStartup) {
-            cleanupLine("{firebase-crashlytics}")
-        }
-        context.apply("app/build.gradle") {
-            cleanupLine("{firebase-crashlytics}")
-        }
-        context.apply("build.gradle") {
-            cleanupLine("{firebase-crashlytics}")
-        }
-        context.apply("settings.gradle") {
-            cleanupLine("{firebase-crashlytics}")
-        }
-        context.apply("app/build.gradle") {
-            cleanupLine("{firebase-crashlytics}")
-        }
+        context.onApplyRule(appStartup, CleanupMarkedLine("{firebase-crashlytics}"))
+        context.onApplyRule("app/build.gradle", CleanupMarkedLine("{firebase-crashlytics}"))
+        context.onApplyRule("build.gradle", CleanupMarkedLine("{firebase-crashlytics}"))
+        context.onApplyRule("settings.gradle", CleanupMarkedLine("{firebase-crashlytics}"))
+        context.onApplyRule("app/build.gradle", CleanupMarkedLine("{firebase-crashlytics}"))
     }
 
     override fun doRemove(context: TemplateContext) {
-        context.apply(appStartup) {
-            removeLine("{firebase-crashlytics}")
-        }
-        context.apply("app/build.gradle") {
-            removeLine("{firebase-crashlytics}")
-        }
-        context.apply("build.gradle") {
-            removeLine("{firebase-crashlytics}")
-        }
-        context.apply("settings.gradle") {
-            removeLine("{firebase-crashlytics}")
-        }
-        context.apply("app/build.gradle") {
-            removeLine("{firebase-crashlytics}")
-        }
-        context.apply("integration/firebase-crashlytics") {
-            remove()
-        }
-        context.applyVersionCatalog {
-            removeLine("firebase-crashlytics")
-        }
+        context.onApplyRule(appStartup, RemoveMarkedLine("{firebase-crashlytics}"))
+        context.onApplyRule("app/build.gradle", RemoveMarkedLine("{firebase-crashlytics}"))
+        context.onApplyRule("build.gradle", RemoveMarkedLine("{firebase-crashlytics}"))
+        context.onApplyRule("settings.gradle", RemoveMarkedLine("{firebase-crashlytics}"))
+        context.onApplyRule("app/build.gradle", RemoveMarkedLine("{firebase-crashlytics}"))
+        context.onApplyRule("integration/firebase-crashlytics", RemoveFile())
+        context.onAddVersionCatalogRules(RemoveMarkedLine("firebase-crashlytics"))
     }
 
     companion object {

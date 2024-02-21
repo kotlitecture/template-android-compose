@@ -1,16 +1,16 @@
 package kotli.template.android.compose.dataflow.web3
 
-import kotli.engine.AbstractFeatureProvider
-import kotli.engine.IFeatureProcessor
-import kotli.engine.IFeatureType
-import kotli.engine.model.FeatureType
+import kotli.engine.BaseFeatureProvider
+import kotli.engine.FeatureProcessor
+import kotli.engine.FeatureType
+import kotli.engine.model.FeatureTypes
 
-class Web3Provider : AbstractFeatureProvider() {
+class Web3Provider : BaseFeatureProvider() {
 
     override fun getId(): String = ID
-    override fun getType(): IFeatureType = FeatureType.DataFlow
+    override fun getType(): FeatureType = FeatureTypes.DataFlow
 
-    override fun createProcessors(): List<IFeatureProcessor> = listOf(
+    override fun createProcessors(): List<FeatureProcessor> = listOf(
         Web3Processor()
     )
 

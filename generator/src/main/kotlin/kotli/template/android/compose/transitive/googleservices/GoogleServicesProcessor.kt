@@ -1,10 +1,14 @@
 package kotli.template.android.compose.transitive.googleservices
 
-import kotli.engine.AbstractFeatureProcessor
+import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateContext
-import kotli.engine.extensions.applyVersionCatalog
+import kotli.engine.extensions.onAddVersionCatalogRules
+import kotli.engine.template.rule.CleanupMarkedLine
+import kotli.engine.template.rule.RemoveFile
+import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.engine.template.rule.ReplaceText
 
-class GoogleServicesProcessor : AbstractFeatureProcessor() {
+class GoogleServicesProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun getWebUrl(context: TemplateContext): String = "https://cloud.google.com/"
@@ -15,30 +19,16 @@ class GoogleServicesProcessor : AbstractFeatureProcessor() {
     }
 
     override fun doApply(context: TemplateContext) {
-        context.apply("app/build.gradle") {
-            cleanupLine("{google-services}")
-        }
-        context.apply("build.gradle") {
-            cleanupLine("{google-services}")
-        }
-        context.apply("app/google-services.json") {
-            replaceText("kotli.app") { context.layer.namespace }
-        }
+        context.onApplyRule("app/build.gradle", CleanupMarkedLine("{google-services}"))
+        context.onApplyRule("build.gradle", CleanupMarkedLine("{google-services}"))
+        context.onApplyRule("app/google-services.json", ReplaceText("kotli.app") { context.layer.namespace })
     }
 
     override fun doRemove(context: TemplateContext) {
-        context.apply("app/build.gradle") {
-            removeLine("{google-services}")
-        }
-        context.apply("build.gradle") {
-            removeLine("{google-services}")
-        }
-        context.apply("app/google-services.json") {
-            remove()
-        }
-        context.applyVersionCatalog {
-            removeLine("google-services")
-        }
+        context.onApplyRule("app/build.gradle", RemoveMarkedLine("{google-services}"))
+        context.onApplyRule("build.gradle", RemoveMarkedLine("{google-services}"))
+        context.onApplyRule("app/google-services.json", RemoveFile())
+        context.onAddVersionCatalogRules(RemoveMarkedLine("google-services"))
     }
 
     companion object {

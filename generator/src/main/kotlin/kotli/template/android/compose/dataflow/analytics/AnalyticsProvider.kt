@@ -1,18 +1,18 @@
 package kotli.template.android.compose.dataflow.analytics
 
-import kotli.engine.AbstractFeatureProvider
-import kotli.engine.IFeatureProcessor
-import kotli.engine.IFeatureType
-import kotli.engine.model.FeatureType
+import kotli.engine.BaseFeatureProvider
+import kotli.engine.FeatureProcessor
+import kotli.engine.FeatureType
+import kotli.engine.model.FeatureTypes
 import kotli.template.android.compose.dataflow.analytics.firebase.FirebaseAnalyticsProcessor
 
-class AnalyticsProvider : AbstractFeatureProvider() {
+class AnalyticsProvider : BaseFeatureProvider() {
 
     override fun getId(): String = ID
     override fun isMultiple(): Boolean = true
-    override fun getType(): IFeatureType = FeatureType.DataFlow
+    override fun getType(): FeatureType = FeatureTypes.DataFlow
 
-    override fun createProcessors(): List<IFeatureProcessor> = listOf(
+    override fun createProcessors(): List<FeatureProcessor> = listOf(
         FirebaseAnalyticsProcessor()
     )
 

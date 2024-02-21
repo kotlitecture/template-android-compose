@@ -1,15 +1,15 @@
 package kotli.template.android.compose.devops.vcs
 
-import kotli.engine.AbstractFeatureProvider
-import kotli.engine.IFeatureProcessor
-import kotli.engine.IFeatureType
-import kotli.engine.model.FeatureType
+import kotli.engine.BaseFeatureProvider
+import kotli.engine.FeatureProcessor
+import kotli.engine.FeatureType
+import kotli.engine.model.FeatureTypes
 
-class VcsProvider : AbstractFeatureProvider() {
+class VcsProvider : BaseFeatureProvider() {
 
     override fun getId(): String = "vcs"
     override fun isMultiple(): Boolean = false
-    override fun getType(): IFeatureType = FeatureType.DevOps
+    override fun getType(): FeatureType = FeatureTypes.DevOps
 
-    override fun createProcessors(): List<IFeatureProcessor> = emptyList()
+    override fun createProcessors(): List<FeatureProcessor> = emptyList()
 }

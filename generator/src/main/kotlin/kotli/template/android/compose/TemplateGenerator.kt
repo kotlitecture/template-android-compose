@@ -1,18 +1,15 @@
 package kotli.template.android.compose
 
-import kotli.engine.AbstractTemplateGenerator
-import kotli.engine.IFeatureProvider
-import kotli.engine.ILayerType
+import kotli.engine.BaseTemplateGenerator
+import kotli.engine.FeatureProvider
+import kotli.engine.LayerType
 import kotli.engine.TemplateContext
-import kotli.engine.model.LayerType
+import kotli.engine.model.LayerTypes
+import kotli.engine.template.rule.ReplaceMarkedLine
 import kotli.template.android.compose.appearance.l10n.L10NProvider
 import kotli.template.android.compose.appearance.navigation.NavigationProvider
 import kotli.template.android.compose.appearance.splash.SplashProvider
 import kotli.template.android.compose.appearance.theme.ThemeProvider
-import kotli.template.android.compose.devops.distribution.DistributionProvider
-import kotli.template.android.compose.devops.gradle.GradleProvider
-import kotli.template.android.compose.devops.i18n.I18NProvider
-import kotli.template.android.compose.devops.vcs.VcsProvider
 import kotli.template.android.compose.dataflow.analytics.AnalyticsProvider
 import kotli.template.android.compose.dataflow.api.ApiProvider
 import kotli.template.android.compose.dataflow.config.ConfigProvider
@@ -21,6 +18,10 @@ import kotli.template.android.compose.dataflow.messaging.MessagingProvider
 import kotli.template.android.compose.dataflow.storage.StorageProvider
 import kotli.template.android.compose.dataflow.web3.Web3Provider
 import kotli.template.android.compose.dataflow.work.WorkProvider
+import kotli.template.android.compose.devops.distribution.DistributionProvider
+import kotli.template.android.compose.devops.gradle.GradleProvider
+import kotli.template.android.compose.devops.i18n.I18NProvider
+import kotli.template.android.compose.devops.vcs.VcsProvider
 import kotli.template.android.compose.quality.crashes.CrashesProvider
 import kotli.template.android.compose.quality.performance.PerformanceProvider
 import kotli.template.android.compose.quality.startup.StartupProvider
@@ -43,13 +44,13 @@ import kotli.template.android.compose.userflow.webtonative.WebToNativeProvider
 import org.springframework.stereotype.Component
 
 @Component(TemplateGenerator.ID)
-class TemplateGenerator : AbstractTemplateGenerator() {
+class TemplateGenerator : BaseTemplateGenerator() {
 
     override fun getId(): String = ID
-    override fun getType(): ILayerType = LayerType.Android
+    override fun getType(): LayerType = LayerTypes.Android
     override fun getWebUrl(): String = "https://github.com/kotlitecture/template-android-compose"
 
-    override fun createProviders(): List<IFeatureProvider> = listOf(
+    override fun createProviders(): List<FeatureProvider> = listOf(
         // appearance
         L10NProvider(),
         NavigationProvider(),
@@ -103,12 +104,18 @@ class TemplateGenerator : AbstractTemplateGenerator() {
     )
 
     override fun doPrepare(context: TemplateContext) {
-        context.apply("app/build.gradle") {
-            replaceLine("{applicationId}") { "applicationId = '${context.layer.namespace}'" }
-        }
-        context.apply("settings.gradle") {
-            replaceLine("{projectName}") { "rootProject.name = '${context.layer.name}'" }
-        }
+        context.onApplyRule("app/build.gradle",
+            ReplaceMarkedLine(
+                marker = "{applicationId}",
+                replacer = { "applicationId = '${context.layer.namespace}'" }
+            )
+        )
+        context.onApplyRule("settings.gradle",
+            ReplaceMarkedLine(
+                marker = "{projectName}",
+                replacer = { "rootProject.name = '${context.layer.name}'" }
+            )
+        )
     }
 
     companion object {

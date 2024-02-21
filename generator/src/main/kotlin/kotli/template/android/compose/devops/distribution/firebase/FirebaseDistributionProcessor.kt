@@ -1,46 +1,50 @@
 package kotli.template.android.compose.devops.distribution.firebase
 
-import kotli.engine.AbstractFeatureProcessor
-import kotli.engine.IFeatureProcessor
+import kotli.engine.BaseFeatureProcessor
+import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateContext
-import kotli.engine.extensions.applyVersionCatalog
+import kotli.engine.extensions.onAddVersionCatalogRules
+import kotli.engine.template.rule.CleanupMarkedBlock
+import kotli.engine.template.rule.CleanupMarkedLine
+import kotli.engine.template.rule.RemoveMarkedBlock
+import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.transitive.firebase.FirebaseProcessor
 import kotli.template.android.compose.transitive.googleservices.GoogleServicesProcessor
 
-class FirebaseDistributionProcessor : AbstractFeatureProcessor() {
+class FirebaseDistributionProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun getWebUrl(context: TemplateContext): String = "https://firebase.google.com/docs/app-distribution"
     override fun getIntegrationUrl(context: TemplateContext): String = "https://firebase.google.com/docs/app-distribution/android/distribute-gradle"
 
-    override fun dependencies(): List<Class<out IFeatureProcessor>> = listOf(
+    override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         GoogleServicesProcessor::class.java,
         FirebaseProcessor::class.java
     )
 
     override fun doApply(context: TemplateContext) {
-        context.apply("app/build.gradle") {
-            cleanupLine("{firebase-distribution}")
-            cleanupBlock("{firebase-distribution-debug}")
-            cleanupBlock("{firebase-distribution-staging}")
-        }
-        context.apply("build.gradle") {
-            cleanupLine("{firebase-distribution}")
-        }
+        context.onApplyRule("app/build.gradle",
+            CleanupMarkedLine("{firebase-distribution}"),
+            CleanupMarkedBlock("{firebase-distribution-debug}"),
+            CleanupMarkedBlock("{firebase-distribution-staging}")
+        )
+        context.onApplyRule("build.gradle",
+            CleanupMarkedLine("{firebase-distribution}")
+        )
     }
 
     override fun doRemove(context: TemplateContext) {
-        context.apply("app/build.gradle") {
-            removeLine("{firebase-distribution}")
-            removeBlock("{firebase-distribution-debug}")
-            removeBlock("{firebase-distribution-staging}")
-        }
-        context.apply("build.gradle") {
-            removeLine("{firebase-distribution}")
-        }
-        context.applyVersionCatalog {
-            removeLine("appdistribution")
-        }
+        context.onApplyRule("app/build.gradle",
+            RemoveMarkedLine("{firebase-distribution}"),
+            RemoveMarkedBlock("{firebase-distribution-debug}"),
+            RemoveMarkedBlock("{firebase-distribution-staging}")
+        )
+        context.onApplyRule("build.gradle",
+            RemoveMarkedLine("{firebase-distribution}")
+        )
+        context.onAddVersionCatalogRules(
+            RemoveMarkedLine("appdistribution")
+        )
     }
 
     companion object {

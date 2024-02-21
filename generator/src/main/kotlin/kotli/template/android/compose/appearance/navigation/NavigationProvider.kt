@@ -1,14 +1,14 @@
 package kotli.template.android.compose.appearance.navigation
 
-import kotli.engine.AbstractFeatureProvider
-import kotli.engine.IFeatureProcessor
-import kotli.engine.IFeatureType
-import kotli.engine.model.FeatureType
+import kotli.engine.BaseFeatureProvider
+import kotli.engine.FeatureProcessor
+import kotli.engine.FeatureType
+import kotli.engine.model.FeatureTypes
 
-class NavigationProvider : AbstractFeatureProvider() {
+class NavigationProvider : BaseFeatureProvider() {
 
     override fun getId(): String = "navigation"
-    override fun getType(): IFeatureType = FeatureType.Appearance
+    override fun getType(): FeatureType = FeatureTypes.Appearance
 
-    override fun createProcessors(): List<IFeatureProcessor> = emptyList()
+    override fun createProcessors(): List<FeatureProcessor> = emptyList()
 }

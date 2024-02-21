@@ -1,18 +1,18 @@
 package kotli.template.android.compose.testing.loadtests
 
-import kotli.engine.AbstractFeatureProvider
-import kotli.engine.IFeatureProcessor
-import kotli.engine.IFeatureType
-import kotli.engine.model.FeatureType
+import kotli.engine.BaseFeatureProvider
+import kotli.engine.FeatureProcessor
+import kotli.engine.FeatureType
+import kotli.engine.model.FeatureTypes
 import kotli.template.android.compose.testing.loadtests.gatling.GatlingProcessor
 
-class LoadTestsProvider : AbstractFeatureProvider() {
+class LoadTestsProvider : BaseFeatureProvider() {
 
     override fun getId(): String = ID
     override fun isMultiple(): Boolean = false
-    override fun getType(): IFeatureType = FeatureType.Testing
+    override fun getType(): FeatureType = FeatureTypes.Testing
 
-    override fun createProcessors(): List<IFeatureProcessor> = listOf(
+    override fun createProcessors(): List<FeatureProcessor> = listOf(
         GatlingProcessor()
     )
 

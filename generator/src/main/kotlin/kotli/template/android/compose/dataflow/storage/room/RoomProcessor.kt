@@ -1,15 +1,16 @@
 package kotli.template.android.compose.dataflow.storage.room
 
-import kotli.engine.AbstractFeatureProcessor
-import kotli.engine.IFeatureProcessor
+import kotli.engine.BaseFeatureProcessor
+import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateContext
-import kotli.engine.extensions.applyVersionCatalog
+import kotli.engine.extensions.onAddVersionCatalogRules
+import kotli.engine.template.rule.RemoveMarkedLine
 
-class RoomProcessor : AbstractFeatureProcessor() {
+class RoomProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
 
-    override fun dependencies(): List<Class<out IFeatureProcessor>> = listOf(
+    override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
     )
 
     override fun doApply(context: TemplateContext) {
@@ -17,9 +18,7 @@ class RoomProcessor : AbstractFeatureProcessor() {
     }
 
     override fun doRemove(context: TemplateContext) {
-        context.applyVersionCatalog {
-            removeLine("room")
-        }
+        context.onAddVersionCatalogRules(RemoveMarkedLine("room"))
     }
 
     companion object {

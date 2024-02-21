@@ -1,29 +1,32 @@
 package kotli.template.android.compose.dataflow.http
 
-import kotli.engine.AbstractFeatureProcessor
+import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateContext
+import kotli.engine.template.rule.CleanupMarkedBlock
+import kotli.engine.template.rule.CleanupMarkedLine
+import kotli.engine.template.rule.RemoveFile
+import kotli.engine.template.rule.RemoveMarkedBlock
+import kotli.engine.template.rule.RemoveMarkedLine
 
-class HttpProcessor : AbstractFeatureProcessor() {
+class HttpProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
 
     override fun doApply(context: TemplateContext) {
-        context.apply("app/src/main/kotlin/app/App.kt") {
-            cleanupLine("{httpSource-import}")
-            cleanupBlock("{httpSource-inject}")
-            cleanupBlock("{httpSource-client}")
-        }
+        context.onApplyRule("app/src/main/kotlin/app/App.kt",
+            CleanupMarkedLine("{httpSource-import}"),
+            CleanupMarkedBlock("{httpSource-inject}"),
+            CleanupMarkedBlock("{httpSource-client}")
+        )
     }
 
     override fun doRemove(context: TemplateContext) {
-        context.apply("app/src/main/kotlin/di/ProvidesHttp.kt") {
-            remove()
-        }
-        context.apply("app/src/main/kotlin/app/App.kt") {
-            removeLine("{httpSource-import}")
-            removeBlock("{httpSource-inject}")
-            removeBlock("{httpSource-client}")
-        }
+        context.onApplyRule("app/src/main/kotlin/di/ProvidesHttp.kt", RemoveFile())
+        context.onApplyRule("app/src/main/kotlin/app/App.kt",
+            RemoveMarkedLine("{httpSource-import}"),
+            RemoveMarkedBlock("{httpSource-inject}"),
+            RemoveMarkedBlock("{httpSource-client}")
+        )
     }
 
     companion object {

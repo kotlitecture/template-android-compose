@@ -1,29 +1,24 @@
 package kotli.template.android.compose.dataflow.work
 
-import kotli.engine.AbstractFeatureProcessor
+import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateContext
-import kotli.engine.extensions.applyVersionCatalog
+import kotli.engine.extensions.onAddVersionCatalogRules
+import kotli.engine.template.rule.CleanupMarkedLine
+import kotli.engine.template.rule.RemoveFile
+import kotli.engine.template.rule.RemoveMarkedLine
 
-class WorkProcessor : AbstractFeatureProcessor() {
+class WorkProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
 
     override fun doApply(context: TemplateContext) {
-        context.apply("settings.gradle") {
-            cleanupLine("{datasource-work}")
-        }
+        context.onApplyRule("settings.gradle", CleanupMarkedLine("{datasource-work}"))
     }
 
     override fun doRemove(context: TemplateContext) {
-        context.apply("settings.gradle") {
-            removeLine("{datasource-work}")
-        }
-        context.apply("core/datasource-work") {
-            remove()
-        }
-        context.applyVersionCatalog {
-            removeLine("androidxWork")
-        }
+        context.onApplyRule("settings.gradle", RemoveMarkedLine("{datasource-work}"))
+        context.onApplyRule("core/datasource-work", RemoveFile())
+        context.onAddVersionCatalogRules(RemoveMarkedLine("androidxWork"))
     }
 
     companion object {

@@ -2,10 +2,12 @@
 
 package kotli.template.android.compose
 
-import kotli.engine.Kotli
-import kotli.engine.extensions.generateAndGradlew
+import kotli.engine.DefaultTemplateRegistry
 import kotli.engine.extensions.getAllFeatures
 import kotli.engine.model.Layer
+import kotli.flow.DefaultTemplateFlow
+import kotli.flow.GradleCmdTemplateFlow
+import kotli.flow.ZipTemplateFlow
 import org.junit.jupiter.api.Assertions
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -18,6 +20,8 @@ import kotlin.test.Test
 class TemplateGeneratorTest {
 
     private val generator = TemplateGenerator()
+
+    private val registry = DefaultTemplateRegistry(listOf(generator))
 
     private fun buildPath(): Path {
         return File("build/template").toPath().toAbsolutePath().also { it.deleteRecursively() }
@@ -32,48 +36,51 @@ class TemplateGeneratorTest {
 
     @Test
     fun `compose template in memory`() {
-        val app = Layer(
-            id = UUID.randomUUID().toString(),
-            generatorId = generator.getId(),
-            namespace = "my.app",
-            name = "app-android",
-        )
         val output = ByteArrayOutputStream()
-        Kotli(app).generateAndZip(output)
+        val flow = DefaultTemplateFlow(
+            layer = Layer(
+                id = UUID.randomUUID().toString(),
+                generatorId = generator.getId(),
+                namespace = "my.app",
+                name = "app-android",
+            ),
+            registry = registry,
+        )
+        ZipTemplateFlow(flow, output).proceed()
         Assertions.assertTrue(output.size() > 50000)
     }
 
     @Test
     fun `compose template without features`() {
-        val app = Layer(
-            id = UUID.randomUUID().toString(),
-            generatorId = generator.getId(),
-            namespace = "my.app",
-            name = "app-android",
+        val flow = DefaultTemplateFlow(
+            layer = Layer(
+                id = UUID.randomUUID().toString(),
+                generatorId = generator.getId(),
+                namespace = "my.app",
+                name = "app-android",
+            ),
+            layerPath = buildPath(),
+            registry = registry
         )
-        val kotli = Kotli(
-            target = buildPath(),
-            layer = app
-        )
-        kotli.generateAndGradlew("signingReport", "assembleDebug")
+        GradleCmdTemplateFlow(flow, arrayOf("signingReport", "assembleDebug")).proceed()
     }
 
     @Test
     fun `compose template with all features`() {
-        val app = Layer(
-            features = generator.getAllFeatures(),
-            id = UUID.randomUUID().toString(),
-            generatorId = generator.getId(),
-            namespace = "my.app",
-            name = "app-android",
+        val flow = DefaultTemplateFlow(
+            layer = Layer(
+                features = generator.getAllFeatures(),
+                id = UUID.randomUUID().toString(),
+                generatorId = generator.getId(),
+                namespace = "my.app",
+                name = "app-android",
+            ),
+            layerPath = buildPath(),
+            registry = registry,
         )
-        val kotli = Kotli(
-            target = buildPath(),
-            layer = app
-        )
-//        kotli.generateAndGradlew("gradlew", "signingReport", "testDebugUnitTest", "assembleDebug")
-        kotli.generateAndGradlew("signingReport", "assembleDebug")
-//        kotli.generateAndGradlew("gradlew", "assembleRelease")
+        GradleCmdTemplateFlow(flow, arrayOf("signingReport", "assembleDebug")).proceed()
+//        GradleCmdTemplateFlow(flow, arrayOf("signingReport", "assembleRelease")).proceed()
+//        GradleCmdTemplateFlow(flow, arrayOf("signingReport", "testDebugUnitTest", "assembleDebug")).proceed()
     }
 
 }
