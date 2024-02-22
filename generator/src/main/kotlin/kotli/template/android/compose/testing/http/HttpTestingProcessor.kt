@@ -2,7 +2,7 @@ package kotli.template.android.compose.testing.http
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
-import kotli.engine.TemplateContext
+import kotli.engine.TemplateState
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -16,16 +16,16 @@ class HttpTestingProcessor : BaseFeatureProcessor() {
         HttpProcessor::class.java
     )
 
-    override fun doApply(context: TemplateContext) {
-        context.onApplyRules("settings.gradle", CleanupMarkedLine("{testing-http}"))
-        context.onApplyRules("app/build.gradle", CleanupMarkedLine("{testing-http}"))
+    override fun doApply(state: TemplateState) {
+        state.onApplyRules("settings.gradle", CleanupMarkedLine("{testing-http}"))
+        state.onApplyRules("app/build.gradle", CleanupMarkedLine("{testing-http}"))
     }
 
-    override fun doRemove(context: TemplateContext) {
-        context.onApplyRules("settings.gradle", RemoveMarkedLine("{testing-http}"))
-        context.onApplyRules("app/build.gradle", RemoveMarkedLine("{testing-http}"))
-        context.onApplyRules("core/testing-http", RemoveFile())
-        context.onApplyVersionCatalogRules(RemoveMarkedLine("chucker"))
+    override fun doRemove(state: TemplateState) {
+        state.onApplyRules("settings.gradle", RemoveMarkedLine("{testing-http}"))
+        state.onApplyRules("app/build.gradle", RemoveMarkedLine("{testing-http}"))
+        state.onApplyRules("core/testing-http", RemoveFile())
+        state.onApplyVersionCatalogRules(RemoveMarkedLine("chucker"))
     }
 
     companion object {

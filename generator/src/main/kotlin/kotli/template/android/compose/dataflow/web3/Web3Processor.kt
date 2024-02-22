@@ -1,7 +1,7 @@
 package kotli.template.android.compose.dataflow.web3
 
 import kotli.engine.BaseFeatureProcessor
-import kotli.engine.TemplateContext
+import kotli.engine.TemplateState
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -10,14 +10,14 @@ class Web3Processor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
 
-    override fun doApply(context: TemplateContext) {
-        context.onApplyRules("settings.gradle", CleanupMarkedLine("{datasource-web3}"))
+    override fun doApply(state: TemplateState) {
+        state.onApplyRules("settings.gradle", CleanupMarkedLine("{datasource-web3}"))
     }
 
-    override fun doRemove(context: TemplateContext) {
-        context.onApplyRules("settings.gradle", RemoveMarkedLine("{datasource-web3}"))
-        context.onApplyRules("core/datasource-web3", RemoveFile())
-        context.onApplyVersionCatalogRules(RemoveMarkedLine("web3j"))
+    override fun doRemove(state: TemplateState) {
+        state.onApplyRules("settings.gradle", RemoveMarkedLine("{datasource-web3}"))
+        state.onApplyRules("core/datasource-web3", RemoveFile())
+        state.onApplyVersionCatalogRules(RemoveMarkedLine("web3j"))
     }
 
     companion object {

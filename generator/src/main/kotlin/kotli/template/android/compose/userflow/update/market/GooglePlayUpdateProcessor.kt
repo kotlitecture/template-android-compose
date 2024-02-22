@@ -1,7 +1,7 @@
 package kotli.template.android.compose.userflow.update.market
 
 import kotli.engine.BaseFeatureProcessor
-import kotli.engine.TemplateContext
+import kotli.engine.TemplateState
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -10,19 +10,19 @@ class GooglePlayUpdateProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
 
-    override fun doApply(context: TemplateContext) {
-        context.onApplyRules("settings.gradle", CleanupMarkedLine("{market-update}"))
-        context.onApplyRules("app/build.gradle", CleanupMarkedLine("{market-update}"))
-        context.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", CleanupMarkedLine("{market-update}"))
+    override fun doApply(state: TemplateState) {
+        state.onApplyRules("settings.gradle", CleanupMarkedLine("{market-update}"))
+        state.onApplyRules("app/build.gradle", CleanupMarkedLine("{market-update}"))
+        state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", CleanupMarkedLine("{market-update}"))
     }
 
-    override fun doRemove(context: TemplateContext) {
-        context.onApplyRules("settings.gradle", RemoveMarkedLine("{market-update}"))
-        context.onApplyRules("app/build.gradle", RemoveMarkedLine("{market-update}"))
-        context.onApplyRules("integration/market-update", RemoveFile())
-        context.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", RemoveMarkedLine("{market-update}"))
-        context.onApplyRules("app/src/main/kotlin/di/ProvidesUpdateSource.kt", RemoveFile())
-        context.onApplyVersionCatalogRules(RemoveMarkedLine("googleAppUpdate"))
+    override fun doRemove(state: TemplateState) {
+        state.onApplyRules("settings.gradle", RemoveMarkedLine("{market-update}"))
+        state.onApplyRules("app/build.gradle", RemoveMarkedLine("{market-update}"))
+        state.onApplyRules("integration/market-update", RemoveFile())
+        state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", RemoveMarkedLine("{market-update}"))
+        state.onApplyRules("app/src/main/kotlin/di/ProvidesUpdateSource.kt", RemoveFile())
+        state.onApplyVersionCatalogRules(RemoveMarkedLine("googleAppUpdate"))
     }
 
     companion object {

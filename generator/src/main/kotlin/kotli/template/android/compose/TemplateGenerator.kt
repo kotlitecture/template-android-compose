@@ -3,7 +3,7 @@ package kotli.template.android.compose
 import kotli.engine.BaseTemplateGenerator
 import kotli.engine.FeatureProvider
 import kotli.engine.LayerType
-import kotli.engine.TemplateContext
+import kotli.engine.TemplateState
 import kotli.engine.model.LayerTypes
 import kotli.engine.template.rule.ReplaceMarkedLine
 import kotli.template.android.compose.appearance.l10n.L10NProvider
@@ -103,17 +103,17 @@ class TemplateGenerator : BaseTemplateGenerator() {
         TransitiveProvider(),
     )
 
-    override fun doPrepare(context: TemplateContext) {
-        context.onApplyRules("app/build.gradle",
+    override fun doPrepare(state: TemplateState) {
+        state.onApplyRules("app/build.gradle",
             ReplaceMarkedLine(
                 marker = "{applicationId}",
-                replacer = { "applicationId = '${context.layer.namespace}'" }
+                replacer = { "applicationId = '${state.layer.namespace}'" }
             )
         )
-        context.onApplyRules("settings.gradle",
+        state.onApplyRules("settings.gradle",
             ReplaceMarkedLine(
                 marker = "{projectName}",
-                replacer = { "rootProject.name = '${context.layer.name}'" }
+                replacer = { "rootProject.name = '${state.layer.name}'" }
             )
         )
     }

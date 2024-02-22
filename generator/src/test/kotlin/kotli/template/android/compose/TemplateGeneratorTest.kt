@@ -7,6 +7,7 @@ import kotli.engine.model.Layer
 import kotli.flow.FileOutputFlow
 import kotli.flow.GradleExecutionFlow
 import kotli.flow.ZipOutputFlow
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -35,51 +36,57 @@ class TemplateGeneratorTest {
 
     @Test
     fun `compose template in memory`() {
-        val output = ByteArrayOutputStream()
-        val flow = FileOutputFlow(
-            layer = Layer(
-                id = UUID.randomUUID().toString(),
-                generatorId = generator.getId(),
-                namespace = "my.app",
-                name = "app-android",
-            ),
-            registry = registry,
-        )
-        ZipOutputFlow(flow, output).proceed()
-        Assertions.assertTrue(output.size() > 50000)
+        runBlocking {
+            val output = ByteArrayOutputStream()
+            val flow = FileOutputFlow(
+                layer = Layer(
+                    id = UUID.randomUUID().toString(),
+                    generatorId = generator.getId(),
+                    namespace = "my.app",
+                    name = "app-android",
+                ),
+                registry = registry,
+            )
+            ZipOutputFlow(flow, output).proceed()
+            Assertions.assertTrue(output.size() > 50000)
+        }
     }
 
     @Test
     fun `compose template without features`() {
-        val flow = FileOutputFlow(
-            layer = Layer(
-                id = UUID.randomUUID().toString(),
-                generatorId = generator.getId(),
-                namespace = "my.app",
-                name = "app-android",
-            ),
-            layerPath = buildPath(),
-            registry = registry
-        )
-        GradleExecutionFlow(flow, arrayOf("signingReport", "assembleDebug")).proceed()
+        runBlocking {
+            val flow = FileOutputFlow(
+                layer = Layer(
+                    id = UUID.randomUUID().toString(),
+                    generatorId = generator.getId(),
+                    namespace = "my.app",
+                    name = "app-android",
+                ),
+                layerPath = buildPath(),
+                registry = registry
+            )
+            GradleExecutionFlow(flow, arrayOf("signingReport", "assembleDebug")).proceed()
+        }
     }
 
     @Test
     fun `compose template with all features`() {
-        val flow = FileOutputFlow(
-            layer = Layer(
-                id = UUID.randomUUID().toString(),
-                generatorId = generator.getId(),
-                namespace = "my.app",
-                name = "app-android",
-            ),
-            layerPath = buildPath(),
-            registry = registry,
-            fatLayer = true
-        )
-        GradleExecutionFlow(flow, arrayOf("signingReport", "assembleDebug")).proceed()
+        runBlocking {
+            val flow = FileOutputFlow(
+                layer = Layer(
+                    id = UUID.randomUUID().toString(),
+                    generatorId = generator.getId(),
+                    namespace = "my.app",
+                    name = "app-android",
+                ),
+                layerPath = buildPath(),
+                registry = registry,
+                fatLayer = true
+            )
+            GradleExecutionFlow(flow, arrayOf("signingReport", "assembleDebug")).proceed()
 //        GradleExecutionFlow(flow, arrayOf("signingReport", "assembleRelease")).proceed()
 //        GradleExecutionFlow(flow, arrayOf("signingReport", "testDebugUnitTest", "assembleDebug")).proceed()
+        }
     }
 
 }
