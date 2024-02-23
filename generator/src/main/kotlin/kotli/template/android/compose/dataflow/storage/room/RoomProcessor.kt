@@ -3,6 +3,7 @@ package kotli.template.android.compose.dataflow.storage.room
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.RemoveMarkedLine
 
 class RoomProcessor : BaseFeatureProcessor() {
@@ -17,7 +18,7 @@ class RoomProcessor : BaseFeatureProcessor() {
     }
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyVersionCatalogRules(RemoveMarkedLine("room"))
+        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("room")))
     }
 
     companion object {

@@ -2,6 +2,7 @@ package kotli.template.android.compose.userflow.review.market
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -32,8 +33,8 @@ class GooglePlayReviewProcessor : BaseFeatureProcessor() {
         state.onApplyRules("app/src/main/kotlin/di/ProvidesReviewSource.kt",
             RemoveFile()
         )
-        state.onApplyVersionCatalogRules(
-            RemoveMarkedLine("googleAppReview")
+        state.onApplyRules(
+            VersionCatalogRules(RemoveMarkedLine("googleAppReview"))
         )
     }
 

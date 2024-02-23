@@ -2,6 +2,7 @@ package kotli.template.android.compose.devops.distribution.googleplay
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedBlock
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
@@ -35,8 +36,8 @@ class GooglePlayDistributionProcessor : BaseFeatureProcessor() {
         state.onApplyRules("app/assemble/google-play-publisher.json",
             RemoveFile()
         )
-        state.onApplyVersionCatalogRules(
-            RemoveMarkedLine("googlePlayPublisher")
+        state.onApplyRules(
+            VersionCatalogRules(RemoveMarkedLine("googlePlayPublisher"))
         )
     }
 

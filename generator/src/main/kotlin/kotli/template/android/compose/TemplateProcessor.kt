@@ -1,6 +1,6 @@
 package kotli.template.android.compose
 
-import kotli.engine.BaseTemplateGenerator
+import kotli.engine.BaseTemplateProcessor
 import kotli.engine.FeatureProvider
 import kotli.engine.LayerType
 import kotli.engine.TemplateState
@@ -43,8 +43,8 @@ import kotli.template.android.compose.userflow.update.UpdateProvider
 import kotli.template.android.compose.userflow.webtonative.WebToNativeProvider
 import org.springframework.stereotype.Component
 
-@Component(TemplateGenerator.ID)
-class TemplateGenerator : BaseTemplateGenerator() {
+@Component(TemplateProcessor.ID)
+class TemplateProcessor : BaseTemplateProcessor() {
 
     override fun getId(): String = ID
     override fun getType(): LayerType = LayerTypes.Android

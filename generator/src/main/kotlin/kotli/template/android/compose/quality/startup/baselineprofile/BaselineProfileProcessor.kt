@@ -2,6 +2,7 @@ package kotli.template.android.compose.quality.startup.baselineprofile
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedBlock
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
@@ -45,11 +46,12 @@ class BaselineProfileProcessor : BaseFeatureProcessor() {
         state.onApplyRules("baselineprofile",
             RemoveFile()
         )
-        state.onApplyVersionCatalogRules(
+        state.onApplyRules(VersionCatalogRules(listOf(
             RemoveMarkedLine("benchmarkMacroJunit4"),
             RemoveMarkedLine("baselineprofile"),
             RemoveMarkedLine("uiautomator"),
             RemoveMarkedLine("espresso")
+        ))
         )
     }
 

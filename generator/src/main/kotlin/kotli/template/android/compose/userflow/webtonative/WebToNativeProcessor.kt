@@ -2,6 +2,7 @@ package kotli.template.android.compose.userflow.webtonative
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -22,7 +23,7 @@ class WebToNativeProcessor : BaseFeatureProcessor() {
         state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", RemoveMarkedLine("{workflow-webtonative}"))
         state.onApplyRules("app/src/main/kotlin/app/feature/webtonative", RemoveFile())
         state.onApplyRules("workflow/webtonative", RemoveFile())
-        state.onApplyVersionCatalogRules(RemoveMarkedLine("androidxWebkit"))
+        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("androidxWebkit")))
     }
 
     companion object {

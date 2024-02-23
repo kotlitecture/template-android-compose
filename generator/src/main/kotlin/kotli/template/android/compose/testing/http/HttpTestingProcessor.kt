@@ -3,6 +3,7 @@ package kotli.template.android.compose.testing.http
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -25,7 +26,7 @@ class HttpTestingProcessor : BaseFeatureProcessor() {
         state.onApplyRules("settings.gradle", RemoveMarkedLine("{testing-http}"))
         state.onApplyRules("app/build.gradle", RemoveMarkedLine("{testing-http}"))
         state.onApplyRules("core/testing-http", RemoveFile())
-        state.onApplyVersionCatalogRules(RemoveMarkedLine("chucker"))
+        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("chucker")))
     }
 
     companion object {

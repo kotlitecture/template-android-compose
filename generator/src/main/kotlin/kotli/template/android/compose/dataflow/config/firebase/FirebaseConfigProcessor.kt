@@ -3,6 +3,7 @@ package kotli.template.android.compose.dataflow.config.firebase
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -36,7 +37,7 @@ class FirebaseConfigProcessor : BaseFeatureProcessor() {
         state.onApplyRules("settings.gradle", RemoveMarkedLine("{firebase-config}"))
         state.onApplyRules("app/build.gradle", RemoveMarkedLine("{firebase-config}"))
         state.onApplyRules("integration/firebase-config", RemoveFile())
-        state.onApplyVersionCatalogRules(RemoveMarkedLine("firebase-config"))
+        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("firebase-config")))
     }
 
     companion object {

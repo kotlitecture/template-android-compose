@@ -2,6 +2,7 @@ package kotli.template.android.compose.userflow.update.market
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -22,7 +23,7 @@ class GooglePlayUpdateProcessor : BaseFeatureProcessor() {
         state.onApplyRules("integration/market-update", RemoveFile())
         state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", RemoveMarkedLine("{market-update}"))
         state.onApplyRules("app/src/main/kotlin/di/ProvidesUpdateSource.kt", RemoveFile())
-        state.onApplyVersionCatalogRules(RemoveMarkedLine("googleAppUpdate"))
+        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("googleAppUpdate")))
     }
 
     companion object {

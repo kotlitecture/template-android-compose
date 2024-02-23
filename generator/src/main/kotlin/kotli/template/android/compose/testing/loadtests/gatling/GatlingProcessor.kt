@@ -2,6 +2,7 @@ package kotli.template.android.compose.testing.loadtests.gatling
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -19,7 +20,7 @@ class GatlingProcessor : BaseFeatureProcessor() {
         state.onApplyRules("settings.gradle", RemoveMarkedLine("{loadtests-gatling}"))
         state.onApplyRules("build.gradle", RemoveMarkedLine("{loadtests-gatling}"))
         state.onApplyRules("testing/loadtests-gatling", RemoveFile())
-        state.onApplyVersionCatalogRules(RemoveMarkedLine("gatling"))
+        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("gatling")))
     }
 
     companion object {

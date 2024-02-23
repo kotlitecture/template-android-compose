@@ -2,6 +2,7 @@ package kotli.template.android.compose.transitive.googleservices
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -27,7 +28,7 @@ class GoogleServicesProcessor : BaseFeatureProcessor() {
         state.onApplyRules("app/build.gradle", RemoveMarkedLine("{google-services}"))
         state.onApplyRules("build.gradle", RemoveMarkedLine("{google-services}"))
         state.onApplyRules("app/google-services.json", RemoveFile())
-        state.onApplyVersionCatalogRules(RemoveMarkedLine("google-services"))
+        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("google-services")))
     }
 
     companion object {

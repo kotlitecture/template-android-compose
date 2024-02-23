@@ -3,6 +3,7 @@ package kotli.template.android.compose.quality.crashes.firebase
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -37,7 +38,7 @@ class FirebaseCrashlyticsProcessor : BaseFeatureProcessor() {
         state.onApplyRules("settings.gradle", RemoveMarkedLine("{firebase-crashlytics}"))
         state.onApplyRules("app/build.gradle", RemoveMarkedLine("{firebase-crashlytics}"))
         state.onApplyRules("integration/firebase-crashlytics", RemoveFile())
-        state.onApplyVersionCatalogRules(RemoveMarkedLine("firebase-crashlytics"))
+        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("firebase-crashlytics")))
     }
 
     companion object {

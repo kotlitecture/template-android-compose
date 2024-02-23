@@ -3,6 +3,7 @@ package kotli.template.android.compose.quality.performance.firebase
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -31,7 +32,7 @@ class FirebasePerformanceProcessor : BaseFeatureProcessor() {
         state.onApplyRules("app/build.gradle", RemoveMarkedLine("{firebase-perf}"))
         state.onApplyRules("build.gradle", RemoveMarkedLine("{firebase-perf}"))
         state.onApplyRules("integration/firebase-perf", RemoveFile())
-        state.onApplyVersionCatalogRules(RemoveMarkedLine("firebase-perf"))
+        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("firebase-perf")))
     }
 
     companion object {
