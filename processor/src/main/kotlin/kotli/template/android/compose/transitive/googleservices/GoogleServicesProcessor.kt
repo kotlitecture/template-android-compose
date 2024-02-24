@@ -21,7 +21,7 @@ class GoogleServicesProcessor : BaseFeatureProcessor() {
     override fun doApply(state: TemplateState) {
         state.onApplyRules("app/build.gradle", CleanupMarkedLine("{google-services}"))
         state.onApplyRules("build.gradle", CleanupMarkedLine("{google-services}"))
-        state.onApplyRules("app/google-services.json", ReplaceText("kotli.app") { state.layer.namespace })
+        state.onApplyRules("app/google-services.json", ReplaceText("kotli.app", state.layer.namespace))
     }
 
     override fun doRemove(state: TemplateState) {

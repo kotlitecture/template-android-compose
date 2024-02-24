@@ -28,7 +28,7 @@ class BaselineProfileProcessor : BaseFeatureProcessor() {
             CleanupMarkedBlock("{baselineprofile-config}")
         )
         state.onApplyRules("baselineprofile/src/main/java/app/baselineprofile/BaselineProfileGenerator.kt",
-            ReplaceText("kotli.app") { state.layer.namespace }
+            ReplaceText("kotli.app", state.layer.namespace)
         )
     }
 

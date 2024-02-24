@@ -10,5 +10,4 @@ processResources {
 
 dependencies {
     api libs.kotli.engine
-    implementation libs.spring.context
 }

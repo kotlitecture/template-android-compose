@@ -74,7 +74,7 @@ class TemplateProcessorTest {
                 namespace = "my.app",
                 name = "app-android",
             )
-            val generator = PathOutputGenerator(buildPath(), registry)
+            val generator = PathOutputGenerator(buildPath(), registry, fat = true)
             val gradleGenerator = GradleProjectGenerator(arrayOf("signingReport", "assembleDebug"), generator)
             gradleGenerator.generate(layer)
         }

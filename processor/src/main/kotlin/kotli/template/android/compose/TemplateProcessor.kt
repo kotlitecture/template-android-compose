@@ -41,9 +41,7 @@ import kotli.template.android.compose.userflow.review.ReviewProvider
 import kotli.template.android.compose.userflow.support.SupportProvider
 import kotli.template.android.compose.userflow.update.UpdateProvider
 import kotli.template.android.compose.userflow.webtonative.WebToNativeProvider
-import org.springframework.stereotype.Component
 
-@Component(TemplateProcessor.ID)
 class TemplateProcessor : BaseTemplateProcessor() {
 
     override fun getId(): String = ID
@@ -104,16 +102,18 @@ class TemplateProcessor : BaseTemplateProcessor() {
     )
 
     override fun doPrepare(state: TemplateState) {
-        state.onApplyRules("app/build.gradle",
+        state.onApplyRules(
+            "app/build.gradle",
             ReplaceMarkedLine(
                 marker = "{applicationId}",
-                replacer = { "applicationId = '${state.layer.namespace}'" }
+                replacer = "applicationId = '${state.layer.namespace}'"
             )
         )
-        state.onApplyRules("settings.gradle",
+        state.onApplyRules(
+            "settings.gradle",
             ReplaceMarkedLine(
                 marker = "{projectName}",
-                replacer = { "rootProject.name = '${state.layer.name}'" }
+                replacer = "rootProject.name = '${state.layer.name}'"
             )
         )
     }
