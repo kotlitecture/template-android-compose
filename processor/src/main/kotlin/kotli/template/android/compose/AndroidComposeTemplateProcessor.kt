@@ -42,7 +42,7 @@ import kotli.template.android.compose.userflow.support.SupportProvider
 import kotli.template.android.compose.userflow.update.UpdateProvider
 import kotli.template.android.compose.userflow.webtonative.WebToNativeProvider
 
-class TemplateProcessor : BaseTemplateProcessor() {
+class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
 
     override fun getId(): String = ID
     override fun getType(): LayerType = LayerTypes.Android

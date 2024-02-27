@@ -17,9 +17,9 @@ import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.deleteRecursively
 import kotlin.test.Test
 
-class TemplateProcessorTest {
+class AndroidComposeTemplateProcessorTest {
 
-    private val processor = TemplateProcessor()
+    private val processor = AndroidComposeTemplateProcessor()
     private val registry = DefaultTemplateRegistry(listOf(processor))
 
     private fun buildPath(): Path {
