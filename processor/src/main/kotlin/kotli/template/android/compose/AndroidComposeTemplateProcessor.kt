@@ -6,10 +6,10 @@ import kotli.engine.LayerType
 import kotli.engine.TemplateState
 import kotli.engine.model.LayerTypes
 import kotli.engine.template.rule.ReplaceMarkedLine
-import kotli.template.android.compose.appearance.l10n.L10NProvider
-import kotli.template.android.compose.appearance.navigation.NavigationProvider
-import kotli.template.android.compose.appearance.splash.SplashProvider
-import kotli.template.android.compose.appearance.theme.ThemeProvider
+import kotli.template.android.compose.design.l10n.L10NProvider
+import kotli.template.android.compose.design.navigation.NavigationProvider
+import kotli.template.android.compose.design.splash.SplashProvider
+import kotli.template.android.compose.design.theme.ThemeProvider
 import kotli.template.android.compose.dataflow.analytics.AnalyticsProvider
 import kotli.template.android.compose.dataflow.api.ApiProvider
 import kotli.template.android.compose.dataflow.config.ConfigProvider
