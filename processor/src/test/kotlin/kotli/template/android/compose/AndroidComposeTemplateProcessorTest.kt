@@ -20,7 +20,7 @@ import kotlin.test.Test
 class AndroidComposeTemplateProcessorTest {
 
     private val processor = AndroidComposeTemplateProcessor()
-    private val registry = DefaultTemplateRegistry(listOf(processor))
+    private val registry = DefaultTemplateRegistry(processor)
 
     private fun buildPath(): Path {
         return File("build/template").toPath().toAbsolutePath().also { it.deleteRecursively() }
