@@ -5,11 +5,7 @@ import kotli.engine.FeatureProvider
 import kotli.engine.LayerType
 import kotli.engine.TemplateState
 import kotli.engine.model.LayerTypes
-import kotli.engine.template.rule.ReplaceMarkedLine
-import kotli.template.android.compose.design.l10n.L10NProvider
-import kotli.template.android.compose.design.navigation.NavigationProvider
-import kotli.template.android.compose.design.splash.SplashProvider
-import kotli.template.android.compose.design.theme.ThemeProvider
+import kotli.engine.template.rule.ReplaceMarkedText
 import kotli.template.android.compose.dataflow.analytics.AnalyticsProvider
 import kotli.template.android.compose.dataflow.api.ApiProvider
 import kotli.template.android.compose.dataflow.config.ConfigProvider
@@ -18,6 +14,10 @@ import kotli.template.android.compose.dataflow.messaging.MessagingProvider
 import kotli.template.android.compose.dataflow.storage.StorageProvider
 import kotli.template.android.compose.dataflow.web3.Web3Provider
 import kotli.template.android.compose.dataflow.work.WorkProvider
+import kotli.template.android.compose.design.l10n.L10NProvider
+import kotli.template.android.compose.design.navigation.NavigationProvider
+import kotli.template.android.compose.design.splash.SplashProvider
+import kotli.template.android.compose.design.theme.ThemeProvider
 import kotli.template.android.compose.devops.distribution.DistributionProvider
 import kotli.template.android.compose.devops.gradle.GradleProvider
 import kotli.template.android.compose.devops.i18n.I18NProvider
@@ -101,19 +101,23 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         TransitiveProvider(),
     )
 
-    override fun doPrepare(state: TemplateState) {
+    override fun prepare(state: TemplateState) {
         state.onApplyRules(
             "app/build.gradle",
-            ReplaceMarkedLine(
+            ReplaceMarkedText(
+                text = "kotli.app",
                 marker = "{applicationId}",
-                replacer = "applicationId = '${state.layer.namespace}'"
+                replacer = state.layer.namespace,
+                singleLine = true
             )
         )
         state.onApplyRules(
             "settings.gradle",
-            ReplaceMarkedLine(
+            ReplaceMarkedText(
+                text = "template",
                 marker = "{projectName}",
-                replacer = "rootProject.name = '${state.layer.name}'"
+                replacer = state.layer.name,
+                singleLine = true
             )
         )
     }
