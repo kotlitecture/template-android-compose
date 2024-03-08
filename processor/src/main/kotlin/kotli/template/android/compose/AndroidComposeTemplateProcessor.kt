@@ -49,6 +49,9 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
     override fun getWebUrl(): String = "https://github.com/kotlitecture/template-android-compose"
 
     override fun createProviders(): List<FeatureProvider> = listOf(
+        // Transitive
+        TransitiveProvider(),
+
         // appearance
         L10NProvider(),
         NavigationProvider(),
@@ -96,9 +99,6 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         HttpTestingProvider(),
         LoadTestsProvider(),
         LoggingProvider(),
-
-        // Transitive
-        TransitiveProvider(),
     )
 
     override fun prepare(state: TemplateState) {
