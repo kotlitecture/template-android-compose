@@ -101,7 +101,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         LoggingProvider(),
     )
 
-    override fun prepare(state: TemplateState) {
+    override fun processBefore(state: TemplateState) {
         state.onApplyRules(
             "app/build.gradle",
             ReplaceMarkedText(
