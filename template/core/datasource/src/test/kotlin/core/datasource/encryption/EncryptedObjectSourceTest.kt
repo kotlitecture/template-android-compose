@@ -1,6 +1,6 @@
 package core.datasource.encryption
 
-import core.testing.MyUnitTest
+import core.testing.MyHiltUnitTest
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Assert
 import org.tinylog.kotlin.Logger
@@ -8,7 +8,7 @@ import javax.inject.Inject
 import kotlin.test.Test
 
 @HiltAndroidTest
-class EncryptedObjectSourceTest : MyUnitTest() {
+class EncryptedObjectSourceTest : MyHiltUnitTest() {
 
     @Inject
     lateinit var encryptedObjectSource: IEncryptedObjectSource

@@ -1,15 +1,15 @@
-package core.datasource.storage
+package core.dataflow.datasource.storage
 
-import core.testing.MyHiltUnitTest
+import core.testing.MyAndroidTest
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-abstract class AbstractKeyValueSourceTest : MyHiltUnitTest() {
+abstract class BaseKeyValueSourceTest : MyAndroidTest() {
 
-    private val cache: IKeyValueSource by lazy { provider() }
+    private val cache: KeyValueSource by lazy { provider() }
 
-    abstract fun provider(): IKeyValueSource
+    abstract fun provider(): KeyValueSource
 
     @Test
     fun `read not existing value`() = performTest {

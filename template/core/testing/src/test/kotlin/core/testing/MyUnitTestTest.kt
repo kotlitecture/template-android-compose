@@ -4,14 +4,13 @@ import core.datasource.analytics.IAnalyticsSource
 import core.datasource.config.IConfigSource
 import core.di.TestAnalyticsSource
 import core.di.TestConfigSource
-import core.testing.MyUnitTest
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Assert
 import org.junit.Test
 import javax.inject.Inject
 
 @HiltAndroidTest
-class MyUnitTestTest : MyUnitTest() {
+class MyUnitTestTest : MyHiltUnitTest() {
 
     @Inject
     lateinit var configSource: IConfigSource

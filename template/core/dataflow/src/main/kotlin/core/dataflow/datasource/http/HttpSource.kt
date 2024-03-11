@@ -2,6 +2,7 @@
 
 package core.dataflow.datasource.http
 
+import core.dataflow.datasource.DataSource
 import core.dataflow.exception.DataException
 import core.dataflow.misc.extensions.isCancellationException
 import core.dataflow.misc.extensions.sharedFlow
@@ -40,7 +41,7 @@ class HttpSource(
     private val retryInterval: Long = 3_000L,
     private val wsStopTimeout: Long = 60_000L,
     private val interceptors: List<Interceptor> = emptyList()
-) {
+) : DataSource {
 
     private val flowCache = ConcurrentHashMap<Any, Flow<*>>()
 

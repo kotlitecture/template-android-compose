@@ -1,10 +1,10 @@
 package core.dataflow.misc
 
-import core.dataflow.BaseTest
 import core.dataflow.datasource.cache.CacheKey
 import core.dataflow.datasource.cache.CacheSource
 import core.dataflow.datasource.cache.MemoryCacheSource
 import core.dataflow.misc.extensions.infiniteFlow
+import core.testing.MyUnitTest
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.timeout
 import kotlinx.coroutines.flow.toList
@@ -14,7 +14,7 @@ import java.io.IOException
 import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
 
-class InfinityFlowTest : BaseTest() {
+class InfinityFlowTest : MyUnitTest() {
 
     private val cache: CacheSource = MemoryCacheSource()
 

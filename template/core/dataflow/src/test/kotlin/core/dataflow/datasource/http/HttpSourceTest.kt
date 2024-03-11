@@ -1,15 +1,14 @@
-package core.dataflow.http
+package core.dataflow.datasource.http
 
 import com.google.gson.annotations.SerializedName
-import core.dataflow.BaseTest
-import core.dataflow.datasource.http.HttpSource
+import core.testing.MyUnitTest
 import io.ktor.client.call.body
 import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.request.get
 import org.junit.Assert
 import kotlin.test.Test
 
-class HttpSourceTest : BaseTest() {
+class HttpSourceTest : MyUnitTest() {
 
     private val ktor by lazy { HttpSource().ktor }
 

@@ -1,10 +1,7 @@
-package core.dataflow.cache
+package core.dataflow.datasource.cache
 
-import core.dataflow.BaseTest
-import core.dataflow.datasource.cache.CacheKey
-import core.dataflow.datasource.cache.CacheSource
-import core.dataflow.datasource.cache.MemoryCacheSource
 import core.dataflow.misc.extensions.launchGlobalAsync
+import core.testing.MyUnitTest
 import io.ktor.util.collections.ConcurrentSet
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -14,7 +11,7 @@ import java.util.UUID
 import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
 
-class CacheDataSourceTest : BaseTest() {
+class CacheDataSourceTest : MyUnitTest() {
 
     private val cache: CacheSource = MemoryCacheSource()
 

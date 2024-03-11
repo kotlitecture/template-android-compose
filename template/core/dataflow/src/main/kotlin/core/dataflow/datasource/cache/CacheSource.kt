@@ -1,6 +1,8 @@
 package core.dataflow.datasource.cache
 
-interface CacheSource {
+import core.dataflow.datasource.DataSource
+
+interface CacheSource : DataSource {
 
     suspend fun <T> getState(key: CacheKey<T>, valueProvider: suspend () -> T?): CacheState<T>
 
