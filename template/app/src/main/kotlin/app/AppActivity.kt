@@ -8,7 +8,6 @@ import androidx.core.view.WindowCompat
 import androidx.fragment.app.FragmentActivity
 import app.feature.template.TemplateDestination
 import app.feature.webtonative.WebToNativeDestination // {workflow-webtonative}
-import core.data.state.StoreObject
 import core.datasource.intent.IntentSource
 import core.datasource.update.IUpdateSource // {market-update}
 import core.ui.app.AppScreen
@@ -31,7 +30,6 @@ class AppActivity : FragmentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         setContent {
-            StoreObject.attachToActivityScope()
             intentSource.attachToActivityScope()
             ContentBlock()
             LaunchedEffect(Unit) { updateSource.init() } // {market-update}

@@ -3,6 +3,7 @@ package core.ui.app
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.rememberCoroutineScope
 import core.datasource.analytics.IAnalyticsSource
 import core.ui.app.command.Command
 import core.ui.app.navigation.Destination

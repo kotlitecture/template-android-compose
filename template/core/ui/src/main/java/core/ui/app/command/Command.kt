@@ -1,13 +1,13 @@
 package core.ui.app.command
 
-import core.data.state.StoreObject
 import core.ui.app.AppContext
+import kotlinx.coroutines.launch
 import org.tinylog.Logger
 
 abstract class Command(val uid: Long = System.currentTimeMillis()) {
 
     fun execute(appContext: AppContext) {
-        StoreObject.onMain {
+        appContext.scope.launch {
             try {
                 doExecute(appContext)
             } catch (e: Exception) {
