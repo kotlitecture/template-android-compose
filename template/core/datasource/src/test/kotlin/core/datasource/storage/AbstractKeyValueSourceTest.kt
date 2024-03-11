@@ -1,11 +1,11 @@
 package core.datasource.storage
 
-import core.testing.MyHiltUnitTest
+import core.testing.BaseAndroidHiltUnitTest
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-abstract class AbstractKeyValueSourceTest : MyHiltUnitTest() {
+abstract class AbstractKeyValueSourceTest : BaseAndroidHiltUnitTest() {
 
     private val cache: IKeyValueSource by lazy { provider() }
 

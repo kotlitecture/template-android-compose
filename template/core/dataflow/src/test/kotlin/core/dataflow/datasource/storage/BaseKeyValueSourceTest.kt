@@ -1,11 +1,11 @@
 package core.dataflow.datasource.storage
 
-import core.testing.MyAndroidTest
+import core.testing.BaseAndroidUnitTest
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-abstract class BaseKeyValueSourceTest : MyAndroidTest() {
+abstract class BaseKeyValueSourceTest : BaseAndroidUnitTest() {
 
     private val cache: KeyValueSource by lazy { provider() }
 

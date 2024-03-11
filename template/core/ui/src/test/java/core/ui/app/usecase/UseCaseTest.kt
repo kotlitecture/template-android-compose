@@ -1,6 +1,6 @@
 package core.ui.app.usecase
 
-import core.testing.MyHiltUnitTest
+import core.testing.BaseAndroidHiltUnitTest
 import dagger.hilt.android.testing.HiltAndroidTest
 import io.ktor.util.collections.ConcurrentSet
 import kotlinx.coroutines.delay
@@ -13,7 +13,7 @@ import javax.inject.Singleton
 import kotlin.time.Duration.Companion.seconds
 
 @HiltAndroidTest
-class UseCaseTest : MyHiltUnitTest() {
+class UseCaseTest : BaseAndroidHiltUnitTest() {
 
     @Inject
     lateinit var sampleUseCase: SampleUseCase

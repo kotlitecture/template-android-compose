@@ -1,13 +1,13 @@
 package core.dataflow.datasource.encryption
 
 import core.dataflow.datasource.storage.AndroidEncryptedKeyValueSource
-import core.testing.MyAndroidTest
+import core.testing.BaseAndroidUnitTest
 import org.junit.Assert
 import org.robolectric.RuntimeEnvironment
 import org.tinylog.kotlin.Logger
 import kotlin.test.Test
 
-class EncryptionSourceTest : MyAndroidTest() {
+class EncryptionSourceTest : BaseAndroidUnitTest() {
 
     private val encryptionSource: EncryptionSource by lazy {
         DefaultEncryptionSource(AndroidEncryptedKeyValueSource(RuntimeEnvironment.getApplication()))

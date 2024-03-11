@@ -5,7 +5,7 @@ import core.dataflow.datasource.cache.CacheSource
 import core.dataflow.datasource.cache.MemoryCacheSource
 import core.dataflow.misc.extensions.launchGlobalAsync
 import core.dataflow.misc.extensions.sharedFlow
-import core.testing.MyUnitTest
+import core.testing.BaseUnitTest
 import io.ktor.util.collections.ConcurrentSet
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.callbackFlow
@@ -18,7 +18,7 @@ import java.util.UUID
 import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
 
-class SharedFlowTest : MyUnitTest() {
+class SharedFlowTest : BaseUnitTest() {
 
     private val cache: CacheSource = MemoryCacheSource()
 

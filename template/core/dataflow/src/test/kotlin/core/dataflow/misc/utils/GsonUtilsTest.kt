@@ -1,12 +1,12 @@
 package core.dataflow.misc.utils
 
 import com.google.gson.annotations.SerializedName
-import core.testing.MyUnitTest
+import core.testing.BaseUnitTest
 import org.junit.Assert
 import java.util.Date
 import kotlin.test.Test
 
-class GsonUtilsTest : MyUnitTest() {
+class GsonUtilsTest : BaseUnitTest() {
 
     @Test
     fun `parse object with date`() {

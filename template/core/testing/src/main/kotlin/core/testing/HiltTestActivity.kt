@@ -8,4 +8,4 @@ import dagger.hilt.android.AndroidEntryPoint
  * for https://github.com/google/dagger/issues/3394
  */
 @AndroidEntryPoint
-class MyTestActivity : ComponentActivity()
+class HiltTestActivity : ComponentActivity()

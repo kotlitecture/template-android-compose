@@ -1,10 +1,10 @@
 package core.dataflow.misc.utils
 
-import core.testing.MyUnitTest
+import core.testing.BaseUnitTest
 import org.junit.Assert
 import kotlin.test.Test
 
-class EncryptUtilsTest : MyUnitTest() {
+class EncryptUtilsTest : BaseUnitTest() {
 
     @Test
     fun `aes encryption`() {
