@@ -1,0 +1,12 @@
+apply from: "${project.rootDir}/gradle/android/library.gradle"
+
+android {
+    namespace = "core.dataflow"
+}
+
+dependencies {
+    api libs.bundles.kotlinEssentials
+    api libs.bundles.androidData
+    api libs.androidx.startup
+    testImplementation project(":core:testing")
+}
