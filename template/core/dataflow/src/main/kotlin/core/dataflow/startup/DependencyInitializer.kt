@@ -2,7 +2,6 @@ package core.dataflow.startup
 
 import android.content.Context
 import androidx.startup.Initializer
-import core.data.startup.InitializerEntryPoint
 
 abstract class DependencyInitializer<T> : Initializer<T> {
 

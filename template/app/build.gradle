@@ -9,13 +9,14 @@ apply plugin: "io.objectbox" // {objectbox}
 
 dependencies {
     implementation project(":core:ui")
+    implementation project(":core:dataflow")
+    implementation libs.androidx.webkit // {userflow-webtonative}
+    implementation libs.google.app.update // {userflow-google-play-update}
     implementation project(":integration:firebase-crashlytics") // {firebase-crashlytics}
     implementation project(":integration:firebase-analytics") // {firebase-analytics}
     implementation project(":integration:firebase-config") // {firebase-config}
     implementation project(":integration:firebase-perf") // {firebase-perf}
-    implementation project(":integration:market-update") // {market-update}
     implementation project(":integration:market-review") // {market-review}
-    implementation project(":workflow:webtonative") // {workflow-webtonative}
     testImplementation project(":core:testing")
     baselineProfile project(':baselineprofile') // {baselineprofile}
 }

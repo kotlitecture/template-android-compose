@@ -7,14 +7,14 @@ import io.ktor.client.utils.unwrapCancellationException
 import java.util.concurrent.CancellationException
 
 fun Throwable.isIgnoredException(): Boolean {
-    return isCancellationException() || isTimeoutException()
+    return isCancellationException() || isHttpTimeoutException()
 }
 
 fun Throwable.isCancellationException(): Boolean {
     return unwrapCancellationException() is CancellationException
 }
 
-fun Throwable.isTimeoutException(): Boolean {
+fun Throwable.isHttpTimeoutException(): Boolean {
     val exception = this
     return exception is HttpRequestTimeoutException ||
         exception is ConnectTimeoutException ||

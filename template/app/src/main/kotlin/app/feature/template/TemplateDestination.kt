@@ -1,14 +1,14 @@
 package app.feature.template
 
 import androidx.navigation.NavGraphBuilder
-import core.ui.app.navigation.Destination
-import core.ui.app.navigation.Strategy
+import core.ui.navigation.NavigationDestination
+import core.ui.navigation.NavigationStrategy
 
-class TemplateDestination : Destination<Unit>() {
+class TemplateDestination : NavigationDestination<Unit>() {
 
     override val id: String = "template_screen"
     override val dataType: Class<Unit> = Unit.javaClass
-    override val strategy: Strategy = Strategy.NewInstance
+    override val strategy: NavigationStrategy = NavigationStrategy.NewInstance
     override fun doRegister(builder: NavGraphBuilder) = screen(builder) { TemplateScreen() }
 
 }

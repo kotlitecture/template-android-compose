@@ -5,6 +5,5 @@ android {
 }
 
 dependencies {
-    api libs.androidx.startup
     api project(":core:essentials")
 }

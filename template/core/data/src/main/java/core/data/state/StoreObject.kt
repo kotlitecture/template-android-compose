@@ -11,14 +11,16 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 @Immutable
 class StoreObject<T>(
     private val value: T? = null,
-    private val onChanged: ((prevValue: T?, newValue: T?) -> Unit)? = null
+    private val valueReply: Int = 1,
+    private val valueBufferCapacity: Int = 1,
+    private val onChanged: ((prevValue: T?, newValue: T?) -> Unit)? = null,
 ) {
 
-    private var currentValue: T? = value
     private var prevValue: T? = null
+    private var currentValue: T? = value
 
     private val valueChanges = lazy {
-        val processor = MutableSharedFlow<T?>(replay = 1, extraBufferCapacity = 1)
+        val processor = MutableSharedFlow<T?>(replay = valueReply, extraBufferCapacity = valueBufferCapacity)
         processor.tryEmit(currentValue)
         processor
     }

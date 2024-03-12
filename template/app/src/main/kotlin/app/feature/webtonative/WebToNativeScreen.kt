@@ -1,8 +1,8 @@
 package app.feature.webtonative
 
 import androidx.compose.runtime.Composable
-import core.ui.mvvm.provideViewModel
-import workflow.webtonative.WebToNativeLayout
+import core.ui.provideViewModel
+import app.userflow.webtonative.WebToNativeLayout
 
 @Composable
 fun WebToNativeScreen(data: WebToNativeDestination.Data) {

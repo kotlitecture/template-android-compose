@@ -21,16 +21,12 @@ include(":app")
 include(":core:ui")
 include(":core:data")
 include(":core:testing")
-include(":core:testing-http") // {testing-http}
 include(":core:essentials")
 include(":core:datasource")
-include(":core:datasource-web3") // {datasource-web3}
-include(":core:datasource-work") // {datasource-work}
 include(":integration:firebase-analytics") // {firebase-analytics}
 include(":integration:firebase-crashlytics") // {firebase-crashlytics}
 include(":integration:firebase-config") // {firebase-config}
 include(":integration:firebase-perf") // {firebase-perf}
-include(":integration:market-update") // {market-update}
 include(":integration:market-review") // {market-review}
-include(":workflow:webtonative") // {workflow-webtonative}
-include(":testing:loadtests-gatling") // {loadtests-gatling}
+
+include(":core:dataflow")

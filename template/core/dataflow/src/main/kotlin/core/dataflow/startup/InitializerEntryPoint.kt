@@ -1,4 +1,4 @@
-package core.data.startup
+package core.dataflow.startup
 
 import android.content.Context
 import dagger.hilt.EntryPoint

@@ -8,7 +8,7 @@ import core.essentials.cache.ICacheSource
 import core.essentials.cache.ICacheState
 import core.essentials.misc.extensions.isCancellationException
 import core.essentials.misc.extensions.isIgnoredException
-import core.essentials.misc.extensions.isTimeoutException
+import core.essentials.misc.extensions.isHttpTimeoutException
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -61,7 +61,7 @@ class MemoryCacheSource : ICacheSource {
                     } catch (e: Exception) {
                         when {
                             !e.isIgnoredException() -> delay(3000L)
-                            !e.isTimeoutException() -> throw e
+                            !e.isHttpTimeoutException() -> throw e
                             else -> Unit
                         }
                     }

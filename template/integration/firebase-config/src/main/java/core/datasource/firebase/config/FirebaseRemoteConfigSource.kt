@@ -8,7 +8,6 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import core.datasource.analytics.IAnalyticsSource
 import core.datasource.config.IConfigSource
-import core.datasource.firebase.config.BuildConfig
 import core.essentials.misc.extensions.ifNotEmpty
 import core.essentials.misc.utils.GsonUtils
 import java.util.concurrent.TimeUnit

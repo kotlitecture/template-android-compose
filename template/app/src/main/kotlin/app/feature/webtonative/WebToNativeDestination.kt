@@ -1,14 +1,14 @@
 package app.feature.webtonative
 
 import androidx.navigation.NavGraphBuilder
-import core.ui.app.navigation.Destination
-import core.ui.app.navigation.Strategy
+import core.ui.navigation.NavigationDestination
+import core.ui.navigation.NavigationStrategy
 
-class WebToNativeDestination : Destination<WebToNativeDestination.Data>() {
+class WebToNativeDestination : NavigationDestination<WebToNativeDestination.Data>() {
 
     override val id: String = "webtonative_screen"
     override val dataType: Class<Data> = Data::class.java
-    override val strategy: Strategy = Strategy.NewInstance
+    override val strategy: NavigationStrategy = NavigationStrategy.NewInstance
     override fun doRegister(builder: NavGraphBuilder) = screen(builder) { WebToNativeScreen(it!!) }
 
     data class Data(
