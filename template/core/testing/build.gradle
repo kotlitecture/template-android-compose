@@ -5,6 +5,5 @@ android {
 }
 
 dependencies {
-    implementation project(":core:datasource")
     api libs.bundles.androidTest
 }
