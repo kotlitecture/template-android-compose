@@ -9,7 +9,7 @@ import com.chuckerteam.chucker.api.RetentionManager
 import core.dataflow.datasource.DataSource
 import core.dataflow.exception.DataException
 import core.dataflow.misc.extensions.isCancellationException
-import core.dataflow.misc.extensions.sharedFlow
+import core.dataflow.misc.extensions.globalSharedFlow
 import core.dataflow.misc.utils.GsonUtils
 import core.dataflow.misc.utils.SslUtils
 import io.ktor.client.HttpClient
@@ -97,7 +97,7 @@ class HttpSource(
     fun <T> get(key: Any, collector: suspend FlowCollector<T>.() -> Unit): Flow<T> {
         val stopTimeout = wsStopTimeout
         val cached = flowCache.computeIfAbsent(key) {
-            sharedFlow(stopTimeout) {
+            globalSharedFlow(stopTimeout) {
                 try {
                     Logger.debug("[HttpSource] collect :: {} - {}", key::class.java, key)
                     collector()

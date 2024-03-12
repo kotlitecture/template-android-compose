@@ -1,6 +1,6 @@
 package core.dataflow.datasource.cache
 
-import core.dataflow.misc.extensions.launchGlobalAsync
+import core.dataflow.misc.extensions.globalAsync
 import core.testing.BaseUnitTest
 import io.ktor.util.collections.ConcurrentSet
 import kotlinx.coroutines.delay
@@ -20,7 +20,7 @@ class CacheDataSourceTest : BaseUnitTest() {
         val iterations = 1000
         val cached = ConcurrentSet<Int>()
         repeat(iterations) { iteration ->
-            launchGlobalAsync(iteration.toString()) {
+            globalAsync(iteration.toString()) {
                 cache
                     .get(TestCacheKey(iteration)) {
                         delay(2.seconds)

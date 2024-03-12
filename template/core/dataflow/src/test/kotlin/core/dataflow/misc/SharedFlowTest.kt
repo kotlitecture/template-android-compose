@@ -3,8 +3,8 @@ package core.dataflow.misc
 import core.dataflow.datasource.cache.CacheKey
 import core.dataflow.datasource.cache.CacheSource
 import core.dataflow.datasource.cache.MemoryCacheSource
-import core.dataflow.misc.extensions.launchGlobalAsync
-import core.dataflow.misc.extensions.sharedFlow
+import core.dataflow.misc.extensions.globalAsync
+import core.dataflow.misc.extensions.globalSharedFlow
 import core.testing.BaseUnitTest
 import io.ktor.util.collections.ConcurrentSet
 import kotlinx.coroutines.delay
@@ -27,7 +27,7 @@ class SharedFlowTest : BaseUnitTest() {
         val iterations = 100
         val cached = ConcurrentSet<String>()
         val completed = ConcurrentSet<String>()
-        val flow = sharedFlow<Unit> {
+        val flow = globalSharedFlow<Unit> {
             val uid = UUID.randomUUID().toString()
             cached.add(uid)
             callbackFlow<Int> {
@@ -40,7 +40,7 @@ class SharedFlowTest : BaseUnitTest() {
 
         // subscribe
         repeat(iterations) { iteration ->
-            launchGlobalAsync(iteration.toString()) {
+            globalAsync(iteration.toString()) {
                 cache.get(TestCacheKey(iteration)) {
                     Logger.debug("collect from :: first {}", iteration)
                     delay(1.seconds)
@@ -55,7 +55,7 @@ class SharedFlowTest : BaseUnitTest() {
 
         // cancel all jobs
         repeat(iterations) { iteration ->
-            launchGlobalAsync(iteration.toString()) {}
+            globalAsync(iteration.toString()) {}
         }
         delay(1.seconds)
         Assert.assertEquals(1, cached.size)
@@ -63,7 +63,7 @@ class SharedFlowTest : BaseUnitTest() {
 
         // subscribe again
         repeat(iterations) { iteration ->
-            launchGlobalAsync(iteration.toString()) {
+            globalAsync(iteration.toString()) {
                 cache.get(TestCacheKey(iteration)) {
                     Logger.debug("collect from :: second {}", iteration)
                     delay(1.seconds)
@@ -75,7 +75,7 @@ class SharedFlowTest : BaseUnitTest() {
         delay(3.seconds)
         // cancel all jobs
         repeat(iterations) { iteration ->
-            launchGlobalAsync(iteration.toString()) {}
+            globalAsync(iteration.toString()) {}
         }
         delay(1.seconds)
         Assert.assertEquals(2, completed.size)
