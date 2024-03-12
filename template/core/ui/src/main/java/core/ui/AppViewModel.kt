@@ -16,8 +16,8 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
-import core.data.state.DataState
-import core.data.state.StoreState
+import core.ui.state.DataState
+import core.ui.state.StoreState
 import core.ui.misc.extensions.findActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

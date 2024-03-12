@@ -49,6 +49,7 @@ junit4 = "4.13.2"
 kotlin = "1.9.22"
 kotlinxCoroutines = "1.8.0"
 kotlinxDatetime = "0.5.0"
+kotlinxSerializationJson = "1.6.3"
 ktor = "2.3.8"
 objectbox = "3.7.0"
 okhttp = "4.12.0"
@@ -138,6 +139,7 @@ kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
@@ -203,6 +205,7 @@ androidCommon = [
     "androidx-tracing-ktx",
     "androidx-window-manager",
     "bottomsheetdialog-compose",
+    "kotlin-serialization-json"
 ]
 androidCoroutines = [
     "kotlin-coroutines-android",
@@ -256,6 +259,7 @@ firebase-crashlytics = "com.google.firebase.crashlytics:2.9.9"
 firebase-perf = "com.google.firebase.firebase-perf:1.4.2"
 google-services = "com.google.gms.google-services:4.4.1"
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ksp = "com.google.devtools.ksp:1.9.22-1.0.16"

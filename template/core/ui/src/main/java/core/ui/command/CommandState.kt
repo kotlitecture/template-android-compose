@@ -1,7 +1,7 @@
 package core.ui.command
 
-import core.data.state.StoreObject
-import core.data.state.StoreState
+import core.ui.state.StoreObject
+import core.ui.state.StoreState
 
 class CommandState : StoreState() {
 

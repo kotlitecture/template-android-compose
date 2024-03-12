@@ -4,7 +4,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import core.data.state.StoreObject
 import core.ui.provideViewModel
 import core.ui.theme.ThemeData
 import core.ui.theme.ThemeState

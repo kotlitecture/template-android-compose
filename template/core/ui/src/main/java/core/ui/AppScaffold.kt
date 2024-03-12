@@ -1,5 +1,6 @@
 package core.ui
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -14,8 +15,8 @@ import core.ui.navigation.NavigationProvider
 import core.ui.navigation.NavigationState
 import core.ui.theme.ThemeState
 import core.ui.theme.material3.Material3ThemeProvider
-import org.tinylog.Logger
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AppScaffold(
     navigationState: NavigationState = NavigationState.Default,
@@ -33,7 +34,6 @@ fun AppScaffold(
         Scaffold(
             snackbarHost = { SnackbarHost(appContext.snackbarHostSate) },
             content = {
-                Logger.debug("paddings :: {}", it)
                 NavHost(
                     builder = navGraphBuilder,
                     startDestination = startDestination,

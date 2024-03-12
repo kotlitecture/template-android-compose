@@ -1,8 +1,8 @@
 package core.ui.theme
 
 import androidx.compose.ui.text.font.FontFamily
-import core.data.state.StoreObject
-import core.data.state.StoreState
+import core.ui.state.StoreObject
+import core.ui.state.StoreState
 
 class ThemeState : StoreState() {
 

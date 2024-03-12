@@ -1,7 +1,7 @@
 package core.ui.theme.material3
 
 import androidx.compose.ui.text.font.FontFamily
-import core.data.state.StoreObject
+import core.ui.state.StoreObject
 import core.ui.AppViewModel
 import core.ui.theme.ThemeState
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -17,15 +17,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import core.essentials.misc.utils.GsonUtils
-import org.tinylog.Logger
 import java.util.UUID
 import kotlin.collections.set
 
 abstract class NavigationDestination<D> {
 
     abstract val id: String
-    abstract val dataType: Class<D>
     abstract val strategy: NavigationStrategy
 
     open val screenName by lazy { id }
@@ -50,6 +47,8 @@ abstract class NavigationDestination<D> {
 
     protected open fun createDataId(): String = UUID.randomUUID().toString()
     protected abstract fun doRegister(builder: NavGraphBuilder)
+    protected open fun toObject(string: String): D? = null
+    protected open fun toString(data: D): String? = null
 
     fun toUri(data: Any?): Uri {
         return Uri.Builder()
@@ -95,7 +94,6 @@ abstract class NavigationDestination<D> {
         primaryDestination: NavigationDestination<*>,
         vararg destinations: NavigationDestination<*>
     ) {
-        Logger.debug("register navigation :: {}", route)
         builder.navigation(
             startDestination = primaryDestination.route,
             route = route
@@ -129,14 +127,14 @@ abstract class NavigationDestination<D> {
             destinationDataCache[id] = data
             return id
         }
-        return GsonUtils.toString(data)
+        return toString(data)
     }
 
-    private fun deserialize(data: String?): D? {
+    private fun deserialize(data: String): D? {
         if (!savable) {
             return destinationDataCache[data] as? D
         }
-        return GsonUtils.toObject(data, dataType)
+        return toObject(data)
     }
 
     companion object {

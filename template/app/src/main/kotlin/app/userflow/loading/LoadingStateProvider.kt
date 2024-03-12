@@ -4,17 +4,19 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import core.ui.theme.material3.AppTheme
 import core.ui.provideViewModel
+import core.ui.state.StoreState
 
 @Composable
-fun LoadingStateProvider() {
-    val viewModel: LoadingViewModel = provideViewModel(activityScope = true)
+fun LoadingStateProvider(state: StoreState) {
+    val viewModel: LoadingViewModel = provideViewModel()
     val isLoading = viewModel.isLoadingStore.asStateValueNotNull()
+    LaunchedEffect(state) { viewModel.onBind(state) }
     if (!isLoading) return
     Dialog(
         onDismissRequest = {},
@@ -27,8 +29,7 @@ fun LoadingStateProvider() {
         CircularProgressIndicator(
             modifier = Modifier
                 .size(40.dp),
-            strokeWidth = 3.dp,
-            color = AppTheme.color.textPrimary
+            strokeWidth = 3.dp
         )
     }
     BackHandler {}

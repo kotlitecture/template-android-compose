@@ -1,7 +1,7 @@
 package core.ui.navigation
 
 import android.net.Uri
-import core.data.state.DataState
+import core.ui.state.DataState
 import core.ui.AppContext
 import core.ui.AppViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

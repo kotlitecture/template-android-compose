@@ -3,7 +3,6 @@ package core.ui.navigation
 import android.net.Uri
 import androidx.navigation.NavHostController
 import androidx.navigation.navOptions
-import org.tinylog.Logger
 
 enum class NavigationStrategy {
     Back {
@@ -37,7 +36,6 @@ enum class NavigationStrategy {
     ReplacePrevious {
         override fun doProceed(route: String?, uri: Uri, controller: NavHostController) {
             val prev = controller.currentDestination?.route ?: route
-            Logger.debug("prevRoute :: prev={}, next={}", prev, uri)
             controller.navigate(uri, navOptions {
                 if (prev != null) {
                     popUpTo(prev) {
@@ -64,9 +62,7 @@ enum class NavigationStrategy {
 
     open fun proceed(route: String?, uri: Uri, controller: NavHostController) {
         val currentRoute = controller.currentDestination?.route
-        Logger.debug("proceed :: {} -> {}", currentRoute, route)
         if (!uri.query.isNullOrEmpty() || currentRoute != route) {
-            Logger.debug("proceed :: navigate :: {}", uri)
             doProceed(route, uri, controller)
         }
     }

@@ -5,7 +5,6 @@ android {
 }
 
 dependencies {
-    api project(":core:datasource")
     api libs.bundles.androidCoil
     testImplementation project(":core:testing")
 }

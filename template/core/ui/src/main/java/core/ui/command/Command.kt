@@ -1,6 +1,6 @@
 package core.ui.command
 
-import core.data.state.DataState
+import core.ui.state.DataState
 import core.ui.AppContext
 import kotlinx.coroutines.launch
 

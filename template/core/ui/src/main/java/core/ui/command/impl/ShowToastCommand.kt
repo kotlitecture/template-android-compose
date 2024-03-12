@@ -1,10 +1,10 @@
 package core.ui.command.impl
 
 import android.widget.Toast
-import core.essentials.misc.utils.WeakReferenceUtils
 import core.ui.AppContext
 import core.ui.command.Command
 import core.ui.command.CommandState
+import core.ui.misc.utils.WeakReferenceUtils
 
 class ShowToastCommand(
     private val text: String

@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package core.dataflow.misc.utils
+package core.ui.misc.utils
 
 import java.lang.ref.WeakReference
 import java.util.concurrent.ConcurrentHashMap

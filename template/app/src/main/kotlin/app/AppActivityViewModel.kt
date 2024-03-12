@@ -1,7 +1,7 @@
 package app
 
 import app.feature.template.TemplateDestination
-import core.data.state.StoreObject
+import core.ui.state.StoreObject
 import core.ui.navigation.NavigationDestination
 import core.ui.AppViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

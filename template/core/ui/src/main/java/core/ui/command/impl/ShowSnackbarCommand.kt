@@ -1,9 +1,9 @@
 package core.ui.command.impl
 
-import core.essentials.misc.utils.WeakReferenceUtils
 import core.ui.AppContext
 import core.ui.command.Command
 import core.ui.command.CommandState
+import core.ui.misc.utils.WeakReferenceUtils
 import kotlinx.coroutines.launch
 
 class ShowSnackbarCommand(

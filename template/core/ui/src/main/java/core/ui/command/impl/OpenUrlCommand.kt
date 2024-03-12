@@ -7,7 +7,6 @@ import androidx.browser.customtabs.CustomTabsIntent
 import core.ui.AppContext
 import core.ui.command.Command
 import core.ui.command.CommandState
-import org.tinylog.Logger
 
 class OpenUrlCommand(
     private val url: String,
@@ -36,7 +35,6 @@ class OpenUrlCommand(
             val customTabsIntent = CustomTabsIntent.Builder().build()
             customTabsIntent.launchUrl(context, Uri.parse(url))
         } catch (e: Exception) {
-            Logger.error(e, "openUrlInChromeTab")
             openUrl(context, url)
         }
     }
