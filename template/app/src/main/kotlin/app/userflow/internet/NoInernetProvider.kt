@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import app.R
-import core.ui.provideViewModel
+import app.provideHiltViewModel
 
 @Composable
 fun NoInternetProvider(
@@ -25,7 +25,7 @@ fun NoInternetProvider(
     textColor: Color = Color.White,
     backgroundColor: Color = Color.Red.copy(alpha = 0.92f)
 ) {
-    val viewModel: NoInternetViewModel = provideViewModel(activityScope = true)
+    val viewModel: NoInternetViewModel = provideHiltViewModel(activityScope = true)
     AnimatedVisibility(
         visible = !viewModel.isOnlineStore.asStateValueNotNull(),
         enter = slideInVertically() + fadeIn(),

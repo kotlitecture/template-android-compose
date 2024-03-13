@@ -27,15 +27,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.viewinterop.AndroidView
+import app.provideHiltViewModel
 import core.ui.misc.DisplayUnit
-import core.ui.provideViewModel
 import org.tinylog.Logger
 
 @SuppressLint("JavascriptInterface")
 @Composable
 fun WebToNativeLayout(
     modifier: Modifier = Modifier,
-    viewModel: WebToNativeViewModel = provideViewModel(),
+    viewModel: WebToNativeViewModel = provideHiltViewModel(),
     isDarkMode: @Composable () -> Boolean = { isSystemInDarkTheme() },
     onBack: () -> Unit = viewModel::onBack,
     onPageStarted: (url: String) -> Unit = {},

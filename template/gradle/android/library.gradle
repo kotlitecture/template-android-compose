@@ -2,6 +2,5 @@ apply plugin: "com.android.library"
 apply from: "${project.rootDir}/gradle/android/common.gradle"
 
 dependencies {
-    implementation libs.bundles.androidAccompanist
     implementation libs.bundles.androidCoroutines
 }

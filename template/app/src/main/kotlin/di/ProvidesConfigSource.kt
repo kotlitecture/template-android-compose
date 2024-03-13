@@ -1,8 +1,7 @@
 package di
 
 import app.datasource.config.AppConfigSource
-import core.datasource.analytics.IAnalyticsSource
-import core.datasource.config.IConfigSource
+import core.data.datasource.config.ConfigSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,10 +14,8 @@ internal class ProvidesConfigSource {
 
     @Provides
     @Singleton
-    fun source(
-        analyticsSource: IAnalyticsSource
-    ): IConfigSource {
-        return AppConfigSource(analyticsSource)
+    fun source(): ConfigSource {
+        return AppConfigSource()
     }
 
 }

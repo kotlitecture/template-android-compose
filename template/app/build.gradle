@@ -21,6 +21,11 @@ dependencies {
 
     implementation libs.bundles.androidCoil
 
+    debugImplementation libs.chucker
+    stagingImplementation libs.chucker
+    testImplementation libs.chucker.release
+    releaseImplementation libs.chucker.release
+
     implementation project(":core:ui")
     implementation project(":core:data")
     testImplementation project(":core:testing")

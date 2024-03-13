@@ -2,10 +2,6 @@
 
 package core.data.datasource.http
 
-import android.app.Application
-import com.chuckerteam.chucker.api.ChuckerCollector
-import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.chuckerteam.chucker.api.RetentionManager
 import core.data.datasource.DataSource
 import core.data.misc.extensions.globalSharedFlow
 import core.data.misc.extensions.isCancellationException
@@ -128,20 +124,6 @@ class HttpSource(
             flowCache.remove(key)
             Logger.error(it, "[HttpSource] :: withRetry")
             !it.isCancellationException().also { delay(retryInterval) }
-        }
-    }
-
-    companion object {
-        fun chuckerCollector(app: Application): Interceptor {
-            val collector = ChuckerCollector(
-                app,
-                showNotification = false,
-                retentionPeriod = RetentionManager.Period.ONE_HOUR
-            )
-            return ChuckerInterceptor.Builder(app)
-                .maxContentLength(1000)
-                .collector(collector)
-                .build()
         }
     }
 

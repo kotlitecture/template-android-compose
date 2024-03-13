@@ -1,18 +1,15 @@
 package core.ui.theme.material3
 
 import androidx.compose.ui.text.font.FontFamily
-import core.ui.state.StoreObject
 import core.ui.AppViewModel
+import core.ui.state.StoreObject
 import core.ui.theme.ThemeState
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
-import javax.inject.Inject
 
-@HiltViewModel
-class Material3ThemeViewModel @Inject constructor() : AppViewModel() {
+class Material3ThemeViewModel : AppViewModel() {
 
     val themeDataStore = StoreObject<Material3ThemeData>()
 
@@ -35,6 +32,9 @@ class Material3ThemeViewModel @Inject constructor() : AppViewModel() {
             themeState.fontFamilyStore.asFlow()
                 .filterNotNull()
                 .collectLatest { updateTheme(it) }
+        }
+        if (themeState.themeStore.get() == null) {
+            themeState.themeStore.set(themeState.themesStore.get()?.firstOrNull())
         }
     }
 

@@ -1,18 +1,15 @@
 package core.ui.navigation
 
 import android.net.Uri
-import core.ui.state.DataState
 import core.ui.AppContext
 import core.ui.AppViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
+import core.ui.state.DataState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.mapNotNull
-import javax.inject.Inject
 
-@HiltViewModel
-class NavigationViewModel @Inject constructor() : AppViewModel() {
+class NavigationViewModel : AppViewModel() {
 
     fun onBind(navigationState: NavigationState, context: AppContext) {
         launchAsync("destinationStore") {

@@ -1,8 +1,8 @@
 package di
 
 import android.app.Application
-import core.datasource.network.INetworkSource
-import core.datasource.network.NetworkSource
+import core.data.datasource.network.AndroidNetworkSource
+import core.data.datasource.network.NetworkSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,8 +17,8 @@ internal class ProvidesNetworkSource {
     @Singleton
     fun source(
         app: Application
-    ): INetworkSource {
-        return NetworkSource(app)
+    ): NetworkSource {
+        return AndroidNetworkSource(app)
     }
 
 }

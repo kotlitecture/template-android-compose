@@ -1,7 +1,7 @@
 package di
 
 import app.datasource.analytics.AppAnalyticsSource
-import core.datasource.analytics.IAnalyticsSource
+import core.data.datasource.analytics.AnalyticsSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +14,7 @@ internal class ProvidesAnalyticsSource {
 
     @Provides
     @Singleton
-    fun source(): IAnalyticsSource {
+    fun source(): AnalyticsSource {
         return AppAnalyticsSource()
     }
 

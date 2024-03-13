@@ -9,12 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import core.ui.provideViewModel
+import app.provideHiltViewModel
 import core.ui.state.StoreState
 
 @Composable
 fun DataLoaderProvider(state: StoreState) {
-    val viewModel: DataLoaderViewModel = provideViewModel()
+    val viewModel: DataLoaderViewModel = provideHiltViewModel()
     val isLoading = viewModel.isLoadingStore.asStateValueNotNull()
     LaunchedEffect(state) { viewModel.onBind(state) }
     if (!isLoading) return

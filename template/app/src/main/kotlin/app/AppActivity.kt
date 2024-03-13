@@ -12,7 +12,6 @@ import app.userflow.template.TemplateDestination
 import app.userflow.update.googleplay.GooglePlayUpdateProvider
 import app.userflow.webtonative.WebToNativeDestination
 import core.ui.AppScaffold
-import core.ui.provideViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,11 +27,14 @@ class AppActivity : FragmentActivity() {
 }
 
 @Composable
-private fun ContentBlock(viewModel: AppActivityViewModel = provideViewModel()) {
+private fun ContentBlock(viewModel: AppActivityViewModel = provideHiltViewModel()) {
     viewModel.destinationStore.asStateValue()
         ?.route
         ?.let { route ->
             AppScaffold(
+                navigationState = viewModel.navigationState,
+                commandState = viewModel.commandState,
+                themeState = viewModel.themeState,
                 startDestination = route,
                 navGraphBuilder = {
                     TemplateDestination().register(this)

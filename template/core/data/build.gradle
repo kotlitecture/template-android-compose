@@ -7,9 +7,5 @@ android {
 dependencies {
     api libs.bundles.androidData
     api libs.bundles.kotlinEssentials
-    debugImplementation libs.chucker
-    stagingImplementation libs.chucker
-    testImplementation libs.chucker.release
-    releaseImplementation libs.chucker.release
     testImplementation project(":core:testing")
 }

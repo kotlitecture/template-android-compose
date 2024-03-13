@@ -1,7 +1,5 @@
 apply plugin: "org.jetbrains.kotlin.plugin.serialization"
 apply plugin: "org.jetbrains.kotlin.android"
-apply plugin: "dagger.hilt.android.plugin"
-apply plugin: "com.google.devtools.ksp"
 
 configurations {
     releaseImplementation
@@ -19,11 +17,6 @@ dependencies {
     implementation libs.bundles.androidCommon
 
     debugApi libs.androidx.compose.ui.tooling
-
-    ksp libs.hilt.android.compiler
-    implementation libs.hilt.android
-    kspTest libs.hilt.android.compiler
-    kspAndroidTest libs.hilt.android.compiler
 
     androidTestImplementation libs.kotlin.test
     testImplementation libs.kotlin.test
