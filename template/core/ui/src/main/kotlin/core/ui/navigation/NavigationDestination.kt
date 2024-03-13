@@ -7,9 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.window.DialogProperties
-import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavDeepLink
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -25,9 +23,8 @@ abstract class NavigationDestination<D> {
     abstract val id: String
     abstract val strategy: NavigationStrategy
 
+    open val serializable = true
     open val screenName by lazy { id }
-    open val ready: Boolean = true
-    open val savable = true
 
     val route by lazy { "$id?$ATTR_DATA={$ATTR_DATA}" }
 
@@ -70,8 +67,6 @@ abstract class NavigationDestination<D> {
 
     protected fun dialog(
         builder: NavGraphBuilder,
-        arguments: List<NamedNavArgument> = emptyList(),
-        deepLinks: List<NavDeepLink> = emptyList(),
         dismissOnBackPress: Boolean = true,
         dismissOnClickOutside: Boolean = true,
         content: @Composable (data: D?) -> Unit
@@ -79,7 +74,6 @@ abstract class NavigationDestination<D> {
         builder.dialog(
             route = route,
             arguments = arguments,
-            deepLinks = deepLinks,
             dialogProperties = DialogProperties(
                 usePlatformDefaultWidth = false,
                 dismissOnBackPress = dismissOnBackPress,
@@ -112,7 +106,7 @@ abstract class NavigationDestination<D> {
         val value = entry.arguments?.getString(ATTR_DATA)
         val data = value?.let(this::deserialize)
         content(data)
-        if (!savable && value != createDataId()) {
+        if (!serializable && value != createDataId()) {
             DisposableEffect(value) {
                 onDispose {
                     destinationDataCache.remove(value)
@@ -122,7 +116,7 @@ abstract class NavigationDestination<D> {
     }
 
     private fun serialize(data: D): String? {
-        if (!savable) {
+        if (!serializable) {
             val id = createDataId()
             destinationDataCache[id] = data
             return id
@@ -131,7 +125,7 @@ abstract class NavigationDestination<D> {
     }
 
     private fun deserialize(data: String): D? {
-        if (!savable) {
+        if (!serializable) {
             return destinationDataCache[data] as? D
         }
         return toObject(data)
@@ -158,7 +152,6 @@ abstract class NavigationDestination<D> {
         private fun register(destination: NavigationDestination<*>) {
             destinationRegistry[destination.id] = destination
         }
-
     }
 
 }
