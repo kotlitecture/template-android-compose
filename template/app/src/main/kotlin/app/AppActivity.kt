@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
 import app.userflow.internet.NoInternetProvider
 import app.userflow.loader.DataLoaderProvider
@@ -18,16 +19,22 @@ import dagger.hilt.android.AndroidEntryPoint
 class AppActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        WindowCompat.setDecorFitsSystemWindows(window, false)
         enableEdgeToEdge()
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
-        setContent { ContentBlock() }
+        setContent {
+            val viewModel: AppActivityViewModel = provideHiltViewModel()
+            ContentBlock(viewModel)
+            splashScreen.setKeepOnScreenCondition {
+                viewModel.themeState.dataStore.get() == null
+            }
+        }
     }
 
 }
 
 @Composable
-private fun ContentBlock(viewModel: AppActivityViewModel = provideHiltViewModel()) {
+private fun ContentBlock(viewModel: AppActivityViewModel) {
     viewModel.destinationStore.asStateValue()
         ?.route
         ?.let { route ->

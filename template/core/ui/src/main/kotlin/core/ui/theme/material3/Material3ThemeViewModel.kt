@@ -3,6 +3,7 @@ package core.ui.theme.material3
 import androidx.compose.ui.text.font.FontFamily
 import core.ui.AppViewModel
 import core.ui.state.StoreObject
+import core.ui.theme.ThemeData
 import core.ui.theme.ThemeState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filterNotNull
@@ -11,11 +12,9 @@ import kotlinx.coroutines.flow.mapNotNull
 
 class Material3ThemeViewModel : AppViewModel() {
 
-    val themeDataStore = StoreObject<Material3ThemeData>()
-
     fun onBind(themeState: ThemeState) {
         launchAsync("themeState", themeState) {
-            themeState.themeStore.asFlow()
+            themeState.themeProviderStore.asFlow()
                 .mapNotNull { it as? Material3ThemeDataProvider }
                 .map { provider ->
                     val fontFamily = themeState.fontFamilyStore.getNotNull()
@@ -26,20 +25,20 @@ class Material3ThemeViewModel : AppViewModel() {
                         typography = provider.createTypography(fontFamily)
                     )
                 }
-                .collectLatest(themeDataStore::set)
+                .collectLatest(themeState.dataStore::set)
         }
         launchAsync("fontFamilyStore") {
             themeState.fontFamilyStore.asFlow()
                 .filterNotNull()
-                .collectLatest { updateTheme(it) }
+                .collectLatest { updateTheme(it, themeState.dataStore) }
         }
-        if (themeState.themeStore.get() == null) {
-            themeState.themeStore.set(themeState.themesStore.get()?.firstOrNull())
+        if (themeState.themeProviderStore.get() == null) {
+            themeState.themeProviderStore.set(themeState.themeProvidersStore.get()?.firstOrNull())
         }
     }
 
-    private fun updateTheme(fontFamily: FontFamily) {
-        val themeData = themeDataStore.get() ?: return
+    private fun updateTheme(fontFamily: FontFamily, themeDataStore: StoreObject<ThemeData>) {
+        val themeData = themeDataStore.get() as? Material3ThemeData ?: return
         if (themeData.fontFamily == fontFamily) return
         themeDataStore.set(Material3ThemeData(
             fontFamily = fontFamily,

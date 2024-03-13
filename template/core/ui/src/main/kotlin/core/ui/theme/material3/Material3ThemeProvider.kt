@@ -15,7 +15,7 @@ fun Material3ThemeProvider(
 ) {
     val viewModel = provideViewModel<Material3ThemeViewModel>(activityScope = true)
     LaunchedEffect(themeState) { viewModel.onBind(themeState) }
-    val themeData = viewModel.themeDataStore.asStateValue() ?: return
+    val themeData = themeState.dataStore.asStateValue() as? Material3ThemeData ?: return
     CompositionLocalProvider(ThemeData.localThemeData provides themeData) {
         MaterialTheme(
             colorScheme = themeData.colorScheme,

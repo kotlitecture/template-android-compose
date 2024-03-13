@@ -6,10 +6,11 @@ import core.ui.state.StoreState
 
 class ThemeState : StoreState() {
 
+    val themeProviderStore = StoreObject<ThemeDataProvider>()
     val fontFamilyStore = StoreObject(FontFamily.Default)
-    val themeStore = StoreObject<ThemeDataProvider>()
+    val dataStore = StoreObject<ThemeData>()
 
-    val themesStore = StoreObject<List<ThemeDataProvider>>(listOf(
+    val themeProvidersStore = StoreObject<List<ThemeDataProvider>>(listOf(
         Material3Light,
         Material3Dark
     ))
