@@ -20,7 +20,7 @@ dependencies {
     implementation libs.google.app.review
 
     implementation project(":core:ui")
-    implementation project(":core:dataflow")
+    implementation project(":core:data")
     testImplementation project(":core:testing")
     baselineProfile project(':baselineprofile') // {baselineprofile}
 }

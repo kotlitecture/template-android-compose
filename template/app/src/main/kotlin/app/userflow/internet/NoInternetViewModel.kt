@@ -1,6 +1,6 @@
 package app.userflow.internet
 
-import core.dataflow.datasource.network.NetworkSource
+import core.data.datasource.network.NetworkSource
 import core.ui.AppViewModel
 import core.ui.state.StoreObject
 import dagger.hilt.android.lifecycle.HiltViewModel

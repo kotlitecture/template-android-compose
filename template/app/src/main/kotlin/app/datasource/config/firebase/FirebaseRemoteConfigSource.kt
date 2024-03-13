@@ -8,9 +8,9 @@ import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Firebase
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
-import core.dataflow.datasource.config.ConfigSource
-import core.dataflow.misc.extensions.ifNotEmpty
-import core.dataflow.misc.utils.GsonUtils
+import core.data.datasource.config.ConfigSource
+import core.data.misc.extensions.ifNotEmpty
+import core.data.misc.utils.GsonUtils
 import java.util.concurrent.TimeUnit
 
 class FirebaseRemoteConfigSource : ConfigSource {

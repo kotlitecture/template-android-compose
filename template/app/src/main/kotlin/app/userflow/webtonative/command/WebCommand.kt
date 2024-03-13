@@ -1,6 +1,6 @@
 package app.userflow.webtonative.command
 
-import core.dataflow.misc.utils.IdUtils
+import core.data.misc.utils.IdUtils
 import kotlinx.serialization.Serializable
 
 @Serializable
