@@ -1,6 +1,6 @@
 package app
 
-import app.feature.template.TemplateDestination
+import app.userflow.template.TemplateDestination
 import core.ui.AppViewModel
 import core.ui.navigation.NavigationDestination
 import core.ui.state.StoreObject

@@ -1,4 +1,4 @@
-package app.feature.template
+package app.userflow.template
 
 import androidx.navigation.NavGraphBuilder
 import core.ui.navigation.NavigationDestination

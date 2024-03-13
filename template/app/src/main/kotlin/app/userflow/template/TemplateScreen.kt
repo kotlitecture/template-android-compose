@@ -1,4 +1,4 @@
-package app.feature.template
+package app.userflow.template
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

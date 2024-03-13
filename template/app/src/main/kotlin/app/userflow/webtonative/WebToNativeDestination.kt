@@ -1,4 +1,4 @@
-package app.feature.webtonative
+package app.userflow.webtonative
 
 import androidx.navigation.NavGraphBuilder
 import core.ui.navigation.NavigationDestination

@@ -5,12 +5,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.fragment.app.FragmentActivity
-import app.feature.template.TemplateDestination
-import app.feature.webtonative.WebToNativeDestination
 import app.userflow.internet.NoInternetProvider
 import app.userflow.loader.DataLoaderProvider
 import app.userflow.review.googleplay.GooglePlayReviewProvider
+import app.userflow.template.TemplateDestination
 import app.userflow.update.googleplay.GooglePlayUpdateProvider
+import app.userflow.webtonative.WebToNativeDestination
 import core.ui.AppScaffold
 import core.ui.provideViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,13 +36,7 @@ private fun ContentBlock(viewModel: AppActivityViewModel = provideViewModel()) {
                 startDestination = route,
                 navGraphBuilder = {
                     TemplateDestination().register(this)
-                    WebToNativeDestination().register(this) // {workflow-webtonative}
-                },
-                bottomBar = {
-                    // bottom bar
-                },
-                overlay = {
-                    // overlay outside of the navigation host
+                    WebToNativeDestination().register(this) // {userflow.webtonative}
                 }
             )
         }

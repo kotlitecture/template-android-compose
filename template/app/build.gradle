@@ -19,6 +19,8 @@ dependencies {
     implementation libs.google.app.update // {userflow-google-play-update}
     implementation libs.google.app.review
 
+    implementation libs.bundles.androidCoil
+
     implementation project(":core:ui")
     implementation project(":core:data")
     testImplementation project(":core:testing")

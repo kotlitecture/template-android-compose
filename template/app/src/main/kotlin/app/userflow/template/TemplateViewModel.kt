@@ -1,4 +1,4 @@
-package app.feature.template
+package app.userflow.template
 
 import android.app.Application
 import dagger.hilt.android.lifecycle.HiltViewModel
