@@ -1,9 +1,8 @@
-package core.ui.theme
+package core.ui.theme.material3
 
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
-import core.ui.theme.material3.Material3ThemeDataProvider
 
 internal val DarkGreen10 = Color(0xFF0D1F12)
 internal val DarkGreen20 = Color(0xFF223526)

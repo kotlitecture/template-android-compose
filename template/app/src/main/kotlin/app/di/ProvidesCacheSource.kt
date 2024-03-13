@@ -1,7 +1,7 @@
-package di
+package app.di
 
-import app.datasource.analytics.AppAnalyticsSource
-import core.data.datasource.analytics.AnalyticsSource
+import core.data.datasource.cache.CacheSource
+import core.data.datasource.cache.MemoryCacheSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,12 +10,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal class ProvidesAnalyticsSource {
+internal class ProvidesCacheSource {
 
     @Provides
     @Singleton
-    fun source(): AnalyticsSource {
-        return AppAnalyticsSource()
+    fun source(): CacheSource {
+        return MemoryCacheSource()
     }
 
 }

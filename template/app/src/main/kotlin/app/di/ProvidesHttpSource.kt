@@ -1,4 +1,4 @@
-package di
+package app.di
 
 import android.app.Application
 import app.datasource.config.AppConfigSource

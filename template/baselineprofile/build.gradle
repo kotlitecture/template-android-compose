@@ -18,7 +18,7 @@ android {
     }
 
     defaultConfig {
-        minSdk libs.versions.androidMinSdkVersion.get().toInteger()
+        minSdk 28
         targetSdk libs.versions.androidMaxSdkVersion.get().toInteger()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

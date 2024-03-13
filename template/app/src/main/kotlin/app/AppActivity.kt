@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
 import app.userflow.internet.NoInternetProvider
@@ -19,22 +20,24 @@ import dagger.hilt.android.AndroidEntryPoint
 class AppActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
         val splashScreen = installSplashScreen()
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             val viewModel: AppActivityViewModel = provideHiltViewModel()
-            ContentBlock(viewModel)
-            splashScreen.setKeepOnScreenCondition {
-                viewModel.themeState.dataStore.get() == null
-            }
+            ScaffoldProvider(viewModel)
+            GooglePlayUpdateProvider() // {userflow.google-play-update}
+            GooglePlayReviewProvider() // {userflow.google-play-review}
+            DataLoaderProvider(viewModel.appState) // {userflow.data-loader}
+            NoInternetProvider() // {userflow.no-internet}
+            SplashBlock(splashScreen, viewModel)
         }
     }
 
 }
 
 @Composable
-private fun ContentBlock(viewModel: AppActivityViewModel) {
+private fun ScaffoldProvider(viewModel: AppActivityViewModel) {
     viewModel.destinationStore.asStateValue()
         ?.route
         ?.let { route ->
@@ -49,8 +52,11 @@ private fun ContentBlock(viewModel: AppActivityViewModel) {
                 }
             )
         }
-    GooglePlayUpdateProvider() // {userflow.google-play-update}
-    GooglePlayReviewProvider() // {userflow.google-play-review}
-    DataLoaderProvider(viewModel.appState) // {userflow.data-loader}
-    NoInternetProvider() // {userflow.no-internet}
+}
+
+@Composable
+private fun SplashBlock(splashScreen: SplashScreen, viewModel: AppActivityViewModel) {
+    splashScreen.setKeepOnScreenCondition {
+        viewModel.themeState.dataStore.get() == null
+    }
 }

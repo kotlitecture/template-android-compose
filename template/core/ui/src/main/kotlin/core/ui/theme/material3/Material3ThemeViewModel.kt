@@ -32,9 +32,6 @@ class Material3ThemeViewModel : AppViewModel() {
                 .filterNotNull()
                 .collectLatest { updateTheme(it, themeState.dataStore) }
         }
-        if (themeState.themeProviderStore.get() == null) {
-            themeState.themeProviderStore.set(themeState.themeProvidersStore.get()?.firstOrNull())
-        }
     }
 
     private fun updateTheme(fontFamily: FontFamily, themeDataStore: StoreObject<ThemeData>) {

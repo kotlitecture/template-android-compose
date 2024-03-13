@@ -3,20 +3,27 @@ package core.ui.theme
 import androidx.compose.ui.text.font.FontFamily
 import core.ui.state.StoreObject
 import core.ui.state.StoreState
+import core.ui.theme.material3.Material3Dark
+import core.ui.theme.material3.Material3Light
 
-class ThemeState : StoreState() {
+data class ThemeState(
+    private val fontFamily: FontFamily = FontFamily.Default,
+    private val themes: List<ThemeDataProvider>,
+    private val theme: ThemeDataProvider
+) : StoreState() {
 
-    val themeProviderStore = StoreObject<ThemeDataProvider>()
-    val fontFamilyStore = StoreObject(FontFamily.Default)
+    val fontFamilyStore = StoreObject(fontFamily)
+    val themeProvidersStore = StoreObject(themes)
+    val themeProviderStore = StoreObject(theme)
     val dataStore = StoreObject<ThemeData>()
 
-    val themeProvidersStore = StoreObject<List<ThemeDataProvider>>(listOf(
-        Material3Light,
-        Material3Dark
-    ))
-
     companion object {
-        val Default by lazy { ThemeState() }
+        val Default by lazy {
+            ThemeState(
+                themes = listOf(Material3Light, Material3Dark),
+                theme = Material3Light
+            )
+        }
     }
 
 }

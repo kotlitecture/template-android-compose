@@ -1,7 +1,9 @@
-package di
+package app.di
 
 import core.ui.command.CommandState
 import core.ui.navigation.NavigationState
+import core.ui.theme.material3.Material3Dark
+import core.ui.theme.material3.Material3Light
 import core.ui.theme.ThemeState
 import dagger.Module
 import dagger.Provides
@@ -23,6 +25,9 @@ internal class ProvidesState {
 
     @Provides
     @Singleton
-    fun theme(): ThemeState = ThemeState.Default
+    fun theme(): ThemeState = ThemeState(
+        themes = listOf(Material3Light, Material3Dark),
+        theme = Material3Dark
+    )
 
 }

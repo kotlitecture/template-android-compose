@@ -1,4 +1,4 @@
-package di
+package app.di
 
 import android.app.Application
 import core.data.datasource.network.AndroidNetworkSource
