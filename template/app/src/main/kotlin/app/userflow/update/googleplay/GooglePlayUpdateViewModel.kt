@@ -7,6 +7,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
+import app.userflow.update.googleplay.data.UpdateData
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.appupdate.AppUpdateOptions
@@ -15,33 +16,32 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
-import core.ui.state.StoreObject
 import core.ui.AppViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 
 @HiltViewModel
-class GooglePlayUpdateViewModel @Inject constructor(app: Application) : AppViewModel(), InstallStateUpdatedListener, LifecycleEventObserver {
+class GooglePlayUpdateViewModel @Inject constructor(
+    app: Application,
+    private val state: GooglePlayUpdateState
+) : AppViewModel(), InstallStateUpdatedListener, LifecycleEventObserver {
 
-    private val manager = AppUpdateManagerFactory.create(app)
-    private val typeStore = StoreObject(AppUpdateType.FLEXIBLE)
-    private val availableStore = StoreObject(false)
-    private val infoStore = StoreObject<AppUpdateInfo>()
+    private val manager by lazy { AppUpdateManagerFactory.create(app) }
 
     @Composable
     override fun doBind(owner: LifecycleOwner) {
+        val activity = owner as Activity
+        owner.lifecycle.removeObserver(this)
         owner.lifecycle.addObserver(this)
-        LaunchedEffect(owner) {
-            launchAsync("availableStore") {
-                availableStore.asFlow()
+        LaunchedEffect(activity) {
+            launchAsync("updateFlow") {
+                state.configStore.asFlow()
                     .filterNotNull()
-                    .filter { it }
-                    .distinctUntilChanged()
-                    .collectLatest { onUpdate(owner) }
+                    .flatMapLatest { state.dataStore.asFlow().filterNotNull() }
+                    .collectLatest { data -> onUpdate(activity, data) }
             }
         }
     }
@@ -62,9 +62,7 @@ class GooglePlayUpdateViewModel @Inject constructor(app: Application) : AppViewM
     }
 
     private fun requestUpdate(info: AppUpdateInfo, type: Int) {
-        infoStore.set(info)
-        typeStore.set(type)
-        availableStore.set(true)
+        state.dataStore.set(UpdateData(type, info))
     }
 
     private fun onInit() {
@@ -110,20 +108,21 @@ class GooglePlayUpdateViewModel @Inject constructor(app: Application) : AppViewM
                 }
             } else {
                 // UPDATE IS NOT AVAILABLE
-                availableStore.set(false)
+                state.dataStore.clear()
             }
         }
         manager.registerListener(this)
     }
 
     private fun onResume() {
-        val currentType = typeStore.getNotNull()
         manager.appUpdateInfo.addOnSuccessListener { info ->
-            if (currentType == AppUpdateType.FLEXIBLE) {
+            val type = state.dataStore.get()?.type ?: AppUpdateType.FLEXIBLE
+            if (type == AppUpdateType.FLEXIBLE) {
                 // If the update is downloaded but not installed, notify the user to complete the update.
-                if (info.installStatus() == InstallStatus.DOWNLOADED)
+                if (info.installStatus() == InstallStatus.DOWNLOADED) {
                     onComplete()
-            } else if (currentType == AppUpdateType.IMMEDIATE) {
+                }
+            } else if (type == AppUpdateType.IMMEDIATE) {
                 // for AppUpdateType.IMMEDIATE only, already executing updater
                 if (info.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
                     requestUpdate(info, AppUpdateType.IMMEDIATE)
@@ -138,16 +137,14 @@ class GooglePlayUpdateViewModel @Inject constructor(app: Application) : AppViewM
 
     private fun onComplete() {
         manager.completeUpdate().addOnSuccessListener {
-            availableStore.clear()
-            infoStore.clear()
-            typeStore.clear()
+            state.configStore.clear()
+            state.dataStore.clear()
         }
     }
 
-    private fun onUpdate(owner: LifecycleOwner) {
-        val info = infoStore.get() ?: return
-        val activity = owner as? Activity ?: return
-        val type = typeStore.getNotNull()
+    private fun onUpdate(activity: Activity, data: UpdateData) {
+        val type = data.type
+        val info = data.info
         val options = AppUpdateOptions.newBuilder(type).build()
         manager.startUpdateFlow(info, activity, options)
     }

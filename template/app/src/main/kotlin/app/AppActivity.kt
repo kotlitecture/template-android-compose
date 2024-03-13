@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
-import androidx.core.view.WindowCompat
 import androidx.fragment.app.FragmentActivity
 import app.feature.template.TemplateDestination
 import app.feature.webtonative.WebToNativeDestination
 import app.userflow.internet.NoInternetProvider
-import app.userflow.loading.LoadingStateProvider
+import app.userflow.loader.DataLoaderProvider
+import app.userflow.review.googleplay.GooglePlayReviewProvider
 import app.userflow.update.googleplay.GooglePlayUpdateProvider
 import core.ui.AppScaffold
 import core.ui.provideViewModel
@@ -22,12 +22,7 @@ class AppActivity : FragmentActivity() {
 //        WindowCompat.setDecorFitsSystemWindows(window, false)
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        setContent {
-            ContentBlock()
-            GooglePlayUpdateProvider() // {userflow.google-play-update}
-            LoadingStateProvider() // {userflow.loading}
-            NoInternetProvider() // {userflow.internet}
-        }
+        setContent { ContentBlock() }
     }
 
 }
@@ -51,4 +46,8 @@ private fun ContentBlock(viewModel: AppActivityViewModel = provideViewModel()) {
                 }
             )
         }
+    GooglePlayUpdateProvider() // {userflow.google-play-update}
+    GooglePlayReviewProvider() // {userflow.google-play-review}
+    DataLoaderProvider(viewModel.appState) // {userflow.data-loader}
+    NoInternetProvider() // {userflow.no-internet}
 }

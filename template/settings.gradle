@@ -19,14 +19,5 @@ rootProject.name = "template" // {projectName}
 include(":baselineprofile") // {baselineprofile}
 include(":app")
 include(":core:ui")
-include(":core:data")
 include(":core:testing")
-include(":core:essentials")
-include(":core:datasource")
-include(":integration:firebase-analytics") // {firebase-analytics}
-include(":integration:firebase-crashlytics") // {firebase-crashlytics}
-include(":integration:firebase-config") // {firebase-config}
-include(":integration:firebase-perf") // {firebase-perf}
-include(":integration:market-review") // {market-review}
-
 include(":core:dataflow")

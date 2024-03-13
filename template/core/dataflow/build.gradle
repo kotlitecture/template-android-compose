@@ -5,7 +5,6 @@ android {
 }
 
 dependencies {
-    api libs.androidx.startup
     api libs.bundles.androidData
     api libs.bundles.kotlinEssentials
     debugImplementation libs.chucker

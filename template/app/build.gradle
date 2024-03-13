@@ -8,25 +8,32 @@ apply plugin: "com.github.triplet.play" // {google-play-distribution}
 apply plugin: "io.objectbox" // {objectbox}
 
 dependencies {
-    implementation project(":core:ui")
-    implementation project(":core:dataflow")
+    implementation platform(libs.firebase.bom)
+    implementation libs.firebase.analytics.ktx
+    implementation libs.firebase.crashlytics.ktx
+    implementation libs.firebase.config.ktx
+    implementation libs.firebase.perf
+
+    implementation libs.androidx.startup
     implementation libs.androidx.webkit // {userflow-webtonative}
     implementation libs.google.app.update // {userflow-google-play-update}
-    implementation project(":integration:firebase-crashlytics") // {firebase-crashlytics}
-    implementation project(":integration:firebase-analytics") // {firebase-analytics}
-    implementation project(":integration:firebase-config") // {firebase-config}
-    implementation project(":integration:firebase-perf") // {firebase-perf}
-    implementation project(":integration:market-review") // {market-review}
+    implementation libs.google.app.review
+
+    implementation project(":core:ui")
+    implementation project(":core:dataflow")
     testImplementation project(":core:testing")
     baselineProfile project(':baselineprofile') // {baselineprofile}
 }
 
 android {
     namespace = "app"
+
     defaultConfig {
         applicationId = "kotli.app" // {applicationId}
         versionName = System.getProperty("versionNameExt") ?: "0.0.1"
         versionCode = (System.getProperty("versionCodeExt") ?: "1").toInteger()
+        buildConfigField("long", "remoteConfigMinimumFetchIntervalInSeconds", "43200")
+        buildConfigField("long", "remoteConfigInitTimeoutInSeconds", "5")
     }
 
     signingConfigs {

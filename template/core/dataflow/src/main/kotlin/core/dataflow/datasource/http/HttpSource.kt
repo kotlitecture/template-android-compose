@@ -7,9 +7,8 @@ import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
 import core.dataflow.datasource.DataSource
-import core.dataflow.exception.DataException
-import core.dataflow.misc.extensions.isCancellationException
 import core.dataflow.misc.extensions.globalSharedFlow
+import core.dataflow.misc.extensions.isCancellationException
 import core.dataflow.misc.utils.GsonUtils
 import core.dataflow.misc.utils.SslUtils
 import io.ktor.client.HttpClient
@@ -22,8 +21,6 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.websocket.WebSockets
 import io.ktor.client.request.headers
-import io.ktor.client.statement.HttpResponse
-import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.serialization.gson.GsonWebsocketContentConverter
@@ -148,18 +145,4 @@ class HttpSource(
         }
     }
 
-}
-
-suspend fun HttpResponse.assertRateLimited(): HttpResponse {
-    if (status.value == 429) {
-        throw DataException(status.value, bodyAsText())
-    }
-    return this
-}
-
-suspend fun HttpResponse.assertError(): HttpResponse {
-    if (status.value in 400..499) {
-        throw DataException(status.value, bodyAsText())
-    }
-    return this
 }

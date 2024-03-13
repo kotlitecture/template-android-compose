@@ -1,7 +1,7 @@
 package app.datasource.analytics
 
-import core.datasource.analytics.CompositeAnalyticsSource
-import core.datasource.firebase.analytics.FirebaseAnalyticsSource // {firebase-analytics}
+import app.datasource.analytics.firebase.FirebaseAnalyticsSource
+import core.dataflow.datasource.analytics.CompositeAnalyticsSource
 import javax.inject.Inject
 import javax.inject.Singleton
 
