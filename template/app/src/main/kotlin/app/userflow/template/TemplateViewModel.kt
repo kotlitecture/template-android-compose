@@ -1,6 +1,5 @@
 package app.userflow.template
 
-import app.userflow.webtonative.WebToNativeDestination
 import core.ui.AppViewModel
 import core.ui.navigation.NavigationState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,8 +23,8 @@ class TemplateViewModel @Inject constructor(
     }
 
     fun onBottom() {
-        val data = WebToNativeDestination.Data("https://google.com")
-        navigationState.onNavigate(WebToNativeDestination, data)
+        val data = TemplateDestination.Data(counter.incrementAndGet().toString())
+        navigationState.onNavigate(TemplateDestination, data)
     }
 
 }
