@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import core.ui.command.CommandProvider
 import core.ui.command.CommandState
@@ -27,14 +29,13 @@ fun AppScaffold(
     bottomBar: @Composable () -> Unit = {},
     overlay: @Composable () -> Unit = {},
 ) {
-    val appContext = rememberAppContext()
-    CommandProvider(commandState, appContext)
-    NavigationProvider(navigationState, appContext)
     Material3ThemeProvider(themeState) {
+        val appContext = rememberAppContext()
         Scaffold(
             snackbarHost = { SnackbarHost(appContext.snackbarHostSate) },
             content = {
                 NavHost(
+                    modifier = Modifier.fillMaxSize(),
                     navController = appContext.navController,
                     startDestination = startDestination.route,
                     builder = { destinations.forEach { it.bind(this) } },
@@ -44,6 +45,8 @@ fun AppScaffold(
             },
             bottomBar = bottomBar
         )
+        NavigationProvider(navigationState, appContext)
+        CommandProvider(commandState, appContext)
         overlay()
     }
 }

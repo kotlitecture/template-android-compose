@@ -33,8 +33,7 @@ class NavigationViewModel : AppViewModel() {
                             strategy.proceed(null, Uri.EMPTY, controller)
                         }
                     } catch (e: Exception) {
-                        e.printStackTrace()
-                        val dataState = DataState.Error(it.uid.toString(), e)
+                        val dataState = DataState.Error("Navigation Error", e)
                         navigationState.dataStateStore.set(dataState)
                     }
                 }

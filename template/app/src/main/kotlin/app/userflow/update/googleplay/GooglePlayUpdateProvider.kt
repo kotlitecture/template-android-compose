@@ -5,5 +5,5 @@ import app.provideHiltViewModel
 
 @Composable
 fun GooglePlayUpdateProvider() {
-    provideHiltViewModel<GooglePlayUpdateViewModel>(activityScope = true)
+    provideHiltViewModel<GooglePlayUpdateViewModel>(activityScoped = true)
 }

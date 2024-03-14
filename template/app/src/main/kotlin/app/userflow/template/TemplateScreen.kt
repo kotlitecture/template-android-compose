@@ -1,5 +1,6 @@
 package app.userflow.template
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,8 +19,9 @@ import app.provideHiltViewModel
 import core.ui.theme.material3.Material3ThemeData
 
 @Composable
-fun TemplateScreen() {
-    val viewModel: TemplateViewModel = provideHiltViewModel()
+fun TemplateScreen(data: TemplateDestination.Data?) {
+    val viewModel: TemplateViewModel = provideHiltViewModel(activityScoped = true)
+    BackHandler { viewModel.onBack() }
     Box(modifier = Modifier.fillMaxSize()) {
         Button(
             modifier = Modifier
@@ -27,15 +29,15 @@ fun TemplateScreen() {
                 .align(Alignment.TopCenter)
                 .padding(horizontal = 16.dp)
                 .statusBarsPadding(),
-            onClick = viewModel::onTest,
+            onClick = viewModel::onTop,
             content = {
                 Text(text = "TOP")
             }
         )
         Text(
+            text = data?.title ?: "TemplateScreen",
             modifier = Modifier.align(Alignment.Center),
-            text = viewModel.javaClass.simpleName,
-            color = Material3ThemeData.get().colorScheme.onSurface,
+            color = Material3ThemeData.current.colorScheme.onSurface,
             fontWeight = FontWeight.W600,
             fontSize = 24.sp
         )
@@ -45,7 +47,7 @@ fun TemplateScreen() {
                 .align(Alignment.BottomCenter)
                 .padding(horizontal = 16.dp)
                 .navigationBarsPadding(),
-            onClick = viewModel::onTest,
+            onClick = viewModel::onBottom,
             content = {
                 Text(text = "BOTTOM")
             }

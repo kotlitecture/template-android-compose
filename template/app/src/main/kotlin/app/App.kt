@@ -15,7 +15,7 @@ class App : Application()
 @Composable
 inline fun <reified VM : AppViewModel> provideHiltViewModel(
     key: String? = null,
-    activityScope: Boolean = false
+    activityScoped: Boolean = false
 ): VM {
-    return createViewModel(activityScope) { hiltViewModel(it, key) }
+    return createViewModel(activityScoped) { hiltViewModel(it, key) }
 }

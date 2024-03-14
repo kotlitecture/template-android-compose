@@ -5,5 +5,5 @@ import app.provideHiltViewModel
 
 @Composable
 fun GooglePlayReviewProvider() {
-    provideHiltViewModel<GooglePlayReviewViewModel>(activityScope = true)
+    provideHiltViewModel<GooglePlayReviewViewModel>(activityScoped = true)
 }

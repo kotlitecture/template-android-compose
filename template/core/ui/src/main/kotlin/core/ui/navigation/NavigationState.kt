@@ -6,7 +6,7 @@ import core.ui.state.StoreState
 class NavigationState : StoreState() {
 
     val destinationStore = StoreObject<NavigationDestination<*>>()
-    val navigationStore = StoreObject<NavigationData<*>>(valueReply = 1, valueBufferCapacity = Int.MAX_VALUE)
+    val navigationStore = StoreObject<NavigationData<*>>(valueReply = 0, valueBufferCapacity = Int.MAX_VALUE)
 
     fun onBack() {
         navigationStore.set(NavigationData(

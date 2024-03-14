@@ -1,7 +1,6 @@
 package core.ui.navigation
 
 import android.net.Uri
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavBackStackEntry
@@ -19,8 +18,8 @@ abstract class NavigationDestination<D> {
 
     abstract val id: String
     val route by lazy { "$id?$ATTR_DATA={$ATTR_DATA}" }
-    open val argsStrategy: ArgsStrategy<D> = ArgsStrategy.memory()
-    open val navStrategy: NavigationStrategy = NavigationStrategy.NewInstance
+    abstract val navStrategy: NavigationStrategy
+    abstract val argsStrategy: ArgsStrategy<D>
 
     open fun getName(): String = id
 
@@ -36,7 +35,6 @@ abstract class NavigationDestination<D> {
             .apply {
                 data?.let {
                     it as D
-                    Log.d("ASASASASAS", "AAAAA : ${it} - ${argsStrategy.toString(it)}")
                     appendQueryParameter(ATTR_DATA, argsStrategy.toString(it))
                 }
             }
