@@ -1,67 +1,59 @@
-@file:Suppress("UNCHECKED_CAST")
-
 package core.ui.navigation
 
 import android.net.Uri
+import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.Stable
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import java.util.UUID
 import kotlin.collections.set
 
 abstract class NavigationDestination<D> {
 
     abstract val id: String
-    abstract val strategy: NavigationStrategy
-
-    open val serializable = true
-    open val screenName by lazy { id }
-
     val route by lazy { "$id?$ATTR_DATA={$ATTR_DATA}" }
+    open val argsStrategy: ArgsStrategy<D> = ArgsStrategy.memory()
+    open val navStrategy: NavigationStrategy = NavigationStrategy.NewInstance
 
-    private val arguments by lazy {
-        listOf(
-            navArgument(ATTR_DATA) {
-                type = NavType.StringType
-                nullable = true
-            }
-        )
+    open fun getName(): String = id
+
+    fun bind(builder: NavGraphBuilder) {
+        REGISTRY[id] = this
+        doBind(builder)
     }
 
-    fun register(builder: NavGraphBuilder) {
-        register(this)
-        doRegister(builder)
-    }
-
-    protected open fun createDataId(): String = UUID.randomUUID().toString()
-    protected abstract fun doRegister(builder: NavGraphBuilder)
-    protected open fun toObject(string: String): D? = null
-    protected open fun toString(data: D): String? = null
-
-    fun toUri(data: Any?): Uri {
-        return Uri.Builder()
+    @Suppress("UNCHECKED_CAST", "RestrictedApi")
+    internal fun navigate(data: Any?, strategy: NavigationStrategy, controller: NavHostController) {
+        val uri = Uri.Builder()
             .encodedPath(NavDestination.createRoute(id))
-            .apply { data?.let { it as? D }?.let { appendQueryParameter(ATTR_DATA, serialize(it)) } }
+            .apply {
+                data?.let {
+                    it as D
+                    Log.d("ASASASASAS", "AAAAA : ${it} - ${argsStrategy.toString(it)}")
+                    appendQueryParameter(ATTR_DATA, argsStrategy.toString(it))
+                }
+            }
             .build()
+        strategy.proceed(route, uri, controller)
     }
 
-    protected fun screen(
+    protected abstract fun doBind(builder: NavGraphBuilder)
+
+    protected fun composable(
         builder: NavGraphBuilder,
         content: @Composable (data: D?) -> Unit
     ) {
         builder.composable(
             route = route,
-            arguments = arguments,
-            content = { entry -> Route(entry, content) }
+            arguments = createArgs(),
+            content = { entry -> route(entry, content) }
         )
     }
 
@@ -73,13 +65,13 @@ abstract class NavigationDestination<D> {
     ) {
         builder.dialog(
             route = route,
-            arguments = arguments,
+            arguments = createArgs(),
             dialogProperties = DialogProperties(
                 usePlatformDefaultWidth = false,
                 dismissOnBackPress = dismissOnBackPress,
                 dismissOnClickOutside = dismissOnClickOutside
             ),
-            content = { entry -> Route(entry, content) }
+            content = { entry -> route(entry, content) }
         )
     }
 
@@ -92,53 +84,33 @@ abstract class NavigationDestination<D> {
             startDestination = primaryDestination.route,
             route = route
         ) {
-            primaryDestination.register(this)
-            destinations.forEach { it.register(this) }
+            primaryDestination.bind(this)
+            destinations.forEach { it.bind(this) }
         }
     }
 
-    @Stable
     @Composable
-    private fun Route(
+    private fun route(
         entry: NavBackStackEntry,
         content: @Composable (data: D?) -> Unit
     ) {
         val value = entry.arguments?.getString(ATTR_DATA)
-        val data = value?.let(this::deserialize)
+        val data = value?.let { argsStrategy.toObject(it) }
         content(data)
-        if (!serializable && value != createDataId()) {
-            DisposableEffect(value) {
-                onDispose {
-                    destinationDataCache.remove(value)
-                }
-            }
-        }
     }
 
-    private fun serialize(data: D): String? {
-        if (!serializable) {
-            val id = createDataId()
-            destinationDataCache[id] = data
-            return id
+    private fun createArgs() = listOf(
+        navArgument(ATTR_DATA) {
+            type = NavType.StringType
+            nullable = true
         }
-        return toString(data)
-    }
-
-    private fun deserialize(data: String): D? {
-        if (!serializable) {
-            return destinationDataCache[data] as? D
-        }
-        return toObject(data)
-    }
+    )
 
     companion object {
         private const val ATTR_DATA = "data"
-        private val destinationDataCache = mutableMapOf<String, Any?>()
-        private val destinationRegistry = mutableMapOf<String, NavigationDestination<*>>()
+        private val REGISTRY = mutableMapOf<String, NavigationDestination<*>>()
 
-        fun get(route: String): NavigationDestination<*>? {
-            return destinationRegistry[getId(route)]
-        }
+        fun find(route: String) = REGISTRY[getId(route)]
 
         private fun getId(route: String): String {
             val indexOfData = route.indexOf('?')
@@ -147,10 +119,6 @@ abstract class NavigationDestination<D> {
             } else {
                 route
             }
-        }
-
-        private fun register(destination: NavigationDestination<*>) {
-            destinationRegistry[destination.id] = destination
         }
     }
 

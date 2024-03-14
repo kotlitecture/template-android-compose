@@ -15,23 +15,25 @@ class NavigationViewModel : AppViewModel() {
         launchAsync("destinationStore") {
             context.navController.currentBackStackEntryFlow
                 .mapNotNull { it.destination.route }
-                .mapNotNull(NavigationDestination.Companion::get)
+                .mapNotNull(NavigationDestination.Companion::find)
                 .distinctUntilChanged()
                 .collectLatest(navigationState.destinationStore::set)
         }
-        launchAsync("navigationStore") {
+        launchMain("navigationStore") {
             navigationState.navigationStore.asFlow()
                 .filterNotNull()
                 .collectLatest {
                     try {
-                        val data = it.data
+                        val strategy = it.strategy
                         val destination = it.destination
                         val controller = context.navController
-                        val strategy = destination?.strategy ?: NavigationStrategy.Back
-                        val uri = destination?.toUri(data) ?: Uri.EMPTY
-                        val route = destination?.route
-                        strategy.proceed(route, uri, controller)
+                        if (destination != null) {
+                            destination.navigate(it.data, strategy, controller)
+                        } else {
+                            strategy.proceed(null, Uri.EMPTY, controller)
+                        }
                     } catch (e: Exception) {
+                        e.printStackTrace()
                         val dataState = DataState.Error(it.uid.toString(), e)
                         navigationState.dataStateStore.set(dataState)
                     }

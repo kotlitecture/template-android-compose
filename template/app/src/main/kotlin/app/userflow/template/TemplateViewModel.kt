@@ -1,13 +1,22 @@
 package app.userflow.template
 
-import android.app.Application
-import dagger.hilt.android.lifecycle.HiltViewModel
+import app.userflow.webtonative.WebToNativeDestination
 import core.ui.AppViewModel
+import core.ui.navigation.NavigationState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class TemplateViewModel @Inject constructor(
-    val app:Application
+    private val navigationState: NavigationState
 ) : AppViewModel() {
+
+    fun onBack() {
+        navigationState.onBack()
+    }
+
+    fun onTest() {
+        navigationState.onNavigate(WebToNativeDestination, WebToNativeDestination.Data("https://google.com"))
+    }
 
 }

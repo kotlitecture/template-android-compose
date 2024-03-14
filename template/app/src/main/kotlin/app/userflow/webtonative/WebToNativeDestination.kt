@@ -1,21 +1,15 @@
 package app.userflow.webtonative
 
 import androidx.navigation.NavGraphBuilder
+import core.ui.navigation.ArgsStrategy
 import core.ui.navigation.NavigationDestination
-import core.ui.navigation.NavigationStrategy
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 
-class WebToNativeDestination : NavigationDestination<WebToNativeDestination.Data>() {
+object WebToNativeDestination : NavigationDestination<WebToNativeDestination.Data>() {
 
     override val id: String = "webtonative_screen"
-    override val strategy: NavigationStrategy = NavigationStrategy.NewInstance
-    override fun doRegister(builder: NavGraphBuilder) = screen(builder) { WebToNativeScreen(it!!) }
-    override fun toObject(string: String): Data? = Json.decodeFromString(string)
-    override fun toString(data: Data): String = Json.encodeToString(data)
+    override val argsStrategy: ArgsStrategy<Data> = ArgsStrategy.json()
+    override fun doBind(builder: NavGraphBuilder) = composable(builder) { WebToNativeScreen(it!!) }
 
-    @Serializable
     data class Data(
         val url: String
     )

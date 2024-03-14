@@ -22,7 +22,7 @@ class AppActivityViewModel @Inject constructor(
 
     override fun doBind() {
         launchAsync("doBind") {
-            destinationStore.set(TemplateDestination())
+            destinationStore.set(TemplateDestination)
         }
     }
 

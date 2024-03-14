@@ -26,9 +26,8 @@ fun TemplateScreen() {
                 .fillMaxWidth()
                 .align(Alignment.TopCenter)
                 .padding(horizontal = 16.dp)
-                .statusBarsPadding()
-            ,
-            onClick = {},
+                .statusBarsPadding(),
+            onClick = viewModel::onTest,
             content = {
                 Text(text = "TOP")
             }
@@ -45,9 +44,8 @@ fun TemplateScreen() {
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
                 .padding(horizontal = 16.dp)
-                .navigationBarsPadding()
-            ,
-            onClick = {},
+                .navigationBarsPadding(),
+            onClick = viewModel::onTest,
             content = {
                 Text(text = "BOTTOM")
             }

@@ -60,7 +60,7 @@ enum class NavigationStrategy {
 
     ;
 
-    open fun proceed(route: String?, uri: Uri, controller: NavHostController) {
+    fun proceed(route: String?, uri: Uri, controller: NavHostController) {
         val currentRoute = controller.currentDestination?.route
         if (!uri.query.isNullOrEmpty() || currentRoute != route) {
             doProceed(route, uri, controller)

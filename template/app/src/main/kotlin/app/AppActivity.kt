@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
@@ -25,7 +26,7 @@ class AppActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val viewModel: AppActivityViewModel = provideHiltViewModel()
-            ScaffoldProvider(viewModel)
+            ScaffoldBlock(viewModel)
             GooglePlayUpdateProvider() // {userflow.google-play-update}
             GooglePlayReviewProvider() // {userflow.google-play-review}
             DataLoaderProvider(viewModel.appState) // {userflow.data-loader}
@@ -37,21 +38,20 @@ class AppActivity : FragmentActivity() {
 }
 
 @Composable
-private fun ScaffoldProvider(viewModel: AppActivityViewModel) {
-    viewModel.destinationStore.asStateValue()
-        ?.route
-        ?.let { route ->
-            AppScaffold(
-                navigationState = viewModel.navigationState,
-                commandState = viewModel.commandState,
-                themeState = viewModel.themeState,
-                startDestination = route,
-                navGraphBuilder = {
-                    TemplateDestination().register(this)
-                    WebToNativeDestination().register(this) // {userflow.webtonative}
-                }
+private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
+    val destination = viewModel.destinationStore.asStateValue() ?: return
+    AppScaffold(
+        navigationState = viewModel.navigationState,
+        commandState = viewModel.commandState,
+        themeState = viewModel.themeState,
+        startDestination = destination,
+        destinations = remember {
+            listOf(
+                TemplateDestination,
+                WebToNativeDestination // {userflow.webtonative}
             )
         }
+    )
 }
 
 @Composable

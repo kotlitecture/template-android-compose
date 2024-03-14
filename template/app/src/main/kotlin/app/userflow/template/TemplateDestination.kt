@@ -1,13 +1,13 @@
 package app.userflow.template
 
 import androidx.navigation.NavGraphBuilder
+import core.ui.navigation.ArgsStrategy
 import core.ui.navigation.NavigationDestination
-import core.ui.navigation.NavigationStrategy
 
-class TemplateDestination : NavigationDestination<Unit>() {
+object TemplateDestination : NavigationDestination<Unit>() {
 
     override val id: String = "template_screen"
-    override val strategy: NavigationStrategy = NavigationStrategy.NewInstance
-    override fun doRegister(builder: NavGraphBuilder) = screen(builder) { TemplateScreen() }
+    override val argsStrategy: ArgsStrategy<Unit> = ArgsStrategy.json()
+    override fun doBind(builder: NavGraphBuilder) = composable(builder) { TemplateScreen() }
 
 }

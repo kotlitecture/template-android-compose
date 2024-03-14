@@ -7,10 +7,10 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import core.ui.command.CommandProvider
 import core.ui.command.CommandState
+import core.ui.navigation.NavigationDestination
 import core.ui.navigation.NavigationProvider
 import core.ui.navigation.NavigationState
 import core.ui.theme.ThemeState
@@ -22,10 +22,10 @@ fun AppScaffold(
     navigationState: NavigationState = NavigationState.Default,
     commandState: CommandState = CommandState.Default,
     themeState: ThemeState = ThemeState.Default,
-    navGraphBuilder: NavGraphBuilder.() -> Unit,
+    destinations: List<NavigationDestination<*>>,
+    startDestination: NavigationDestination<*>,
     bottomBar: @Composable () -> Unit = {},
     overlay: @Composable () -> Unit = {},
-    startDestination: String
 ) {
     val appContext = rememberAppContext()
     CommandProvider(commandState, appContext)
@@ -35,9 +35,9 @@ fun AppScaffold(
             snackbarHost = { SnackbarHost(appContext.snackbarHostSate) },
             content = {
                 NavHost(
-                    builder = navGraphBuilder,
-                    startDestination = startDestination,
                     navController = appContext.navController,
+                    startDestination = startDestination.route,
+                    builder = { destinations.forEach { it.bind(this) } },
                     enterTransition = { fadeIn(animationSpec = tween(100)) },
                     exitTransition = { fadeOut(animationSpec = tween(100)) }
                 )
