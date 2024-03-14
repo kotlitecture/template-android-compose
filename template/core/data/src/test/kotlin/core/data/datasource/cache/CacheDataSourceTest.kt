@@ -59,7 +59,7 @@ class CacheDataSourceTest : BaseUnitTest() {
         val key = UUIDCacheKey(Int.MAX_VALUE, ttl = 100)
         val valueState = cache.getState(key) { UUID.randomUUID() }
         val value1 = valueState.get()
-        val value1Last = valueState.getLast()
+        val value1Last = valueState.last()
         delay(100)
         val value2 = valueState.get()
         delay(100)

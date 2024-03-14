@@ -22,53 +22,59 @@ import kotlinx.coroutines.withContext
 import org.tinylog.kotlin.Logger
 import java.util.Date
 import java.util.concurrent.ConcurrentHashMap
-import kotlin.time.Duration.Companion.seconds
 
-class MemoryCacheSource : CacheSource {
+class MemoryCacheSource(
+    private val changesRetryInterval: Long = 1000L,
+    private val exceptionRetryInterval: Long = 3000L,
+    private val exceptionRetryCount: Int = Int.MAX_VALUE
+) : CacheSource {
 
     private val dispatcher = Dispatchers.IO
-    private val jobs = ConcurrentHashMap<CacheKey, Deferred<*>>()
-    private val cache = ConcurrentHashMap<CacheKey, CacheData>()
+    private val jobs = ConcurrentHashMap<CacheKeySnapshot, Deferred<*>>()
+    private val cache = ConcurrentHashMap<CacheKeySnapshot, CacheData>()
 
-    override suspend fun <T> getState(
-        key: core.data.datasource.cache.CacheKey<T>,
+    override fun <T> getState(
+        key: CacheKey<T>,
         valueProvider: suspend () -> T?
     ): CacheState<T> {
-        val cacheKey = CacheKey(key)
-        val cacheItem = cache[cacheKey]
+        val cacheKey = CacheKeySnapshot(key)
         return object : CacheState<T> {
-            override val key: core.data.datasource.cache.CacheKey<T> = key
-            override var value: T? = cacheItem?.data as? T
-            override suspend fun getLast(): T? = value ?: get()
+            override val key: CacheKey<T> = key
+            override suspend fun last(): T? = cache[cacheKey]?.data as? T
+            override suspend fun lastOrFresh(): T? = last() ?: fresh()
             override suspend fun get(): T? = get(key, valueProvider)
-            override suspend fun getFresh(): T? {
+            override suspend fun fresh(): T? {
                 cache[cacheKey]?.invalidate()
                 return get()
             }
 
-            override suspend fun getChanges(): Flow<T> = flow<T> {
-                value?.let { emit(it) }
+            override suspend fun changes(): Flow<T> = flow<T> {
+                cache[cacheKey]?.data?.let { it as? T }?.let { emit(it) }
+                var attempt = 0
                 while (currentCoroutineContext().isActive) {
                     try {
                         val fresh = get()
                         if (fresh != null) {
                             emit(fresh)
-                            delay(cacheKey.key.ttl)
                         }
+                        delay(cacheKey.key.ttl)
+                        attempt = 0
                     } catch (e: Exception) {
+                        attempt++
                         when {
-                            !e.isIgnoredException() -> delay(3000L)
+                            attempt >= exceptionRetryCount -> throw e
+                            !e.isIgnoredException() -> delay(exceptionRetryInterval)
                             !e.isTimeoutException() -> throw e
                             else -> Unit
                         }
                     }
                 }
-            }.distinctUntilChanged().retry { true.also { delay(1.seconds) } }
+            }.distinctUntilChanged().retry { !it.isCancellationException().also { delay(changesRetryInterval) } }
         }
     }
 
-    override suspend fun <T> get(key: core.data.datasource.cache.CacheKey<T>, valueProvider: suspend () -> T?): T? {
-        val cacheKey = CacheKey(key)
+    override suspend fun <T> get(key: CacheKey<T>, valueProvider: suspend () -> T?): T? {
+        val cacheKey = CacheKeySnapshot(key)
         val cacheItem = cache[cacheKey]
         if (cacheItem == null || !cacheItem.isValid(key.ttl)) {
             val data = getValue(cacheKey, valueProvider) ?: return null
@@ -80,8 +86,8 @@ class MemoryCacheSource : CacheSource {
         }
     }
 
-    override suspend fun <T> put(key: core.data.datasource.cache.CacheKey<T>, value: T) {
-        val cacheKey = CacheKey(key)
+    override fun <T> put(key: CacheKey<T>, value: T) {
+        val cacheKey = CacheKeySnapshot(key)
         cache[cacheKey] = CacheData(value)
     }
 
@@ -91,7 +97,7 @@ class MemoryCacheSource : CacheSource {
         cache.clear()
     }
 
-    override fun <K : core.data.datasource.cache.CacheKey<*>> invalidate(type: Class<K>) {
+    override fun <K : CacheKey<*>> invalidate(type: Class<K>) {
         jobs.iterator().forEachRemaining { entry ->
             val job = entry.value
             val key = entry.key
@@ -109,13 +115,13 @@ class MemoryCacheSource : CacheSource {
         }
     }
 
-    override fun <K : core.data.datasource.cache.CacheKey<*>> invalidate(key: K) {
-        val cacheKey = CacheKey(key)
+    override fun <K : CacheKey<*>> invalidate(key: K) {
+        val cacheKey = CacheKeySnapshot(key)
         jobs.remove(cacheKey)?.cancel()
         cache[cacheKey]?.invalidate()
     }
 
-    override fun <K : core.data.datasource.cache.CacheKey<*>> remove(type: Class<K>) {
+    override fun <K : CacheKey<*>> remove(type: Class<K>) {
         jobs.iterator().forEachRemaining { entry ->
             val job = entry.value
             val key = entry.key
@@ -133,13 +139,13 @@ class MemoryCacheSource : CacheSource {
         }
     }
 
-    override fun <K : core.data.datasource.cache.CacheKey<*>> remove(key: K) {
-        val cacheKey = CacheKey(key)
+    override fun <K : CacheKey<*>> remove(key: K) {
+        val cacheKey = CacheKeySnapshot(key)
         jobs.remove(cacheKey)?.cancel()
         cache.remove(cacheKey)
     }
 
-    private suspend fun <T> getValue(cacheKey: CacheKey, valueProvider: suspend () -> T?): T? {
+    private suspend fun <T> getValue(cacheKey: CacheKeySnapshot, valueProvider: suspend () -> T?): T? {
         val job = jobs[cacheKey]
             ?.let {
                 if (it.isCancelled) {
@@ -178,8 +184,7 @@ class MemoryCacheSource : CacheSource {
                 }
             }
         job.invokeOnCompletion { jobs.remove(cacheKey, job) }
-        return runCatching { job.await() as? T }
-            .let { if (cacheKey.key.throwErrors()) it.getOrThrow() else it.getOrNull() }
+        return job.await() as? T
     }
 
     private data class CacheData(
@@ -191,9 +196,13 @@ class MemoryCacheSource : CacheSource {
         fun isValid(ttl: Long): Boolean = when {
             invalid -> false
             data == null -> false
-            ttl > 0 -> createDate.time + ttl > System.currentTimeMillis()
+            ttl > 0 -> !isExpired(ttl)
             ttl == 0L -> false
             else -> true
+        }
+
+        fun isExpired(ttl: Long): Boolean {
+            return ttl > 0 && createDate.time + ttl <= System.currentTimeMillis()
         }
 
         fun invalidate() {
@@ -201,8 +210,8 @@ class MemoryCacheSource : CacheSource {
         }
     }
 
-    private data class CacheKey(
-        val key: core.data.datasource.cache.CacheKey<*>,
+    private data class CacheKeySnapshot(
+        val key: CacheKey<*>,
         val type: Class<*> = key.javaClass
     )
 
