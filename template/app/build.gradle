@@ -17,7 +17,7 @@ dependencies {
     implementation libs.androidx.webkit // {userflow.webtonative}
     implementation libs.google.app.update // {userflow.google-play-update}
     implementation libs.google.app.review // {userflow.google-play-review}
-    implementation libs.bundles.androidCoil
+    implementation libs.bundles.androidCoil // {ui.preview.coil}
     debugImplementation libs.chucker // {testing.http}
     stagingImplementation libs.chucker // {testing.http}
     testImplementation libs.chucker.release // {testing.http}

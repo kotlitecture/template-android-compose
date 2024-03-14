@@ -6,7 +6,6 @@ import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import core.data.datasource.analytics.AnalyticsSource
-import org.tinylog.kotlin.Logger
 
 class FirebaseAnalyticsSource : AnalyticsSource {
 
@@ -29,7 +28,6 @@ class FirebaseAnalyticsSource : AnalyticsSource {
         val newParams = params
             .plus(FirebaseAnalytics.Param.SCREEN_NAME to screenName)
             .plus(FirebaseAnalytics.Param.SCREEN_CLASS to screenName)
-        Logger.debug("onScreenView :: name={}, params={}", screenName, params)
         analytics.logEvent(
             FirebaseAnalytics.Event.SCREEN_VIEW,
             bundleOf(*newParams.toList().toTypedArray())

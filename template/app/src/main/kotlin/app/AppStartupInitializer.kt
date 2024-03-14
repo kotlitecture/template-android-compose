@@ -10,7 +10,7 @@ class AppStartupInitializer : DependencyInitializer<AppStartupInitializer>() {
     override fun initialize(context: Context): AppStartupInitializer = this
 
     override fun dependencies(): MutableList<Class<out Initializer<*>>> = mutableListOf(
-        CoiIImageLoaderInitializer::class.java // {ui.coil}
+        CoiIImageLoaderInitializer::class.java
     )
 
 }

@@ -7,7 +7,7 @@ import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
-import kotli.template.android.compose.dataflow.config.ConfigProcessor
+import kotli.template.android.compose.dataflow.config.facade.FacadeConfigProcessor
 import kotli.template.android.compose.unspecified.firebase.FirebaseProcessor
 
 class FirebaseConfigProcessor : BaseFeatureProcessor() {
@@ -17,7 +17,7 @@ class FirebaseConfigProcessor : BaseFeatureProcessor() {
     override fun getIntegrationUrl(state: TemplateState): String = "https://firebase.google.com/docs/remote-config/get-started?platform=android"
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
-        ConfigProcessor::class.java,
+        FacadeConfigProcessor::class.java,
         FirebaseProcessor::class.java
     )
 
