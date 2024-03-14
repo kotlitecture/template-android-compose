@@ -14,8 +14,14 @@ internal class ProvidesConfigSource {
 
     @Provides
     @Singleton
-    fun source(): ConfigSource {
+    fun sourceWrapped(): AppConfigSource {
         return AppConfigSource()
+    }
+
+    @Provides
+    @Singleton
+    fun source(wrapped: AppConfigSource): ConfigSource {
+        return wrapped
     }
 
 }

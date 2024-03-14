@@ -31,7 +31,7 @@ internal class ProvidesHttpSource {
                     .collector(
                         ChuckerCollector(
                             app,
-                            showNotification = false,
+                            showNotification = true,
                             retentionPeriod = RetentionManager.Period.ONE_HOUR
                         )
                     )

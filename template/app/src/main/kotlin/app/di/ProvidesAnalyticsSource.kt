@@ -14,8 +14,14 @@ internal class ProvidesAnalyticsSource {
 
     @Provides
     @Singleton
-    fun source(): AnalyticsSource {
+    fun sourceWrapped(): AppAnalyticsSource {
         return AppAnalyticsSource()
+    }
+
+    @Provides
+    @Singleton
+    fun source(wrapped: AppAnalyticsSource): AnalyticsSource {
+        return wrapped
     }
 
 }
