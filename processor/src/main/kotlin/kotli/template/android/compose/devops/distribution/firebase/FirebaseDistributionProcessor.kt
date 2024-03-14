@@ -8,8 +8,8 @@ import kotli.engine.template.rule.CleanupMarkedBlock
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
-import kotli.template.android.compose.transitive.firebase.FirebaseProcessor
-import kotli.template.android.compose.transitive.googleservices.GoogleServicesProcessor
+import kotli.template.android.compose.unspecified.firebase.FirebaseProcessor
+import kotli.template.android.compose.unspecified.googleservices.GoogleServicesProcessor
 
 class FirebaseDistributionProcessor : BaseFeatureProcessor() {
 

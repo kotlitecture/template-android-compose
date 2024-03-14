@@ -52,6 +52,7 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+        <!-- start {startup-initializer} -->
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
@@ -63,6 +64,7 @@
                 android:value="androidx.startup" />
 
         </provider>
+        <!-- end {startup-initializer} -->
     </application>
 
 </manifest>

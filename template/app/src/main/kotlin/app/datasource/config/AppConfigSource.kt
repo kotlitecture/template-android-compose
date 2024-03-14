@@ -5,7 +5,7 @@ import core.data.datasource.config.DelegateConfigSource
 import javax.inject.Inject
 
 class AppConfigSource @Inject constructor() : DelegateConfigSource(
-    FirebaseRemoteConfigSource() // {datasource.firebase-config}
+    FirebaseRemoteConfigSource()
 ) {
 
     fun getApiTimeout(): Long = getLong("api_timeout") { 30_000 }

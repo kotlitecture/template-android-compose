@@ -19,6 +19,6 @@ class StorageProvider : BaseFeatureProvider() {
     )
 
     companion object {
-        const val ID = "storage"
+        const val ID = "dataflow.storage"
     }
 }

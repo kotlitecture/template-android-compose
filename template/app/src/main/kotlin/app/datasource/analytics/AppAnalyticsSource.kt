@@ -8,6 +8,6 @@ import javax.inject.Singleton
 @Singleton
 class AppAnalyticsSource @Inject constructor() : CompositeAnalyticsSource(
     listOf(
-        FirebaseAnalyticsSource() // {firebase-analytics}
+        FirebaseAnalyticsSource()
     )
 )

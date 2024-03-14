@@ -8,24 +8,20 @@ apply plugin: "com.github.triplet.play" // {google-play-distribution}
 apply plugin: "io.objectbox" // {objectbox}
 
 dependencies {
-    implementation platform(libs.firebase.bom)
-    implementation libs.firebase.analytics.ktx
-    implementation libs.firebase.crashlytics.ktx
-    implementation libs.firebase.config.ktx
-    implementation libs.firebase.perf
-
-    implementation libs.androidx.startup
-    implementation libs.androidx.webkit // {userflow-webtonative}
-    implementation libs.google.app.update // {userflow-google-play-update}
-    implementation libs.google.app.review
-
+    implementation platform(libs.firebase.bom) // {firebase-bom}
+    implementation libs.firebase.analytics.ktx // {firebase-analytics}
+    implementation libs.firebase.crashlytics.ktx // {firebase-crashlytics}
+    implementation libs.firebase.config.ktx // {firebase-config}
+    implementation libs.firebase.perf // {firebase-perf}
+    implementation libs.androidx.startup // {startup-initializer}
+    implementation libs.androidx.webkit // {userflow.webtonative}
+    implementation libs.google.app.update // {userflow.google-play-update}
+    implementation libs.google.app.review // {userflow.google-play-review}
     implementation libs.bundles.androidCoil
-
-    debugImplementation libs.chucker
-    stagingImplementation libs.chucker
-    testImplementation libs.chucker.release
-    releaseImplementation libs.chucker.release
-
+    debugImplementation libs.chucker // {testing.http}
+    stagingImplementation libs.chucker // {testing.http}
+    testImplementation libs.chucker.release // {testing.http}
+    releaseImplementation libs.chucker.release // {testing.http}
     implementation project(":core:ui")
     implementation project(":core:data")
     testImplementation project(":core:testing")

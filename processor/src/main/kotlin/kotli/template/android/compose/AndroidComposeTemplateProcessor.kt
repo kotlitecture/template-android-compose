@@ -12,25 +12,22 @@ import kotli.template.android.compose.dataflow.config.ConfigProvider
 import kotli.template.android.compose.dataflow.http.HttpProvider
 import kotli.template.android.compose.dataflow.messaging.MessagingProvider
 import kotli.template.android.compose.dataflow.storage.StorageProvider
-import kotli.template.android.compose.dataflow.web3.Web3Provider
 import kotli.template.android.compose.dataflow.work.WorkProvider
 import kotli.template.android.compose.design.l10n.L10NProvider
 import kotli.template.android.compose.design.navigation.NavigationProvider
 import kotli.template.android.compose.design.splash.SplashProvider
 import kotli.template.android.compose.design.theme.ThemeProvider
 import kotli.template.android.compose.devops.distribution.DistributionProvider
-import kotli.template.android.compose.devops.gradle.GradleProvider
 import kotli.template.android.compose.devops.i18n.I18NProvider
-import kotli.template.android.compose.devops.vcs.VcsProvider
 import kotli.template.android.compose.quality.crashes.CrashesProvider
 import kotli.template.android.compose.quality.performance.PerformanceProvider
 import kotli.template.android.compose.quality.startup.StartupProvider
 import kotli.template.android.compose.testing.http.HttpTestingProvider
 import kotli.template.android.compose.testing.loadtests.LoadTestsProvider
 import kotli.template.android.compose.testing.logging.LoggingProvider
-import kotli.template.android.compose.transitive.TransitiveProvider
 import kotli.template.android.compose.ui.preview.PreviewProvider
 import kotli.template.android.compose.ui.screen.ScreenProvider
+import kotli.template.android.compose.unspecified.UnspecifiedProvider
 import kotli.template.android.compose.userflow.ads.AdsProvider
 import kotli.template.android.compose.userflow.auth.AuthProvider
 import kotli.template.android.compose.userflow.kyc.KycProvider
@@ -49,8 +46,8 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
     override fun getWebUrl(): String = "https://github.com/kotlitecture/template-android-compose"
 
     override fun createProviders(): List<FeatureProvider> = listOf(
-        // Transitive
-        TransitiveProvider(),
+        // unspecified
+        UnspecifiedProvider(),
 
         // appearance
         L10NProvider(),
@@ -60,9 +57,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
 
         // build
         DistributionProvider(),
-        GradleProvider(),
         I18NProvider(),
-        VcsProvider(),
 
         // datasource
         AnalyticsProvider(),
@@ -71,7 +66,6 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         HttpProvider(),
         MessagingProvider(),
         StorageProvider(),
-        Web3Provider(),
         WorkProvider(),
 
         // quality

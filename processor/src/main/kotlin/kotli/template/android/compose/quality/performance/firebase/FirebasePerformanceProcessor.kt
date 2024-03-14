@@ -5,10 +5,9 @@ import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
-import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
-import kotli.template.android.compose.transitive.firebase.FirebaseProcessor
-import kotli.template.android.compose.transitive.googleservices.GoogleServicesProcessor
+import kotli.template.android.compose.unspecified.firebase.FirebaseProcessor
+import kotli.template.android.compose.unspecified.googleservices.GoogleServicesProcessor
 
 class FirebasePerformanceProcessor : BaseFeatureProcessor() {
 
@@ -17,21 +16,17 @@ class FirebasePerformanceProcessor : BaseFeatureProcessor() {
     override fun getIntegrationUrl(state: TemplateState): String = "https://firebase.google.com/docs/perf-mon/get-started-android"
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
-        GoogleServicesProcessor::class.java,
         FirebaseProcessor::class.java
     )
 
     override fun doApply(state: TemplateState) {
-        state.onApplyRules("settings.gradle", CleanupMarkedLine("{firebase-perf}"))
         state.onApplyRules("app/build.gradle", CleanupMarkedLine("{firebase-perf}"))
         state.onApplyRules("build.gradle", CleanupMarkedLine("{firebase-perf}"))
     }
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("settings.gradle", RemoveMarkedLine("{firebase-perf}"))
         state.onApplyRules("app/build.gradle", RemoveMarkedLine("{firebase-perf}"))
         state.onApplyRules("build.gradle", RemoveMarkedLine("{firebase-perf}"))
-        state.onApplyRules("integration/firebase-perf", RemoveFile())
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("firebase-perf")))
     }
 

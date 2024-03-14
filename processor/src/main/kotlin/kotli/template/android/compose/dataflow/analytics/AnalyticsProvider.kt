@@ -13,6 +13,7 @@ class AnalyticsProvider : BaseFeatureProvider() {
     override fun getType(): FeatureType = FeatureTypes.DataFlow
 
     override fun createProcessors(): List<FeatureProcessor> = listOf(
+        AnalyticsProcessor(),
         FirebaseAnalyticsProcessor()
     )
 

@@ -22,7 +22,7 @@ class RoomProcessor : BaseFeatureProcessor() {
     }
 
     companion object {
-        const val ID = "room"
+        const val ID = "dataflow.room"
     }
 
 }

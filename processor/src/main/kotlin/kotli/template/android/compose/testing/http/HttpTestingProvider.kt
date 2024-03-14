@@ -16,6 +16,6 @@ class HttpTestingProvider : BaseFeatureProvider() {
     )
 
     companion object {
-        const val ID = "testing-http"
+        const val ID = "testing.http"
     }
 }

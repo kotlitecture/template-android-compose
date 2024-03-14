@@ -12,17 +12,13 @@ class WebToNativeProcessor : BaseFeatureProcessor() {
     override fun getId(): String = ID
 
     override fun doApply(state: TemplateState) {
-        state.onApplyRules("settings.gradle", CleanupMarkedLine("{workflow-webtonative}"))
-        state.onApplyRules("app/build.gradle", CleanupMarkedLine("{workflow-webtonative}"))
-        state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", CleanupMarkedLine("{workflow-webtonative}"))
+        state.onApplyRules("app/build.gradle", CleanupMarkedLine("{userflow.webtonative}"))
     }
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("settings.gradle", RemoveMarkedLine("{workflow-webtonative}"))
-        state.onApplyRules("app/build.gradle", RemoveMarkedLine("{workflow-webtonative}"))
-        state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", RemoveMarkedLine("{workflow-webtonative}"))
-        state.onApplyRules("app/src/main/kotlin/app/feature/webtonative", RemoveFile())
-        state.onApplyRules("workflow/webtonative", RemoveFile())
+        state.onApplyRules("app/build.gradle", RemoveMarkedLine("{userflow.webtonative}"))
+        state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", RemoveMarkedLine("WebToNativeDestination"))
+        state.onApplyRules("app/src/main/kotlin/app/userflow/webtonative", RemoveFile())
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("androidxWebkit")))
     }
 

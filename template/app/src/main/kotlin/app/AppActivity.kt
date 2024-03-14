@@ -27,10 +27,10 @@ class AppActivity : FragmentActivity() {
         setContent {
             val viewModel: AppActivityViewModel = provideHiltViewModel()
             ScaffoldBlock(viewModel)
-            GooglePlayUpdateProvider() // {userflow.google-play-update}
-            GooglePlayReviewProvider() // {userflow.google-play-review}
-            DataLoaderProvider(viewModel.appState) // {userflow.data-loader}
-            NoInternetProvider() // {userflow.no-internet}
+            GooglePlayUpdateProvider()
+            GooglePlayReviewProvider()
+            DataLoaderProvider(viewModel.appState)
+            NoInternetProvider()
             SplashBlock(splashScreen, viewModel)
         }
     }
@@ -48,7 +48,7 @@ private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
         destinations = remember {
             listOf(
                 TemplateDestination,
-                WebToNativeDestination // {userflow.webtonative}
+                WebToNativeDestination
             )
         }
     )

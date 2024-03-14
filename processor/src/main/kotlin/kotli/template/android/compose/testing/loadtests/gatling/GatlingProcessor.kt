@@ -19,7 +19,6 @@ class GatlingProcessor : BaseFeatureProcessor() {
     override fun doRemove(state: TemplateState) {
         state.onApplyRules("settings.gradle", RemoveMarkedLine("{loadtests-gatling}"))
         state.onApplyRules("build.gradle", RemoveMarkedLine("{loadtests-gatling}"))
-        state.onApplyRules("testing/loadtests-gatling", RemoveFile())
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("gatling")))
     }
 
