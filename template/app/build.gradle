@@ -1,6 +1,6 @@
 apply from: "${project.rootDir}/gradle/android/application.gradle"
 apply plugin: "com.google.firebase.appdistribution" // {firebase-distribution}
-apply plugin: "com.google.firebase.firebase-perf" // {firebase-perf}
+apply plugin: "com.google.firebase.firebase-perf"
 apply plugin: "com.google.firebase.crashlytics" // {firebase-crashlytics}
 apply plugin: "com.google.gms.google-services" // {google-services}
 apply plugin: "androidx.baselineprofile" // {baselineprofile}
@@ -8,11 +8,11 @@ apply plugin: "com.github.triplet.play" // {google-play-distribution}
 apply plugin: "io.objectbox" // {objectbox}
 
 dependencies {
-    implementation platform(libs.firebase.bom) // {firebase-bom}
+    implementation platform(libs.firebase.bom)
     implementation libs.firebase.analytics.ktx // {firebase-analytics}
     implementation libs.firebase.crashlytics.ktx // {firebase-crashlytics}
     implementation libs.firebase.config.ktx // {firebase-config}
-    implementation libs.firebase.perf // {firebase-perf}
+    implementation libs.firebase.perf
     implementation libs.androidx.startup // {startup-initializer}
     implementation libs.androidx.webkit // {userflow.webtonative}
     implementation libs.google.app.update // {userflow.google-play-update}
