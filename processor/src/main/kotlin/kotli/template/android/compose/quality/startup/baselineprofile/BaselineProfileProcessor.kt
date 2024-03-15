@@ -17,46 +17,56 @@ class BaselineProfileProcessor : BaseFeatureProcessor() {
     override fun getIntegrationUrl(state: TemplateState): String = "https://developer.android.com/topic/performance/baselineprofiles/configure-baselineprofiles"
 
     override fun doApply(state: TemplateState) {
-        state.onApplyRules("settings.gradle",
-            CleanupMarkedLine("{baselineprofile}")
+        state.onApplyRules(
+            "settings.gradle",
+            CleanupMarkedLine("baselineprofile")
         )
-        state.onApplyRules("build.gradle",
-            CleanupMarkedLine("{baselineprofile}")
+        state.onApplyRules(
+            "build.gradle",
+            CleanupMarkedLine("baselineprofile")
         )
-        state.onApplyRules("app/build.gradle",
-            CleanupMarkedLine("{baselineprofile}"),
-            CleanupMarkedBlock("{baselineprofile-config}")
+        state.onApplyRules(
+            "app/build.gradle",
+            CleanupMarkedBlock("{quality.startup.baselineprofile.config}")
         )
-        state.onApplyRules("baselineprofile/src/main/java/app/baselineprofile/BaselineProfileGenerator.kt",
+        state.onApplyRules(
+            "baselineprofile/src/main/java/app/baselineprofile/BaselineProfileGenerator.kt",
             ReplaceText("kotli.app", state.layer.namespace)
         )
     }
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("settings.gradle",
-            RemoveMarkedLine("{baselineprofile}")
+        state.onApplyRules(
+            "settings.gradle",
+            RemoveMarkedLine("baselineprofile")
         )
-        state.onApplyRules("build.gradle",
-            RemoveMarkedLine("{baselineprofile}")
+        state.onApplyRules(
+            "build.gradle",
+            RemoveMarkedLine("baselineprofile")
         )
-        state.onApplyRules("app/build.gradle",
-            RemoveMarkedLine("{baselineprofile}"),
-            RemoveMarkedBlock("{baselineprofile-config}")
+        state.onApplyRules(
+            "app/build.gradle",
+            RemoveMarkedBlock("{quality.startup.baselineprofile.config}"),
+            RemoveMarkedLine("baselineprofile"),
         )
-        state.onApplyRules("baselineprofile",
+        state.onApplyRules(
+            "baselineprofile",
             RemoveFile()
         )
-        state.onApplyRules(VersionCatalogRules(listOf(
-            RemoveMarkedLine("benchmarkMacroJunit4"),
-            RemoveMarkedLine("baselineprofile"),
-            RemoveMarkedLine("uiautomator"),
-            RemoveMarkedLine("espresso")
-        ))
+        state.onApplyRules(
+            VersionCatalogRules(
+                listOf(
+                    RemoveMarkedLine("benchmarkMacroJunit4"),
+                    RemoveMarkedLine("baselineprofile"),
+                    RemoveMarkedLine("uiautomator"),
+                    RemoveMarkedLine("espresso")
+                )
+            )
         )
     }
 
     companion object {
-        const val ID = "baseline-profile"
+        const val ID = "quality.startup.baselineprofile"
     }
 
 }

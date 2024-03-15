@@ -5,7 +5,7 @@ buildscript {
     }
     dependencies {
         classpath(libs.objectbox.plugin) // {objectbox}
-        classpath(libs.google.play.publisher) // {google-play-distribution}
+        classpath(libs.google.play.publisher) // {devops.distribution.google-play}
     }
 }
 
@@ -17,9 +17,9 @@ plugins {
     alias(libs.plugins.google.services) apply false // {google-services}
     alias(libs.plugins.android.test) apply false
     alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.android.baselineprofile) apply false // {baselineprofile}
+    alias(libs.plugins.android.baselineprofile) apply false
     alias(libs.plugins.firebase.appdistribution) apply false // {firebase-distribution}
-    alias(libs.plugins.firebase.crashlytics) apply false // {firebase-crashlytics}
+    alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.firebase.perf) apply false
     alias(libs.plugins.version.catalog.versions) apply true
     alias(libs.plugins.version.catalog.update) apply true

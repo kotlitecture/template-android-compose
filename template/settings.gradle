@@ -16,8 +16,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "template" // {projectName}
 
-include(":baselineprofile") // {baselineprofile}
 include(":app")
 include(":core:ui")
 include(":core:data")
 include(":core:testing")
+include(":baselineprofile")

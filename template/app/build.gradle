@@ -1,16 +1,16 @@
 apply from: "${project.rootDir}/gradle/android/application.gradle"
 apply plugin: "com.google.firebase.appdistribution" // {firebase-distribution}
 apply plugin: "com.google.firebase.firebase-perf"
-apply plugin: "com.google.firebase.crashlytics" // {firebase-crashlytics}
+apply plugin: "com.google.firebase.crashlytics"
 apply plugin: "com.google.gms.google-services" // {google-services}
-apply plugin: "androidx.baselineprofile" // {baselineprofile}
-apply plugin: "com.github.triplet.play" // {google-play-distribution}
+apply plugin: "androidx.baselineprofile"
+apply plugin: "com.github.triplet.play" // {devops.distribution.google-play}
 apply plugin: "io.objectbox" // {objectbox}
 
 dependencies {
     implementation platform(libs.firebase.bom)
-    implementation libs.firebase.analytics.ktx // {firebase-analytics}
-    implementation libs.firebase.crashlytics.ktx // {firebase-crashlytics}
+    implementation libs.firebase.analytics.ktx
+    implementation libs.firebase.crashlytics.ktx
     implementation libs.firebase.config.ktx // {firebase-config}
     implementation libs.firebase.perf
     implementation libs.androidx.startup // {startup-initializer}
@@ -25,7 +25,7 @@ dependencies {
     implementation project(":core:ui")
     implementation project(":core:data")
     testImplementation project(":core:testing")
-    baselineProfile project(':baselineprofile') // {baselineprofile}
+    baselineProfile project(':baselineprofile')
 }
 
 android {
@@ -101,17 +101,17 @@ android {
     }
 }
 
-// start {baselineprofile-config}
+// {quality.startup.baselineprofile.config}
 baselineProfile {
     automaticGenerationDuringBuild true
     saveInSrc true
 }
-// end {baselineprofile-config}
+// {quality.startup.baselineprofile.config}
 
-// start {google-play-distribution-config}
+// {devops.distribution.google-play.config}
 play {
     serviceAccountCredentials.set(file("assemble/google-play-publisher.json"))
     releaseStatus.set(com.github.triplet.gradle.androidpublisher.ReleaseStatus.DRAFT)
     track.set("internal")
 }
-// end {google-play-distribution-config}
+// {devops.distribution.google-play.config}

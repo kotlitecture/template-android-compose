@@ -4,7 +4,6 @@ import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.VersionCatalogRules
-import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.dataflow.analytics.facade.FacadeAnalyticsProcessor
@@ -23,21 +22,18 @@ class FirebaseAnalyticsProcessor : BaseFeatureProcessor() {
         FirebaseProcessor::class.java,
     )
 
-    override fun doApply(state: TemplateState) {
-        state.onApplyRules("app/build.gradle",
-            CleanupMarkedLine("{firebase-analytics}", true)
-        )
-    }
-
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("app/src/main/kotlin/app/datasource/analytics/AppAnalyticsSource.kt",
+        state.onApplyRules(
+            "app/src/main/kotlin/app/datasource/analytics/AppAnalyticsSource.kt",
             RemoveMarkedLine("FirebaseAnalyticsSource")
         )
-        state.onApplyRules("app/src/main/kotlin/app/datasource/analytics/firebase",
+        state.onApplyRules(
+            "app/src/main/kotlin/app/datasource/analytics/firebase",
             RemoveFile()
         )
-        state.onApplyRules("app/build.gradle",
-            RemoveMarkedLine("{firebase-analytics}", true)
+        state.onApplyRules(
+            "app/build.gradle",
+            RemoveMarkedLine("firebase.analytics", true)
         )
         state.onApplyRules(
             VersionCatalogRules(
