@@ -19,6 +19,9 @@ class OkHttpProcessor : BaseFeatureProcessor() {
     override fun doRemove(state: TemplateState) {
         state.onApplyRules("*HttpSource*", RemoveFile())
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("okhttp")))
+        state.onApplyRules("app/src/main/kotlin/app/datasource/config/AppConfigSource.kt",
+            RemoveMarkedLine("api_")
+        )
     }
 
     companion object {

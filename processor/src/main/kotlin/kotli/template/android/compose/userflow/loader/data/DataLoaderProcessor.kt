@@ -18,6 +18,9 @@ class DataLoaderProcessor : BaseFeatureProcessor() {
     override fun doRemove(state: TemplateState) {
         state.onApplyRules("*DataLoader*", RemoveFile())
         state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", RemoveMarkedLine("DataLoaderProvider"))
+        state.onApplyRules("app/src/main/kotlin/app/datasource/config/AppConfigSource.kt",
+            RemoveMarkedLine("ui_loading")
+        )
     }
 
     companion object {

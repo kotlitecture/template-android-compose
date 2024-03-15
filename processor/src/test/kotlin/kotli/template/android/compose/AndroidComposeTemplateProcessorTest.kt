@@ -6,7 +6,9 @@ import kotli.engine.DefaultTemplateRegistry
 import kotli.engine.generator.GradleProjectGenerator
 import kotli.engine.generator.PathOutputGenerator
 import kotli.engine.generator.ZipOutputGenerator
+import kotli.engine.model.Feature
 import kotli.engine.model.Layer
+import kotli.template.android.compose.userflow.loader.data.DataLoaderProcessor
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import java.io.ByteArrayOutputStream
@@ -57,7 +59,8 @@ class AndroidComposeTemplateProcessorTest {
                 id = UUID.randomUUID().toString(),
                 processorId = processor.getId(),
                 namespace = "my.app",
-                name = "app-android"
+                name = "app-android",
+                features = listOf(Feature(DataLoaderProcessor.ID))
             )
             val generator = PathOutputGenerator(buildPath(), registry)
             val gradleGenerator = GradleProjectGenerator(arrayOf("signingReport", "assembleDebug"), generator)
