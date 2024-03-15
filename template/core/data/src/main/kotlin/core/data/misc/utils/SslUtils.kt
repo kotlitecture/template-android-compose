@@ -1,6 +1,5 @@
 package core.data.misc.utils
 
-import okhttp3.OkHttpClient
 import java.security.cert.X509Certificate
 import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLContext
@@ -28,15 +27,8 @@ class SslUtils {
             }.getOrNull()
         }
 
-        private fun getHostnameVerifier(): HostnameVerifier = HostnameVerifier { _, _ -> true }
-        private fun getSocketFactory(): SSLSocketFactory? = trustAllSslContext?.socketFactory
-        private fun getTrustManager(): X509TrustManager = trustAllCerts
-
-        fun withSslConfig(builder: OkHttpClient.Builder): OkHttpClient.Builder {
-            val factory = getSocketFactory() ?: return builder
-            return builder
-                .sslSocketFactory(factory, getTrustManager())
-                .hostnameVerifier(getHostnameVerifier())
-        }
+        fun getHostnameVerifier(): HostnameVerifier = HostnameVerifier { _, _ -> true }
+        fun getSocketFactory(): SSLSocketFactory? = trustAllSslContext?.socketFactory
+        fun getTrustManager(): X509TrustManager = trustAllCerts
     }
 }

@@ -4,6 +4,7 @@ import kotli.engine.BaseFeatureProvider
 import kotli.engine.FeatureProcessor
 import kotli.engine.FeatureType
 import kotli.engine.model.FeatureTypes
+import kotli.template.android.compose.dataflow.http.okhttp.OkHttpProcessor
 
 class HttpProvider : BaseFeatureProvider() {
 
@@ -11,7 +12,7 @@ class HttpProvider : BaseFeatureProvider() {
     override fun getType(): FeatureType = FeatureTypes.DataFlow
 
     override fun createProcessors(): List<FeatureProcessor> = listOf(
-        HttpProcessor()
+        OkHttpProcessor()
     )
 
     companion object {

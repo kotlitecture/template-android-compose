@@ -111,7 +111,7 @@ class HttpSource(
         val logger = HttpLoggingInterceptor(Logger::debug)
             .also { it.setLevel(HttpLoggingInterceptor.Level.BODY) }
         interceptors.forEach(builder::addInterceptor)
-        return SslUtils.withSslConfig(builder)
+        return withSslConfig(builder)
             .readTimeout(timeout, TimeUnit.MILLISECONDS)
             .connectTimeout(timeout, TimeUnit.MILLISECONDS)
             .pingInterval(timeout, TimeUnit.MILLISECONDS)
@@ -125,6 +125,13 @@ class HttpSource(
             Logger.error(it, "[HttpSource] :: withRetry")
             !it.isCancellationException().also { delay(retryInterval) }
         }
+    }
+
+    private fun withSslConfig(builder: OkHttpClient.Builder): OkHttpClient.Builder {
+        val factory = SslUtils.getSocketFactory() ?: return builder
+        return builder
+            .sslSocketFactory(factory, SslUtils.getTrustManager())
+            .hostnameVerifier(SslUtils.getHostnameVerifier())
     }
 
 }

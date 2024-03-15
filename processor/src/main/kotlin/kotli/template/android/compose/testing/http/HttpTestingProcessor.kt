@@ -6,14 +6,14 @@ import kotli.engine.TemplateState
 import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveMarkedLine
-import kotli.template.android.compose.dataflow.http.HttpProcessor
+import kotli.template.android.compose.dataflow.http.okhttp.OkHttpProcessor
 
 class HttpTestingProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
-        HttpProcessor::class.java
+        OkHttpProcessor::class.java
     )
 
     override fun doApply(state: TemplateState) {
