@@ -25,6 +25,7 @@ internal class ProvidesHttpSource {
         return HttpSource(
             timeout = config.getApiTimeout(),
             retries = config.getApiRetryCount(),
+            // {testing.http.okhttp}
             interceptors = listOf(
                 ChuckerInterceptor.Builder(app)
                     .maxContentLength(1000)
@@ -37,6 +38,7 @@ internal class ProvidesHttpSource {
                     )
                     .build()
             )
+            // {testing.http.okhttp}
         )
     }
 
