@@ -1,5 +1,6 @@
-package app.userflow.loader
+package app.userflow.loader.data
 
+import app.datasource.config.AppConfigSource
 import core.ui.AppViewModel
 import core.ui.state.DataState
 import core.ui.state.StoreObject
@@ -13,10 +14,9 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
-class DataLoaderViewModel @Inject constructor() : AppViewModel() {
-
-    private val loadingTimeout = 30_000L
-    private val loadingDelay = 50L
+class DataLoaderViewModel @Inject constructor(
+    private val configSource: AppConfigSource
+) : AppViewModel() {
 
     val isLoadingStore = StoreObject(false)
 
@@ -27,10 +27,10 @@ class DataLoaderViewModel @Inject constructor() : AppViewModel() {
                 .map { it is DataState.Loading }
                 .distinctUntilChanged()
                 .collectLatest { loading ->
-                    delay(loadingDelay)
+                    delay(configSource.getUiLoadingDelay())
                     if (loading) {
                         isLoadingStore.set(true)
-                        delay(loadingTimeout)
+                        delay(configSource.getUiLoadingTimeout())
                         isLoadingStore.set(false)
                     } else {
                         isLoadingStore.set(false)

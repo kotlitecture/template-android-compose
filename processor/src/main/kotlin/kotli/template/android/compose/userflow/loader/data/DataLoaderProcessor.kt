@@ -1,14 +1,13 @@
-package kotli.template.android.compose.dataflow.http.okhttp
+package kotli.template.android.compose.userflow.loader.data
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
-import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.dataflow.config.basic.BasicConfigProcessor
 
-class OkHttpProcessor : BaseFeatureProcessor() {
+class DataLoaderProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
 
@@ -17,12 +16,12 @@ class OkHttpProcessor : BaseFeatureProcessor() {
     )
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("*HttpSource*", RemoveFile())
-        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("okhttp")))
+        state.onApplyRules("*DataLoader*", RemoveFile())
+        state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", RemoveMarkedLine("DataLoaderProvider"))
     }
 
     companion object {
-        const val ID = "dataflow.http.okhttp"
+        const val ID = "userflow.loader.data"
     }
 
 }

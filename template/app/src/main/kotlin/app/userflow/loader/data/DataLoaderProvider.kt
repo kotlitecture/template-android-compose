@@ -1,4 +1,4 @@
-package app.userflow.loader
+package app.userflow.loader.data
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.size
