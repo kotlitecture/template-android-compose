@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.viewinterop.AndroidView
 import app.provideHiltViewModel
 import core.ui.misc.DisplayUnit
-import org.tinylog.Logger
 
 @SuppressLint("JavascriptInterface")
 @Composable
@@ -79,7 +78,6 @@ fun WebToNativeLayout(
                         }
 
                         override fun onPageFinished(view: WebView?, url: String) {
-                            Logger.debug("onPageFinished :: {}", url)
                             val height = DisplayUnit.PX.toDp(webViewHeight.value).toInt()
                             evaluateJavascript(
                                 """
@@ -104,28 +102,23 @@ fun WebToNativeLayout(
                             view: WebView?,
                             request: WebResourceRequest
                         ): Boolean {
-                            Logger.debug("shouldOverrideUrlLoading :: {}", request.url)
                             return shouldOverrideUrlLoading(request)
                         }
 
                         override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-                            Logger.debug("onReceivedError :: {}", error?.description)
                             super.onReceivedError(view, request, error)
                         }
 
                         override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
-                            Logger.debug("onReceivedSslError :: {}", error?.url)
                             super.onReceivedSslError(view, handler, error)
                         }
 
                         override fun onReceivedHttpError(view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) {
-                            Logger.debug("onReceivedHttpError :: {}", errorResponse?.reasonPhrase)
                             super.onReceivedHttpError(view, request, errorResponse)
                         }
                     }
                     webChromeClient = object : WebChromeClient() {
                         override fun onConsoleMessage(consoleMessage: ConsoleMessage): Boolean {
-                            Logger.debug("onConsoleMessage :: {}", consoleMessage.message())
                             return super.onConsoleMessage(consoleMessage)
                         }
                     }

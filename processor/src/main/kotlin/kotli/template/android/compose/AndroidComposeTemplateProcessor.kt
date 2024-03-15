@@ -37,10 +37,11 @@ import kotli.template.android.compose.ui.screen.ScreenProvider
 import kotli.template.android.compose.unspecified.UnspecifiedProvider
 import kotli.template.android.compose.userflow.ads.AdsProvider
 import kotli.template.android.compose.userflow.auth.AuthProvider
+import kotli.template.android.compose.userflow.internet.InternetProvider
 import kotli.template.android.compose.userflow.kyc.KycProvider
 import kotli.template.android.compose.userflow.onboarding.OnboardingProvider
 import kotli.template.android.compose.userflow.payments.PaymentsProvider
-import kotli.template.android.compose.userflow.pincode.PincodeProvider
+import kotli.template.android.compose.userflow.passcode.PasscodeProvider
 import kotli.template.android.compose.userflow.review.ReviewProvider
 import kotli.template.android.compose.userflow.support.SupportProvider
 import kotli.template.android.compose.userflow.update.UpdateProvider
@@ -95,9 +96,10 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         AdsProvider(),
         AuthProvider(),
         KycProvider(),
+        InternetProvider(),
         OnboardingProvider(),
         PaymentsProvider(),
-        PincodeProvider(),
+        PasscodeProvider(),
         ReviewProvider(),
         UpdateProvider(),
         SupportProvider(),

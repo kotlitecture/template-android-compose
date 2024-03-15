@@ -1,4 +1,4 @@
-package app.userflow.internet
+package app.userflow.internet.no
 
 import core.data.datasource.network.NetworkSource
 import core.ui.AppViewModel

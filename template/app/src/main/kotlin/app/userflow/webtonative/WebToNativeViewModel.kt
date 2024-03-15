@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.tinylog.Logger
 import java.util.concurrent.ConcurrentLinkedQueue
 import javax.inject.Inject
 
@@ -48,7 +47,6 @@ class WebToNativeViewModel @Inject constructor(
 
     @JavascriptInterface
     fun onSend(commandJson: String) {
-        Logger.debug("onSend :: {}", commandJson)
         val command = Json.decodeFromString<WebCommand>(commandJson)
         commandsFromWeb.add(command)
         commandsToWeb.add(command)
@@ -59,7 +57,6 @@ class WebToNativeViewModel @Inject constructor(
         launchAsync("commandsFromWeb") {
             while (true) {
                 val command = commandsFromWeb.poll() ?: break
-                Logger.debug("commandsFromWeb :: {}", command)
             }
         }
         launchMain("commandsToWeb") {
@@ -68,9 +65,8 @@ class WebToNativeViewModel @Inject constructor(
                 val webView = webViewStore.get() ?: break
                 val command = commandsToWeb.poll() ?: break
                 val commandJson = Json.encodeToString(command)
-                Logger.debug("commandsToWeb :: {}", command)
                 webView.evaluateJavascript("javascript:${WebToNative.OnReceive}('${commandJson}')") {
-                    Logger.debug("commandsToWeb evaluated :: {} -> {}", command.id, it)
+                    // log
                 }
             }
         }

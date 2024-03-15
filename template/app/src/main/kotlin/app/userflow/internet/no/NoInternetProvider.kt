@@ -1,4 +1,4 @@
-package app.userflow.internet
+package app.userflow.internet.no
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn

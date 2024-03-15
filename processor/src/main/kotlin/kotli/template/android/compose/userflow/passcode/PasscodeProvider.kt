@@ -1,11 +1,11 @@
-package kotli.template.android.compose.userflow.kyc
+package kotli.template.android.compose.userflow.passcode
 
 import kotli.engine.FeatureProcessor
 import kotli.template.android.compose.userflow.BaseUserFlowProvider
 
-class KycProvider : BaseUserFlowProvider() {
+class PasscodeProvider : BaseUserFlowProvider() {
 
-    override fun getId(): String = "userflow.kyc"
+    override fun getId(): String = "userflow.passcode"
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
 
 }

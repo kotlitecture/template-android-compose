@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
-import app.userflow.internet.NoInternetProvider
+import app.userflow.internet.no.NoInternetProvider
 import app.userflow.loader.DataLoaderProvider
 import app.userflow.review.google.GoogleReviewProvider
 import app.userflow.template.TemplateDestination

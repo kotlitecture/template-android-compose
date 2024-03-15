@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
-import org.tinylog.Logger
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,13 +29,10 @@ class DataLoaderViewModel @Inject constructor() : AppViewModel() {
                 .collectLatest { loading ->
                     delay(loadingDelay)
                     if (loading) {
-                        Logger.debug("loading :: state = {}", true)
                         isLoadingStore.set(true)
                         delay(loadingTimeout)
-                        Logger.debug("loading :: state timeout = {}", false)
                         isLoadingStore.set(false)
                     } else {
-                        Logger.debug("loading :: state = {}", false)
                         isLoadingStore.set(false)
                     }
                 }
