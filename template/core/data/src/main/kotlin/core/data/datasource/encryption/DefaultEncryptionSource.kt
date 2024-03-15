@@ -1,6 +1,6 @@
 package core.data.datasource.encryption
 
-import core.data.datasource.storage.EncryptedKeyValueSource
+import core.data.datasource.storage.keyvalue.EncryptedKeyValueSource
 import core.data.misc.utils.EncryptUtils
 
 class DefaultEncryptionSource(private val keyValueSource: EncryptedKeyValueSource) : EncryptionSource {

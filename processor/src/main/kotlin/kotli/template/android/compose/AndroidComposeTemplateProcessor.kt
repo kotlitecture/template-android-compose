@@ -8,6 +8,7 @@ import kotli.engine.model.LayerTypes
 import kotli.engine.template.rule.ReplaceMarkedText
 import kotli.template.android.compose.dataflow.analytics.AnalyticsProvider
 import kotli.template.android.compose.dataflow.api.ApiProvider
+import kotli.template.android.compose.dataflow.biometric.BiometricProvider
 import kotli.template.android.compose.dataflow.config.ConfigProvider
 import kotli.template.android.compose.dataflow.http.HttpProvider
 import kotli.template.android.compose.dataflow.messaging.MessagingProvider
@@ -49,17 +50,17 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         // unspecified
         UnspecifiedProvider(),
 
-        // appearance
+        // design
         L10NProvider(),
         NavigationProvider(),
         SplashProvider(),
         ThemeProvider(),
 
-        // build
+        // devops
         DistributionProvider(),
         I18NProvider(),
 
-        // datasource
+        // dataflow
         AnalyticsProvider(),
         ApiProvider(),
         ConfigProvider(),
@@ -67,6 +68,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         MessagingProvider(),
         StorageProvider(),
         WorkProvider(),
+        BiometricProvider(),
 
         // quality
         CrashesProvider(),
@@ -77,7 +79,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         PreviewProvider(),
         ScreenProvider(),
 
-        // workflow
+        // userflow
         AdsProvider(),
         AuthProvider(),
         KycProvider(),
@@ -89,7 +91,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         SupportProvider(),
         WebToNativeProvider(),
 
-        // Testing
+        // testing
         HttpTestingProvider(),
         LoadTestsProvider(),
         LoggingProvider(),

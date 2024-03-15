@@ -1,3 +1,3 @@
-package core.data.datasource.storage
+package core.data.datasource.storage.keyvalue
 
 interface EncryptedKeyValueSource : KeyValueSource

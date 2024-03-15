@@ -1,4 +1,4 @@
-package core.data.datasource.storage
+package core.data.datasource.storage.keyvalue
 
 import android.content.SharedPreferences
 import core.data.misc.utils.GsonUtils

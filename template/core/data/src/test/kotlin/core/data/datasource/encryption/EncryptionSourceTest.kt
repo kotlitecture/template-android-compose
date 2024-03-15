@@ -1,6 +1,6 @@
 package core.data.datasource.encryption
 
-import core.data.datasource.storage.AndroidEncryptedKeyValueSource
+import core.data.datasource.storage.keyvalue.AndroidEncryptedKeyValueSource
 import core.testing.BaseAndroidUnitTest
 import org.junit.Assert
 import org.robolectric.RuntimeEnvironment

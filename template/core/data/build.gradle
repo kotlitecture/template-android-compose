@@ -5,7 +5,8 @@ android {
 }
 
 dependencies {
-    api libs.bundles.androidData
     api libs.bundles.kotlinEssentials
+    implementation libs.androidx.biometric // {dataflow.biometric.basic}
+    implementation libs.androidx.security.crypto // {dataflow.storage.encrypted-key-value}
     testImplementation project(":core:testing")
 }

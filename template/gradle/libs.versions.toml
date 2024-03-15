@@ -210,10 +210,6 @@ androidCoroutines = [
     "kotlin-coroutines-android",
     "kotlin-datetime",
 ]
-androidData = [
-    "androidx-biometric",
-    "androidx-security-crypto",
-]
 androidTest = [
     "androidx-compose-ui-test",
     "androidx-compose-ui-test-manifest",
