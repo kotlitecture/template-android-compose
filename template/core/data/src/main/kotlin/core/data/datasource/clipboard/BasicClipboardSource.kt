@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.conflate
 
-class AndroidClipboardSource(private val app: Application) : ClipboardSource {
+class BasicClipboardSource(private val app: Application) : ClipboardSource {
 
     private val changes: Flow<String?> = callbackFlow {
         val clipboardManager = app.getSystemService<ClipboardManager>()

@@ -17,7 +17,7 @@ import kotlinx.coroutines.withContext
 import java.net.Inet4Address
 import java.net.NetworkInterface
 
-class AndroidNetworkSource(private val app: Application) : NetworkSource {
+class BasicNetworkSource(private val app: Application) : NetworkSource {
 
     private val isOnline: Flow<Boolean> = callbackFlow {
         val connectivityManager = app.getSystemService<ConnectivityManager>()

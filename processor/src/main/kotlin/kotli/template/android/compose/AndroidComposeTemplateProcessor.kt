@@ -8,10 +8,13 @@ import kotli.engine.model.LayerTypes
 import kotli.engine.template.rule.ReplaceMarkedText
 import kotli.template.android.compose.dataflow.analytics.AnalyticsProvider
 import kotli.template.android.compose.dataflow.api.ApiProvider
+import kotli.template.android.compose.dataflow.biometric.BiometricProvider
+import kotli.template.android.compose.dataflow.clipboard.ClipboardProvider
 import kotli.template.android.compose.dataflow.encryption.EncryptionProvider
 import kotli.template.android.compose.dataflow.config.ConfigProvider
 import kotli.template.android.compose.dataflow.http.HttpProvider
 import kotli.template.android.compose.dataflow.messaging.MessagingProvider
+import kotli.template.android.compose.dataflow.network.NetworkProvider
 import kotli.template.android.compose.dataflow.storage.StorageProvider
 import kotli.template.android.compose.dataflow.work.WorkProvider
 import kotli.template.android.compose.design.l10n.L10NProvider
@@ -65,10 +68,12 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         ApiProvider(),
         ConfigProvider(),
         HttpProvider(),
+        NetworkProvider(),
         MessagingProvider(),
         StorageProvider(),
+        ClipboardProvider(),
         WorkProvider(),
-        EncryptionProvider(),
+        BiometricProvider(),
         EncryptionProvider(),
 
         // quality
