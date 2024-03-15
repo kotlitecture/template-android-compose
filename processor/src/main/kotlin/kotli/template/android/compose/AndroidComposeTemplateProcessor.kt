@@ -12,8 +12,8 @@ import kotli.template.android.compose.dataflow.biometric.BiometricProvider
 import kotli.template.android.compose.dataflow.cache.CacheProvider
 import kotli.template.android.compose.dataflow.clipboard.ClipboardProvider
 import kotli.template.android.compose.dataflow.common.CommonDataFlowProvider
-import kotli.template.android.compose.dataflow.encryption.EncryptionProvider
 import kotli.template.android.compose.dataflow.config.ConfigProvider
+import kotli.template.android.compose.dataflow.encryption.EncryptionProvider
 import kotli.template.android.compose.dataflow.http.HttpProvider
 import kotli.template.android.compose.dataflow.messaging.MessagingProvider
 import kotli.template.android.compose.dataflow.network.NetworkProvider
@@ -22,7 +22,6 @@ import kotli.template.android.compose.dataflow.storage.StorageProvider
 import kotli.template.android.compose.dataflow.work.WorkProvider
 import kotli.template.android.compose.design.l10n.L10NProvider
 import kotli.template.android.compose.design.navigation.NavigationProvider
-import kotli.template.android.compose.design.splash.SplashProvider
 import kotli.template.android.compose.design.theme.ThemeProvider
 import kotli.template.android.compose.devops.distribution.DistributionProvider
 import kotli.template.android.compose.devops.i18n.I18NProvider
@@ -41,9 +40,10 @@ import kotli.template.android.compose.userflow.internet.InternetProvider
 import kotli.template.android.compose.userflow.kyc.KycProvider
 import kotli.template.android.compose.userflow.loader.LoaderProvider
 import kotli.template.android.compose.userflow.onboarding.OnboardingProvider
-import kotli.template.android.compose.userflow.payments.PaymentsProvider
 import kotli.template.android.compose.userflow.passcode.PasscodeProvider
+import kotli.template.android.compose.userflow.payments.PaymentsProvider
 import kotli.template.android.compose.userflow.review.ReviewProvider
+import kotli.template.android.compose.userflow.splash.SplashProvider
 import kotli.template.android.compose.userflow.support.SupportProvider
 import kotli.template.android.compose.userflow.update.UpdateProvider
 import kotli.template.android.compose.userflow.webtonative.WebToNativeProvider
@@ -94,6 +94,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         ScreenProvider(),
 
         // userflow
+        SplashProvider(),
         AdsProvider(),
         AuthProvider(),
         KycProvider(),

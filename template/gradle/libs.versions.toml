@@ -192,7 +192,6 @@ androidCommon = [
     "androidx-compose-ui-tooling-preview",
     "androidx-compose-ui-util",
     "androidx-core-ktx",
-    "androidx-core-splashscreen",
     "androidx-lifecycle-livedata-ktx",
     "androidx-lifecycle-runtime-compose",
     "androidx-lifecycle-viewmodel-compose",

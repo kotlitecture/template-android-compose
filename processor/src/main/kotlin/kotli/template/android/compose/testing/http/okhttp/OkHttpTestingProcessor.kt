@@ -5,6 +5,7 @@ import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedBlock
+import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -20,6 +21,10 @@ class OkHttpTestingProcessor : BaseFeatureProcessor() {
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules(
+            "app/build.gradle",
+            CleanupMarkedLine("{testing.http.okhttp}")
+        )
+        state.onApplyRules(
             "app/src/main/kotlin/app/di/ProvidesHttpSource.kt",
             CleanupMarkedBlock("{testing.http.okhttp}")
         )
@@ -28,7 +33,7 @@ class OkHttpTestingProcessor : BaseFeatureProcessor() {
     override fun doRemove(state: TemplateState) {
         state.onApplyRules(
             "app/build.gradle",
-            RemoveMarkedLine("chucker")
+            RemoveMarkedLine("{testing.http.okhttp}")
         )
         state.onApplyRules(
             VersionCatalogRules(

@@ -54,9 +54,11 @@ private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
     )
 }
 
+// {userflow.splash.basic}
 @Composable
 private fun SplashBlock(splashScreen: SplashScreen, viewModel: AppActivityViewModel) {
     splashScreen.setKeepOnScreenCondition {
         viewModel.themeState.dataStore.get() == null
     }
 }
+// {userflow.splash.basic}
