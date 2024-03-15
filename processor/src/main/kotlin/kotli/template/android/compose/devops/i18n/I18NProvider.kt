@@ -7,9 +7,9 @@ import kotli.engine.model.FeatureTypes
 
 class I18NProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = "i18n"
+    override fun getId(): String = "devops.i18n"
     override fun isMultiple(): Boolean = false
     override fun getType(): FeatureType = FeatureTypes.DevOps
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
+
 }

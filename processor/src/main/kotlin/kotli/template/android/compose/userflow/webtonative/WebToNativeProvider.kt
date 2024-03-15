@@ -7,10 +7,10 @@ import kotli.engine.model.FeatureTypes
 
 class WebToNativeProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = "webtonative"
+    override fun getId(): String = "userflow.webtonative"
     override fun getType(): FeatureType = FeatureTypes.UserFlow
-
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         WebToNativeProcessor()
     )
+
 }

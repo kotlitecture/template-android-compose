@@ -7,8 +7,7 @@ import kotli.engine.model.FeatureTypes
 
 class SplashProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = "splash"
+    override fun getId(): String = "design.splash"
     override fun getType(): FeatureType = FeatureTypes.Design
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
 }

@@ -8,15 +8,11 @@ import kotli.template.android.compose.quality.performance.firebase.FirebasePerfo
 
 class PerformanceProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
+    override fun getId(): String = "quality.performance"
     override fun isMultiple(): Boolean = true
     override fun getType(): FeatureType = FeatureTypes.Quality
-
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         FirebasePerformanceProcessor()
     )
 
-    companion object {
-        const val ID = "performance"
-    }
 }

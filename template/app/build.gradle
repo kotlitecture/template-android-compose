@@ -1,22 +1,22 @@
 apply from: "${project.rootDir}/gradle/android/application.gradle"
-apply plugin: "com.google.firebase.appdistribution" // {firebase-distribution}
-apply plugin: "com.google.firebase.firebase-perf"
-apply plugin: "com.google.firebase.crashlytics"
+apply plugin: "com.google.firebase.appdistribution" // {devops.distribution.firebase}
+apply plugin: "com.google.firebase.firebase-perf" // {quality.performance.firebase}
+apply plugin: "com.google.firebase.crashlytics" // {quality.crashes.firebase}
 apply plugin: "com.google.gms.google-services" // {google-services}
-apply plugin: "androidx.baselineprofile"
+apply plugin: "androidx.baselineprofile" // {quality.startup.baselineprofile}
 apply plugin: "com.github.triplet.play" // {devops.distribution.google-play}
-apply plugin: "io.objectbox" // {objectbox}
+apply plugin: "io.objectbox" // {dataflow.storage.objectbox}
 
 dependencies {
-    implementation platform(libs.firebase.bom)
-    implementation libs.firebase.analytics.ktx
-    implementation libs.firebase.crashlytics.ktx
-    implementation libs.firebase.config.ktx // {firebase-config}
-    implementation libs.firebase.perf
+    implementation platform(libs.firebase.bom) // {firebase}
+    implementation libs.firebase.analytics.ktx // {dataflow.analytics.firebase}
+    implementation libs.firebase.crashlytics.ktx // {quality.crashes.firebase}
+    implementation libs.firebase.config.ktx // {dataflow.config.firebase}
+    implementation libs.firebase.perf // {quality.performance.firebase}
     implementation libs.androidx.startup // {startup-initializer}
     implementation libs.androidx.webkit // {userflow.webtonative}
-    implementation libs.google.app.update // {userflow.google-play-update}
-    implementation libs.google.app.review // {userflow.google-play-review}
+    implementation libs.google.app.update // {userflow.update.market}
+    implementation libs.google.app.review // {userflow.review.market}
     implementation libs.bundles.androidCoil // {ui.preview.coil}
     debugImplementation libs.chucker
     stagingImplementation libs.chucker
@@ -25,7 +25,7 @@ dependencies {
     implementation project(":core:ui")
     implementation project(":core:data")
     testImplementation project(":core:testing")
-    baselineProfile project(':baselineprofile')
+    baselineProfile project(':baselineprofile') // {quality.startup.baselineprofile}
 }
 
 android {
@@ -60,13 +60,13 @@ android {
             applicationIdSuffix = ".debug"
 
             debuggable true
-            // start {firebase-distribution-debug}
+            //{devops.distribution.firebase.debug}
             firebaseAppDistribution {
                 artifactType = "APK"
                 groups = "feature-developers"
                 serviceCredentialsFile = "appDistributionCredentials.json"
             }
-            // end {firebase-distribution-debug}
+            // {devops.distribution.firebase.debug}
         }
 
         register("staging") {
@@ -80,13 +80,13 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            // start {firebase-distribution-staging}
+            // {devops.distribution.firebase.staging}
             firebaseAppDistribution {
                 artifactType = "APK"
                 groups = "feature-testers"
                 serviceCredentialsFile = "appDistributionCredentials.json"
             }
-            // end {firebase-distribution-staging}
+            // {devops.distribution.firebase.staging}
         }
 
         named("release") {

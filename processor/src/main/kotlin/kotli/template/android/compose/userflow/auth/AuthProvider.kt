@@ -7,8 +7,8 @@ import kotli.engine.model.FeatureTypes
 
 class AuthProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = "auth"
+    override fun getId(): String = "userflow.auth"
     override fun getType(): FeatureType = FeatureTypes.UserFlow
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
+
 }

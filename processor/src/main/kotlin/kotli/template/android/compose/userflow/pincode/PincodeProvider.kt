@@ -7,9 +7,8 @@ import kotli.engine.model.FeatureTypes
 
 class PincodeProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = "pincode"
-
+    override fun getId(): String = "userflow.pincode"
     override fun getType(): FeatureType = FeatureTypes.UserFlow
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
+
 }

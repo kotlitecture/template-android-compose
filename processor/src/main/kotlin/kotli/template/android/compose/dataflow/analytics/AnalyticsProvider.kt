@@ -9,16 +9,11 @@ import kotli.template.android.compose.dataflow.analytics.firebase.FirebaseAnalyt
 
 class AnalyticsProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
+    override fun getId(): String = "dataflow.analytics"
     override fun isMultiple(): Boolean = true
     override fun getType(): FeatureType = FeatureTypes.DataFlow
-
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         FacadeAnalyticsProcessor(),
         FirebaseAnalyticsProcessor()
     )
-
-    companion object {
-        const val ID = "analytics"
-    }
 }

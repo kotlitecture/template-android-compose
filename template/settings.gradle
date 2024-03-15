@@ -20,4 +20,4 @@ include(":app")
 include(":core:ui")
 include(":core:data")
 include(":core:testing")
-include(":baselineprofile")
+include(":baselineprofile") // {quality.startup.baselineprofile}

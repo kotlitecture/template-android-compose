@@ -19,7 +19,7 @@ class FirebaseProcessor : BaseFeatureProcessor() {
     override fun doRemove(state: TemplateState) {
         state.onApplyRules(
             "app/build.gradle",
-            RemoveMarkedLine("firebase.bom")
+            RemoveMarkedLine("{firebase}")
         )
         state.onApplyRules(
             VersionCatalogRules(

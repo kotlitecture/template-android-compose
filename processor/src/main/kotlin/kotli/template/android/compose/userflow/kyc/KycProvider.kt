@@ -7,8 +7,8 @@ import kotli.engine.model.FeatureTypes
 
 class KycProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = "kyc"
+    override fun getId(): String = "userflow.kyc"
     override fun getType(): FeatureType = FeatureTypes.UserFlow
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
+
 }

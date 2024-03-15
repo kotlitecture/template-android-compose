@@ -7,8 +7,7 @@ import kotli.engine.model.FeatureTypes
 
 class L10NProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = "l10n_flow"
+    override fun getId(): String = "design.l10n"
     override fun getType(): FeatureType = FeatureTypes.Design
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
 }

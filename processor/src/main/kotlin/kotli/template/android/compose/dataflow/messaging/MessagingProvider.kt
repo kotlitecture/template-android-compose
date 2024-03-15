@@ -7,12 +7,8 @@ import kotli.engine.model.FeatureTypes
 
 class MessagingProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
+    override fun getId(): String = "dataflow.messaging"
     override fun getType(): FeatureType = FeatureTypes.DataFlow
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
 
-    companion object {
-        const val ID = "messaging"
-    }
 }

@@ -8,17 +8,21 @@ import kotli.engine.template.rule.RemoveMarkedLine
 
 class ObjectBoxProcessor : BaseFeatureProcessor() {
 
-    override fun getId(): String = "dataflow.objectbox"
+    override fun getId(): String = ID
 
     override fun doApply(state: TemplateState) {
-        state.onApplyRules("build.gradle", CleanupMarkedLine("{objectbox}"))
-        state.onApplyRules("app/build.gradle", CleanupMarkedLine("{objectbox}"))
+        state.onApplyRules("build.gradle", CleanupMarkedLine("{dataflow.storage.objectbox}"))
+        state.onApplyRules("app/build.gradle", CleanupMarkedLine("{dataflow.storage.objectbox}"))
     }
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("build.gradle", RemoveMarkedLine("{objectbox}"))
-        state.onApplyRules("app/build.gradle", RemoveMarkedLine("{objectbox}"))
+        state.onApplyRules("build.gradle", RemoveMarkedLine("{dataflow.storage.objectbox}"))
+        state.onApplyRules("app/build.gradle", RemoveMarkedLine("{dataflow.storage.objectbox}"))
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("objectbox")))
+    }
+
+    companion object {
+        const val ID = "dataflow.storage.objectbox"
     }
 
 }

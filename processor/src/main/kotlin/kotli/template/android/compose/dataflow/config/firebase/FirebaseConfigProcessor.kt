@@ -23,7 +23,7 @@ class FirebaseConfigProcessor : BaseFeatureProcessor() {
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules("app/build.gradle",
-            CleanupMarkedLine("{firebase-config}", true)
+            CleanupMarkedLine("{dataflow.config.firebase}", true)
         )
     }
 
@@ -35,7 +35,7 @@ class FirebaseConfigProcessor : BaseFeatureProcessor() {
             RemoveFile()
         )
         state.onApplyRules("app/build.gradle",
-            RemoveMarkedLine("{firebase-config}", true)
+            RemoveMarkedLine("{dataflow.config.firebase}", true)
         )
         state.onApplyRules(
             VersionCatalogRules(

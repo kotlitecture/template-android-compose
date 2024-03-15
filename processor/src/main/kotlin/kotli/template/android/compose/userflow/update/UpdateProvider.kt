@@ -8,14 +8,10 @@ import kotli.template.android.compose.userflow.update.market.GooglePlayUpdatePro
 
 class UpdateProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
+    override fun getId(): String = "userflow.update"
     override fun getType(): FeatureType = FeatureTypes.UserFlow
-
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         GooglePlayUpdateProcessor()
     )
 
-    companion object {
-        const val ID = "update"
-    }
 }

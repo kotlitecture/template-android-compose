@@ -7,8 +7,8 @@ import kotli.engine.model.FeatureTypes
 
 class OnboardingProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = "onboarding"
+    override fun getId(): String = "userflow.onboarding"
     override fun getType(): FeatureType = FeatureTypes.UserFlow
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
+
 }

@@ -7,13 +7,9 @@ import kotli.engine.model.FeatureTypes
 
 class LoggingProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
+    override fun getId(): String = "testing.logging"
     override fun isMultiple(): Boolean = false
     override fun getType(): FeatureType = FeatureTypes.Testing
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
 
-    companion object {
-        const val ID = "logging"
-    }
 }

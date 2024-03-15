@@ -12,18 +12,18 @@ class GooglePlayReviewProcessor : BaseFeatureProcessor() {
     override fun getId(): String = ID
 
     override fun doApply(state: TemplateState) {
-        state.onApplyRules("app/build.gradle", CleanupMarkedLine("userflow.google-play-review"))
+        state.onApplyRules("app/build.gradle", CleanupMarkedLine("{userflow.review.market}"))
     }
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("app/build.gradle", RemoveMarkedLine("{userflow.google-play-review}"))
+        state.onApplyRules("app/build.gradle", RemoveMarkedLine("{userflow.review.market}"))
         state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", RemoveMarkedLine("GooglePlayReview"))
         state.onApplyRules("app/src/main/kotlin/app/userflow/review/googleplay", RemoveFile())
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("googleAppReview")))
     }
 
     companion object {
-        const val ID = "userflow.google-play-review"
+        const val ID = "userflow.review.market"
     }
 
 }

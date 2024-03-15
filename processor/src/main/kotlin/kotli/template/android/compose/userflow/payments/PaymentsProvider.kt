@@ -7,8 +7,8 @@ import kotli.engine.model.FeatureTypes
 
 class PaymentsProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = "payments"
+    override fun getId(): String = "userflow.payments"
     override fun getType(): FeatureType = FeatureTypes.UserFlow
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
+
 }

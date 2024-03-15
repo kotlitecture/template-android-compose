@@ -7,12 +7,8 @@ import kotli.engine.model.FeatureTypes
 
 class ApiProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
+    override fun getId(): String = "dataflow.api"
     override fun getType(): FeatureType = FeatureTypes.DataFlow
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
 
-    companion object {
-        const val ID = "api"
-    }
 }

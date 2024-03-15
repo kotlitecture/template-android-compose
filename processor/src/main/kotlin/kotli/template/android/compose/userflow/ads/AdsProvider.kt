@@ -7,9 +7,9 @@ import kotli.engine.model.FeatureTypes
 
 class AdsProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = "ads"
+    override fun getId(): String = "userflow.ads"
     override fun isMultiple(): Boolean = true
     override fun getType(): FeatureType = FeatureTypes.UserFlow
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
+
 }

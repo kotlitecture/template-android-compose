@@ -12,18 +12,18 @@ class GooglePlayUpdateProcessor : BaseFeatureProcessor() {
     override fun getId(): String = ID
 
     override fun doApply(state: TemplateState) {
-        state.onApplyRules("app/build.gradle", CleanupMarkedLine("userflow.google-play-update"))
+        state.onApplyRules("app/build.gradle", CleanupMarkedLine("userflow.update.market"))
     }
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("app/build.gradle", RemoveMarkedLine("{userflow.google-play-update}"))
+        state.onApplyRules("app/build.gradle", RemoveMarkedLine("{userflow.update.market}"))
         state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", RemoveMarkedLine("GooglePlayUpdate"))
         state.onApplyRules("app/src/main/kotlin/app/userflow/update/googleplay", RemoveFile())
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("googleAppUpdate")))
     }
 
     companion object {
-        const val ID = "userflow.google-play-update"
+        const val ID = "userflow.update.market"
     }
 
 }

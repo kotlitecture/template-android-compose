@@ -10,17 +10,13 @@ import kotli.template.android.compose.unspecified.startup.StartupInitializerProc
 
 class UnspecifiedProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
+    override fun getId(): String = "unspecified"
     override fun isMultiple(): Boolean = true
     override fun getType(): FeatureType = FeatureTypes.Unspecified
-
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         GoogleServicesProcessor(),
         FirebaseProcessor(),
         StartupInitializerProcessor()
     )
 
-    companion object {
-        const val ID = "unspecified"
-    }
 }

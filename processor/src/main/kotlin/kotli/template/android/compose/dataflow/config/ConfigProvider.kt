@@ -9,15 +9,10 @@ import kotli.template.android.compose.dataflow.config.firebase.FirebaseConfigPro
 
 class ConfigProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
+    override fun getId(): String = "dataflow.config"
     override fun getType(): FeatureType = FeatureTypes.DataFlow
-
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         FacadeConfigProcessor(),
         FirebaseConfigProcessor()
     )
-
-    companion object {
-        const val ID = "config"
-    }
 }

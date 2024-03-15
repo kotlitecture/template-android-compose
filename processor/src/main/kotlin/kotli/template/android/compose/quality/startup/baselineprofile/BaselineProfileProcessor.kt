@@ -19,15 +19,16 @@ class BaselineProfileProcessor : BaseFeatureProcessor() {
     override fun doApply(state: TemplateState) {
         state.onApplyRules(
             "settings.gradle",
-            CleanupMarkedLine("baselineprofile")
+            CleanupMarkedLine("{quality.startup.baselineprofile}")
         )
         state.onApplyRules(
             "build.gradle",
-            CleanupMarkedLine("baselineprofile")
+            CleanupMarkedLine("{quality.startup.baselineprofile}")
         )
         state.onApplyRules(
             "app/build.gradle",
-            CleanupMarkedBlock("{quality.startup.baselineprofile.config}")
+            CleanupMarkedBlock("{quality.startup.baselineprofile.config}"),
+            CleanupMarkedLine("{quality.startup.baselineprofile}"),
         )
         state.onApplyRules(
             "baselineprofile/src/main/java/app/baselineprofile/BaselineProfileGenerator.kt",
@@ -38,16 +39,16 @@ class BaselineProfileProcessor : BaseFeatureProcessor() {
     override fun doRemove(state: TemplateState) {
         state.onApplyRules(
             "settings.gradle",
-            RemoveMarkedLine("baselineprofile")
+            RemoveMarkedLine("{quality.startup.baselineprofile}")
         )
         state.onApplyRules(
             "build.gradle",
-            RemoveMarkedLine("baselineprofile")
+            RemoveMarkedLine("{quality.startup.baselineprofile}")
         )
         state.onApplyRules(
             "app/build.gradle",
             RemoveMarkedBlock("{quality.startup.baselineprofile.config}"),
-            RemoveMarkedLine("baselineprofile"),
+            RemoveMarkedLine("{quality.startup.baselineprofile}"),
         )
         state.onApplyRules(
             "baselineprofile",

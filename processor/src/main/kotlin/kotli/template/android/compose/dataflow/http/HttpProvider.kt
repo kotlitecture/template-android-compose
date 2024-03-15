@@ -8,14 +8,9 @@ import kotli.template.android.compose.dataflow.http.okhttp.OkHttpProcessor
 
 class HttpProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
+    override fun getId(): String = "dataflow.http"
     override fun getType(): FeatureType = FeatureTypes.DataFlow
-
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         OkHttpProcessor()
     )
-
-    companion object {
-        const val ID = "http"
-    }
 }

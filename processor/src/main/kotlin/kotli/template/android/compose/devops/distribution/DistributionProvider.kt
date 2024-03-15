@@ -9,18 +9,12 @@ import kotli.template.android.compose.devops.distribution.googleplay.GooglePlayD
 
 class DistributionProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
-
+    override fun getId(): String = "devops.distribution"
     override fun isMultiple(): Boolean = true
-
     override fun getType(): FeatureType = FeatureTypes.DevOps
-
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         FirebaseDistributionProcessor(),
         GooglePlayDistributionProcessor()
     )
 
-    companion object {
-        const val ID = "distribution"
-    }
 }

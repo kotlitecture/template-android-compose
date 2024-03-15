@@ -8,14 +8,10 @@ import kotli.template.android.compose.userflow.review.market.GooglePlayReviewPro
 
 class ReviewProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
+    override fun getId(): String = "userflow.review"
     override fun getType(): FeatureType = FeatureTypes.UserFlow
-
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         GooglePlayReviewProcessor()
     )
 
-    companion object {
-        const val ID = "review"
-    }
 }

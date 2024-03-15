@@ -18,9 +18,14 @@ class FirebaseCrashlyticsProcessor : BaseFeatureProcessor() {
         FirebaseProcessor::class.java
     )
 
+    override fun doApply(state: TemplateState) {
+        state.onApplyRules("app/build.gradle", CleanupMarkedLine("{quality.crashes.firebase}"))
+        state.onApplyRules("build.gradle", CleanupMarkedLine("{quality.crashes.firebase}"))
+    }
+
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("app/build.gradle", RemoveMarkedLine("firebase.crashlytics"))
-        state.onApplyRules("build.gradle", RemoveMarkedLine("firebase.crashlytics"))
+        state.onApplyRules("app/build.gradle", RemoveMarkedLine("{quality.crashes.firebase}"))
+        state.onApplyRules("build.gradle", RemoveMarkedLine("{quality.crashes.firebase}"))
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("firebase-crashlytics")))
     }
 
