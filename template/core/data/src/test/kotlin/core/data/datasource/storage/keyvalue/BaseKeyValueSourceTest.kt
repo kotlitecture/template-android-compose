@@ -1,6 +1,5 @@
-package core.data.datasource.storage
+package core.data.datasource.storage.keyvalue
 
-import core.data.datasource.storage.keyvalue.KeyValueSource
 import core.testing.BaseAndroidUnitTest
 import org.junit.Test
 import kotlin.test.assertEquals

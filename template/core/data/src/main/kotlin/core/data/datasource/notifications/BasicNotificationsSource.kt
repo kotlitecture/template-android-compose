@@ -12,7 +12,7 @@ import android.text.TextUtils
 import androidx.core.app.NotificationManagerCompat
 import org.tinylog.Logger
 
-class AndroidNotificationsSource(private val app: Application) : NotificationsSource {
+class BasicNotificationsSource(private val app: Application) : NotificationsSource {
 
     override suspend fun isEnabled(): Boolean {
         return try {

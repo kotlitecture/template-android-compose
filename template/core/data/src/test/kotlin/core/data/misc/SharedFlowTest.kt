@@ -2,7 +2,7 @@ package core.data.misc
 
 import core.data.datasource.cache.CacheKey
 import core.data.datasource.cache.CacheSource
-import core.data.datasource.cache.MemoryCacheSource
+import core.data.datasource.cache.BasicCacheSource
 import core.data.misc.extensions.globalAsync
 import core.data.misc.extensions.globalSharedFlow
 import core.testing.BaseUnitTest
@@ -20,7 +20,7 @@ import kotlin.time.Duration.Companion.seconds
 
 class SharedFlowTest : BaseUnitTest() {
 
-    private val cache: CacheSource = MemoryCacheSource()
+    private val cache: CacheSource = BasicCacheSource()
 
     @Test
     fun `shared flow is correctly shared`() = performTest {

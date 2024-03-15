@@ -13,7 +13,7 @@ import kotlin.time.Duration.Companion.seconds
 
 class CacheDataSourceTest : BaseUnitTest() {
 
-    private val cache: CacheSource = MemoryCacheSource()
+    private val cache: CacheSource = BasicCacheSource()
 
     @Test
     fun `make sure all cache actions are performed in not blocking way`() = performTest {

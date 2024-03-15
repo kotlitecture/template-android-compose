@@ -1,7 +1,5 @@
-package core.data.datasource.storage
+package core.data.datasource.storage.keyvalue
 
-import core.data.datasource.storage.keyvalue.BasicEncryptedKeyValueSource
-import core.data.datasource.storage.keyvalue.KeyValueSource
 import org.robolectric.RuntimeEnvironment
 
 class EncryptedKeyValueSourceTest : BaseKeyValueSourceTest() {

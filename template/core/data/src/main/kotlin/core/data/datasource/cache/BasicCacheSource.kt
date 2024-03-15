@@ -23,7 +23,7 @@ import org.tinylog.kotlin.Logger
 import java.util.Date
 import java.util.concurrent.ConcurrentHashMap
 
-class MemoryCacheSource(
+class BasicCacheSource(
     private val changesRetryInterval: Long = 1000L,
     private val exceptionRetryInterval: Long = 3000L,
     private val exceptionRetryCount: Int = Int.MAX_VALUE

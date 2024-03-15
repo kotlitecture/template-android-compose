@@ -1,7 +1,7 @@
 package app.di
 
 import core.data.datasource.cache.CacheSource
-import core.data.datasource.cache.MemoryCacheSource
+import core.data.datasource.cache.BasicCacheSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,7 @@ internal class ProvidesCacheSource {
     @Provides
     @Singleton
     fun source(): CacheSource {
-        return MemoryCacheSource()
+        return BasicCacheSource()
     }
 
 }
