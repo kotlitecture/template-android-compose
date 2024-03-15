@@ -15,8 +15,8 @@ dependencies {
     implementation libs.firebase.perf // {quality.performance.firebase}
     implementation libs.androidx.startup // {startup-initializer}
     implementation libs.androidx.webkit // {userflow.webtonative}
-    implementation libs.google.app.update // {userflow.update.market}
-    implementation libs.google.app.review // {userflow.review.market}
+    implementation libs.google.app.update // {userflow.update.google}
+    implementation libs.google.app.review // {userflow.review.google}
     implementation libs.bundles.androidCoil // {ui.preview.coil}
     debugImplementation libs.chucker
     stagingImplementation libs.chucker

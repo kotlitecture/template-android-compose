@@ -1,4 +1,4 @@
-package app.userflow.update.googleplay
+package app.userflow.update.google
 
 import android.app.Activity
 import android.app.Application
@@ -7,7 +7,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import app.userflow.update.googleplay.data.UpdateData
+import app.userflow.update.google.data.UpdateData
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.appupdate.AppUpdateOptions
@@ -24,9 +24,9 @@ import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 
 @HiltViewModel
-class GooglePlayUpdateViewModel @Inject constructor(
+class GoogleUpdateViewModel @Inject constructor(
     app: Application,
-    private val state: GooglePlayUpdateState
+    private val state: GoogleUpdateState
 ) : AppViewModel(), InstallStateUpdatedListener, LifecycleEventObserver {
 
     private val manager by lazy { AppUpdateManagerFactory.create(app) }

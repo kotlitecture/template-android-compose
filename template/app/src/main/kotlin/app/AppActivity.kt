@@ -10,9 +10,9 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
 import app.userflow.internet.NoInternetProvider
 import app.userflow.loader.DataLoaderProvider
-import app.userflow.review.googleplay.GooglePlayReviewProvider
+import app.userflow.review.google.GoogleReviewProvider
 import app.userflow.template.TemplateDestination
-import app.userflow.update.googleplay.GooglePlayUpdateProvider
+import app.userflow.update.google.GoogleUpdateProvider
 import app.userflow.webtonative.WebToNativeDestination
 import core.ui.AppScaffold
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,8 +27,8 @@ class AppActivity : FragmentActivity() {
         setContent {
             val viewModel: AppActivityViewModel = provideHiltViewModel()
             ScaffoldBlock(viewModel)
-            GooglePlayUpdateProvider()
-            GooglePlayReviewProvider()
+            GoogleUpdateProvider()
+            GoogleReviewProvider()
             DataLoaderProvider(viewModel.appState)
             NoInternetProvider()
             SplashBlock(splashScreen, viewModel)

@@ -4,14 +4,14 @@ import kotli.engine.BaseFeatureProvider
 import kotli.engine.FeatureProcessor
 import kotli.engine.FeatureType
 import kotli.engine.model.FeatureTypes
-import kotli.template.android.compose.userflow.review.market.GooglePlayReviewProcessor
+import kotli.template.android.compose.userflow.review.google.GoogleReviewProcessor
 
 class ReviewProvider : BaseFeatureProvider() {
 
     override fun getId(): String = "userflow.review"
     override fun getType(): FeatureType = FeatureTypes.UserFlow
     override fun createProcessors(): List<FeatureProcessor> = listOf(
-        GooglePlayReviewProcessor()
+        GoogleReviewProcessor()
     )
 
 }

@@ -1,4 +1,4 @@
-package app.userflow.review.googleplay.data
+package app.userflow.review.google.data
 
 import com.google.android.play.core.review.ReviewInfo
 

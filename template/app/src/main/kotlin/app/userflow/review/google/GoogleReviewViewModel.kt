@@ -1,11 +1,11 @@
-package app.userflow.review.googleplay
+package app.userflow.review.google
 
 import android.app.Activity
 import android.app.Application
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.LifecycleOwner
-import app.userflow.review.googleplay.data.ReviewData
+import app.userflow.review.google.data.ReviewData
 import com.google.android.play.core.review.ReviewManagerFactory
 import core.ui.AppViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,9 +15,9 @@ import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 
 @HiltViewModel
-class GooglePlayReviewViewModel @Inject constructor(
+class GoogleReviewViewModel @Inject constructor(
     private val app: Application,
-    private val state: GooglePlayReviewState
+    private val state: GoogleReviewState
 ) : AppViewModel() {
 
     private val manager by lazy { ReviewManagerFactory.create(app) }
