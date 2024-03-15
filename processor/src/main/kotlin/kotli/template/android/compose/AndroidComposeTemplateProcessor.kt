@@ -8,7 +8,7 @@ import kotli.engine.model.LayerTypes
 import kotli.engine.template.rule.ReplaceMarkedText
 import kotli.template.android.compose.dataflow.analytics.AnalyticsProvider
 import kotli.template.android.compose.dataflow.api.ApiProvider
-import kotli.template.android.compose.dataflow.biometric.BiometricProvider
+import kotli.template.android.compose.dataflow.encryption.EncryptionProvider
 import kotli.template.android.compose.dataflow.config.ConfigProvider
 import kotli.template.android.compose.dataflow.http.HttpProvider
 import kotli.template.android.compose.dataflow.messaging.MessagingProvider
@@ -68,7 +68,8 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         MessagingProvider(),
         StorageProvider(),
         WorkProvider(),
-        BiometricProvider(),
+        EncryptionProvider(),
+        EncryptionProvider(),
 
         // quality
         CrashesProvider(),

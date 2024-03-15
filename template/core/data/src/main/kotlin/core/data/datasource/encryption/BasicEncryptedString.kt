@@ -2,7 +2,7 @@ package core.data.datasource.encryption
 
 import core.data.misc.utils.EncryptUtils
 
-internal class DefaultEncryptedString(
+internal class BasicEncryptedString(
     private val encrypted: String?,
     private val decrypted: String?,
     private val password: ByteArray?

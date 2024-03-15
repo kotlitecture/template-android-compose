@@ -1,6 +1,6 @@
 package core.data.datasource.encryption
 
-import core.data.datasource.storage.keyvalue.AndroidEncryptedKeyValueSource
+import core.data.datasource.storage.keyvalue.BasicEncryptedKeyValueSource
 import core.testing.BaseAndroidUnitTest
 import org.junit.Assert
 import org.robolectric.RuntimeEnvironment
@@ -10,7 +10,7 @@ import kotlin.test.Test
 class EncryptionSourceTest : BaseAndroidUnitTest() {
 
     private val encryptionSource: EncryptionSource by lazy {
-        DefaultEncryptionSource(AndroidEncryptedKeyValueSource(RuntimeEnvironment.getApplication()))
+        BasicEncryptionSource(BasicEncryptedKeyValueSource(RuntimeEnvironment.getApplication()))
     }
 
     @Test

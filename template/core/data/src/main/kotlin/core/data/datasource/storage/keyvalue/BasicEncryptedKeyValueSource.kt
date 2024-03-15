@@ -6,7 +6,7 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import org.tinylog.Logger
 
-class AndroidEncryptedKeyValueSource(private val app: Application) : AbstractKeyValueSource(), EncryptedKeyValueSource {
+class BasicEncryptedKeyValueSource(private val app: Application) : AbstractKeyValueSource(), EncryptedKeyValueSource {
 
     private val fileName = "encrypted_key_value_source"
 

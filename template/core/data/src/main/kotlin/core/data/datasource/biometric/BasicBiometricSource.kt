@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import androidx.biometric.BiometricManager
 
-class AndroidBiometricSource(private val app: Application) : BiometricSource {
+class BasicBiometricSource(private val app: Application) : BiometricSource {
 
     private val biometricManager by lazy { BiometricManager.from(app) }
 
