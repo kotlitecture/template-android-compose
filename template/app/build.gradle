@@ -1,33 +1,43 @@
 apply from: "${project.rootDir}/gradle/android/application.gradle"
-apply plugin: "com.google.firebase.appdistribution" // {firebase-distribution}
-apply plugin: "com.google.firebase.firebase-perf" // {firebase-perf}
-apply plugin: "com.google.firebase.crashlytics" // {firebase-crashlytics}
+apply plugin: "com.google.firebase.appdistribution" // {devops.distribution.firebase}
+apply plugin: "com.google.firebase.firebase-perf" // {quality.performance.firebase}
+apply plugin: "com.google.firebase.crashlytics" // {quality.crashes.firebase}
 apply plugin: "com.google.gms.google-services" // {google-services}
-apply plugin: "androidx.baselineprofile" // {baselineprofile}
-apply plugin: "com.github.triplet.play" // {google-play-distribution}
-apply plugin: "io.objectbox" // {objectbox}
+apply plugin: "androidx.baselineprofile" // {quality.startup.baselineprofile}
+apply plugin: "com.github.triplet.play" // {devops.distribution.google-play}
+apply plugin: "io.objectbox" // {dataflow.storage.objectbox}
 
 dependencies {
+    implementation platform(libs.firebase.bom) // {firebase}
+    implementation libs.firebase.analytics.ktx // {dataflow.analytics.firebase}
+    implementation libs.firebase.crashlytics.ktx // {quality.crashes.firebase}
+    implementation libs.firebase.config.ktx // {dataflow.config.firebase}
+    implementation libs.firebase.perf // {quality.performance.firebase}
+    implementation libs.androidx.startup // {startup-initializer}
+    implementation libs.androidx.webkit // {userflow.webtonative.basic}
+    implementation libs.google.app.update // {userflow.update.google}
+    implementation libs.google.app.review // {userflow.review.google}
+    implementation libs.bundles.androidCoil // {ui.preview.coil}
+    implementation libs.androidx.core.splashscreen // {userflow.splash.basic}
+    debugImplementation libs.chucker // {testing.http.okhttp}
+    stagingImplementation libs.chucker // {testing.http.okhttp}
+    testImplementation libs.chucker.release // {testing.http.okhttp}
+    releaseImplementation libs.chucker.release // {testing.http.okhttp}
     implementation project(":core:ui")
-    implementation project(":core:data")
-    implementation project(":core:testing-http") // {testing-http}
-    implementation project(":integration:firebase-crashlytics") // {firebase-crashlytics}
-    implementation project(":integration:firebase-analytics") // {firebase-analytics}
-    implementation project(":integration:firebase-config") // {firebase-config}
-    implementation project(":integration:firebase-perf") // {firebase-perf}
-    implementation project(":integration:market-update") // {market-update}
-    implementation project(":integration:market-review") // {market-review}
-    implementation project(":workflow:webtonative") // {workflow-webtonative}
+    implementation project(":core:data") // {dataflow.common}
     testImplementation project(":core:testing")
-    baselineProfile project(':baselineprofile') // {baselineprofile}
+    baselineProfile project(':baselineprofile') // {quality.startup.baselineprofile}
 }
 
 android {
     namespace = "app"
+
     defaultConfig {
         applicationId = "kotli.app" // {applicationId}
         versionName = System.getProperty("versionNameExt") ?: "0.0.1"
         versionCode = (System.getProperty("versionCodeExt") ?: "1").toInteger()
+        buildConfigField("long", "remoteConfigMinimumFetchIntervalInSeconds", "43200")
+        buildConfigField("long", "remoteConfigInitTimeoutInSeconds", "5")
     }
 
     signingConfigs {
@@ -51,13 +61,13 @@ android {
             applicationIdSuffix = ".debug"
 
             debuggable true
-            // start {firebase-distribution-debug}
+            //{devops.distribution.firebase.debug}
             firebaseAppDistribution {
                 artifactType = "APK"
                 groups = "feature-developers"
                 serviceCredentialsFile = "appDistributionCredentials.json"
             }
-            // end {firebase-distribution-debug}
+            // {devops.distribution.firebase.debug}
         }
 
         register("staging") {
@@ -71,13 +81,13 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            // start {firebase-distribution-staging}
+            // {devops.distribution.firebase.staging}
             firebaseAppDistribution {
                 artifactType = "APK"
                 groups = "feature-testers"
                 serviceCredentialsFile = "appDistributionCredentials.json"
             }
-            // end {firebase-distribution-staging}
+            // {devops.distribution.firebase.staging}
         }
 
         named("release") {
@@ -92,17 +102,17 @@ android {
     }
 }
 
-// start {baselineprofile-config}
+// {quality.startup.baselineprofile.config}
 baselineProfile {
     automaticGenerationDuringBuild true
     saveInSrc true
 }
-// end {baselineprofile-config}
+// {quality.startup.baselineprofile.config}
 
-// start {google-play-distribution-config}
+// {devops.distribution.google-play.config}
 play {
     serviceAccountCredentials.set(file("assemble/google-play-publisher.json"))
     releaseStatus.set(com.github.triplet.gradle.androidpublisher.ReleaseStatus.DRAFT)
     track.set("internal")
 }
-// end {google-play-distribution-config}
+// {devops.distribution.google-play.config}

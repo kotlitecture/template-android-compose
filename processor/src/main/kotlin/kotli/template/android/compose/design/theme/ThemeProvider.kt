@@ -7,8 +7,7 @@ import kotli.engine.model.FeatureTypes
 
 class ThemeProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = "theme"
+    override fun getId(): String = "design.theme"
     override fun getType(): FeatureType = FeatureTypes.Design
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
 }

@@ -3,9 +3,3 @@ apply from: "${project.rootDir}/gradle/android/library.gradle"
 android {
     namespace = "core.ui"
 }
-
-dependencies {
-    api project(":core:datasource")
-    api libs.bundles.androidCoil
-    testImplementation project(":core:testing")
-}

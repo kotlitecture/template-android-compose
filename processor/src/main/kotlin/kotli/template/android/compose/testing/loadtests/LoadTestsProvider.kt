@@ -8,15 +8,11 @@ import kotli.template.android.compose.testing.loadtests.gatling.GatlingProcessor
 
 class LoadTestsProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
+    override fun getId(): String = "testing.loadtests"
     override fun isMultiple(): Boolean = false
     override fun getType(): FeatureType = FeatureTypes.Testing
-
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         GatlingProcessor()
     )
 
-    companion object {
-        const val ID = "loadtests"
-    }
 }

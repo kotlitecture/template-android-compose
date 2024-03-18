@@ -4,8 +4,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(libs.objectbox.plugin) // {objectbox}
-        classpath(libs.google.play.publisher) // {google-play-distribution}
+        classpath(libs.objectbox.plugin) // {dataflow.storage.objectbox}
+        classpath(libs.google.play.publisher) // {devops.distribution.google-play}
     }
 }
 
@@ -13,16 +13,17 @@ plugins {
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.google.services) apply false // {google-services}
     alias(libs.plugins.android.test) apply false
     alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.android.baselineprofile) apply false // {baselineprofile}
-    alias(libs.plugins.firebase.appdistribution) apply false // {firebase-distribution}
-    alias(libs.plugins.firebase.crashlytics) apply false // {firebase-crashlytics}
-    alias(libs.plugins.firebase.perf) apply false // {firebase-perf}
+    alias(libs.plugins.android.baselineprofile) apply false // {quality.startup.baselineprofile}
+    alias(libs.plugins.firebase.appdistribution) apply false // {devops.distribution.firebase}
+    alias(libs.plugins.firebase.crashlytics) apply false // {quality.crashes.firebase}
+    alias(libs.plugins.firebase.perf) apply false // {quality.performance.firebase}
     alias(libs.plugins.version.catalog.versions) apply true
     alias(libs.plugins.version.catalog.update) apply true
-    alias(libs.plugins.gatling) apply false // {loadtests-gatling}
+    alias(libs.plugins.gatling) apply false // {testing.loadtests.gatling}
     alias(libs.plugins.ksp) apply false
 }
 

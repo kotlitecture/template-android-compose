@@ -8,15 +8,11 @@ import kotli.template.android.compose.quality.startup.baselineprofile.BaselinePr
 
 class StartupProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
+    override fun getId(): String = "quality.startup"
     override fun isMultiple(): Boolean = true
     override fun getType(): FeatureType = FeatureTypes.Quality
-
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         BaselineProfileProcessor()
     )
 
-    companion object {
-        const val ID = "startup"
-    }
 }

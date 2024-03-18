@@ -1,14 +1,11 @@
 package kotli.template.android.compose.userflow.onboarding
 
-import kotli.engine.BaseFeatureProvider
 import kotli.engine.FeatureProcessor
-import kotli.engine.FeatureType
-import kotli.engine.model.FeatureTypes
+import kotli.template.android.compose.userflow.BaseUserFlowProvider
 
-class OnboardingProvider : BaseFeatureProvider() {
+class OnboardingProvider : BaseUserFlowProvider() {
 
-    override fun getId(): String = "onboarding"
-    override fun getType(): FeatureType = FeatureTypes.UserFlow
-
+    override fun getId(): String = "userflow.onboarding"
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
+
 }

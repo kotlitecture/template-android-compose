@@ -16,22 +16,24 @@ class GooglePlayDistributionProcessor : BaseFeatureProcessor() {
     override fun getIntegrationUrl(state: TemplateState): String = "https://github.com/Triple-T/gradle-play-publisher?tab=readme-ov-file#quickstart-guide"
 
     override fun doApply(state: TemplateState) {
-        state.onApplyRules("app/build.gradle",
-            CleanupMarkedLine("{google-play-distribution}"),
-            CleanupMarkedBlock("{google-play-distribution-config}")
-        )
         state.onApplyRules("build.gradle",
-            CleanupMarkedLine("{google-play-distribution}")
+            CleanupMarkedLine("{devops.distribution.google-play}")
+        )
+        state.onApplyRules(
+            "app/build.gradle",
+            CleanupMarkedBlock("{devops.distribution.google-play.config}"),
+            CleanupMarkedLine("{devops.distribution.google-play}")
         )
     }
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("app/build.gradle",
-            RemoveMarkedLine("{google-play-distribution}"),
-            RemoveMarkedBlock("{google-play-distribution-config}")
-        )
         state.onApplyRules("build.gradle",
-            RemoveMarkedLine("{google-play-distribution}")
+            RemoveMarkedLine("{devops.distribution.google-play}")
+        )
+        state.onApplyRules(
+            "app/build.gradle",
+            RemoveMarkedBlock("{devops.distribution.google-play.config}"),
+            RemoveMarkedLine("{devops.distribution.google-play}"),
         )
         state.onApplyRules("app/assemble/google-play-publisher.json",
             RemoveFile()
@@ -42,7 +44,7 @@ class GooglePlayDistributionProcessor : BaseFeatureProcessor() {
     }
 
     companion object {
-        const val ID = "google-play-distribution"
+        const val ID = "devops.distribution.google-play"
     }
 
 }

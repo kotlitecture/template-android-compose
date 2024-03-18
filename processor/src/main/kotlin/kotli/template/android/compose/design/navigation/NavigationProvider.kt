@@ -7,8 +7,7 @@ import kotli.engine.model.FeatureTypes
 
 class NavigationProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = "navigation"
+    override fun getId(): String = "design.navigation"
     override fun getType(): FeatureType = FeatureTypes.Design
-
     override fun createProcessors(): List<FeatureProcessor> = emptyList()
 }

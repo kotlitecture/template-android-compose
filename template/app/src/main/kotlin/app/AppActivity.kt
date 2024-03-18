@@ -2,62 +2,63 @@ package app
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.core.view.WindowCompat
+import androidx.compose.runtime.remember
+import androidx.core.splashscreen.SplashScreen
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
-import app.feature.template.TemplateDestination
-import app.feature.webtonative.WebToNativeDestination // {workflow-webtonative}
-import core.data.state.StoreObject
-import core.datasource.intent.IntentSource
-import core.datasource.update.IUpdateSource // {market-update}
-import core.ui.app.AppScreen
-import core.ui.app.dialog.error.ErrorDialogDestination
-import core.ui.app.dialog.hint.HintDialogDestination
-import core.ui.mvvm.provideViewModel
+import app.userflow.internet.no.NoInternetProvider
+import app.userflow.loader.data.DataLoaderProvider
+import app.userflow.review.google.GoogleReviewProvider
+import app.userflow.template.TemplateDestination
+import app.userflow.update.google.GoogleUpdateProvider
+import app.userflow.webtonative.WebToNativeDestination
+import core.ui.AppScaffold
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class AppActivity : FragmentActivity() {
 
-    @Inject
-    lateinit var intentSource: IntentSource
-
-    @Inject // {market-update}
-    lateinit var updateSource: IUpdateSource // {market-update}
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        val splashScreen = installSplashScreen()
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
-            StoreObject.attachToActivityScope()
-            intentSource.attachToActivityScope()
-            ContentBlock()
-            LaunchedEffect(Unit) { updateSource.init() } // {market-update}
+            val viewModel: AppActivityViewModel = provideHiltViewModel()
+            ScaffoldBlock(viewModel)
+            GoogleUpdateProvider()
+            GoogleReviewProvider()
+            DataLoaderProvider(viewModel.appState)
+            NoInternetProvider()
+            SplashBlock(splashScreen, viewModel)
         }
     }
 
 }
 
 @Composable
-private fun ContentBlock(viewModel: AppViewModel = provideViewModel()) {
-    viewModel.destinationStore.asStateValue()
-        ?.route
-        ?.let { route ->
-            AppScreen(
-                route = route,
-                navGraphBuilder = {
-                    TemplateDestination().register(this)
-                    WebToNativeDestination().register(this) // {workflow-webtonative}
-                    HintDialogDestination().register(this)
-                    ErrorDialogDestination().register(this)
-                },
-                bottomBar = {
-
-                },
-                footer = {
-                }
+private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
+    val destination = viewModel.destinationStore.asStateValue() ?: return
+    AppScaffold(
+        navigationState = viewModel.navigationState,
+        commandState = viewModel.commandState,
+        themeState = viewModel.themeState,
+        startDestination = destination,
+        destinations = remember {
+            listOf(
+                TemplateDestination,
+                WebToNativeDestination
             )
         }
+    )
 }
+
+// {userflow.splash.basic}
+@Composable
+private fun SplashBlock(splashScreen: SplashScreen, viewModel: AppActivityViewModel) {
+    splashScreen.setKeepOnScreenCondition {
+        viewModel.themeState.dataStore.get() == null
+    }
+}
+// {userflow.splash.basic}

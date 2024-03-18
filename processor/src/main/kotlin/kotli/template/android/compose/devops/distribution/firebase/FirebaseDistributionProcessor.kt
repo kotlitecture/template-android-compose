@@ -8,8 +8,8 @@ import kotli.engine.template.rule.CleanupMarkedBlock
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
-import kotli.template.android.compose.transitive.firebase.FirebaseProcessor
-import kotli.template.android.compose.transitive.googleservices.GoogleServicesProcessor
+import kotli.template.android.compose.unspecified.firebase.FirebaseProcessor
+import kotli.template.android.compose.unspecified.googleservices.GoogleServicesProcessor
 
 class FirebaseDistributionProcessor : BaseFeatureProcessor() {
 
@@ -24,23 +24,23 @@ class FirebaseDistributionProcessor : BaseFeatureProcessor() {
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules("app/build.gradle",
-            CleanupMarkedLine("{firebase-distribution}"),
-            CleanupMarkedBlock("{firebase-distribution-debug}"),
-            CleanupMarkedBlock("{firebase-distribution-staging}")
+            CleanupMarkedLine("{devops.distribution.firebase}"),
+            CleanupMarkedBlock("{devops.distribution.firebase.debug}"),
+            CleanupMarkedBlock("{devops.distribution.firebase.staging}")
         )
         state.onApplyRules("build.gradle",
-            CleanupMarkedLine("{firebase-distribution}")
+            CleanupMarkedLine("{devops.distribution.firebase}")
         )
     }
 
     override fun doRemove(state: TemplateState) {
         state.onApplyRules("app/build.gradle",
-            RemoveMarkedLine("{firebase-distribution}"),
-            RemoveMarkedBlock("{firebase-distribution-debug}"),
-            RemoveMarkedBlock("{firebase-distribution-staging}")
+            RemoveMarkedLine("{devops.distribution.firebase}"),
+            RemoveMarkedBlock("{devops.distribution.firebase.debug}"),
+            RemoveMarkedBlock("{devops.distribution.firebase.staging}")
         )
         state.onApplyRules("build.gradle",
-            RemoveMarkedLine("{firebase-distribution}")
+            RemoveMarkedLine("{devops.distribution.firebase}")
         )
         state.onApplyRules(
             VersionCatalogRules(RemoveMarkedLine("appdistribution"))
@@ -48,7 +48,7 @@ class FirebaseDistributionProcessor : BaseFeatureProcessor() {
     }
 
     companion object {
-        const val ID = "firebase-distribution"
+        const val ID = "devops.distribution.firebase"
     }
 
 }

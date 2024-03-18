@@ -7,41 +7,45 @@ import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
-import kotli.template.android.compose.transitive.firebase.FirebaseProcessor
-import kotli.template.android.compose.transitive.googleservices.GoogleServicesProcessor
+import kotli.template.android.compose.dataflow.config.basic.BasicConfigProcessor
+import kotli.template.android.compose.unspecified.firebase.FirebaseProcessor
 
 class FirebaseConfigProcessor : BaseFeatureProcessor() {
-
-    private val appConfig = "app/src/main/kotlin/app/datasource/config/AppConfigSource.kt"
-    private val appStartup = "app/src/main/kotlin/app/AppStartupInitializer.kt"
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://firebase.google.com/docs/remote-config"
     override fun getIntegrationUrl(state: TemplateState): String = "https://firebase.google.com/docs/remote-config/get-started?platform=android"
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
-        GoogleServicesProcessor::class.java,
+        BasicConfigProcessor::class.java,
         FirebaseProcessor::class.java
     )
 
     override fun doApply(state: TemplateState) {
-        state.onApplyRules(appConfig, CleanupMarkedLine("{firebase-config}"))
-        state.onApplyRules(appStartup, CleanupMarkedLine("{firebase-config}"))
-        state.onApplyRules("settings.gradle", CleanupMarkedLine("{firebase-config}"))
-        state.onApplyRules("app/build.gradle", CleanupMarkedLine("{firebase-config}"))
+        state.onApplyRules("app/build.gradle",
+            CleanupMarkedLine("{dataflow.config.firebase}", true)
+        )
     }
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules(appConfig, RemoveMarkedLine("{firebase-config}"))
-        state.onApplyRules(appStartup, RemoveMarkedLine("{firebase-config}"))
-        state.onApplyRules("settings.gradle", RemoveMarkedLine("{firebase-config}"))
-        state.onApplyRules("app/build.gradle", RemoveMarkedLine("{firebase-config}"))
-        state.onApplyRules("integration/firebase-config", RemoveFile())
-        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("firebase-config")))
+        state.onApplyRules("app/src/main/kotlin/app/datasource/config/AppConfigSource.kt",
+            RemoveMarkedLine("FirebaseRemoteConfigSource")
+        )
+        state.onApplyRules("app/src/main/kotlin/app/datasource/config/firebase",
+            RemoveFile()
+        )
+        state.onApplyRules("app/build.gradle",
+            RemoveMarkedLine("{dataflow.config.firebase}", true)
+        )
+        state.onApplyRules(
+            VersionCatalogRules(
+                RemoveMarkedLine("firebase-config")
+            )
+        )
     }
 
     companion object {
-        const val ID = "firebase-config"
+        const val ID = "dataflow.config.firebase"
     }
 
 }

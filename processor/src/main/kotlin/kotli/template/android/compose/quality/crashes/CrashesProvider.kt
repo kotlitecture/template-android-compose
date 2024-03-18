@@ -8,15 +8,11 @@ import kotli.template.android.compose.quality.crashes.firebase.FirebaseCrashlyti
 
 class CrashesProvider : BaseFeatureProvider() {
 
-    override fun getId(): String = ID
+    override fun getId(): String = "quality.crashes"
     override fun isMultiple(): Boolean = false
     override fun getType(): FeatureType = FeatureTypes.Quality
-
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         FirebaseCrashlyticsProcessor()
     )
 
-    companion object {
-        const val ID = "crashes"
-    }
 }
