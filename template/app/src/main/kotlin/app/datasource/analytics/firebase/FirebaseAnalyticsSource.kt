@@ -7,6 +7,9 @@ import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import core.data.datasource.analytics.AnalyticsSource
 
+/**
+ * An implementation of [AnalyticsSource] that uses Firebase Analytics and Crashlytics.
+ */
 class FirebaseAnalyticsSource : AnalyticsSource {
 
     private val analytics by lazy { Firebase.analytics }

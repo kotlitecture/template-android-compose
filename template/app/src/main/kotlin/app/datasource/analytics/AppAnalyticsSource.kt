@@ -2,11 +2,13 @@ package app.datasource.analytics
 
 import app.datasource.analytics.firebase.FirebaseAnalyticsSource
 import core.data.datasource.analytics.CompositeAnalyticsSource
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class AppAnalyticsSource @Inject constructor() : CompositeAnalyticsSource(
+/**
+ * Decorator class for working with analytics events.
+ *
+ * Can provide extra methods without impacting facade implementations.
+ */
+class AppAnalyticsSource : CompositeAnalyticsSource(
     listOf(
         FirebaseAnalyticsSource()
     )

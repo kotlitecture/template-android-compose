@@ -1,6 +1,2 @@
 apply plugin: "com.android.library"
 apply from: "${project.rootDir}/gradle/android/common.gradle"
-
-dependencies {
-    implementation libs.bundles.androidCoroutines
-}

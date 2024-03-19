@@ -39,7 +39,7 @@ class AppActivity : FragmentActivity() {
 
 @Composable
 private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
-    val destination = viewModel.destinationStore.asStateValue() ?: return
+    val destination = viewModel.startDestinationStore.asStateValue() ?: return
     AppScaffold(
         navigationState = viewModel.navigationState,
         commandState = viewModel.commandState,

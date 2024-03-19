@@ -1,5 +1,10 @@
 package core.data.datasource.analytics
 
+/**
+ * A composite analytics source that delegates analytics events to multiple underlying sources.
+ *
+ * This class implements the [AnalyticsSource] interface.
+ */
 open class CompositeAnalyticsSource(private val sources: List<AnalyticsSource>) : AnalyticsSource {
 
     override fun setUserId(id: String?) {

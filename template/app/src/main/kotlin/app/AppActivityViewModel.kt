@@ -18,11 +18,11 @@ class AppActivityViewModel @Inject constructor(
     val appState: AppState,
 ) : AppViewModel() {
 
-    val destinationStore = StoreObject<NavigationDestination<*>>()
+    val startDestinationStore = StoreObject<NavigationDestination<*>>()
 
     override fun doBind() {
         launchAsync("doBind") {
-            destinationStore.set(TemplateDestination)
+            startDestinationStore.set(TemplateDestination)
         }
     }
 
