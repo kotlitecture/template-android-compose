@@ -2,14 +2,14 @@ package kotli.template.android.compose.dataflow.config
 
 import kotli.engine.FeatureProcessor
 import kotli.template.android.compose.dataflow.BaseDataFlowProvider
-import kotli.template.android.compose.dataflow.config.basic.BasicConfigProcessor
+import kotli.template.android.compose.dataflow.config.facade.FacadeConfigProcessor
 import kotli.template.android.compose.dataflow.config.firebase.FirebaseConfigProcessor
 
 class ConfigProvider : BaseDataFlowProvider() {
 
     override fun getId(): String = "dataflow.config"
     override fun createProcessors(): List<FeatureProcessor> = listOf(
-        BasicConfigProcessor(),
+        FacadeConfigProcessor(),
         FirebaseConfigProcessor()
     )
 }
