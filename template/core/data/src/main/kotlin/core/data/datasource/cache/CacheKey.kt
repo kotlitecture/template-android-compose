@@ -6,8 +6,6 @@ interface CacheKey<T> {
 
     fun isImmortal(): Boolean = false
 
-    fun throwErrors(): Boolean = false
-
     companion object {
         const val TTL_UNLIMITED = -1L
         const val TTL_1_SECOND = 1_000L

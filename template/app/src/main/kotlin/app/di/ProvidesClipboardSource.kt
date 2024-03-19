@@ -1,7 +1,7 @@
 package app.di
 
 import android.app.Application
-import core.data.datasource.clipboard.BasicClipboardSource
+import app.datasource.clipboard.AppClipboardSource
 import core.data.datasource.clipboard.ClipboardSource
 import dagger.Module
 import dagger.Provides
@@ -15,8 +15,14 @@ internal class ProvidesClipboardSource {
 
     @Provides
     @Singleton
-    fun source(app: Application): ClipboardSource {
-        return BasicClipboardSource(app)
+    fun sourceWrapped(app: Application): AppClipboardSource {
+        return AppClipboardSource(app)
+    }
+
+    @Provides
+    @Singleton
+    fun source(wrapped: AppClipboardSource): ClipboardSource {
+        return wrapped
     }
 
 }

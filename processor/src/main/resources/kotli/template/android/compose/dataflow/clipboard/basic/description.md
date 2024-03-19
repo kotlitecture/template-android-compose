@@ -1,0 +1,1 @@
+Implements a basic API for working with clipboard data on the device.

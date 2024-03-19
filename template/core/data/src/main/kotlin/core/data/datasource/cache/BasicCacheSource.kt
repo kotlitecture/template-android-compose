@@ -19,7 +19,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.retry
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
-import org.tinylog.kotlin.Logger
 import java.util.Date
 import java.util.concurrent.ConcurrentHashMap
 
@@ -81,7 +80,6 @@ class BasicCacheSource(
             cache[cacheKey] = CacheData(data)
             return data
         } else {
-            Logger.debug("get from cache :: key={}, size={}", key, cache.size)
             return cacheItem.data as T?
         }
     }
@@ -102,14 +100,12 @@ class BasicCacheSource(
             val job = entry.value
             val key = entry.key
             if (key.type == type) {
-                Logger.debug("remove key :: {}", job.key)
                 jobs.remove(key, job)
                 job.cancel()
             }
         }
         cache.iterator().forEachRemaining { entry ->
             if (entry.key.type == type) {
-                Logger.debug("remove cache entry :: {}", entry.key)
                 entry.value.invalidate()
             }
         }
@@ -126,14 +122,12 @@ class BasicCacheSource(
             val job = entry.value
             val key = entry.key
             if (key.type == type) {
-                Logger.debug("remove key :: {}", job.key)
                 jobs.remove(key, job)
                 job.cancel()
             }
         }
         cache.iterator().forEachRemaining { entry ->
             if (entry.key.type == type) {
-                Logger.debug("remove cache entry :: {}", entry.key)
                 cache.remove(entry.key, entry.value)
             }
         }
@@ -158,27 +152,12 @@ class BasicCacheSource(
             ?: run {
                 if (cacheKey.key.isImmortal()) {
                     jobs.computeIfAbsent(cacheKey) {
-                        GlobalScope.async {
-                            Logger.info("put into cache :: {} - {}", cacheKey.hashCode(), cacheKey)
-                            runCatching { valueProvider() }
-                                .onFailure { Logger.error(it, "getValue :: {}", cacheKey) }
-                                .onSuccess { Logger.info("putValue :: {} -> {}", cacheKey, it) }
-                                .getOrThrow()
-                        }
+                        GlobalScope.async { valueProvider() }
                     }
                 } else {
                     withContext(dispatcher) {
                         jobs.computeIfAbsent(cacheKey) {
-                            async {
-                                Logger.info("put into cache :: {} - {}", cacheKey.hashCode(), cacheKey)
-                                runCatching { valueProvider() }
-                                    .onFailure {
-                                        if (!it.isCancellationException()) {
-                                            Logger.error(it, "getValue :: {}", cacheKey)
-                                        }
-                                    }
-                                    .getOrThrow()
-                            }
+                            async { valueProvider() }
                         }
                     }
                 }

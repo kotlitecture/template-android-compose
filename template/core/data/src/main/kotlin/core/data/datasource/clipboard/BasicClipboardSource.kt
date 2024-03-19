@@ -9,7 +9,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.conflate
 
-class BasicClipboardSource(private val app: Application) : ClipboardSource {
+/**
+ * Provides basic implementation for accessing clipboard data on the device.
+ */
+open class BasicClipboardSource(protected val app: Application) : ClipboardSource {
 
     private val changes: Flow<String?> = callbackFlow {
         val clipboardManager = app.getSystemService<ClipboardManager>()
@@ -24,20 +27,20 @@ class BasicClipboardSource(private val app: Application) : ClipboardSource {
         }
     }.conflate()
 
-    private fun ClipboardManager.asText(): String? {
-        val clip = primaryClip ?: return null
-        if (clip.itemCount > 0) {
-            return clip.getItemAt(0)?.text?.toString()
-        }
-        return null
-    }
-
     override fun getChanges(): Flow<String?> = changes
 
     override fun copy(text: String?, label: String?) {
         val clipboardManager = app.getSystemService<ClipboardManager>() ?: return
         val clip = ClipData.newPlainText(label.orEmpty(), text)
         clipboardManager.setPrimaryClip(clip)
+    }
+
+    protected fun ClipboardManager.asText(): String? {
+        val clip = primaryClip ?: return null
+        if (clip.itemCount > 0) {
+            return clip.getItemAt(0)?.text?.toString()
+        }
+        return null
     }
 
 }
