@@ -1,10 +1,10 @@
-package kotli.template.android.compose.dataflow.analytics.basic
+package kotli.template.android.compose.dataflow.analytics.facade
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.rule.RemoveFile
 
-class BasicAnalyticsProcessor : BaseFeatureProcessor() {
+class FacadeAnalyticsProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
 
@@ -13,7 +13,7 @@ class BasicAnalyticsProcessor : BaseFeatureProcessor() {
     }
 
     companion object {
-        const val ID = "dataflow.analytics.basic"
+        const val ID = "dataflow.analytics.facade"
     }
 
 }
