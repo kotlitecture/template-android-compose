@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.app.Application
 import androidx.biometric.BiometricManager
 
-class BasicBiometricSource(private val app: Application) : BiometricSource {
+/**
+ * Provides basic implementation for accessing biometric data on the device.
+ */
+open class BasicBiometricSource(protected val app: Application) : BiometricSource {
 
-    private val biometricManager by lazy { BiometricManager.from(app) }
+    protected val biometricManager by lazy { BiometricManager.from(app) }
 
     @SuppressLint("ObsoleteSdkInt")
     override suspend fun isAvailable(): Boolean {

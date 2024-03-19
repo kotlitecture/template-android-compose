@@ -1,7 +1,7 @@
 package app.di
 
 import android.app.Application
-import core.data.datasource.biometric.BasicBiometricSource
+import app.datasource.biometric.AppBiometricSource
 import core.data.datasource.biometric.BiometricSource
 import dagger.Module
 import dagger.Provides
@@ -15,8 +15,14 @@ internal class ProvidesBiometricSource {
 
     @Provides
     @Singleton
-    fun source(app: Application): BiometricSource {
-        return BasicBiometricSource(app)
+    fun sourceWrapped(app: Application): AppBiometricSource {
+        return AppBiometricSource(app)
+    }
+
+    @Provides
+    @Singleton
+    fun source(wrapped: AppBiometricSource): BiometricSource {
+        return wrapped
     }
 
 }
