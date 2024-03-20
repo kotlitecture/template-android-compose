@@ -8,6 +8,9 @@ class KeyValueProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
 
+    override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/training/data-storage/shared-preferences"
+
+
     override fun doRemove(state: TemplateState) {
         state.onApplyRules("*KeyValueSource*", RemoveFile())
     }

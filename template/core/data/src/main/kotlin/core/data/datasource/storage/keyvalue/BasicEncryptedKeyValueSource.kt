@@ -5,7 +5,12 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 
-class BasicEncryptedKeyValueSource(private val app: Application) : AbstractKeyValueSource(), EncryptedKeyValueSource {
+/**
+ * Basic implementation of encrypted key-value data source using EncryptedSharedPreferences.
+ *
+ * @param app The application context.
+ */
+open class BasicEncryptedKeyValueSource(protected val app: Application) : AbstractKeyValueSource(), EncryptedKeyValueSource {
 
     private val fileName = "encrypted_key_value_source"
 

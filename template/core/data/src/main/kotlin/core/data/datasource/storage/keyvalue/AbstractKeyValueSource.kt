@@ -4,18 +4,14 @@ import android.content.SharedPreferences
 import core.data.misc.utils.GsonUtils
 import java.util.concurrent.ConcurrentHashMap
 
+/**
+ * Abstract class providing a base implementation for key-value data sources.
+ */
 @Suppress("UNCHECKED_CAST")
 abstract class AbstractKeyValueSource : KeyValueSource {
 
     private val cache = ConcurrentHashMap<String, Any?>()
-
     private val sharedPrefs by lazy { createSharedPreferences() }
-
-    protected abstract fun createSharedPreferences(): SharedPreferences
-
-    protected inline fun <reified T> read(key: String): T? = read(key, T::class.java)
-
-    protected inline fun <reified T> save(key: String, value: T) = save(key, value, T::class.java)
 
     override fun <T> save(key: String, value: T, valueType: Class<T>): T {
         val editor = sharedPrefs.edit()
@@ -43,7 +39,7 @@ abstract class AbstractKeyValueSource : KeyValueSource {
         if (!sharedPrefs.contains(key)) {
             return null
         }
-        val defaultValue = getDumbReturnValue(returnType)
+        val defaultValue = getDefaultValue(returnType)
         val value: Any? = when (returnType) {
             String::class.java -> sharedPrefs.getString(key, defaultValue as? String)
 
@@ -89,7 +85,23 @@ abstract class AbstractKeyValueSource : KeyValueSource {
             .apply()
     }
 
-    private fun <T> getDumbReturnValue(returnType: Class<T>): T {
+    /**
+     * Reads data of type [T] associated with the given [key].
+     *
+     * @param key The key to retrieve the data.
+     * @return The data of type [T] if found, otherwise null.
+     */
+    inline fun <reified T> read(key: String): T? = read(key, T::class.java)
+
+    /**
+     * Saves the provided [value] of type [T] with the given [key].
+     *
+     * @param key The key to associate with the value.
+     * @param value The value of type [T] to be saved.
+     */
+    inline fun <reified T> save(key: String, value: T) = save(key, value, T::class.java)
+
+    private fun <T> getDefaultValue(returnType: Class<T>): T {
         val defaultValue: Any? = when (returnType) {
             String::class.java -> null
             java.lang.Boolean::class.java,
@@ -111,5 +123,12 @@ abstract class AbstractKeyValueSource : KeyValueSource {
         }
         return defaultValue as T
     }
+
+    /**
+     * Creates the SharedPreferences instance.
+     *
+     * @return The SharedPreferences instance.
+     */
+    protected abstract fun createSharedPreferences(): SharedPreferences
 
 }

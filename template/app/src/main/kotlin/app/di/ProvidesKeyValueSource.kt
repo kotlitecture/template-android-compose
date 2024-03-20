@@ -1,7 +1,7 @@
 package app.di
 
 import android.app.Application
-import core.data.datasource.storage.keyvalue.BasicKeyValueSource
+import app.datasource.storage.keyvalue.AppKeyValueSource
 import core.data.datasource.storage.keyvalue.KeyValueSource
 import dagger.Module
 import dagger.Provides
@@ -15,8 +15,14 @@ internal class ProvidesKeyValueSource {
 
     @Provides
     @Singleton
-    fun source(app: Application): KeyValueSource {
-        return BasicKeyValueSource(app)
+    fun sourceWrapped(app: Application): AppKeyValueSource {
+        return AppKeyValueSource(app)
+    }
+
+    @Provides
+    @Singleton
+    fun source(wrapped: AppKeyValueSource): KeyValueSource {
+        return wrapped
     }
 
 }

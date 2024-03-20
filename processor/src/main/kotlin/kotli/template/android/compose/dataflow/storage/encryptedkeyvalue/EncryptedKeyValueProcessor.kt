@@ -13,6 +13,9 @@ class EncryptedKeyValueProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
 
+    override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/reference/androidx/security/crypto/EncryptedSharedPreferences"
+    override fun getIntegrationUrl(state: TemplateState): String = "https://proandroiddev.com/encrypted-preferences-in-android-af57a89af7c8"
+
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         KeyValueProcessor::class.java
     )

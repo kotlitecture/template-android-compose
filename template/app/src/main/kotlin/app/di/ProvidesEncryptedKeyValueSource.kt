@@ -1,8 +1,8 @@
 package app.di
 
 import android.app.Application
-import core.data.datasource.storage.keyvalue.BasicEncryptedKeyValueSource
-import core.data.datasource.storage.keyvalue.KeyValueSource
+import app.datasource.storage.keyvalue.AppEncryptedKeyValueSource
+import core.data.datasource.storage.keyvalue.EncryptedKeyValueSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,8 +15,14 @@ internal class ProvidesEncryptedKeyValueSource {
 
     @Provides
     @Singleton
-    fun source(app: Application): KeyValueSource {
-        return BasicEncryptedKeyValueSource(app)
+    fun sourceWrapped(app: Application): AppEncryptedKeyValueSource {
+        return AppEncryptedKeyValueSource(app)
+    }
+
+    @Provides
+    @Singleton
+    fun source(wrapped: AppEncryptedKeyValueSource): EncryptedKeyValueSource {
+        return wrapped
     }
 
 }
