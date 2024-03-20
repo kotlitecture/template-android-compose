@@ -27,8 +27,6 @@ import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.retry
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import org.tinylog.Logger
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 
@@ -92,15 +90,12 @@ class HttpSource(
         val cached = flowCache.computeIfAbsent(key) {
             globalSharedFlow(stopTimeout) {
                 try {
-                    Logger.debug("[HttpSource] collect :: {} - {}", key::class.java, key)
                     collector()
                 } catch (th: Throwable) {
-                    Logger.error(th, "[HttpSource] error :: {} - {}", key::class.java, key)
                     flowCache.remove(key)
                 }
             }.withRetry(key)
         }
-        Logger.debug("[HttpSource] cached :: {} - {}", flowCache.size, key)
         return cached as Flow<T>
     }
 
@@ -108,21 +103,17 @@ class HttpSource(
         builder: OkHttpClient.Builder,
         interceptors: List<Interceptor>
     ): OkHttpClient.Builder {
-        val logger = HttpLoggingInterceptor(Logger::debug)
-            .also { it.setLevel(HttpLoggingInterceptor.Level.BODY) }
         interceptors.forEach(builder::addInterceptor)
         return withSslConfig(builder)
             .readTimeout(timeout, TimeUnit.MILLISECONDS)
             .connectTimeout(timeout, TimeUnit.MILLISECONDS)
             .pingInterval(timeout, TimeUnit.MILLISECONDS)
-            .addNetworkInterceptor(logger)
             .retryOnConnectionFailure(true)
     }
 
     private fun <T> Flow<T>.withRetry(key: Any): Flow<T> {
         return retry {
             flowCache.remove(key)
-            Logger.error(it, "[HttpSource] :: withRetry")
             !it.isCancellationException().also { delay(retryInterval) }
         }
     }

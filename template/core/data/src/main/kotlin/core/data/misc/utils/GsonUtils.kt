@@ -10,7 +10,6 @@ import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
 import com.google.gson.reflect.TypeToken
-import org.tinylog.kotlin.Logger
 import java.lang.reflect.Type
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -31,7 +30,6 @@ object GsonUtils {
 
     fun <T> toObject(json: String?, clazz: Class<T>): T? =
         runCatching { json?.let { gson.fromJson(json, clazz) } }
-            .onFailure { Logger.error(it, json.orEmpty()) }
             .getOrNull()
 
     fun <T> toObject(json: String?, type: TypeToken<T>): T? =

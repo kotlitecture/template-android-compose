@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-import org.tinylog.Logger
 
 class BasicEncryptedKeyValueSource(private val app: Application) : AbstractKeyValueSource(), EncryptedKeyValueSource {
 
@@ -14,7 +13,6 @@ class BasicEncryptedKeyValueSource(private val app: Application) : AbstractKeyVa
         return try {
             create()
         } catch (e: Exception) {
-            Logger.error(e, "createSharedPreferences")
             app.deleteSharedPreferences(fileName)
             create()
         }

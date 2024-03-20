@@ -4,7 +4,6 @@ import core.data.datasource.storage.keyvalue.BasicEncryptedKeyValueSource
 import core.testing.BaseAndroidUnitTest
 import org.junit.Assert
 import org.robolectric.RuntimeEnvironment
-import org.tinylog.kotlin.Logger
 import kotlin.test.Test
 
 class EncryptionSourceTest : BaseAndroidUnitTest() {
@@ -27,14 +26,7 @@ class EncryptionSourceTest : BaseAndroidUnitTest() {
         Assert.assertEquals(decryptedText.decrypted(), encryptedText.decrypted())
         Assert.assertEquals(decryptedText.encrypted(), encryptedText.encrypted())
         Assert.assertEquals(text, encryptedText.decrypted())
-
         Assert.assertSame(decryptedText.password(), encryptedText.password())
-
-        Logger.debug("encrypted string :: decrypted={}, encrypted={}, password={}",
-            text,
-            encryptedText.encrypted(),
-            encryptedText.password()?.decodeToString()
-        )
     }
 
 }

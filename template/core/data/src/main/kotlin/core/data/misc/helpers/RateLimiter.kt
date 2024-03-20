@@ -2,7 +2,6 @@ package core.data.misc.helpers
 
 import core.data.exception.DataException
 import kotlinx.coroutines.delay
-import org.tinylog.Logger
 
 class RateLimiter(
     limitPerSecond: Int,
@@ -21,7 +20,6 @@ class RateLimiter(
                     val result = action.invoke()
                     val remainingDelay = System.currentTimeMillis() - time
                     if (remainingDelay < minDuration) {
-                        Logger.debug("helper :: limit :: {}", remainingDelay)
                         delay(remainingDelay)
                     }
                     return@throttle result
@@ -29,7 +27,6 @@ class RateLimiter(
                     if (i == retries || e.code != 429) {
                         throw e
                     } else {
-                        Logger.error(e, "rate limited or other shit. try to cool down")
                         delay(retryDelay)
                     }
                 }

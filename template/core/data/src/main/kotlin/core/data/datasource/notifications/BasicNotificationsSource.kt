@@ -10,7 +10,6 @@ import android.os.Build
 import android.provider.Settings
 import android.text.TextUtils
 import androidx.core.app.NotificationManagerCompat
-import org.tinylog.Logger
 
 /**
  * Provides basic functionality to manage notifications on the device.
@@ -21,7 +20,6 @@ open class BasicNotificationsSource(private val app: Application) : Notification
         return try {
             NotificationManagerCompat.from(app).areNotificationsEnabled()
         } catch (e: Exception) {
-            Logger.error(e, "isEnabled")
             false
         }
     }
@@ -65,13 +63,12 @@ open class BasicNotificationsSource(private val app: Application) : Notification
                 NotificationManagerCompat.from(app).areNotificationsEnabled()
             }
         } catch (e: Exception) {
-            Logger.error(e, "isEnabled channel :: {}", channelId)
             return false
         }
     }
 
     override fun enable(channelId: String) {
-        try {
+        runCatching {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 if (!TextUtils.isEmpty(channelId)) {
                     val manager =
@@ -80,13 +77,11 @@ open class BasicNotificationsSource(private val app: Application) : Notification
                     channel.importance = NotificationManager.IMPORTANCE_DEFAULT
                 }
             }
-        } catch (e: Exception) {
-            Logger.error(e, "enable channel :: {}", channelId)
         }
     }
 
     override fun disable(channelId: String) {
-        try {
+        runCatching {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 if (!TextUtils.isEmpty(channelId)) {
                     val manager =
@@ -95,8 +90,6 @@ open class BasicNotificationsSource(private val app: Application) : Notification
                     channel.importance = NotificationManager.IMPORTANCE_NONE
                 }
             }
-        } catch (e: Exception) {
-            Logger.error(e, "disable channel :: {}", channelId)
         }
     }
 

@@ -6,7 +6,6 @@ import io.ktor.util.collections.ConcurrentSet
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.junit.Assert
-import org.tinylog.kotlin.Logger
 import java.util.UUID
 import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
@@ -31,7 +30,6 @@ class CacheDataSourceTest : BaseUnitTest() {
         }
         delay(3.seconds)
         Assert.assertEquals(iterations, cached.size)
-        Logger.debug("cached :: {}", cached.toList())
     }
 
     @Test
