@@ -1,7 +1,7 @@
 package app.di
 
 import android.app.Application
-import core.data.datasource.network.BasicNetworkSource
+import app.datasource.network.AppNetworkSource
 import core.data.datasource.network.NetworkSource
 import dagger.Module
 import dagger.Provides
@@ -15,10 +15,14 @@ internal class ProvidesNetworkSource {
 
     @Provides
     @Singleton
-    fun source(
-        app: Application
-    ): NetworkSource {
-        return BasicNetworkSource(app)
+    fun sourceWrapped(app: Application): AppNetworkSource {
+        return AppNetworkSource(app)
+    }
+
+    @Provides
+    @Singleton
+    fun source(wrapped: AppNetworkSource): NetworkSource {
+        return wrapped
     }
 
 }

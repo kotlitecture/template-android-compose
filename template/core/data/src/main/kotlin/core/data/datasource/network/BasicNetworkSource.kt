@@ -17,7 +17,10 @@ import kotlinx.coroutines.withContext
 import java.net.Inet4Address
 import java.net.NetworkInterface
 
-class BasicNetworkSource(private val app: Application) : NetworkSource {
+/**
+ * Basic implementation of [NetworkSource] interface for accessing network-related information.
+ */
+open class BasicNetworkSource(protected val app: Application) : NetworkSource {
 
     private val isOnline: Flow<Boolean> = callbackFlow {
         val connectivityManager = app.getSystemService<ConnectivityManager>()

@@ -1,0 +1,1 @@
+Simple API to access the device's network state using Android SDK only.
