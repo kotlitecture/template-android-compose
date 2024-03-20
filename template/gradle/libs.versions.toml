@@ -165,14 +165,6 @@ androidAccompanist = [
     "accompanist-placeholder",
     "accompanist-systemuicontroller",
 ]
-# {ui.preview.coil}
-androidCoil = [
-    "coil-kt",
-    "coil-kt-compose",
-    "coil-kt-gif",
-    "coil-kt-svg",
-]
-# {ui.preview.coil}
 androidCommon = [
     "androidx-appcompat",
     "androidx-browser",
@@ -230,10 +222,7 @@ kotlinEssentials = [
     "ktor-client-websockets",
     "ktor-serialization-gson",
     "okhttp",
-    "okhttp-logging",
-    "tinylog-api",
-    "tinylog-impl",
-    "tinylog-slf4j",
+    "okhttp-logging"
 ]
 kotlinTest = [
     "kotlin-coroutines-test",

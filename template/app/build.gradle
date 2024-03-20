@@ -17,7 +17,13 @@ dependencies {
     implementation libs.androidx.webkit // {userflow.webtonative.basic}
     implementation libs.google.app.update // {userflow.update.google}
     implementation libs.google.app.review // {userflow.review.google}
-    implementation libs.bundles.androidCoil // {ui.preview.coil}
+    implementation libs.coil.kt // {ui.preview.coil}
+    implementation libs.coil.kt.compose // {ui.preview.coil}
+    implementation libs.coil.kt.gif // {ui.preview.coil}
+    implementation libs.coil.kt.svg // {ui.preview.coil}
+    implementation libs.tinylog.api // {testing.logging.tinylog}
+    implementation libs.tinylog.impl // {testing.logging.tinylog}
+    implementation libs.tinylog.slf4j // {testing.logging.tinylog}
     implementation libs.androidx.core.splashscreen // {userflow.splash.basic}
     debugImplementation libs.chucker // {testing.http.okhttp}
     stagingImplementation libs.chucker // {testing.http.okhttp}

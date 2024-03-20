@@ -4,10 +4,8 @@ import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.VersionCatalogRules
-import kotli.engine.template.rule.CleanupMarkedBlock
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
-import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.dataflow.http.okhttp.OkHttpProcessor
 import kotli.template.android.compose.unspecified.startup.StartupInitializerProcessor
@@ -28,11 +26,6 @@ class CoilImageProcessor : BaseFeatureProcessor() {
             "app/build.gradle",
             CleanupMarkedLine("{ui.preview.coil}")
         )
-        state.onApplyRules(
-            VersionCatalogRules(
-                CleanupMarkedBlock("{ui.preview.coil}")
-            )
-        )
     }
 
     override fun doRemove(state: TemplateState) {
@@ -51,7 +44,6 @@ class CoilImageProcessor : BaseFeatureProcessor() {
         state.onApplyRules(
             VersionCatalogRules(
                 listOf(
-                    RemoveMarkedBlock("{ui.preview.coil}"),
                     RemoveMarkedLine("coil")
                 )
             )
