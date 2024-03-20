@@ -1,7 +1,7 @@
 package app.di
 
+import app.datasource.cache.AppCacheSource
 import core.data.datasource.cache.CacheSource
-import core.data.datasource.cache.BasicCacheSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,8 +14,14 @@ internal class ProvidesCacheSource {
 
     @Provides
     @Singleton
-    fun source(): CacheSource {
-        return BasicCacheSource()
+    fun sourceWrapped(): AppCacheSource {
+        return AppCacheSource()
+    }
+
+    @Provides
+    @Singleton
+    fun source(wrapped: AppCacheSource): CacheSource {
+        return wrapped
     }
 
 }

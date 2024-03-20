@@ -22,7 +22,16 @@ import kotlinx.coroutines.withContext
 import java.util.Date
 import java.util.concurrent.ConcurrentHashMap
 
-class BasicCacheSource(
+/**
+ * Basic implementation of a thread-safe cache for storing and retrieving in-memory data.
+ * This cache can be utilized as an L1 Cache when managing HTTP requests, offering an efficient means
+ * to present data without delays, but with the ability to update based on expiration and other conditions.
+ *
+ * @param changesRetryInterval The interval, in milliseconds, to retry cache changes.
+ * @param exceptionRetryInterval The interval, in milliseconds, to retry cache operations in case of exceptions.
+ * @param exceptionRetryCount The maximum number of retries for cache operations in case of exceptions.
+ */
+open class BasicCacheSource(
     private val changesRetryInterval: Long = 1000L,
     private val exceptionRetryInterval: Long = 3000L,
     private val exceptionRetryCount: Int = Int.MAX_VALUE
@@ -40,7 +49,6 @@ class BasicCacheSource(
         return object : CacheState<T> {
             override val key: CacheKey<T> = key
             override suspend fun last(): T? = cache[cacheKey]?.data as? T
-            override suspend fun lastOrFresh(): T? = last() ?: fresh()
             override suspend fun get(): T? = get(key, valueProvider)
             override suspend fun fresh(): T? {
                 cache[cacheKey]?.invalidate()
@@ -150,7 +158,7 @@ class BasicCacheSource(
                 }
             }
             ?: run {
-                if (cacheKey.key.isImmortal()) {
+                if (cacheKey.key.immortal()) {
                     jobs.computeIfAbsent(cacheKey) {
                         GlobalScope.async { valueProvider() }
                     }

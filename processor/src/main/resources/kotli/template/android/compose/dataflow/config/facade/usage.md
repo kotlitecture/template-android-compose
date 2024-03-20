@@ -4,7 +4,7 @@ The API can be accessed through:
 - `core.data.datasource.config.ConfigSource` - facade interface at the core module level.
 - `app.datasource.config.AppConfigSource` - decorator class at the app level.
 
-The difference is that the class serves as a *decorator* and can provide extra methods without impacting facade implementations. 
+The difference is that the class serves as a **decorator** and can provide extra methods without impacting facade implementations. 
 
 Facade *ConfigSource* provides the following methods:
 

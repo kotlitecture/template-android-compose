@@ -13,7 +13,7 @@ class FacadeConfigProcessor : BaseFeatureProcessor() {
     }
 
     companion object {
-        const val ID = "dataflow.config.basic"
+        const val ID = "dataflow.config.facade"
     }
 
 }

@@ -4,7 +4,7 @@ The API can be accessed through:
 - `core.data.datasource.clipboard.ClipboardSource` - facade interface at the core module level.
 - `app.datasource.clipboard.AppClipboardSource` - decorator class at the app level.
 
-The difference is that the class serves as a *decorator* and can provide extra methods without impacting facade implementations.
+The difference is that the class serves as a **decorator** and can provide extra methods without impacting facade implementations.
 
 Facade *ClipboardSource* provides the following methods:
 
