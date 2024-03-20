@@ -13,7 +13,7 @@ interface NetworkSource : DataSource {
      *
      * @return A flow emitting Boolean values indicating the online status.
      */
-    suspend fun isOnline(): Flow<Boolean>
+    fun isOnline(): Flow<Boolean>
 
     /**
      * Retrieves the IP address of the device.

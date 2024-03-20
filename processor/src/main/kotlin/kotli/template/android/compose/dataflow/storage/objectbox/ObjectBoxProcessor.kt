@@ -9,6 +9,7 @@ import kotli.engine.template.rule.RemoveMarkedLine
 class ObjectBoxProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
+    override fun isInternal(): Boolean = true
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules("build.gradle", CleanupMarkedLine("{dataflow.storage.objectbox}"))

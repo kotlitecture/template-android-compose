@@ -12,9 +12,12 @@ import android.text.TextUtils
 import androidx.core.app.NotificationManagerCompat
 import org.tinylog.Logger
 
-class BasicNotificationsSource(private val app: Application) : NotificationsSource {
+/**
+ * Provides basic functionality to manage notifications on the device.
+ */
+open class BasicNotificationsSource(private val app: Application) : NotificationsSource {
 
-    override suspend fun isEnabled(): Boolean {
+    override fun areEnabled(): Boolean {
         return try {
             NotificationManagerCompat.from(app).areNotificationsEnabled()
         } catch (e: Exception) {
@@ -24,7 +27,7 @@ class BasicNotificationsSource(private val app: Application) : NotificationsSour
     }
 
     @SuppressLint("ObsoleteSdkInt")
-    override suspend fun enable() {
+    override fun enable() {
         val intent = Intent()
         when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
@@ -48,7 +51,7 @@ class BasicNotificationsSource(private val app: Application) : NotificationsSour
         app.startActivity(intent)
     }
 
-    override suspend fun isEnabled(channelId: String): Boolean {
+    override fun isEnabled(channelId: String): Boolean {
         try {
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 if (!TextUtils.isEmpty(channelId)) {
@@ -67,7 +70,7 @@ class BasicNotificationsSource(private val app: Application) : NotificationsSour
         }
     }
 
-    override suspend fun enable(channelId: String) {
+    override fun enable(channelId: String) {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 if (!TextUtils.isEmpty(channelId)) {
@@ -82,7 +85,7 @@ class BasicNotificationsSource(private val app: Application) : NotificationsSour
         }
     }
 
-    override suspend fun disable(channelId: String) {
+    override fun disable(channelId: String) {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 if (!TextUtils.isEmpty(channelId)) {

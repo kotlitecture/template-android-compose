@@ -1,0 +1,1 @@
+Simple API for managing the device's notification state using only the Android SDK.

@@ -71,18 +71,18 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         // dataflow
         CommonDataFlowProvider(),
         AnalyticsProvider(),
-        ApiProvider(),
         ConfigProvider(),
         CacheProvider(),
-        HttpProvider(),
-        NetworkProvider(),
-        MessagingProvider(),
         StorageProvider(),
+        HttpProvider(),
+        ApiProvider(),
+        NetworkProvider(),
         ClipboardProvider(),
+        MessagingProvider(),
         WorkProvider(),
-        NotificationsProvider(),
         BiometricProvider(),
         EncryptionProvider(),
+        NotificationsProvider(),
 
         // quality
         CrashesProvider(),

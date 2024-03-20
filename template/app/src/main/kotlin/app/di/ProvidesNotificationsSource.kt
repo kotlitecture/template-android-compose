@@ -1,7 +1,7 @@
 package app.di
 
 import android.app.Application
-import core.data.datasource.notifications.BasicNotificationsSource
+import app.datasource.notifications.AppNotificationsSource
 import core.data.datasource.notifications.NotificationsSource
 import dagger.Module
 import dagger.Provides
@@ -15,10 +15,14 @@ internal class ProvidesNotificationsSource {
 
     @Provides
     @Singleton
-    fun source(
-        app: Application
-    ): NotificationsSource {
-        return BasicNotificationsSource(app)
+    fun sourceWrapped(app: Application): AppNotificationsSource {
+        return AppNotificationsSource(app)
+    }
+
+    @Provides
+    @Singleton
+    fun source(wrapped: AppNotificationsSource): NotificationsSource {
+        return wrapped
     }
 
 }

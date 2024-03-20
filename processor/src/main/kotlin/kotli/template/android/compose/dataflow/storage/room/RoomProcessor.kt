@@ -9,9 +9,8 @@ import kotli.engine.template.rule.RemoveMarkedLine
 class RoomProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
-
-    override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
-    )
+    override fun isInternal(): Boolean = true
+    override fun dependencies(): List<Class<out FeatureProcessor>> = listOf()
 
     override fun doApply(state: TemplateState) {
 

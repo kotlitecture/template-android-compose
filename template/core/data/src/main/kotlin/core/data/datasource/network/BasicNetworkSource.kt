@@ -66,7 +66,7 @@ open class BasicNetworkSource(protected val app: Application) : NetworkSource {
         else -> activeNetworkInfo?.isConnected
     } ?: false
 
-    override suspend fun isOnline(): Flow<Boolean> = isOnline
+    override fun isOnline(): Flow<Boolean> = isOnline
 
     override suspend fun getIp(): String? {
         val interfaces = withContext(Dispatchers.IO) { NetworkInterface.getNetworkInterfaces() }
