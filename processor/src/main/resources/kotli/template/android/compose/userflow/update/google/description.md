@@ -1,0 +1,1 @@
+In-app updates is a Google Play Core libraries feature that prompts active users to update your app.

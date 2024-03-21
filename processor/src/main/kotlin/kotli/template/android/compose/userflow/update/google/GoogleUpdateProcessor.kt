@@ -10,6 +10,8 @@ import kotli.engine.template.rule.RemoveMarkedLine
 class GoogleUpdateProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
+    override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/guide/playcore/in-app-updates"
+    override fun getIntegrationUrl(state: TemplateState): String = "https://developer.android.com/guide/playcore/in-app-updates/kotlin-java"
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules("app/build.gradle", CleanupMarkedLine("userflow.update.google"))
