@@ -27,17 +27,15 @@ class FirebaseRemoteConfigSource : ConfigSource {
     }
 
     override fun <T> get(key: String, type: Class<T>, defaultValue: () -> T): T {
+        val stringValue = config.value.getString(key).ifNotEmpty() ?: return defaultValue()
         val value: Any? = when (type) {
-            String::class.java -> config.value.getString(key).ifNotEmpty()
-            Boolean::class.java -> config.value.getBoolean(key)
-            Long::class.java -> config.value.getLong(key)
-            Int::class.java -> config.value.getLong(key).toInt()
-            Double::class.java -> config.value.getDouble(key)
-            Float::class.java -> config.value.getDouble(key).toFloat()
-            else -> {
-                val json = config.value.getString(key)
-                GsonUtils.toObject(json, type)
-            }
+            String::class.java -> stringValue
+            Boolean::class.java -> stringValue.toBooleanStrictOrNull()
+            Long::class.java -> stringValue.toLongOrNull()
+            Int::class.java -> stringValue.toIntOrNull()
+            Double::class.java -> stringValue.toDoubleOrNull()
+            Float::class.java -> stringValue.toFloatOrNull()
+            else -> GsonUtils.toObject(stringValue, type)
         }
         return (value as? T) ?: defaultValue()
     }

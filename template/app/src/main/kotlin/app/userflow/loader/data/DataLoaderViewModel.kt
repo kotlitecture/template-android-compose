@@ -21,7 +21,7 @@ class DataLoaderViewModel @Inject constructor(
     val isLoadingStore = StoreObject(false)
 
     fun onBind(state: StoreState) {
-        launchAsync("doBind") {
+        launchAsync("dataStateStore") {
             state.dataStateStore.asFlow()
                 .filterNotNull()
                 .map { it is DataState.Loading }

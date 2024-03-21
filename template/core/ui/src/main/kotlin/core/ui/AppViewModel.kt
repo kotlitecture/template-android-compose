@@ -85,14 +85,20 @@ abstract class AppViewModel : ViewModel() {
         block: suspend CoroutineScope.() -> Unit
     ) {
         jobs.remove(id)?.cancel()
-        state?.dataStateStore?.set(DataState.Loading(id))
+        val loadingState = state?.let { DataState.Loading(id) }
+        state?.dataStateStore?.set(loadingState)
         val job = viewModelScope.launch(context = context, block = block)
-        state?.let { job }?.invokeOnCompletion { th ->
-            val dataState = when {
-                th == null -> DataState.Loaded(id)
-                else -> DataState.Error(id, th)
+        if (state != null) {
+            job.invokeOnCompletion { th ->
+                val currentState = state.dataStateStore.get()
+                if (currentState == null || currentState.uid == loadingState?.uid) {
+                    val nextState = when {
+                        th == null -> DataState.Loaded(id)
+                        else -> DataState.Error(id, th)
+                    }
+                    state.dataStateStore.set(nextState)
+                }
             }
-            state.dataStateStore.set(dataState)
         }
         jobs[id] = job
     }

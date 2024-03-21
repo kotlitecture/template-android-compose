@@ -12,12 +12,24 @@ import androidx.compose.ui.window.DialogProperties
 import app.provideHiltViewModel
 import core.ui.state.StoreState
 
+/**
+ * Composable function for providing a data loading indicator.
+ * This function displays a loading dialog when the provided state indicates that data is being loaded.
+ * The dialog contains a circular progress indicator.
+ *
+ * @param state The state object representing the current data loading state.
+ */
 @Composable
 fun DataLoaderProvider(state: StoreState) {
     val viewModel: DataLoaderViewModel = provideHiltViewModel()
-    val isLoading = viewModel.isLoadingStore.asStateValueNotNull()
     LaunchedEffect(state) { viewModel.onBind(state) }
-    if (!isLoading) return
+    DataLoaderBlock(viewModel)
+}
+
+@Composable
+private fun DataLoaderBlock(viewModel: DataLoaderViewModel) {
+    val isLoading = viewModel.isLoadingStore.asStateValueNotNull()
+    if(!isLoading) return
     Dialog(
         onDismissRequest = {},
         properties = DialogProperties(

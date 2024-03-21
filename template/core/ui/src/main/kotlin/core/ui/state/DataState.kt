@@ -4,6 +4,9 @@ package core.ui.state
  * Represents the state of data loading.
  */
 sealed class DataState {
+
+    val uid = System.nanoTime()
+
     data class Loading(
         val id: String
     ) : DataState()
