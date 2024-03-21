@@ -1,1 +1,1 @@
-Simple Key-Value API
+Basic Key-Value API

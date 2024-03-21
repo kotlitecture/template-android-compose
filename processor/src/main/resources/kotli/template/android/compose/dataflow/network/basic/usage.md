@@ -6,14 +6,14 @@ The API can be accessed through:
 
 The difference is that the class serves as a **decorator** and can provide extra methods without impacting facade implementations.
 
-Facade *NetworkSource* provides the following methods:
+Facade **NetworkSource** provides the following methods:
 
 - `isOnline(): Flow<Boolean>` - Retrieves a flow representing the online status of the device.
 - `getIp(): String?` - Retrieves the IP address of the device.
 
-## Get started
+## Example
 
-Both the facade and decorator are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesNetworkSource`.
+Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesNetworkSource`.
 
 To start using, just inject it to your DI managed class.
 
@@ -35,7 +35,3 @@ class NoInternetViewModel @Inject constructor(
 
 }
 ```
-
-## Changing implementation
-
-Just edit `app.datasource.network.AppNetworkSource` however you like.

@@ -6,7 +6,7 @@ The API can be accessed through:
 
 The difference is that the class serves as a **decorator** and can provide extra methods without impacting facade implementations. 
 
-Facade *ConfigSource* provides the following methods:
+Facade **ConfigSource** provides the following methods:
 
 - `<T> get(key: String, type: Class<T>, defaultValue: () -> T): T` - Retrieves the value associated with the specified key from the configuration source.
 - `getString(key: String, defaultValue: () -> String): String` - Retrieves string value associated with the specified key from the configuration source.
@@ -16,11 +16,11 @@ Facade *ConfigSource* provides the following methods:
 - `getDouble(key: String, defaultValue: () -> Int): Int` - Retrieves double value associated with the specified key from the configuration source.
 - `getFloat(key: String, defaultValue: () -> Float): Float` - Retrieves float value associated with the specified key from the configuration source.
 
-## Get started
+## Example
 
-Both the facade and decorator are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesConfigSource`.
+Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesConfigSource`.
 
-*However*, it is recommended to use decorator methods instead of directly accessing facade methods,
+However, it is recommended to use decorator methods instead of directly accessing facade methods,
 as the latter requires providing an extra parameter `defaultValue`, which might be hidden in the decorator.
 
 To start using, just inject any of them to your DI managed class.
@@ -41,10 +41,3 @@ class TemplateViewModel @Inject constructor(
     ...
 }
 ```
-
-## Changing implementation
-
-Follow these two steps:
-
-1. Implement the `core.data.datasource.config.ConfigSource` interface.
-2. Register your implementation in `app.datasource.config.AppConfigSource`.

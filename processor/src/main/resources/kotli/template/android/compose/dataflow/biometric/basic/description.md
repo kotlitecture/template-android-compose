@@ -1,1 +1,1 @@
-Implements a basic API for working with biometric data on the device.
+Basic API for working with biometric data on the device.

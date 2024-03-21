@@ -6,13 +6,13 @@ The API can be accessed through:
 
 The difference is that the class serves as a **decorator** and can provide extra methods without impacting facade implementations.
 
-Facade *BiometricSource* provides the following methods:
+Facade **BiometricSource** provides the following methods:
 
 - `isAvailable(): Boolean` - Checks if biometric authentication is available on the device.
 
-## Get started
+## Example
 
-Both the facade and decorator are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesBiometricSource`.
+Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesBiometricSource`.
 
 To start using, just inject it to your DI managed class.
 
@@ -32,7 +32,3 @@ class TemplateViewModel @Inject constructor(
 
 }
 ```
-
-## Changing implementation
-
-Just edit `app.datasource.biometric.AppBiometricSource` however you like.

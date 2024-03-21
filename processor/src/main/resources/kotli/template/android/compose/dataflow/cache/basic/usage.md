@@ -6,7 +6,7 @@ The API can be accessed through:
 
 The difference is that the class serves as a **decorator** and can provide extra methods without impacting facade implementations.
 
-Facade *CacheSource* provides the following methods:
+Facade **CacheSource** provides the following methods:
 
 - `getState(key: CacheKey<T>, valueProvider: suspend () -> T?): CacheState<T>` - Retrieves the state of a cache entry associated with the specified key.
 - `get(key: CacheKey<T>, valueProvider: suspend () -> T?): T?` - Retrieves the value associated with the specified key from the cache.
@@ -17,9 +17,9 @@ Facade *CacheSource* provides the following methods:
 - `put(key: CacheKey<T>, value: T)` - Associates the specified value with the specified key in the cache.
 - `clear()` - Clears all entries from the cache. 
 
-## Get started
+## Example
 
-Both the facade and decorator are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesCacheSource`.
+Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesCacheSource`.
 
 To start using, just inject it to your DI managed class.
 
@@ -39,7 +39,3 @@ class NewsRepository @Inject constructor(
 
 }
 ```
-
-## Changing implementation
-
-Just edit `app.datasource.cache.AppCacheSource` however you like.

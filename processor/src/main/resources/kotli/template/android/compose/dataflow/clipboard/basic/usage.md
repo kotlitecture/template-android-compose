@@ -6,14 +6,14 @@ The API can be accessed through:
 
 The difference is that the class serves as a **decorator** and can provide extra methods without impacting facade implementations.
 
-Facade *ClipboardSource* provides the following methods:
+Facade **ClipboardSource** provides the following methods:
 
 - `getChanges(): Flow<String?>` - Retrieves changes made to the clipboard.
 - `copy(text: String?, label: String?)` - Copies text to the clipboard.
 
-## Get started
+## Example
 
-Both the facade and decorator are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesClipboardSource`.
+Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesClipboardSource`.
 
 To start using, just inject it to your DI managed class.
 
@@ -39,7 +39,3 @@ class TemplateViewModel @Inject constructor(
 
 }
 ```
-
-## Changing implementation
-
-Just edit `app.datasource.clipboard.AppClipboardSource` however you like.
