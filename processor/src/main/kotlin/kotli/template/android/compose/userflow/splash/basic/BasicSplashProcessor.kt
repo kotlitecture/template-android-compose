@@ -12,6 +12,9 @@ class BasicSplashProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
 
+    override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/develop/ui/views/launch/splash-screen"
+    override fun getIntegrationUrl(state: TemplateState): String = "https://developer.android.com/reference/kotlin/androidx/core/splashscreen/SplashScreen"
+
     override fun doApply(state: TemplateState) {
         state.onApplyRules(
             "app/build.gradle",
