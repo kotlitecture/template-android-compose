@@ -13,4 +13,8 @@ abstract class StoreState {
 
     val dataStateStore by lazy { StoreObject<DataState>() }
 
+    fun loaded(id: String) = dataStateStore.set(DataState.Loaded(id))
+    fun loading(id: String) = dataStateStore.set(DataState.Loading(id))
+    fun error(id: String, e: Exception) = dataStateStore.set(DataState.Error(id, e))
+
 }
