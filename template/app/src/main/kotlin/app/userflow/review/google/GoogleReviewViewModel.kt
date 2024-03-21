@@ -1,54 +1,67 @@
 package app.userflow.review.google
 
 import android.app.Activity
-import android.app.Application
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.LifecycleOwner
+import app.userflow.review.google.data.ReviewConfig
 import app.userflow.review.google.data.ReviewData
-import com.google.android.play.core.review.ReviewManagerFactory
 import core.ui.AppViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.tasks.await
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
 class GoogleReviewViewModel @Inject constructor(
-    private val app: Application,
     private val state: GoogleReviewState
 ) : AppViewModel() {
-
-    private val manager by lazy { ReviewManagerFactory.create(app) }
 
     @Composable
     override fun doBind(owner: LifecycleOwner) {
         val activity = owner as Activity
         LaunchedEffect(activity) {
-            launchAsync("reviewInfoStore") {
-                val request = manager.requestReviewFlow()
-                request.addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val info = task.result
-                        state.dataStore.set(ReviewData(info))
-                    } else {
-                        state.dataStore.clear()
-                    }
-                }
-            }
             launchAsync("reviewFlow") {
                 state.configStore.asFlow()
                     .filterNotNull()
-                    .flatMapLatest { state.dataStore.asFlow().filterNotNull() }
-                    .collectLatest { data -> requestReview(activity, data) }
+                    .collectLatest { config ->
+                        val data = ReviewData()
+                        try {
+                            val manager = config.reviewManager
+                            val reviewInfo = manager.requestReviewFlow().await()
+                            requestReview(activity, config, data.copy(reviewInfo = reviewInfo))
+                        } catch (e: Exception) {
+                            state.dataStore.set(data
+                                .copy(
+                                    completeTime = Date(),
+                                    reviewError = e,
+                                )
+                            )
+                        }
+                    }
             }
         }
     }
 
-    private fun requestReview(activity: Activity, data: ReviewData) {
-        manager.launchReviewFlow(activity, data.info)
+    private fun requestReview(activity: Activity, config: ReviewConfig, data: ReviewData) {
+        config.reviewManager.launchReviewFlow(activity, data.reviewInfo!!)
             .addOnCompleteListener {
+                if (it.exception != null) {
+                    state.dataStore.set(data
+                        .copy(
+                            completeTime = Date(),
+                            reviewError = it.exception,
+                        )
+                    )
+                } else {
+                    state.dataStore.set(data
+                        .copy(
+                            completeTime = Date()
+                        )
+                    )
+                }
                 state.configStore.clear()
             }
     }

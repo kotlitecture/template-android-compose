@@ -11,6 +11,9 @@ class GoogleReviewProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
 
+    override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/guide/playcore/in-app-review"
+    override fun getIntegrationUrl(state: TemplateState): String = "https://developer.android.com/guide/playcore/in-app-review/kotlin-java"
+
     override fun doApply(state: TemplateState) {
         state.onApplyRules("app/build.gradle", CleanupMarkedLine("{userflow.review.google}"))
     }

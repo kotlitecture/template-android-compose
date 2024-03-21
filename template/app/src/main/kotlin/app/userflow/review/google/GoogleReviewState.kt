@@ -10,7 +10,7 @@ import javax.inject.Singleton
 @Singleton
 class GoogleReviewState @Inject constructor() : StoreState() {
 
-    val configStore = StoreObject(ReviewConfig())
+    val configStore = StoreObject<ReviewConfig>()
     val dataStore = StoreObject<ReviewData>()
 
 }
