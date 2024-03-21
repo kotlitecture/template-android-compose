@@ -24,9 +24,16 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import core.ui.theme.ThemeData
 
+/**
+ * Provides a composable UI component for handling data loading and error states.
+ *
+ * @param store The [StoreObject] object containing the data state.
+ * @param content The composable function to be executed when an error state occurs. It receives a [DataState.Error]
+ *     object as a parameter, which contains information about the error.
+ */
 @Composable
-fun DataLoaderProvider(
-    state: StoreState,
+fun ErrorStateProvider(
+    store: StoreObject<DataState>,
     content: @Composable (error: DataState.Error) -> Unit = { error ->
         val radius = 24.dp
         val padding = 24.dp
@@ -64,9 +71,9 @@ fun DataLoaderProvider(
         }
     }
 ) {
-    val error = state.dataStateStore.asStateValue() as? DataState.Error ?: return
+    val error = store.asStateValue() as? DataState.Error ?: return
     Dialog(
-        onDismissRequest = state.dataStateStore::clear,
+        onDismissRequest = store::clear,
         properties = DialogProperties(
             dismissOnBackPress = true,
             dismissOnClickOutside = true,

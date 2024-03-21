@@ -1,5 +1,8 @@
 package core.ui.state
 
+/**
+ * Represents the state of data loading.
+ */
 sealed class DataState {
     data class Loading(
         val id: String

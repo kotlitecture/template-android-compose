@@ -8,8 +8,17 @@ import androidx.compose.runtime.mutableStateOf
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 
+/**
+ * An immutable store object that holds a value of type [T].
+ *
+ * @param T the type of the value stored in the object.
+ * @property value The initial value of the store object.
+ * @property valueReply The number of initial values to be replayed to collectors of the [asFlow] flow.
+ * @property valueBufferCapacity The additional buffer capacity for the [asFlow] flow.
+ * @property onChanged A lambda function invoked when the value of the store object changes.
+ */
 @Immutable
-class StoreObject<T>(
+data class StoreObject<T>(
     private val value: T? = null,
     private val valueReply: Int = 1,
     private val valueBufferCapacity: Int = 1,
@@ -27,16 +36,57 @@ class StoreObject<T>(
 
     private val valueState = lazy { mutableStateOf(currentValue) }
 
+    /**
+     * Returns the store object as a [MutableState] object.
+     */
     fun asState(): MutableState<T?> = valueState.value
+
+    /**
+     * Returns the value of the store object as a [MutableState] object.
+     */
     fun asStateValue(): T? = asState().value
+
+    /**
+     * Returns the store object as a non-nullable [MutableState] object.
+     */
     fun asStateNotNull(): MutableState<T> = asState() as MutableState<T>
+
+    /**
+     * Returns the value of the store object as a non-nullable type [T].
+     */
     fun asStateValueNotNull(): T = runCatching { asStateNotNull().value }.getOrElse { currentValue!! }
+
+    /**
+     * Returns the store object as a flow of type [T].
+     */
     fun asFlow(): Flow<T?> = valueChanges.value
+
+    /**
+     * Gets the non-nullable value of the store object.
+     */
     fun getNotNull(): T = currentValue!!
+
+    /**
+     * Clears the value of the store object.
+     */
     fun clear() = set(value)
+
+    /**
+     * Gets the value of the store object.
+     */
     fun get(): T? = currentValue
+
+    /**
+     * Gets the previous value of the store object.
+     */
     fun getPrev(): T? = prevValue
 
+    /**
+     * Sets the value of the store object and emits it to collectors if it has changed.
+     *
+     * @param value The new value to set.
+     * @return `true` if the value has changed, `false` otherwise.
+     */
     fun set(value: T?): Boolean {
         val changed = currentValue != value
         prevValue = currentValue

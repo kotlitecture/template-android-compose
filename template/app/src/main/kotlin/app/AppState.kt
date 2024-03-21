@@ -5,5 +5,4 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AppState @Inject constructor() : StoreState() {
-}
+class AppState @Inject constructor() : StoreState()
