@@ -7,6 +7,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.filterNotNull
 import javax.inject.Inject
 
+/**
+ * ViewModel class responsible for handling the state related to internet connectivity.
+ *
+ * @param networkSource The network data source providing information about internet connectivity.
+ */
 @HiltViewModel
 class NoInternetViewModel @Inject constructor(
     private val networkSource: NetworkSource

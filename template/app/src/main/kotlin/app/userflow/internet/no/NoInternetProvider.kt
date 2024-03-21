@@ -19,6 +19,14 @@ import androidx.compose.ui.unit.dp
 import app.R
 import app.provideHiltViewModel
 
+/**
+ * Composable function responsible for displaying UI elements indicating no internet connection.
+ * Utilizes the NoInternetViewModel to observe and react to changes in internet connectivity status.
+ *
+ * @param textRes The resource ID of the text to be displayed indicating no internet connection.
+ * @param textColor The color of the text indicating no internet connection.
+ * @param backgroundColor The background color of the UI element indicating no internet connection.
+ */
 @Composable
 fun NoInternetProvider(
     textRes: Int = R.string.internet_error,

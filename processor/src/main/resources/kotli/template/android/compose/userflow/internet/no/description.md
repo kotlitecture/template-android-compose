@@ -1,0 +1,1 @@
+Adds a component on the app level to display a banner whenever there is no internet connection. The banner and its behavior can be customized to meet your needs.
