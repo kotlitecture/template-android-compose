@@ -29,12 +29,22 @@ import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.collections.set
 import kotlin.coroutines.CoroutineContext
 
+/**
+ * Abstract class representing a ViewModel with lifecycle-aware coroutine launching capabilities.
+ */
 @Immutable
 abstract class AppViewModel : ViewModel() {
 
     private val subscribers = ConcurrentLinkedQueue<Int>()
     private val jobs = ConcurrentHashMap<String, Job>()
 
+    /**
+     * Launches a coroutine in the main thread context, managing the loading state and error handling.
+     *
+     * @param id The identifier for the coroutine job.
+     * @param state The [StoreState] associated with the data state.
+     * @param block The block of code to execute as a coroutine.
+     */
     protected fun launchMain(
         id: String,
         state: StoreState? = null,
@@ -48,6 +58,13 @@ abstract class AppViewModel : ViewModel() {
         )
     }
 
+    /**
+     * Launches a coroutine in the IO thread context, managing the loading state and error handling.
+     *
+     * @param id The identifier for the coroutine job.
+     * @param state The [StoreState] associated with the data state.
+     * @param block The block of code to execute as a coroutine.
+     */
     protected fun launchAsync(
         id: String,
         state: StoreState? = null,
@@ -85,13 +102,35 @@ abstract class AppViewModel : ViewModel() {
         return job.await()
     }
 
-    protected open fun doBind() {}
-    protected open fun doResume() {}
-    protected open fun doUnbind() {}
-
+    /**
+     * Lifecycle-aware method called when binding the ViewModel to a [LifecycleOwner].
+     *
+     * @param owner The [LifecycleOwner] to bind to.
+     */
     @Composable
     protected open fun doBind(owner: LifecycleOwner) = Unit
 
+    /**
+     * Lifecycle-aware method called when binding the ViewModel.
+     */
+    protected open fun doBind() = Unit
+
+    /**
+     * Lifecycle-aware method called when the ViewModel is resumed.
+     */
+    protected open fun doResume() = Unit
+
+    /**
+     * Lifecycle-aware method called when unbinding the ViewModel.
+     */
+    protected open fun doUnbind() = Unit
+
+    /**
+     * Binds the ViewModel to the given [owner]'s lifecycle.
+     *
+     * @param owner The [LifecycleOwner] to bind to.
+     * @param activityScope Determines if the binding is scoped to the activity.
+     */
     @Composable
     fun bind(owner: LifecycleOwner, activityScope: Boolean) {
         val ownerId = owner.hashCode()

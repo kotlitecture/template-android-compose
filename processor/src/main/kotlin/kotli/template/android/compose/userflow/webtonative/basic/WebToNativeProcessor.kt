@@ -10,6 +10,7 @@ import kotli.engine.template.rule.RemoveMarkedLine
 class WebToNativeProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
+    override fun isInternal(): Boolean = true
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules("app/build.gradle", CleanupMarkedLine("{userflow.webtonative.basic}"))

@@ -18,6 +18,18 @@ import core.ui.navigation.NavigationState
 import core.ui.theme.ThemeState
 import core.ui.theme.material3.Material3ThemeProvider
 
+/**
+ * Composable function representing the main scaffold of the application, including navigation, snackbar,
+ * command handling, and theme management.
+ *
+ * @param navigationState The state of navigation in the application.
+ * @param commandState The state of command handling in the application.
+ * @param themeState The state of the application theme.
+ * @param destinations The list of navigation destinations in the application.
+ * @param startDestination The start destination for navigation.
+ * @param bottomBar The composable function for the bottom bar UI.
+ * @param overlay The composable function for the overlay UI.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AppScaffold(

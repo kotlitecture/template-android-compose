@@ -19,12 +19,12 @@ class TemplateViewModel @Inject constructor(
 
     fun onTop() {
         val data = TemplateDestination.Data(counter.incrementAndGet().toString())
-        navigationState.onNavigate(TemplateDestination, data)
+        navigationState.onNext(TemplateDestination, data)
     }
 
     fun onBottom() {
         val data = TemplateDestination.Data(counter.incrementAndGet().toString())
-        navigationState.onNavigate(TemplateDestination, data)
+        navigationState.onNext(TemplateDestination, data)
     }
 
 }

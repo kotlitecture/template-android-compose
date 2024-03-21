@@ -27,13 +27,13 @@ import core.ui.theme.ThemeData
 /**
  * Provides a composable UI component for handling data loading and error states.
  *
- * @param store The [StoreObject] object containing the data state.
+ * @param state The [StoreState] object containing the data state.
  * @param content The composable function to be executed when an error state occurs. It receives a [DataState.Error]
  *     object as a parameter, which contains information about the error.
  */
 @Composable
 fun ErrorStateProvider(
-    store: StoreObject<DataState>,
+    state: StoreState,
     content: @Composable (error: DataState.Error) -> Unit = { error ->
         val radius = 24.dp
         val padding = 24.dp
@@ -71,9 +71,9 @@ fun ErrorStateProvider(
         }
     }
 ) {
-    val error = store.asStateValue() as? DataState.Error ?: return
+    val error = state.dataStateStore.asStateValue() as? DataState.Error ?: return
     Dialog(
-        onDismissRequest = store::clear,
+        onDismissRequest = state.dataStateStore::clear,
         properties = DialogProperties(
             dismissOnBackPress = true,
             dismissOnClickOutside = true,

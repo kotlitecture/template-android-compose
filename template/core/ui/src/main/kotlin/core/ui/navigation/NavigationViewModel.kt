@@ -9,6 +9,9 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.mapNotNull
 
+/**
+ * ViewModel responsible for managing navigation-related functionality.
+ */
 class NavigationViewModel : AppViewModel() {
 
     fun onBind(navigationState: NavigationState, context: AppContext) {
@@ -33,7 +36,7 @@ class NavigationViewModel : AppViewModel() {
                             strategy.proceed(null, Uri.EMPTY, controller)
                         }
                     } catch (e: Exception) {
-                        val dataState = DataState.Error("Navigation Error", e)
+                        val dataState = DataState.Error("Navigation", e)
                         navigationState.dataStateStore.set(dataState)
                     }
                 }
