@@ -4,8 +4,7 @@ Component package: `app.userflow.loader.data`
 
 The component is pre-configured at the `app.AppActivity` level to monitor state changes of the `app.AppState` instance.
 
-If you need to modify the behavior, including colors, texts, logic, etc., simply update
-the `app.userflow.loader.data.DataLoaderProvider` composable.
+If you need to modify the behavior, including colors, texts, logic, etc., simply update the `app.userflow.loader.data.DataLoaderProvider` composable.
 
 ## Example
 

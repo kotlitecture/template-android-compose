@@ -1,8 +1,6 @@
 ## Overview
 
-The API comes pre-configured with default theme settings. To customize the background color of the
-splash screen and icon, simply edit the `Theme.App.Splash` theme in
-the `app/src/main/res/values/themes.xml` file.
+The API comes pre-configured with default theme settings. To customize the background color of the splash screen and icon, simply edit the `Theme.App.Splash` theme in the `app/src/main/res/values/themes.xml` file.
 
 ## Example
 

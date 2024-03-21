@@ -23,7 +23,6 @@ plugins {
     alias(libs.plugins.firebase.perf) apply false // {quality.performance.firebase}
     alias(libs.plugins.version.catalog.versions) apply true
     alias(libs.plugins.version.catalog.update) apply true
-    alias(libs.plugins.gatling) apply false // {testing.loadtests.gatling}
     alias(libs.plugins.ksp) apply false
 }
 

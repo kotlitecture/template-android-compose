@@ -28,7 +28,6 @@ import kotli.template.android.compose.quality.crashes.CrashesProvider
 import kotli.template.android.compose.quality.performance.PerformanceProvider
 import kotli.template.android.compose.quality.startup.StartupProvider
 import kotli.template.android.compose.testing.http.HttpTestingProvider
-import kotli.template.android.compose.testing.loadtests.LoadTestsProvider
 import kotli.template.android.compose.testing.logging.LoggingProvider
 import kotli.template.android.compose.ui.preview.PreviewProvider
 import kotli.template.android.compose.ui.screen.ScreenProvider
@@ -93,22 +92,21 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
 
         // userflow
         SplashProvider(),
+        LoaderProvider(),
+        InternetProvider(),
+        ReviewProvider(),
+        UpdateProvider(),
         AdsProvider(),
         AuthProvider(),
         KycProvider(),
-        LoaderProvider(),
-        InternetProvider(),
         OnboardingProvider(),
         PaymentsProvider(),
         PasscodeProvider(),
-        ReviewProvider(),
-        UpdateProvider(),
         SupportProvider(),
         WebToNativeProvider(),
 
         // testing
         HttpTestingProvider(),
-        LoadTestsProvider(),
         LoggingProvider(),
     )
 

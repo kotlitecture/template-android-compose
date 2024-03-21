@@ -1,1 +1,1 @@
-"No Internet" Banner
+No Internet Banner
