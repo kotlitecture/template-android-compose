@@ -14,6 +14,10 @@ import core.data.datasource.http.okhttp.OkHttpSource
 import dagger.Lazy
 import javax.inject.Inject
 
+/**
+ * A dependency initializer for configuring the Coil image loader library.
+ * Initializes the image loader factory with specified configurations.
+ */
 class CoiIImageLoaderInitializer : DependencyInitializer<ImageLoaderFactory>() {
 
     @Inject
