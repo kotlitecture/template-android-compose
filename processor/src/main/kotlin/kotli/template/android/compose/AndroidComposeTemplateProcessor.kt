@@ -7,7 +7,6 @@ import kotli.engine.TemplateState
 import kotli.engine.model.LayerTypes
 import kotli.engine.template.rule.ReplaceMarkedText
 import kotli.template.android.compose.dataflow.analytics.AnalyticsProvider
-import kotli.template.android.compose.dataflow.api.ApiProvider
 import kotli.template.android.compose.dataflow.biometric.BiometricProvider
 import kotli.template.android.compose.dataflow.cache.CacheProvider
 import kotli.template.android.compose.dataflow.clipboard.ClipboardProvider
@@ -75,7 +74,6 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         CacheProvider(),
         StorageProvider(),
         HttpProvider(),
-        ApiProvider(),
         NetworkProvider(),
         ClipboardProvider(),
         MessagingProvider(),

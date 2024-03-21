@@ -5,7 +5,7 @@ import app.datasource.config.AppConfigSource
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
-import core.data.datasource.http.HttpSource
+import core.data.datasource.http.okhttp.OkHttpSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,17 +14,17 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal class ProvidesHttpSource {
+internal class ProvidesOkHttpSource {
 
     @Provides
     @Singleton
     fun source(
         app: Application,
         config: AppConfigSource
-    ): HttpSource {
-        return HttpSource(
-            timeout = config.getApiTimeout(),
-            retries = config.getApiRetryCount(),
+    ): OkHttpSource {
+        return OkHttpSource(
+            timeout = config.getHttpTimeout(),
+            retries = config.getHttpRetryCount(),
             // {testing.http.okhttp}
             interceptors = listOf(
                 ChuckerInterceptor.Builder(app)

@@ -10,14 +10,14 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.decode.SvgDecoder
 import coil.request.CachePolicy
-import core.data.datasource.http.HttpSource
+import core.data.datasource.http.okhttp.OkHttpSource
 import dagger.Lazy
 import javax.inject.Inject
 
 class CoiIImageLoaderInitializer : DependencyInitializer<ImageLoaderFactory>() {
 
     @Inject
-    lateinit var httpSource: Lazy<HttpSource>
+    lateinit var httpSource: Lazy<OkHttpSource>
 
     override fun initialize(context: Context): ImageLoaderFactory {
         val factory = ImageLoaderFactory {

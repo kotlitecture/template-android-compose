@@ -9,6 +9,7 @@ import kotli.template.android.compose.dataflow.storage.encryptedkeyvalue.Encrypt
 class BasicEncryptionProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
+    override fun isInternal(): Boolean = true
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         EncryptedKeyValueProcessor::class.java

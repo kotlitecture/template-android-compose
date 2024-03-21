@@ -2,6 +2,14 @@ package core.data.datasource.encryption
 
 import core.data.misc.utils.EncryptUtils
 
+/**
+ * Basic implementation of the [EncryptedString] interface.
+ * This class handles encryption and decryption of strings using AES algorithm with the provided password.
+ *
+ * @property encrypted The encrypted string.
+ * @property decrypted The decrypted string.
+ * @property password The password used for encryption and decryption.
+ */
 internal class BasicEncryptedString(
     private val encrypted: String?,
     private val decrypted: String?,

@@ -11,16 +11,17 @@ import kotli.template.android.compose.dataflow.config.facade.FacadeConfigProcess
 class OkHttpProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
+    override fun getWebUrl(state: TemplateState): String = "https://square.github.io/okhttp/"
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         FacadeConfigProcessor::class.java
     )
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("*HttpSource*", RemoveFile())
+        state.onApplyRules("*OkHttpSource*", RemoveFile())
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("okhttp")))
         state.onApplyRules("app/src/main/kotlin/app/datasource/config/AppConfigSource.kt",
-            RemoveMarkedLine("api_")
+            RemoveMarkedLine("http_")
         )
     }
 

@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package core.data.datasource.http
+package core.data.datasource.http.okhttp
 
 import core.data.datasource.DataSource
 import core.data.misc.extensions.globalSharedFlow
@@ -30,7 +30,16 @@ import okhttp3.OkHttpClient
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 
-class HttpSource(
+/**
+ * A data source implementation that utilizes OkHttp as the underlying HTTP client.
+ *
+ * @param retries The number of retries to attempt in case of network errors.
+ * @param timeout The timeout value for network operations, in milliseconds.
+ * @param retryInterval The interval between retry attempts, in milliseconds.
+ * @param wsStopTimeout The timeout for WebSocket connections to stop gracefully, in milliseconds.
+ * @param interceptors List of interceptors to be applied to the OkHttp client.
+ */
+class OkHttpSource(
     private val retries: Int = 3,
     private val timeout: Long = 15_000L,
     private val retryInterval: Long = 3_000L,
@@ -38,6 +47,7 @@ class HttpSource(
     private val interceptors: List<Interceptor> = emptyList()
 ) : DataSource {
 
+    /** Cache to store and manage flow instances. */
     private val flowCache = ConcurrentHashMap<Any, Flow<*>>()
 
     val okhttp by lazy {
@@ -81,10 +91,23 @@ class HttpSource(
         }
     }
 
+    /**
+     * Clears the flow cache.
+     */
     fun clear() {
         flowCache.clear()
     }
 
+    /**
+     * Retrieves data as a flow from the specified key, optionally retrying on failure.
+     *
+     * This method can be used to obtain WebSocket connections, cache them for the same key,
+     * and keep them open until there are no active subscribers within [wsStopTimeout] milliseconds.
+     *
+     * @param key The key associated with the data.
+     * @param collector The collector to collect data into the flow.
+     * @return A flow of the retrieved data.
+     */
     fun <T> get(key: Any, collector: suspend FlowCollector<T>.() -> Unit): Flow<T> {
         val stopTimeout = wsStopTimeout
         val cached = flowCache.computeIfAbsent(key) {
@@ -99,6 +122,13 @@ class HttpSource(
         return cached as Flow<T>
     }
 
+    /**
+     * Adds default interceptors and configurations to the OkHttp builder.
+     *
+     * @param builder The OkHttpClient.Builder instance to configure.
+     * @param interceptors List of interceptors to be applied.
+     * @return The configured OkHttpClient.Builder instance.
+     */
     private fun withDefaults(
         builder: OkHttpClient.Builder,
         interceptors: List<Interceptor>
@@ -111,6 +141,12 @@ class HttpSource(
             .retryOnConnectionFailure(true)
     }
 
+    /**
+     * Adds retry functionality to the flow with a specified key.
+     *
+     * @param key The key associated with the flow.
+     * @return A flow with retry functionality.
+     */
     private fun <T> Flow<T>.withRetry(key: Any): Flow<T> {
         return retry {
             flowCache.remove(key)
@@ -118,6 +154,12 @@ class HttpSource(
         }
     }
 
+    /**
+     * Adds SSL configuration to the OkHttpClient builder.
+     *
+     * @param builder The OkHttpClient.Builder instance to configure.
+     * @return The configured OkHttpClient.Builder instance.
+     */
     private fun withSslConfig(builder: OkHttpClient.Builder): OkHttpClient.Builder {
         val factory = SslUtils.getSocketFactory() ?: return builder
         return builder
