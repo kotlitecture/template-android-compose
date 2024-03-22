@@ -1,6 +1,7 @@
 package core.ui.navigation
 
 import android.net.Uri
+import android.util.SparseArray
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavBackStackEntry
@@ -12,7 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import kotlin.collections.set
+import core.ui.misc.extensions.ifIndex
 
 /**
  * Abstract class representing a navigation destination.
@@ -46,7 +47,7 @@ abstract class NavigationDestination<D> {
      * @param builder The NavGraphBuilder to bind to.
      */
     fun bind(builder: NavGraphBuilder) {
-        REGISTRY[id] = this
+        register(this)
         doBind(builder)
     }
 
@@ -161,17 +162,33 @@ abstract class NavigationDestination<D> {
 
     companion object {
         private const val ATTR_DATA = "data"
-        private val REGISTRY = mutableMapOf<String, NavigationDestination<*>>()
+        private val DESTINATIONS = SparseArray<NavigationDestination<*>>()
 
-        internal fun find(route: String) = REGISTRY[getId(route)]
+        /**
+         * Retrieves a navigation destination by its unique identifier.
+         *
+         * @param id The unique identifier of the navigation destination.
+         * @return The navigation destination, or null if not found.
+         */
+        fun getById(id: String): NavigationDestination<*>? = DESTINATIONS.get(id.hashCode())
 
-        private fun getId(route: String): String {
-            val indexOfData = route.indexOf('?')
-            return if (indexOfData != -1) {
-                route.substring(0, indexOfData)
-            } else {
-                route
-            }
+        /**
+         * Retrieves a navigation destination by its route.
+         *
+         * @param route The route of the navigation destination
+         * @return The navigation destination, or null if not found.
+         */
+        fun getByRoute(route: String): NavigationDestination<*>? = getById(extractId(route))
+
+        internal fun register(destination: NavigationDestination<*>) {
+            DESTINATIONS[destination.id.hashCode()] = destination
+        }
+
+        private fun extractId(route: String): String {
+            return route.indexOf('?')
+                .ifIndex()
+                ?.let { route.substring(0, it) }
+                ?: route
         }
     }
 

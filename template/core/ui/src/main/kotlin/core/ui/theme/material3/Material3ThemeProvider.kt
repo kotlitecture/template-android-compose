@@ -8,6 +8,12 @@ import core.ui.provideViewModel
 import core.ui.theme.ThemeData
 import core.ui.theme.ThemeState
 
+/**
+ * Provides a Material3 theme based on the provided theme state.
+ *
+ * @param themeState The state of the Material3 theme.
+ * @param content The composable content to be wrapped with the Material3 theme.
+ */
 @Composable
 fun Material3ThemeProvider(
     themeState: ThemeState,

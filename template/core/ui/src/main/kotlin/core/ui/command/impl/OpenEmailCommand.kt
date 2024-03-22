@@ -5,6 +5,11 @@ import core.ui.AppContext
 import core.ui.command.Command
 import core.ui.command.CommandState
 
+/**
+ * Command for opening the email application.
+ *
+ * @property title The title of the email application chooser dialog.
+ */
 class OpenEmailCommand(
     private val title: String? = null
 ) : Command() {

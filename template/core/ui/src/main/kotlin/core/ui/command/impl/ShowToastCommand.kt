@@ -6,6 +6,11 @@ import core.ui.command.Command
 import core.ui.command.CommandState
 import core.ui.misc.utils.WeakReferenceUtils
 
+/**
+ * Command for showing a Toast.
+ *
+ * @property text The text to display in the Toast.
+ */
 class ShowToastCommand(
     private val text: String
 ) : Command() {
@@ -13,7 +18,7 @@ class ShowToastCommand(
     override fun doExecute(commandState: CommandState, appContext: AppContext) {
         val context = appContext.context.applicationContext
         val toast = Toast.makeText(context, text, Toast.LENGTH_LONG)
-        WeakReferenceUtils.replace(javaClass, toast)?.cancel()
+        WeakReferenceUtils.replace("ShowToastCommand", toast)?.cancel()
         toast.show()
     }
 }

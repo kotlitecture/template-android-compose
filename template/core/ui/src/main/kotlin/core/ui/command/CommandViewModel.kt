@@ -5,6 +5,9 @@ import core.ui.AppViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filterNotNull
 
+/**
+ * ViewModel responsible for handling commands.
+ */
 class CommandViewModel : AppViewModel() {
 
     fun onBind(commandState: CommandState, context: AppContext) {

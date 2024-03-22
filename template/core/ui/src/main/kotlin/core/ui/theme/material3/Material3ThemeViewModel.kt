@@ -10,10 +10,18 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
 
+/**
+ * ViewModel responsible for managing the Material3 theme state.
+ */
 class Material3ThemeViewModel : AppViewModel() {
 
+    /**
+     * Binds the Material3 theme state to the ViewModel.
+     *
+     * @param themeState The state of the Material3 theme to be bound.
+     */
     fun onBind(themeState: ThemeState) {
-        launchAsync("themeState", themeState) {
+        launchAsync("themeProviderStore", themeState) {
             themeState.themeProviderStore.asFlow()
                 .mapNotNull { it as? Material3ThemeDataProvider }
                 .map { provider ->

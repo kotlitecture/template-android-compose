@@ -6,11 +6,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import core.ui.theme.ThemeDataProvider
 
+/**
+ * Data class representing a Material3 theme data provider.
+ *
+ * @property dark Indicates whether the theme is dark mode or not.
+ * @property colorScheme The color scheme used in the theme.
+ */
 data class Material3ThemeDataProvider(
     override val dark: Boolean,
     val colorScheme: ColorScheme
 ) : ThemeDataProvider() {
 
+    /**
+     * Creates typography settings for the given font family.
+     *
+     * @param fontFamily The font family to be used in typography.
+     * @return Typography settings with the specified font family.
+     */
     fun createTypography(fontFamily: FontFamily): Typography {
         val typography = Typography()
         if (typography.bodyLarge.fontFamily != fontFamily) {
@@ -36,6 +48,12 @@ data class Material3ThemeDataProvider(
         }
     }
 
+    /**
+     * Creates a color scheme for the theme, adjusting it if it's not ready.
+     *
+     * @param ready Indicates whether the color scheme is ready.
+     * @return Adjusted color scheme if not ready, otherwise the original color scheme.
+     */
     fun createColorScheme(ready: Boolean): ColorScheme {
         return if (!ready) {
             colorScheme.copy(background = Color.Unspecified)

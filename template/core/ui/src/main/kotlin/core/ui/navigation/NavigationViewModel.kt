@@ -18,7 +18,7 @@ class NavigationViewModel : AppViewModel() {
         launchAsync("destinationStore") {
             context.navController.currentBackStackEntryFlow
                 .mapNotNull { it.destination.route }
-                .mapNotNull(NavigationDestination.Companion::find)
+                .mapNotNull(NavigationDestination.Companion::getByRoute)
                 .distinctUntilChanged()
                 .collectLatest(navigationState.destinationStore::set)
         }

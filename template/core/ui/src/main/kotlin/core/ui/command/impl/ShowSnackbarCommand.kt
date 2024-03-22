@@ -6,6 +6,11 @@ import core.ui.command.CommandState
 import core.ui.misc.utils.WeakReferenceUtils
 import kotlinx.coroutines.launch
 
+/**
+ * Command for showing a Snackbar.
+ *
+ * @property text The text to display in the Snackbar.
+ */
 class ShowSnackbarCommand(
     private val text: String
 ) : Command() {
@@ -14,7 +19,7 @@ class ShowSnackbarCommand(
         val host = appContext.snackbarHostSate
         val scope = appContext.scope
         val job = scope.launch { host.showSnackbar(text) }
-        WeakReferenceUtils.replace(javaClass, job)?.cancel()
+        WeakReferenceUtils.replace("ShowSnackbarCommand", job)?.cancel()
     }
 
 }

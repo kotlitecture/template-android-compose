@@ -8,6 +8,13 @@ import core.ui.AppContext
 import core.ui.command.Command
 import core.ui.command.CommandState
 
+/**
+ * Command for opening a URL.
+ *
+ * @property url The URL to open.
+ * @property title The title of the chooser dialog.
+ * @property external Flag indicating whether to open the URL externally or in a Chrome custom tab.
+ */
 class OpenUrlCommand(
     private val url: String,
     private val title: String? = null,

@@ -1,11 +1,25 @@
 package core.ui.command
 
-import core.ui.state.DataState
 import core.ui.AppContext
+import core.ui.state.DataState
 import kotlinx.coroutines.launch
 
+/**
+ * Abstract class representing a command involving UI.
+ *
+ * Commands encapsulate logic to be executed within the application.
+ * Each command has a unique identifier.
+ * To execute a command, call the execute method passing the command state and application context.
+ * Subclasses must implement the doExecute method to define the specific behavior of the command.
+ */
 abstract class Command(val uid: Long = System.currentTimeMillis()) {
 
+    /**
+     * Executes the command.
+     *
+     * @param commandState The command state to be modified by the command.
+     * @param appContext The application context providing necessary resources for command execution.
+     */
     fun execute(commandState: CommandState, appContext: AppContext) {
         appContext.scope.launch {
             try {
