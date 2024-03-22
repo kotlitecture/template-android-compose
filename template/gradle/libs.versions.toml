@@ -51,6 +51,7 @@ ktor = "2.3.9"
 objectbox = "3.8.0"
 okhttp = "4.12.0"
 robolectric = "4.11.1"
+timber = "5.0.1"
 tinylog = "2.7.0"
 uiautomator = "2.3.0"
 
@@ -147,6 +148,7 @@ room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidxRoom" }
 room-paging = { module = "androidx.room:room-paging", version.ref = "androidxRoom" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "androidxRoom" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "androidxRoom" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 tinylog-api = { module = "org.tinylog:tinylog-api-kotlin", version.ref = "tinylog" }
 tinylog-impl = { module = "org.tinylog:tinylog-impl", version.ref = "tinylog" }
 tinylog-slf4j = { module = "org.tinylog:slf4j-tinylog", version.ref = "tinylog" }

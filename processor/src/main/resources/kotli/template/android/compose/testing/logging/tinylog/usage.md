@@ -20,7 +20,7 @@ class Application {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        Logger.info("Hello World!")
+        Logger.debug("Hello World!")
     }
 
 }

@@ -21,6 +21,7 @@ dependencies {
     implementation libs.coil.kt.compose // {ui.preview.coil}
     implementation libs.coil.kt.gif // {ui.preview.coil}
     implementation libs.coil.kt.svg // {ui.preview.coil}
+    implementation libs.timber // {testing.logging.timber}
     implementation libs.tinylog.api // {testing.logging.tinylog}
     implementation libs.tinylog.impl // {testing.logging.tinylog}
     implementation libs.tinylog.slf4j // {testing.logging.tinylog}
