@@ -106,8 +106,8 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         WebToNativeProvider(),
 
         // testing
-        HttpTestingProvider(),
         LoggingProvider(),
+        HttpTestingProvider(),
     )
 
     override fun processBefore(state: TemplateState) {

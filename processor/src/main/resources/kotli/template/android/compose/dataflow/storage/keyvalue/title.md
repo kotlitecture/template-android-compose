@@ -1,1 +1,1 @@
-Basic Key-Value API
+Basic Key-Value Storage

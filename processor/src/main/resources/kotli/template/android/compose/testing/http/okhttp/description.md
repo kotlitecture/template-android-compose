@@ -1,0 +1,1 @@
+Chucker simplifies the inspection of HTTP(S) requests/responses fired by your Android App. Chucker works as an OkHttp Interceptor persisting all those events inside your application, and providing a UI for inspecting and sharing their content.

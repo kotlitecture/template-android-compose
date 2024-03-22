@@ -1,1 +1,1 @@
-Google Play In-App Reviews API
+Google Play In-App Reviews

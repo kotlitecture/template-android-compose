@@ -14,6 +14,8 @@ import kotli.template.android.compose.dataflow.http.okhttp.OkHttpProcessor
 class OkHttpTestingProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
+    override fun getWebUrl(state: TemplateState): String = "https://github.com/ChuckerTeam/chucker"
+    override fun getIntegrationUrl(state: TemplateState): String = "https://github.com/ChuckerTeam/chucker?tab=readme-ov-file#getting-started-"
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         OkHttpProcessor::class.java

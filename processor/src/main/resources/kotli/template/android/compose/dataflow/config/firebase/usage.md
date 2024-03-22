@@ -10,8 +10,7 @@ The API can be accessed through:
 
 Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesConfigSource`.
 
-However, it is recommended to use decorator methods instead of directly accessing facade methods,
-as the latter requires providing an extra parameter `defaultValue`, which might be hidden in the decorator.
+However, it is recommended to use decorator methods instead of directly accessing facade methods, as the latter requires providing an extra parameter `defaultValue`, which might be hidden in the decorator.
 
 To start using, just inject any of them to your DI managed class.
 

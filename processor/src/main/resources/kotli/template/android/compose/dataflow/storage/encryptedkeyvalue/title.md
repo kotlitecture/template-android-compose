@@ -1,1 +1,1 @@
-Encrypted Key-Value API
+Encrypted Key-Value Storage

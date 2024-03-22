@@ -1,1 +1,1 @@
-Splash Screen API
+Splash Screen
