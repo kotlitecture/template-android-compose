@@ -1,11 +1,13 @@
 package kotli.template.android.compose.testing.logging.timber
 
 import kotli.engine.BaseFeatureProcessor
+import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.template.android.compose.unspecified.startup.StartupInitializerProcessor
 import kotlin.time.Duration.Companion.minutes
 
 class TimberProcessor : BaseFeatureProcessor() {
@@ -13,6 +15,9 @@ class TimberProcessor : BaseFeatureProcessor() {
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://github.com/JakeWharton/timber"
     override fun getIntegrationEstimate(state: TemplateState): Long = 15.minutes.inWholeMilliseconds
+    override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
+        StartupInitializerProcessor::class.java
+    )
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules(
