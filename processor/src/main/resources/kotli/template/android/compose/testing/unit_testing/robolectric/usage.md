@@ -1,18 +1,8 @@
 ## Overview
 
-The framework is pre-configured to properly work with DI.
+The framework is pre-configured to properly work with DI inside of the `app` module.
 
 Just extend your test class from the `app.BaseHiltUnitTest` and write test logic as usual.
-
-### Usage outside of the app module
-
-Add `:core:testing` as a dependency to the required module.
-
-```groovy
-testImplementation project(":core:testing")
-```
-
-Inherit test from the `app.BaseHiltUnitTest` class.
 
 ## Example
 
@@ -29,4 +19,12 @@ class AppStateTest : BaseHiltUnitTest() {
     }
 
 }
+```
+
+### Usage outside of the app module
+
+Add `:core:testing` as a dependency to the required module.
+
+```groovy
+testImplementation project(":core:testing")
 ```

@@ -1,1 +1,1 @@
-Google Play In-app updates
+Google Play In-app Updates
