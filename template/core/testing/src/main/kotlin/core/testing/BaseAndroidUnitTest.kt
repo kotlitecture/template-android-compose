@@ -21,6 +21,9 @@ import javax.crypto.KeyGenerator
 import javax.crypto.KeyGeneratorSpi
 import javax.crypto.SecretKey
 
+/**
+ * Abstract base class for Android unit tests.
+ */
 @RunWith(AndroidJUnit4::class)
 @Config(
     manifest = Config.NONE,
@@ -37,7 +40,7 @@ abstract class BaseAndroidUnitTest : BaseUnitTest() {
     }
 
     /**
-     * https://proandroiddev.com/testing-jetpack-security-with-robolectric-9f9cf2aa4f61
+     * Object representing a fake key store for testing purposes.
      */
     object FakeKeyStore {
 
