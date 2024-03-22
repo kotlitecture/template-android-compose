@@ -1,5 +1,6 @@
 [versions]
 androidBottomsheetdialogCompose = "1.4.1"
+androidDesugar = "2.0.4"
 androidMaxSdkVersion = "34"
 androidMinSdkVersion = "24"
 androidxAppCompat = "1.7.0-alpha03"
@@ -11,7 +12,6 @@ androidxComposeActivity = "1.8.2"
 androidxComposeBom = "2024.03.00"
 androidxComposeCompiler = "1.5.11"
 androidxComposeConstraintlayout = "1.1.0-alpha13"
-androidxComposeRuntimeTracing = "1.0.0-alpha03"
 androidxCore = "1.12.0"
 androidxCoreSplashscreen = "1.0.1"
 androidxEspresso = "3.6.0-alpha03"
@@ -33,7 +33,6 @@ androidxWindowManager = "1.2.0"
 androidxWork = "2.9.0"
 chucker = "4.0.0"
 coil = "2.6.0"
-desugarJdkLibs = "2.0.4"
 firebaseBom = "32.8.0"
 googleAppReview = "2.0.1"
 googleAppUpdate = "2.1.0"
@@ -56,7 +55,7 @@ tinylog = "2.7.0"
 uiautomator = "2.3.0"
 
 [libraries]
-android-desugarJdkLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugarJdkLibs" }
+android-desugar = { module = "com.android.tools:desugar_jdk_libs", version.ref = "androidDesugar" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppCompat" }
 androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "androidxBiometric" }
 androidx-browser = { module = "androidx.browser:browser", version.ref = "androidxBrowser" }
@@ -71,7 +70,6 @@ androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material3-windowSizeClass = { module = "androidx.compose.material3:material3-window-size-class" }
 androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }
 androidx-compose-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
-androidx-compose-runtime-tracing = { module = "androidx.compose.runtime:runtime-tracing", version.ref = "androidxComposeRuntimeTracing" }
 androidx-compose-ui-test = { module = "androidx.compose.ui:ui-test-junit4" }
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
@@ -168,14 +166,12 @@ androidCommon = [
     "androidx-compose-material3-windowSizeClass",
     "androidx-compose-runtime",
     "androidx-compose-runtime-livedata",
-#    "androidx-compose-runtime-tracing",
     "androidx-compose-ui-tooling-preview",
     "androidx-compose-ui-util",
     "androidx-core-ktx",
     "androidx-lifecycle-livedata-ktx",
     "androidx-lifecycle-runtime-compose",
     "androidx-lifecycle-viewmodel-compose",
-    "androidx-metrics",
     "androidx-navigation-compose",
     "androidx-paging-compose",
     "androidx-paging-runtime",
@@ -224,9 +220,9 @@ android-test = "com.android.test:8.2.2"
 firebase-appdistribution = "com.google.firebase.appdistribution:4.2.0"
 firebase-crashlytics = "com.google.firebase.crashlytics:2.9.9"
 firebase-perf = "com.google.firebase.firebase-perf:1.4.2"
-google-services = "com.google.gms.google-services:4.4.1"
 google-hilt = { id = "com.google.dagger.hilt.android", version.ref = "googleHilt" }
 google-ksp = "com.google.devtools.ksp:1.9.23-1.0.19"
+google-services = "com.google.gms.google-services:4.4.1"
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
