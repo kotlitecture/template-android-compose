@@ -13,7 +13,6 @@ configurations {
 dependencies {
     implementation platform(libs.androidx.compose.bom)
     coreLibraryDesugaring libs.android.desugarJdkLibs
-    implementation libs.bundles.androidCoroutines
     implementation libs.bundles.androidCommon
     debugApi libs.androidx.compose.ui.tooling
     androidTestImplementation libs.kotlin.test

@@ -1,5 +1,4 @@
 [versions]
-accompanist = "0.34.0"
 androidMaxSdkVersion = "34"
 androidMinSdkVersion = "24"
 androidxAppCompat = "1.7.0-alpha03"
@@ -57,10 +56,6 @@ tinylog = "2.7.0"
 uiautomator = "2.3.0"
 
 [libraries]
-accompanist-pager-indicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanist" }
-accompanist-placeholder = { module = "com.google.accompanist:accompanist-placeholder", version.ref = "accompanist" }
-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
-accompanist-testharness = { module = "com.google.accompanist:accompanist-testharness", version.ref = "accompanist" }
 android-desugarJdkLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugarJdkLibs" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppCompat" }
 androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "androidxBiometric" }
@@ -160,11 +155,6 @@ tinylog-slf4j = { module = "org.tinylog:slf4j-tinylog", version.ref = "tinylog" 
 uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
 
 [bundles]
-androidAccompanist = [
-    "accompanist-pager-indicators",
-    "accompanist-placeholder",
-    "accompanist-systemuicontroller",
-]
 androidCommon = [
     "androidx-appcompat",
     "androidx-browser",
@@ -193,11 +183,9 @@ androidCommon = [
     "androidx-tracing-ktx",
     "androidx-window-manager",
     "bottomsheetdialog-compose",
-    "kotlin-serialization-json",
-]
-androidCoroutines = [
     "kotlin-coroutines-android",
     "kotlin-datetime",
+    "kotlin-serialization-json",
 ]
 androidTest = [
     "androidx-compose-ui-test",
@@ -222,7 +210,7 @@ kotlinEssentials = [
     "ktor-client-websockets",
     "ktor-serialization-gson",
     "okhttp",
-    "okhttp-logging"
+    "okhttp-logging",
 ]
 kotlinTest = [
     "kotlin-coroutines-test",
