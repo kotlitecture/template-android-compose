@@ -6,10 +6,12 @@ import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotlin.time.Duration.Companion.hours
 
 class GoogleReviewProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
+    override fun getIntegrationEstimate(state: TemplateState): Long = 2.hours.inWholeMilliseconds
 
     override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/guide/playcore/in-app-review"
     override fun getIntegrationUrl(state: TemplateState): String = "https://developer.android.com/guide/playcore/in-app-review/kotlin-java"

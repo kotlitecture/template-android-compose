@@ -6,10 +6,12 @@ import kotli.engine.TemplateState
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.dataflow.network.basic.BasicNetworkProcessor
+import kotlin.time.Duration.Companion.hours
 
 class NoInternetProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
+    override fun getIntegrationEstimate(state: TemplateState): Long = 2.hours.inWholeMilliseconds
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         BasicNetworkProcessor::class.java

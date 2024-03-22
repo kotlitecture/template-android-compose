@@ -6,10 +6,12 @@ import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotlin.time.Duration.Companion.hours
 
 class BasicBiometricProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
+    override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules("core/data/build.gradle", CleanupMarkedLine("{dataflow.biometric.basic}"))

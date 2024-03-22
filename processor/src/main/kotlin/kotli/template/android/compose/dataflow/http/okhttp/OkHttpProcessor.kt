@@ -7,11 +7,13 @@ import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.dataflow.config.facade.FacadeConfigProcessor
+import kotlin.time.Duration.Companion.minutes
 
 class OkHttpProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://square.github.io/okhttp/"
+    override fun getIntegrationEstimate(state: TemplateState): Long = 30.minutes.inWholeMilliseconds
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         FacadeConfigProcessor::class.java

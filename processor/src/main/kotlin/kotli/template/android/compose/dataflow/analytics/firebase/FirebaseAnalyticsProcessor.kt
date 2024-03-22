@@ -10,12 +10,14 @@ import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.dataflow.analytics.facade.FacadeAnalyticsProcessor
 import kotli.template.android.compose.quality.crashes.firebase.FirebaseCrashlyticsProcessor
 import kotli.template.android.compose.unspecified.firebase.FirebaseProcessor
+import kotlin.time.Duration.Companion.hours
 
 class FirebaseAnalyticsProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://firebase.google.com/docs/analytics"
     override fun getIntegrationUrl(state: TemplateState): String = "https://firebase.google.com/docs/analytics/get-started"
+    override fun getIntegrationEstimate(state: TemplateState): Long = 2.hours.inWholeMilliseconds
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         FirebaseCrashlyticsProcessor::class.java,

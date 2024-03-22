@@ -7,10 +7,12 @@ import kotli.engine.template.rule.CleanupMarkedBlock
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotlin.time.Duration.Companion.hours
 
 class BasicSplashProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
+    override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
 
     override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/develop/ui/views/launch/splash-screen"
     override fun getIntegrationUrl(state: TemplateState): String = "https://developer.android.com/reference/kotlin/androidx/core/splashscreen/SplashScreen"

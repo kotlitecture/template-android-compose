@@ -7,6 +7,7 @@ import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.engine.template.rule.ReplaceText
+import kotlin.time.Duration.Companion.hours
 
 class GoogleServicesProcessor : BaseFeatureProcessor() {
 
@@ -14,6 +15,7 @@ class GoogleServicesProcessor : BaseFeatureProcessor() {
     override fun isInternal(): Boolean = true
     override fun getWebUrl(state: TemplateState): String = "https://cloud.google.com/"
     override fun getIntegrationUrl(state: TemplateState): String = "https://firebase.google.com/docs/android/setup"
+    override fun getIntegrationEstimate(state: TemplateState): Long = 2.hours.inWholeMilliseconds
 
     override fun getConfiguration(state: TemplateState): String? {
         return super.getConfiguration(state)?.replace("kotli.app", state.layer.namespace)

@@ -7,13 +7,14 @@ import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.unspecified.firebase.FirebaseProcessor
+import kotlin.time.Duration.Companion.hours
 
 class FirebasePerformanceProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://firebase.google.com/docs/perf-mon"
-
     override fun getIntegrationUrl(state: TemplateState): String = "https://firebase.google.com/docs/perf-mon/get-started-android"
+    override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         FirebaseProcessor::class.java

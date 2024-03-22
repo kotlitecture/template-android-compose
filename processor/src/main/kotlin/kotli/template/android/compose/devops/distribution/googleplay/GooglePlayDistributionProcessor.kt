@@ -8,12 +8,14 @@ import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotlin.time.Duration.Companion.hours
 
 class GooglePlayDistributionProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://github.com/Triple-T/gradle-play-publisher"
     override fun getIntegrationUrl(state: TemplateState): String = "https://github.com/Triple-T/gradle-play-publisher?tab=readme-ov-file#quickstart-guide"
+    override fun getIntegrationEstimate(state: TemplateState): Long = 8.hours.inWholeMilliseconds
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules("build.gradle",

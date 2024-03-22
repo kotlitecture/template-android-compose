@@ -8,11 +8,13 @@ import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotlin.time.Duration.Companion.hours
 
 class StartupInitializerProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun isInternal(): Boolean = true
+    override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
 
     override fun getConfiguration(state: TemplateState): String? {
         return super.getConfiguration(state)?.replace("kotli.app", state.layer.namespace)

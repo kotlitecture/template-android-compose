@@ -10,12 +10,14 @@ import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.unspecified.firebase.FirebaseProcessor
 import kotli.template.android.compose.unspecified.googleservices.GoogleServicesProcessor
+import kotlin.time.Duration.Companion.hours
 
 class FirebaseDistributionProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://firebase.google.com/docs/app-distribution"
     override fun getIntegrationUrl(state: TemplateState): String = "https://firebase.google.com/docs/app-distribution/android/distribute-gradle"
+    override fun getIntegrationEstimate(state: TemplateState): Long = 8.hours.inWholeMilliseconds
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         GoogleServicesProcessor::class.java,

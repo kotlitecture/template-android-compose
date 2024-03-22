@@ -8,6 +8,7 @@ import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.dataflow.storage.keyvalue.KeyValueProcessor
+import kotlin.time.Duration.Companion.hours
 
 class EncryptedKeyValueProcessor : BaseFeatureProcessor() {
 
@@ -15,6 +16,7 @@ class EncryptedKeyValueProcessor : BaseFeatureProcessor() {
 
     override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/reference/androidx/security/crypto/EncryptedSharedPreferences"
     override fun getIntegrationUrl(state: TemplateState): String = "https://proandroiddev.com/encrypted-preferences-in-android-af57a89af7c8"
+    override fun getIntegrationEstimate(state: TemplateState): Long = 2.hours.inWholeMilliseconds
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         KeyValueProcessor::class.java

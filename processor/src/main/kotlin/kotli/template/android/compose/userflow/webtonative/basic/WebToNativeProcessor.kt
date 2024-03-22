@@ -6,11 +6,13 @@ import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotlin.time.Duration.Companion.hours
 
 class WebToNativeProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun isInternal(): Boolean = true
+    override fun getIntegrationEstimate(state: TemplateState): Long = 8.hours.inWholeMilliseconds
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules("app/build.gradle", CleanupMarkedLine("{userflow.webtonative.basic}"))

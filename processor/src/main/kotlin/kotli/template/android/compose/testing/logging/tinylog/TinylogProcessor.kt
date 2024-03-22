@@ -6,12 +6,15 @@ import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.minutes
 
 class TinylogProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://tinylog.org/v2/"
     override fun getIntegrationUrl(state: TemplateState): String = "https://tinylog.org/v2/getting-started/"
+    override fun getIntegrationEstimate(state: TemplateState): Long = 15.minutes.inWholeMilliseconds
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules(

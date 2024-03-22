@@ -7,11 +7,13 @@ import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.unspecified.googleservices.GoogleServicesProcessor
+import kotlin.time.Duration.Companion.hours
 
 class FirebaseProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun isInternal(): Boolean = true
+    override fun getIntegrationEstimate(state: TemplateState): Long = 2.hours.inWholeMilliseconds
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         GoogleServicesProcessor::class.java,
