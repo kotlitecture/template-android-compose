@@ -10,7 +10,7 @@ import java.util.UUID
 import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
 
-class CacheDataSourceTest : BaseUnitTest() {
+class CacheSourceTest : BaseUnitTest() {
 
     private val cache: CacheSource = BasicCacheSource()
 

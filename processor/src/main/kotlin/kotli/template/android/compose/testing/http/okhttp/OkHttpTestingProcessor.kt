@@ -29,7 +29,7 @@ class OkHttpTestingProcessor : BaseFeatureProcessor() {
             CleanupMarkedLine("{testing.http.okhttp}")
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/di/ProvidesHttpSource.kt",
+            "app/src/main/kotlin/app/di/ProvidesOkHttpSource.kt",
             CleanupMarkedBlock("{testing.http.okhttp}")
         )
     }
@@ -45,7 +45,7 @@ class OkHttpTestingProcessor : BaseFeatureProcessor() {
             )
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/di/ProvidesHttpSource.kt",
+            "app/src/main/kotlin/app/di/ProvidesOkHttpSource.kt",
             RemoveMarkedBlock("{testing.http.okhttp}"),
             RemoveMarkedLine("chucker")
         )
