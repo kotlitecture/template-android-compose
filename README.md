@@ -1,8 +1,10 @@
 # Kotli Template of Android Compose Application
 
-Usage from a web portal: https://kotlitecture.com/project
-Usage Guide: https://kotlitecture.github.io/usage
-About **Kotli**: https://kotlitecture.github.io
+| Resource                | Link                                         |
+|-------------------------|----------------------------------------------|
+| Usage from a web portal | [https://kotlitecture.com/project](https://kotlitecture.com/project) |
+| Usage Guide             | [https://kotlitecture.github.io/usage](https://kotlitecture.github.io/usage) |
+| About **Kotli**         | [https://kotlitecture.github.io](https://kotlitecture.github.io) |
 
 ## Overview
 
