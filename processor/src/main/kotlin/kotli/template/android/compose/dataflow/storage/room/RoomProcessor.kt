@@ -17,7 +17,7 @@ class RoomProcessor : BaseFeatureProcessor() {
     }
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("room")))
+        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("androidxRoom")))
     }
 
     companion object {
