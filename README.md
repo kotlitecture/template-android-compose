@@ -1,24 +1,31 @@
-# About
+# Kotli Template of Android Compose Application
 
-This is a foundational template for Android app development centered around **Android Jetpack Compose**.
+Usage from a web portal: https://kotlitecture.com/project
+Usage Guide: https://kotlitecture.github.io/usage
+About **Kotli**: https://kotlitecture.github.io
+
+## Overview
+
+This is a foundational [Kotli](https://kotlitecture.github.io) template for Android app development centered around **Android Jetpack Compose**.
 
 In this template, all app-specific logic resides within the `app` module, while common logic is included within `core` modules.
 
-As this is an Android project, the default package remains `app` and is not altered to match
-the layer namespace during template generation. Instead, the namespace is utilized as the `applicationId`.
-This can be changed or made configurable with time.
+As this is an Android project, the default package remains `app` and is not altered to match the layer namespace during template generation.
+Instead, the namespace is utilized as the `applicationId`. This can be changed or made configurable with time.
 
 In its current implementation, the template is based on the following pre-configured integrations:
 
-- Jetpack Compose - https://developer.android.com/jetpack/compose
-- Jetpack Navigation - https://developer.android.com/guide/navigation
-- Hilt - https://dagger.dev/hilt/
-- Material Components 3 - https://developer.android.com/jetpack/androidx/releases/compose-material3
+| Library               | Documentation                                                                     |
+|-----------------------|-----------------------------------------------------------------------------------|
+| Jetpack Compose       | [Link](https://developer.android.com/jetpack/compose)                             |
+| Jetpack Navigation    | [Link](https://developer.android.com/guide/navigation)                            |
+| Hilt                  | [Link](https://dagger.dev/hilt/)                                                  |
+| Material Components 3 | [Link](https://developer.android.com/jetpack/androidx/releases/compose-material3) |
 
-However, this selection can be modified and made customizable once any alternative solutions are integrated into the template.
+```
+This selection can be modified and made customizable once any alternative solutions are integrated into the template.
+```
 
-# Usage
+## Current template state
 
-This template is part of [Kotli](https://kotlitecture.github.io) and can be utilized either via the Web Portal or directly from your code.
-Refer to the documentation to get started: https://kotlitecture.github.io/usage.
-
+The template is stable and can be used for any purpose. More features will be added over time to accelerate the development process and customize project architectures for specific needs.

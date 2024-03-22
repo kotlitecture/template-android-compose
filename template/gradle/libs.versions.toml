@@ -39,7 +39,7 @@ googleAppReview = "2.0.1"
 googleAppUpdate = "2.1.0"
 googleGson = "2.10.1"
 googleHilt = "2.51"
-googlePlayPublisher = "3.9.0"
+googlePlayPublisher = "3.9.1"
 googleServicesAuth = "21.0.0"
 javaxInject = "1"
 junit = "1.1.5"
@@ -48,8 +48,8 @@ kotlin = "1.9.23"
 kotlinxCoroutines = "1.8.0"
 kotlinxDatetime = "0.5.0"
 kotlinxSerializationJson = "1.6.3"
-ktor = "2.3.8"
-objectbox = "3.7.0"
+ktor = "2.3.9"
+objectbox = "3.8.0"
 okhttp = "4.12.0"
 robolectric = "4.11.1"
 tinylog = "2.7.0"
@@ -168,7 +168,7 @@ androidCommon = [
     "androidx-compose-material3-windowSizeClass",
     "androidx-compose-runtime",
     "androidx-compose-runtime-livedata",
-    "androidx-compose-runtime-tracing",
+#    "androidx-compose-runtime-tracing",
     "androidx-compose-ui-tooling-preview",
     "androidx-compose-ui-util",
     "androidx-core-ktx",
