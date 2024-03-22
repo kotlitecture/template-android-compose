@@ -29,6 +29,7 @@ import kotli.template.android.compose.quality.performance.PerformanceProvider
 import kotli.template.android.compose.quality.startup.StartupProvider
 import kotli.template.android.compose.testing.http.HttpTestingProvider
 import kotli.template.android.compose.testing.logging.LoggingProvider
+import kotli.template.android.compose.testing.unit_testing.UnitTestsProvider
 import kotli.template.android.compose.ui.preview.PreviewProvider
 import kotli.template.android.compose.ui.screen.ScreenProvider
 import kotli.template.android.compose.unspecified.UnspecifiedProvider
@@ -108,6 +109,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         // testing
         LoggingProvider(),
         HttpTestingProvider(),
+        UnitTestsProvider()
     )
 
     override fun processBefore(state: TemplateState) {

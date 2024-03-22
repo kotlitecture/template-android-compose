@@ -19,5 +19,5 @@ rootProject.name = "template" // {projectName}
 include(":app")
 include(":core:ui")
 include(":core:data") // {dataflow.common}
-include(":core:testing")
+include(":core:testing") // {testing.unit_testing.robolectric}
 include(":baselineprofile") // {quality.startup.baselineprofile}

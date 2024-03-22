@@ -116,12 +116,12 @@ firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-
 firebase-perf = { module = "com.google.firebase:firebase-perf" }
 google-app-review = { module = "com.google.android.play:review-ktx", version.ref = "googleAppReview" }
 google-app-update = { module = "com.google.android.play:app-update-ktx", version.ref = "googleAppUpdate" }
+google-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "googleHilt" }
+google-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "googleHilt" }
+google-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "googleHilt" }
 google-play-publisher = { module = "com.github.triplet.gradle:play-publisher", version.ref = "googlePlayPublisher" }
 google-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "googleServicesAuth" }
 gson = { module = "com.google.code.gson:gson", version.ref = "googleGson" }
-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "googleHilt" }
-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "googleHilt" }
-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "googleHilt" }
 javaxInject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
 junit = { module = "androidx.test.ext:junit", version.ref = "junit" }
 junit4 = { module = "junit:junit", version.ref = "junit4" }
