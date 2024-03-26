@@ -36,7 +36,7 @@ class CoilImageProcessor : BaseFeatureProcessor() {
             RemoveMarkedLine("CoiIImageLoaderInitializer")
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/ui/component/image",
+            "app/src/main/kotlin/app/ui/component/coil",
             RemoveFile()
         )
         state.onApplyRules(

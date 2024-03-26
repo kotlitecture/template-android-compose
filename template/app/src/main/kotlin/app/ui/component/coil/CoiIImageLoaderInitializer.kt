@@ -1,4 +1,4 @@
-package app.ui.component.image
+package app.ui.component.coil
 
 import android.content.Context
 import android.os.Build

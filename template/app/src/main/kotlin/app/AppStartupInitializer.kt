@@ -3,7 +3,7 @@ package app
 import android.content.Context
 import androidx.startup.Initializer
 import app.datasource.logging.TimberInitializer
-import app.ui.component.image.CoiIImageLoaderInitializer
+import app.ui.component.coil.CoiIImageLoaderInitializer
 
 /**
  * Initializes the application startup configurations and dependencies.
