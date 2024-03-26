@@ -27,6 +27,7 @@ dependencies {
     implementation libs.tinylog.impl // {testing.logging.tinylog}
     implementation libs.tinylog.slf4j // {testing.logging.tinylog}
     implementation libs.androidx.core.splashscreen // {userflow.splash.basic}
+    implementation libs.google.services.auth // {userflow.auth.google}
     debugImplementation libs.chucker // {testing.http.okhttp}
     stagingImplementation libs.chucker // {testing.http.okhttp}
     testImplementation libs.chucker.release // {testing.http.okhttp}
