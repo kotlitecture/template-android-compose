@@ -24,7 +24,7 @@
 
     <!-- {userflow.splash.basic} -->
     <style name="Theme.App.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#B34848</item>
+        <item name="windowSplashScreenBackground">#FF394B3C</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="postSplashScreenTheme">@style/Theme.App</item>
     </style>

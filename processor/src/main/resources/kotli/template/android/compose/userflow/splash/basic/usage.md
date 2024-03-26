@@ -10,7 +10,7 @@ Here is the default theme configured to be used as the splash screen:
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.App.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#B34848</item>
+        <item name="windowSplashScreenBackground">#FF394B3C</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="postSplashScreenTheme">@style/Theme.App</item>
     </style>
