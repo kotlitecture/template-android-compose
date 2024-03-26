@@ -15,8 +15,8 @@ import core.ui.command.CommandState
 import core.ui.navigation.NavigationDestination
 import core.ui.navigation.NavigationProvider
 import core.ui.navigation.NavigationState
+import core.ui.theme.ThemeProvider
 import core.ui.theme.ThemeState
-import core.ui.theme.material3.Material3ThemeProvider
 
 /**
  * Composable function representing the main scaffold of the application, including navigation, snackbar,
@@ -41,7 +41,7 @@ fun AppScaffold(
     bottomBar: @Composable () -> Unit = {},
     overlay: @Composable () -> Unit = {},
 ) {
-    Material3ThemeProvider(themeState) {
+    ThemeProvider(themeState) {
         val appContext = rememberAppContext()
         Scaffold(
             snackbarHost = { SnackbarHost(appContext.snackbarHostSate) },

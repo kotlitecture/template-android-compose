@@ -22,7 +22,6 @@ class AppActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
-        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             val viewModel: AppActivityViewModel = provideHiltViewModel()

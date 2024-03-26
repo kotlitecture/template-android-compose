@@ -1,5 +1,6 @@
 package core.ui.theme
 
+import androidx.activity.SystemBarStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -15,6 +16,8 @@ import androidx.compose.ui.text.font.FontFamily
  */
 abstract class ThemeData {
 
+    open val systemBarStyle: SystemBarStyle = SystemBarStyle.auto(0, 0)
+    open val navigationBarStyle: SystemBarStyle = SystemBarStyle.auto(0, 0)
     open val fontFamily: FontFamily = FontFamily.Default
 
     open val primary: Color = Color.White
