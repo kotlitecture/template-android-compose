@@ -32,6 +32,7 @@ import kotli.template.android.compose.testing.http.HttpTestingProvider
 import kotli.template.android.compose.testing.logging.LoggingProvider
 import kotli.template.android.compose.testing.unit_testing.UnitTestsProvider
 import kotli.template.android.compose.ui.component.UiComponentProvider
+import kotli.template.android.compose.ui.container.UiContainerProvider
 import kotli.template.android.compose.ui.screen.UiScreenProvider
 import kotli.template.android.compose.unspecified.UnspecifiedProvider
 import kotli.template.android.compose.userflow.ads.AdsProvider
@@ -91,6 +92,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
 
         // ui
         UiComponentProvider(),
+        UiContainerProvider(),
         UiScreenProvider(),
 
         // userflow

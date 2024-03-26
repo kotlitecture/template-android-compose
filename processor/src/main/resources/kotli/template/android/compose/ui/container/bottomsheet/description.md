@@ -1,0 +1,1 @@
+Jetpack Compose BottomSheetDialog library that allows you to use BottomsheetDialog like Dialog's interface.
