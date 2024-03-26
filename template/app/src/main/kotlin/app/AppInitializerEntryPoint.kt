@@ -1,4 +1,4 @@
-package app.startup
+package app
 
 import android.content.Context
 import dagger.hilt.EntryPoint
@@ -8,14 +8,14 @@ import dagger.hilt.components.SingletonComponent
 
 @EntryPoint
 @InstallIn(SingletonComponent::class)
-interface InitializerEntryPoint {
+interface AppInitializerEntryPoint {
 
     companion object {
-        fun resolve(context: Context): InitializerEntryPoint {
+        fun resolve(context: Context): AppInitializerEntryPoint {
             val appContext = context.applicationContext ?: throw IllegalStateException()
             return EntryPointAccessors.fromApplication(
                 appContext,
-                InitializerEntryPoint::class.java
+                AppInitializerEntryPoint::class.java
             )
         }
     }

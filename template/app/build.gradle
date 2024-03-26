@@ -17,6 +17,7 @@ dependencies {
     implementation libs.androidx.webkit // {userflow.webtonative.basic}
     implementation libs.google.app.update // {userflow.update.google}
     implementation libs.google.app.review // {userflow.review.google}
+    implementation libs.bottomsheetdialog.compose // {ui.container.bottomsheetdialog}
     implementation libs.coil.kt // {ui.component.coil}
     implementation libs.coil.kt.compose // {ui.component.coil}
     implementation libs.coil.kt.gif // {ui.component.coil}

@@ -2,7 +2,7 @@ package app.ui.component.image
 
 import android.content.Context
 import android.os.Build
-import app.startup.DependencyInitializer
+import app.AppDependencyInitializer
 import coil.Coil
 import coil.ImageLoader
 import coil.ImageLoaderFactory
@@ -18,7 +18,7 @@ import javax.inject.Inject
  * A dependency initializer for configuring the Coil image loader library.
  * Initializes the image loader factory with specified configurations.
  */
-class CoiIImageLoaderInitializer : DependencyInitializer<ImageLoaderFactory>() {
+class CoiIImageLoaderInitializer : AppDependencyInitializer<ImageLoaderFactory>() {
 
     @Inject
     lateinit var httpSource: Lazy<OkHttpSource>

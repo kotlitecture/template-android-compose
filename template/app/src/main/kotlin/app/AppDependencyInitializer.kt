@@ -1,4 +1,4 @@
-package app.startup
+package app
 
 import android.content.Context
 import androidx.startup.Initializer
@@ -8,7 +8,7 @@ import androidx.startup.Initializer
  *
  * @param T The type of the dependency initializer.
  */
-abstract class DependencyInitializer<T> : Initializer<T> {
+abstract class AppDependencyInitializer<T> : Initializer<T> {
 
     /**
      * Creates and initializes the dependency.
@@ -17,7 +17,7 @@ abstract class DependencyInitializer<T> : Initializer<T> {
      * @return The initialized dependency.
      */
     override fun create(context: Context): T & Any {
-        InitializerEntryPoint.resolve(context)
+        AppInitializerEntryPoint.resolve(context)
         return initialize(context)
     }
 
