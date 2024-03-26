@@ -22,10 +22,11 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.jvm) apply false
-    alias(libs.plugins.version.catalog.versions) apply true
-    alias(libs.plugins.version.catalog.update) apply true
+    alias(libs.plugins.version.catalog.versions) apply true // {quality.dependencies.versions_catalog}
+    alias(libs.plugins.version.catalog.update) apply true // {quality.dependencies.versions_catalog}
 }
 
+// {quality.dependencies.versions_catalog.config}
 versionCatalogUpdate {
     sortByKey = true
     keep {
@@ -34,3 +35,4 @@ versionCatalogUpdate {
         keepUnusedLibraries = true
     }
 }
+// {quality.dependencies.versions_catalog.config}

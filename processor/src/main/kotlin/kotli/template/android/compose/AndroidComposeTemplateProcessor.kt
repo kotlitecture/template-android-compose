@@ -25,6 +25,7 @@ import kotli.template.android.compose.design.theme.ThemeProvider
 import kotli.template.android.compose.devops.distribution.DistributionProvider
 import kotli.template.android.compose.devops.i18n.I18NProvider
 import kotli.template.android.compose.quality.crashes.CrashesProvider
+import kotli.template.android.compose.quality.dependencies.DependenciesUpdateProvider
 import kotli.template.android.compose.quality.performance.PerformanceProvider
 import kotli.template.android.compose.quality.startup.StartupProvider
 import kotli.template.android.compose.testing.http.HttpTestingProvider
@@ -83,6 +84,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         NotificationsProvider(),
 
         // quality
+        DependenciesUpdateProvider(),
         CrashesProvider(),
         PerformanceProvider(),
         StartupProvider(),
