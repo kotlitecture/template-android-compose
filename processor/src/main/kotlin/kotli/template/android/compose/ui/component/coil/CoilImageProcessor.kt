@@ -1,4 +1,4 @@
-package kotli.template.android.compose.ui.preview.coil
+package kotli.template.android.compose.ui.component.coil
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
@@ -26,7 +26,7 @@ class CoilImageProcessor : BaseFeatureProcessor() {
     override fun doApply(state: TemplateState) {
         state.onApplyRules(
             "app/build.gradle",
-            CleanupMarkedLine("{ui.preview.coil}")
+            CleanupMarkedLine("{ui.component.coil}")
         )
     }
 
@@ -41,7 +41,7 @@ class CoilImageProcessor : BaseFeatureProcessor() {
         )
         state.onApplyRules(
             "app/build.gradle",
-            RemoveMarkedLine("{ui.preview.coil}")
+            RemoveMarkedLine("{ui.component.coil}")
         )
         state.onApplyRules(
             VersionCatalogRules(
@@ -53,7 +53,7 @@ class CoilImageProcessor : BaseFeatureProcessor() {
     }
 
     companion object {
-        const val ID = "ui.preview.coil"
+        const val ID = "ui.component.coil"
     }
 
 }

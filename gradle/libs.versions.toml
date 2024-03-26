@@ -1,6 +1,6 @@
 [versions]
-kotli = "0.1.20"
-kotlin = "1.9.22"
+kotli = "0.1.25"
+kotlin = "1.9.23"
 kotlinxCoroutines = "1.8.0"
 logback = "1.5.3"
 slf4j = "2.0.12"

@@ -17,10 +17,10 @@ dependencies {
     implementation libs.androidx.webkit // {userflow.webtonative.basic}
     implementation libs.google.app.update // {userflow.update.google}
     implementation libs.google.app.review // {userflow.review.google}
-    implementation libs.coil.kt // {ui.preview.coil}
-    implementation libs.coil.kt.compose // {ui.preview.coil}
-    implementation libs.coil.kt.gif // {ui.preview.coil}
-    implementation libs.coil.kt.svg // {ui.preview.coil}
+    implementation libs.coil.kt // {ui.component.coil}
+    implementation libs.coil.kt.compose // {ui.component.coil}
+    implementation libs.coil.kt.gif // {ui.component.coil}
+    implementation libs.coil.kt.svg // {ui.component.coil}
     implementation libs.timber // {testing.logging.timber}
     implementation libs.tinylog.api // {testing.logging.tinylog}
     implementation libs.tinylog.impl // {testing.logging.tinylog}
