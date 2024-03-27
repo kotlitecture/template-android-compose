@@ -2,7 +2,6 @@ package app
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.core.splashscreen.SplashScreen
@@ -57,7 +56,7 @@ private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
 @Composable
 private fun SplashBlock(splashScreen: SplashScreen, viewModel: AppActivityViewModel) {
     splashScreen.setKeepOnScreenCondition {
-        viewModel.themeState.dataStore.get() == null
+        viewModel.navigationState.destinationStore.get() == null
     }
 }
 // {userflow.splash.basic}

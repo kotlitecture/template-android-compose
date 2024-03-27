@@ -1,41 +1,57 @@
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
 package core.ui.theme
 
 import core.ui.AppViewModel
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.filter
+import core.ui.state.StoreObject
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.onEach
 
 /**
  * ViewModel responsible for managing the app theme state.
  */
 class ThemeViewModel : AppViewModel() {
 
+    /** Store object for the theme data. */
+    val dataStore = StoreObject<ThemeData>()
+
     /**
      * Binds the theme state to the ViewModel.
      *
-     * @param state The state of the Material3 theme to be bound.
+     * @param state The state of the theme to be bound.
      */
     fun onBind(state: ThemeState) {
-        launchAsync("themeProviderStore", state) {
-            state.providerStore.asFlow()
-                .filterNotNull()
-                .map { provider -> provider.provide(state.configStore.getNotNull()) }
-                .collectLatest(state.dataStore::set)
-        }
-        launchAsync("configStore") {
-            state.configStore.asFlow()
-                .filterNotNull()
-                .map { config -> state.providerStore.getNotNull().provide(config) }
-                .collectLatest(state.dataStore::set)
-        }
-        launchAsync("systemDarkModeStore") {
+        launchAsync("onBind") {
+            val config = state.getConfig()
+            state.configStore.set(config)
             state.systemDarkModeStore.asFlow()
                 .filterNotNull()
-                .filter { state.configStore.getNotNull().autoDark }
-                .map { dark -> if (dark) state.darkTheme else state.lightTheme }
-                .collectLatest(state.providerStore::set)
+                .flatMapLatest { darkMode ->
+                    state.configStore.asFlow()
+                        .filterNotNull()
+                        .mapNotNull { Data(it, darkMode) }
+                }
+                .map { data ->
+                    val autoDark = data.config.autoDark
+                    val provider = when {
+                        autoDark && data.darkMode -> data.config.darkTheme
+                        autoDark && !data.darkMode -> data.config.lightTheme
+                        else -> data.config.defaultTheme
+                    }
+                    provider.provide(data.config)
+                }
+                .onEach { println("dasdasdasddas provide $it") }
+                .collect(dataStore::set)
         }
     }
+
+    private data class Data(
+        val config: ThemeConfig,
+        val darkMode: Boolean
+    )
 
 }

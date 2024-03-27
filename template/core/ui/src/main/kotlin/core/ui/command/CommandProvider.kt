@@ -13,6 +13,6 @@ import core.ui.provideViewModel
  */
 @Composable
 fun CommandProvider(commandState: CommandState, appContext: AppContext) {
-    val viewModel = provideViewModel<CommandViewModel>(activityScope = true)
+    val viewModel = provideViewModel<CommandViewModel>()
     LaunchedEffect(commandState, appContext) { viewModel.onBind(commandState, appContext) }
 }

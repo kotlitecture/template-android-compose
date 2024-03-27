@@ -17,9 +17,11 @@ fun ThemeProvider(
     state: ThemeState,
     content: @Composable () -> Unit
 ) {
-    EdgeToEdgeHandler(state)
+    val viewModel = provideViewModel<ThemeViewModel>()
+    LaunchedEffect(state) { viewModel.onBind(state) }
+    EdgeToEdgeHandler(viewModel)
     SystemDarkModeHandler(state)
-    ThemeSwitchHandler(state, content)
+    ThemeSwitchHandler(viewModel, content)
 }
 
 @Composable
@@ -29,9 +31,9 @@ private fun SystemDarkModeHandler(state: ThemeState) {
 }
 
 @Composable
-private fun EdgeToEdgeHandler(state: ThemeState) {
+private fun EdgeToEdgeHandler(viewModel: ThemeViewModel) {
     val activity = LocalContext.current.findActivity() ?: return
-    val data = state.dataStore.asStateValue() ?: return
+    val data = viewModel.dataStore.asStateValue() ?: return
     DisposableEffect(data) {
         activity.enableEdgeToEdge(
             statusBarStyle = data.systemBarStyle,
@@ -42,15 +44,12 @@ private fun EdgeToEdgeHandler(state: ThemeState) {
 }
 
 @Composable
-private fun ThemeSwitchHandler(state: ThemeState, content: @Composable () -> Unit) {
-    val viewModel = provideViewModel<ThemeViewModel>(activityScope = true)
-    LaunchedEffect(state) { viewModel.onBind(state) }
-    val data = state.dataStore.asStateValue() ?: return
-    println("dasdasdasddas $data")
+private fun ThemeSwitchHandler(viewModel: ThemeViewModel, content: @Composable () -> Unit) {
+    val data = viewModel.dataStore.asStateValue() ?: return
     CompositionLocalProvider(ThemeData.localThemeData provides data) {
         when {
             data is Material3ThemeData -> Material3ThemeProvider(data, content)
-            else -> Unit
+            else -> content()
         }
     }
 }
