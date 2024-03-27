@@ -30,7 +30,7 @@ class BottomSheetProcessor : BaseFeatureProcessor() {
 
     override fun doRemove(state: TemplateState) {
         state.onApplyRules(
-            "app/src/main/kotlin/app/ui/container/bottomsheet",
+            "app/src/main/kotlin/app/ui/container/BottomSheetLayout.kt",
             RemoveFile()
         )
         state.onApplyRules(

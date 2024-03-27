@@ -28,8 +28,8 @@ data class Material3ThemeData(
     val typography: Typography,
 ) : ThemeData() {
 
-    override val primary: Color = colorScheme.primary
-    override val onPrimary: Color = colorScheme.onPrimary
+    override val primary: Color = colorScheme.surface
+    override val onPrimary: Color = colorScheme.onSurface
 
     companion object {
         /** Returns the current Material3 theme data in the composition. */

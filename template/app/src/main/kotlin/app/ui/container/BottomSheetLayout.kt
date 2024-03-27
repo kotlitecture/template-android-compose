@@ -1,4 +1,4 @@
-package app.ui.container.bottomsheet
+package app.ui.container
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

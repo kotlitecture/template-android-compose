@@ -1,12 +1,10 @@
 package app.userflow.template
 
-import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Cake
+import androidx.compose.material.icons.filled.Call
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,41 +14,58 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.provideHiltViewModel
+import app.ui.component.Spacer16
+import app.ui.component.TopBarButton
+import app.ui.container.FixedTopBarLayout
 import core.ui.theme.material3.Material3ThemeData
 
 @Composable
 fun TemplateScreen(data: TemplateDestination.Data?) {
     val viewModel: TemplateViewModel = provideHiltViewModel(activityScoped = true)
-    BackHandler { viewModel.onBack() }
-    Box(modifier = Modifier.fillMaxSize()) {
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.TopCenter)
-                .padding(horizontal = 16.dp)
-                .statusBarsPadding(),
-            onClick = viewModel::onTop,
-            content = {
-                Text(text = "TOP")
-            }
-        )
-        Text(
-            text = data?.title ?: "TemplateScreen",
-            modifier = Modifier.align(Alignment.Center),
-            color = Material3ThemeData.current.colorScheme.onSurface,
-            fontWeight = FontWeight.W600,
-            fontSize = 24.sp
-        )
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter)
-                .padding(horizontal = 16.dp)
-                .navigationBarsPadding(),
-            onClick = viewModel::onBottom,
-            content = {
-                Text(text = "BOTTOM")
-            }
-        )
+    FixedTopBarLayout(
+        title = viewModel.javaClass.simpleName,
+        onBack = viewModel::onBack,
+        actions = {
+            TopBarButton(
+                icon = Icons.Default.Call,
+                onClick = {},
+            )
+            TopBarButton(
+                icon = Icons.Default.Cake,
+                onClick = {},
+            )
+        }
+    ) {
+        repeat(10) {
+            Spacer16()
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                onClick = viewModel::onTop,
+                content = {
+                    Text(text = "TOP")
+                }
+            )
+            Spacer16()
+            Text(
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                text = data?.title ?: "TemplateScreen",
+                color = Material3ThemeData.current.colorScheme.onSurface,
+                fontWeight = FontWeight.W600,
+                fontSize = 24.sp
+            )
+            Spacer16()
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                onClick = viewModel::onBottom,
+                content = {
+                    Text(text = "BOTTOM")
+                }
+            )
+            Spacer16()
+        }
     }
 }

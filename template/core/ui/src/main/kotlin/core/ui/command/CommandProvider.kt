@@ -13,7 +13,7 @@ import core.ui.provideViewModel
  */
 @Composable
 fun CommandProvider(commandState: CommandState, appContext: AppContext) {
-    val viewModel = provideViewModel<CommandViewModel>()
+    val viewModel = provideViewModel<CommandViewModel>(activityScope = true)
     DisposableEffect(commandState, appContext) {
         viewModel.onBind(commandState, appContext)
         onDispose { }

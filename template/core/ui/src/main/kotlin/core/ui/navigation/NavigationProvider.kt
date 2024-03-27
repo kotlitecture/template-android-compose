@@ -14,7 +14,7 @@ import core.ui.state.ErrorStateProvider
  */
 @Composable
 fun NavigationProvider(navigationState: NavigationState, appContext: AppContext) {
-    val viewModel = provideViewModel<NavigationViewModel>()
+    val viewModel = provideViewModel<NavigationViewModel>(activityScope = true)
     DisposableEffect(navigationState, appContext) {
         viewModel.onBind(navigationState, appContext)
         onDispose { }

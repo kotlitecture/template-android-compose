@@ -4,6 +4,7 @@ import androidx.activity.SystemBarStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 
@@ -22,6 +23,28 @@ abstract class ThemeData {
 
     open val primary: Color = Color.White
     open val onPrimary: Color = Color.Black
+
+    val topBlur by lazy {
+        Brush.verticalGradient(
+            listOf(
+                primary,
+                primary.copy(alpha = 0.9f),
+                primary.copy(alpha = 0.7f),
+                primary.copy(alpha = 0.5f),
+            )
+        )
+    }
+
+    open val bottomBlur by lazy {
+        Brush.verticalGradient(
+            listOf(
+                primary.copy(alpha = 0.5f),
+                primary.copy(alpha = 0.7f),
+                primary.copy(alpha = 0.9f),
+                primary
+            )
+        )
+    }
 
     /** Represents no theme data. */
     class NoThemeData : ThemeData()
