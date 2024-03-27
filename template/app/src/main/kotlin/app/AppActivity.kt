@@ -23,12 +23,8 @@ class AppActivity : FragmentActivity() {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
-            val viewModel: AppActivityViewModel = provideHiltViewModel()
+            val viewModel: AppActivityViewModel = provideHiltViewModel(activityScoped = true)
             ScaffoldBlock(viewModel)
-            GoogleUpdateProvider()
-            GoogleReviewProvider()
-            DataLoaderProvider(viewModel.appState)
-            NoInternetProvider()
             SplashBlock(splashScreen, viewModel)
         }
     }
@@ -48,6 +44,12 @@ private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
                 TemplateDestination,
                 WebToNativeDestination
             )
+        },
+        overlay = {
+            GoogleUpdateProvider()
+            GoogleReviewProvider()
+            DataLoaderProvider(viewModel.appState)
+            NoInternetProvider()
         }
     )
 }

@@ -1,10 +1,10 @@
 package app.ui.component
 
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import core.ui.theme.ThemeData
 
 /**
  * Composable function for rendering a button in the top app bar.
@@ -19,7 +19,7 @@ fun TopBarButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     icon: Any?,
-    tint: Color = ThemeData.current.onPrimary
+    tint: Color = LocalContentColor.current
 ) {
     IconButton(
         modifier = modifier,

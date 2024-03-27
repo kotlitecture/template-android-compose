@@ -5,6 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.runtime.Composable
@@ -38,12 +39,19 @@ fun AppScaffold(
     themeState: ThemeState = ThemeState.Default,
     destinations: List<NavigationDestination<*>>,
     startDestination: NavigationDestination<*>,
-    bottomBar: @Composable () -> Unit = {},
     overlay: @Composable () -> Unit = {},
+    topBar: @Composable () -> Unit = {},
+    bottomBar: @Composable () -> Unit = {},
+    floatingActionButton: @Composable () -> Unit = {},
+    floatingActionButtonPosition: FabPosition = FabPosition.End
 ) {
     ThemeProvider(themeState) {
         val appContext = rememberAppContext()
         Scaffold(
+            topBar = topBar,
+            bottomBar = bottomBar,
+            floatingActionButton = floatingActionButton,
+            floatingActionButtonPosition = floatingActionButtonPosition,
             snackbarHost = { SnackbarHost(appContext.snackbarHostSate) },
             content = {
                 NavHost(
@@ -54,8 +62,7 @@ fun AppScaffold(
                     enterTransition = { fadeIn(animationSpec = tween(100)) },
                     exitTransition = { fadeOut(animationSpec = tween(100)) }
                 )
-            },
-            bottomBar = bottomBar
+            }
         )
         NavigationProvider(navigationState, appContext)
         CommandProvider(commandState, appContext)
