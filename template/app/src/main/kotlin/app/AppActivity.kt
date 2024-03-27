@@ -56,7 +56,7 @@ private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
 @Composable
 private fun SplashBlock(splashScreen: SplashScreen, viewModel: AppActivityViewModel) {
     splashScreen.setKeepOnScreenCondition {
-        viewModel.navigationState.destinationStore.get() == null
+        viewModel.navigationState.destinationStore.asStateValue() == null
     }
 }
 // {userflow.splash.basic}
