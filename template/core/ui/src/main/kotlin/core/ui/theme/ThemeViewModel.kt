@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
-import kotlinx.coroutines.flow.onEach
 
 /**
  * ViewModel responsible for managing the app theme state.
@@ -44,7 +43,6 @@ class ThemeViewModel : AppViewModel() {
                     }
                     provider.provide(data.config)
                 }
-                .onEach { println("dasdasdasddas provide $it") }
                 .collect(dataStore::set)
         }
     }

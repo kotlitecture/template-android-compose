@@ -1,7 +1,7 @@
 package core.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.DisposableEffect
 import core.ui.AppContext
 import core.ui.provideViewModel
 import core.ui.state.ErrorStateProvider
@@ -15,6 +15,9 @@ import core.ui.state.ErrorStateProvider
 @Composable
 fun NavigationProvider(navigationState: NavigationState, appContext: AppContext) {
     val viewModel = provideViewModel<NavigationViewModel>()
-    LaunchedEffect(navigationState, appContext) { viewModel.onBind(navigationState, appContext) }
+    DisposableEffect(navigationState, appContext) {
+        viewModel.onBind(navigationState, appContext)
+        onDispose { }
+    }
     ErrorStateProvider(navigationState)
 }
