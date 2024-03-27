@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.Dp
  * @param model The model representing the icon. It can be an ImageVector, drawable resource ID, Color, or null.
  */
 @Composable
-fun IconBlock(
+fun AnyIcon(
     modifier: Modifier = Modifier,
     tint: Color = Color.Unspecified,
     size: Dp = Dp.Unspecified,

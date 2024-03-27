@@ -11,6 +11,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,7 +44,9 @@ data class FixedHeaderFooterAppearance(
     val navigationSpacer: Boolean
 ) {
     companion object {
+        @Stable
         @Composable
+        @ReadOnlyComposable
         fun default(
             backgroundColor: Color = ThemeData.current.primary,
             headerBrush: Brush? = ThemeData.current.topBlur,

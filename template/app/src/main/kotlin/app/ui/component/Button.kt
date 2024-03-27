@@ -25,7 +25,7 @@ fun TopBarButton(
         modifier = modifier,
         onClick = onClick,
         content = {
-            IconBlock(
+            AnyIcon(
                 model = icon,
                 tint = tint
             )

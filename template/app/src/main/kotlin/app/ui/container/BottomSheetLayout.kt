@@ -1,70 +1,60 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package app.ui.container
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.ModalBottomSheetDefaults
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
-import app.ui.component.Spacer16
 import app.ui.component.SpacerNavigationBar
-import com.holix.android.bottomsheetdialog.compose.BottomSheetBehaviorProperties
-import com.holix.android.bottomsheetdialog.compose.BottomSheetDialog
-import com.holix.android.bottomsheetdialog.compose.BottomSheetDialogProperties
-import com.holix.android.bottomsheetdialog.compose.NavigationBarProperties
+import core.ui.theme.ThemeData
 
 /**
- * Data class representing the appearance properties of a bottom sheet.
+ * Data class representing the appearance configuration for a bottom sheet.
  *
- * @property backgroundColor Background color of the bottom sheet.
- * @property dragHandlerColor Color of the drag handler.
- * @property fullscreen Flag indicating whether the bottom sheet should be displayed in fullscreen mode.
- * @property cornerRadius Corner radius of the bottom sheet.
+ * @param backgroundColor The background color of the bottom sheet.
+ * @param shouldDismissOnBackPress Flag indicating whether the bottom sheet should be dismissed on back press.
+ * @param fullscreen Flag indicating whether the bottom sheet should occupy the entire screen.
  */
 data class BottomSheetAppearance(
-    val backgroundColor: Color = Color.Unspecified,
-    val dragHandlerColor: Color = Color.Gray,
-    val fullscreen: Boolean = false,
-    val cornerRadius: Dp = 16.dp
+    val backgroundColor: Color,
+    val shouldDismissOnBackPress: Boolean,
+    val fullscreen: Boolean
 ) {
     companion object {
+        @Stable
         @Composable
+        @ReadOnlyComposable
         fun default(
-            backgroundColor: Color = Color.Unspecified,
-            dragHandlerColor: Color = Color.Gray,
-            fullscreen: Boolean = false,
-            cornerRadius: Dp = 16.dp
+            backgroundColor: Color = ThemeData.current.primary,
+            shouldDismissOnBackPress: Boolean = true,
+            fullscreen: Boolean = false
         ): BottomSheetAppearance {
-            return remember(backgroundColor, dragHandlerColor, fullscreen, cornerRadius) {
-                BottomSheetAppearance(
-                    dragHandlerColor = dragHandlerColor,
-                    backgroundColor = backgroundColor,
-                    cornerRadius = cornerRadius,
-                    fullscreen = fullscreen,
-                )
-            }
+            return BottomSheetAppearance(
+                shouldDismissOnBackPress = shouldDismissOnBackPress,
+                backgroundColor = backgroundColor,
+                fullscreen = fullscreen,
+            )
         }
     }
 }
 
 /**
- * Composable function to display a bottom sheet layout.
+ * Composable function for rendering a bottom sheet layout.
  *
- * @param modifier The modifier for this composable.
- * @param appearance The appearance properties of the bottom sheet.
- * @param onDismissRequest Callback for dismissing the bottom sheet.
+ * @param modifier The modifier to be applied to the bottom sheet.
+ * @param appearance The appearance configuration for the bottom sheet.
+ * @param onDismissRequest The callback to be invoked when the bottom sheet is dismissed.
  * @param content The content of the bottom sheet.
  */
 @Composable
@@ -74,48 +64,18 @@ fun BottomSheetLayout(
     onDismissRequest: () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    val state = if (appearance.fullscreen) BottomSheetBehaviorProperties.State.Expanded else BottomSheetBehaviorProperties.State.Collapsed
-    BottomSheetDialog(
-        onDismissRequest = onDismissRequest,
-        properties = BottomSheetDialogProperties(
-            enableEdgeToEdge = true,
-            dismissOnBackPress = true,
-            behaviorProperties = BottomSheetBehaviorProperties(
-                isFitToContents = !appearance.fullscreen,
-                skipCollapsed = appearance.fullscreen,
-                state = state,
-            ),
-            navigationBarProperties = NavigationBarProperties(
-                darkIcons = true,
-                navigationBarContrastEnforced = false
-            )
+    ModalBottomSheet(
+        modifier = modifier,
+        sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = appearance.fullscreen),
+        windowInsets = WindowInsets.systemBars.only(WindowInsetsSides.Horizontal),
+        properties = ModalBottomSheetDefaults.properties(
+            shouldDismissOnBackPress = appearance.shouldDismissOnBackPress
         ),
+        containerColor = appearance.backgroundColor,
+        onDismissRequest = onDismissRequest,
         content = {
-            Column(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .clip(
-                        RoundedCornerShape(
-                            topStart = appearance.cornerRadius,
-                            topEnd = appearance.cornerRadius
-                        )
-                    )
-                    .background(appearance.backgroundColor)
-                    .imePadding()
-            ) {
-                Box(
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
-                        .align(Alignment.CenterHorizontally)
-                        .height(4.dp)
-                        .width(40.dp)
-                        .clip(RoundedCornerShape(2.dp))
-                        .background(appearance.dragHandlerColor),
-                )
-                content()
-                Spacer16()
-                SpacerNavigationBar()
-            }
+            content()
+            SpacerNavigationBar()
         }
     )
 }

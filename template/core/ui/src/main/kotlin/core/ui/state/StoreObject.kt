@@ -67,7 +67,7 @@ data class StoreObject<T>(
     fun getNotNull(): T = currentValue!!
 
     /**
-     * Clears the value of the store object.
+     * Clears the value of the store object to the initial state.
      */
     fun clear() = set(value)
 
