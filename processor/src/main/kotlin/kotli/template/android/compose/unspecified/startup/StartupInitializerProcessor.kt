@@ -28,9 +28,10 @@ class StartupInitializerProcessor : BaseFeatureProcessor() {
     override fun doRemove(state: TemplateState) {
         state.onApplyRules("app/build.gradle", RemoveMarkedLine("{startup-initializer}", true))
         state.onApplyRules("app/src/main/AndroidManifest.xml", RemoveMarkedBlock("{startup-initializer}"))
+        state.onApplyRules("app/src/main/kotlin/app/AppInitializerEntryPoint.kt", RemoveFile())
+        state.onApplyRules("app/src/main/kotlin/app/AppDependencyInitializer.kt", RemoveFile())
         state.onApplyRules("app/src/main/kotlin/app/AppStartupInitializer.kt", RemoveFile())
-        state.onApplyRules("app/src/main/kotlin/app/startup", RemoveFile())
-        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("appStartup")))
+        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("androidxAppStartup")))
     }
 
     companion object {

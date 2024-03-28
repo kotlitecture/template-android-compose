@@ -2,7 +2,7 @@ package app.datasource.logging
 
 import android.content.Context
 import app.BuildConfig
-import app.startup.DependencyInitializer
+import app.AppDependencyInitializer
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
@@ -10,7 +10,7 @@ import timber.log.Timber.DebugTree
  * Initializes Timber for logging in the application.
  * Timber is only planted if the application is in debug mode.
  */
-class TimberInitializer : DependencyInitializer<Unit>() {
+class TimberInitializer : AppDependencyInitializer<Unit>() {
 
     override fun initialize(context: Context) {
         if (BuildConfig.DEBUG) {

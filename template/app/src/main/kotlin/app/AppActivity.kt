@@ -2,7 +2,6 @@ package app
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.core.splashscreen.SplashScreen
@@ -22,15 +21,10 @@ class AppActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
-        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
-            val viewModel: AppActivityViewModel = provideHiltViewModel()
+            val viewModel: AppActivityViewModel = provideHiltViewModel(activityScoped = true)
             ScaffoldBlock(viewModel)
-            GoogleUpdateProvider()
-            GoogleReviewProvider()
-            DataLoaderProvider(viewModel.appState)
-            NoInternetProvider()
             SplashBlock(splashScreen, viewModel)
         }
     }
@@ -50,6 +44,12 @@ private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
                 TemplateDestination,
                 WebToNativeDestination
             )
+        },
+        overlay = {
+            GoogleUpdateProvider()
+            GoogleReviewProvider()
+            DataLoaderProvider(viewModel.appState)
+            NoInternetProvider()
         }
     )
 }
@@ -58,7 +58,7 @@ private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
 @Composable
 private fun SplashBlock(splashScreen: SplashScreen, viewModel: AppActivityViewModel) {
     splashScreen.setKeepOnScreenCondition {
-        viewModel.themeState.dataStore.get() == null
+        viewModel.navigationState.destinationStore.asStateValue() == null
     }
 }
 // {userflow.splash.basic}

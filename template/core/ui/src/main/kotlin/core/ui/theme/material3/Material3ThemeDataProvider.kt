@@ -2,8 +2,8 @@ package core.ui.theme.material3
 
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.Typography
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
+import core.ui.theme.ThemeConfig
 import core.ui.theme.ThemeDataProvider
 
 /**
@@ -15,7 +15,18 @@ import core.ui.theme.ThemeDataProvider
 data class Material3ThemeDataProvider(
     override val dark: Boolean,
     val colorScheme: ColorScheme
-) : ThemeDataProvider() {
+) : ThemeDataProvider<Material3ThemeData>() {
+
+    override fun provide(config: ThemeConfig): Material3ThemeData {
+        return Material3ThemeData(
+            typography = createTypography(config.fontFamily),
+            navigationBarStyle = createSystemBarStyle(),
+            systemBarStyle = createSystemBarStyle(),
+            fontFamily = config.fontFamily,
+            colorScheme = colorScheme,
+            provider = this,
+        )
+    }
 
     /**
      * Creates typography settings for the given font family.
@@ -23,7 +34,7 @@ data class Material3ThemeDataProvider(
      * @param fontFamily The font family to be used in typography.
      * @return Typography settings with the specified font family.
      */
-    fun createTypography(fontFamily: FontFamily): Typography {
+    private fun createTypography(fontFamily: FontFamily): Typography {
         val typography = Typography()
         if (typography.bodyLarge.fontFamily != fontFamily) {
             return Typography(
@@ -45,20 +56,6 @@ data class Material3ThemeDataProvider(
             )
         } else {
             return typography
-        }
-    }
-
-    /**
-     * Creates a color scheme for the theme, adjusting it if it's not ready.
-     *
-     * @param ready Indicates whether the color scheme is ready.
-     * @return Adjusted color scheme if not ready, otherwise the original color scheme.
-     */
-    fun createColorScheme(ready: Boolean): ColorScheme {
-        return if (!ready) {
-            colorScheme.copy(background = Color.Unspecified)
-        } else {
-            colorScheme
         }
     }
 

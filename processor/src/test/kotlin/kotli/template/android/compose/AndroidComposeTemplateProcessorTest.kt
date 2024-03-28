@@ -27,10 +27,25 @@ class AndroidComposeTemplateProcessorTest {
     }
 
     @Test
-    fun `icon and title exist`() {
+    fun `icon, title and description exist`() {
         Assertions.assertNotNull(processor.getIcon())
         Assertions.assertNotNull(processor.getTitle())
         Assertions.assertNotNull(processor.getDescription())
+    }
+
+    @Test
+    fun `features have title and description`() {
+        processor.getFeatureProviders()
+            .filter { provider -> provider.getProcessors().any { !it.isInternal() } }
+            .forEach { provider ->
+                Assertions.assertNotNull(processor.getTitle())
+                provider.getProcessors()
+                    .filter { !it.isInternal() }
+                    .forEach { processor ->
+                        Assertions.assertNotNull(processor.getTitle())
+                        Assertions.assertNotNull(processor.getDescription())
+                    }
+            }
     }
 
     @Test
@@ -57,7 +72,7 @@ class AndroidComposeTemplateProcessorTest {
                 id = UUID.randomUUID().toString(),
                 processorId = processor.getId(),
                 namespace = "my.app",
-                name = "app-android",
+                name = "app-android"
             )
             val generator = PathOutputGenerator(buildPath(), registry)
             val gradleGenerator = GradleProjectGenerator(arrayOf("signingReport", "assembleDebug"), generator)
