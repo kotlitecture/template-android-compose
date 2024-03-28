@@ -1,15 +1,20 @@
 package app.userflow.template
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import app.provideHiltViewModel
-import app.ui.container.FixedTopBarLayout
 
 @Composable
 fun TemplateScreen(data: TemplateDestination.Data?) {
-    val viewModel: TemplateViewModel = provideHiltViewModel(activityScoped = true)
-    FixedTopBarLayout(
-        title = data?.title ?: viewModel.javaClass.simpleName,
-        onBack = viewModel::onBack
-    ) {
+    val viewModel: TemplateViewModel = provideHiltViewModel()
+    Box(Modifier.fillMaxSize()) {
+        Text(
+            modifier = Modifier.align(Alignment.Center),
+            text = data?.title ?: viewModel.javaClass.simpleName
+        )
     }
 }

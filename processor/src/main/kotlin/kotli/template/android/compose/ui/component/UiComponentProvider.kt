@@ -5,7 +5,7 @@ import kotli.engine.FeatureProcessor
 import kotli.engine.FeatureType
 import kotli.engine.model.FeatureTypes
 import kotli.template.android.compose.ui.component.coil.CoilImageProcessor
-import kotli.template.android.compose.ui.component.spacer.SpacerProcessor
+import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
 
 class UiComponentProvider : BaseFeatureProvider() {
 
@@ -14,7 +14,7 @@ class UiComponentProvider : BaseFeatureProvider() {
     override fun getType(): FeatureType = FeatureTypes.UI
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         CoilImageProcessor(),
-        SpacerProcessor()
+        BasicComponentsProcessor()
     )
 
 }
