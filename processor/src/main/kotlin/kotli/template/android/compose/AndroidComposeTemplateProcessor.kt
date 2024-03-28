@@ -64,14 +64,13 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
 
         // metadata
         UiToolkitProvider(),
-        UiDesignSystemProvider(),
         UiNavigationProvider(),
+        UiDesignSystemProvider(),
         DependencyInjectionProvider(),
         BuildToolProvider(),
 
         // design
         L10NProvider(),
-        SplashProvider(),
 
         // devops
         DistributionProvider(),

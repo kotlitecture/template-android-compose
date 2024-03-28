@@ -49,6 +49,24 @@ class AndroidComposeTemplateProcessorTest {
     }
 
     @Test
+    fun `feature providers are unique`() {
+        val providers = processor.getFeatureProviders()
+        val notUnique = providers.groupBy { it.getId() }.filter { it.value.size > 1 }
+        notUnique.forEach { group ->
+            Assertions.fail(group.value.toString())
+        }
+    }
+
+    @Test
+    fun `feature processors are unique`() {
+        val processors = processor.getFeatureProviders().map { it.getProcessors() }.flatten()
+        val notUnique = processors.groupBy { it.getId() }.filter { it.value.size > 1 }
+        notUnique.forEach { group ->
+            Assertions.fail(group.value.toString())
+        }
+    }
+
+    @Test
     fun `compose template in memory`() {
         runBlocking {
             val output = ByteArrayOutputStream()
