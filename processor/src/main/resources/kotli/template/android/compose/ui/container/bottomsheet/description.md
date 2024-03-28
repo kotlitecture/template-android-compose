@@ -1,1 +1,1 @@
-Jetpack Compose BottomSheetDialog library that allows you to use BottomsheetDialog like Dialog's interface.
+Simple implementation of Modal Bottom Sheet layout.

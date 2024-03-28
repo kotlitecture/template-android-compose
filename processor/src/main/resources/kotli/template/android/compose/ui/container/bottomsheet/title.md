@@ -1,1 +1,1 @@
-BottomSheet Dialog
+Bottom Sheet Layout
