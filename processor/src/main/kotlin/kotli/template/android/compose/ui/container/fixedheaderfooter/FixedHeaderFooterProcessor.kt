@@ -8,7 +8,6 @@ import kotlin.time.Duration.Companion.hours
 class FixedHeaderFooterProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
-    override fun isInternal(): Boolean = true
     override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
 
     override fun doRemove(state: TemplateState) {

@@ -10,7 +10,6 @@ import kotlin.time.Duration.Companion.hours
 class FixedTopBarProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
-    override fun isInternal(): Boolean = true
     override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
