@@ -8,6 +8,7 @@ androidxBenchmarkMacroJunit4 = "1.2.3"
 androidxBiometric = "1.2.0-alpha05"
 androidxBrowser = "1.8.0"
 androidxComposeActivity = "1.8.2"
+androidxComposeAdaptiveNavigationSuite = "1.0.0-alpha05"
 androidxComposeBom = "2024.03.00"
 androidxComposeCompiler = "1.5.11"
 androidxComposeConstraintlayout = "1.1.0-alpha13"
@@ -61,6 +62,7 @@ androidx-benchmark-macro-junit4 = { module = "androidx.benchmark:benchmark-macro
 androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "androidxBiometric" }
 androidx-browser = { module = "androidx.browser:browser", version.ref = "androidxBrowser" }
 androidx-compose-activity = { module = "androidx.activity:activity-compose", version.ref = "androidxComposeActivity" }
+androidx-compose-adaptive-navigation-suite = { module = "androidx.compose.material3:material3-adaptive-navigation-suite", version.ref = "androidxComposeAdaptiveNavigationSuite" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-constraintlayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "androidxComposeConstraintlayout" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
@@ -157,6 +159,7 @@ androidCommon = [
     "androidx-appcompat",
     "androidx-browser",
     "androidx-compose-activity",
+    "androidx-compose-adaptive-navigation-suite",
     "androidx-compose-constraintlayout",
     "androidx-compose-foundation",
     "androidx-compose-foundation-layout",
