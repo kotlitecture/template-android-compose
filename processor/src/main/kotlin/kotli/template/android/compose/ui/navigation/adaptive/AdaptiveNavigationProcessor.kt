@@ -13,6 +13,13 @@ class AdaptiveNavigationProcessor : BaseFeatureProcessor() {
     override fun getId(): String = ID
     override fun getIntegrationEstimate(state: TemplateState): Long = 2.hours.inWholeMilliseconds
 
+    override fun doApply(state: TemplateState) {
+        state.onApplyRules(
+            "app/src/main/kotlin/app/ui/navigation/NavigationBarProvider.kt",
+            ReplaceMarkedText("content()", "content()", "app.ui.navigation.adaptive.AdaptiveNavigation(content)")
+        )
+    }
+
     override fun doRemove(state: TemplateState) {
         state.onApplyRules(
             "app/src/main/kotlin/app/ui/navigation/adaptive",
@@ -25,10 +32,6 @@ class AdaptiveNavigationProcessor : BaseFeatureProcessor() {
                     RemoveMarkedLine("adaptive-navigation"),
                 )
             )
-        )
-        state.onApplyRules(
-            "app/src/main/kotlin/app/ui/navigation/NavigationBarProvider.kt",
-            ReplaceMarkedText("content()", "content()", "app.ui.navigation.adaptive.AdaptiveNavigation(content)")
         )
     }
 
