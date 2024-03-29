@@ -8,7 +8,7 @@ import core.ui.state.StoreState
  *
  * This class extends [StoreState], providing mechanisms for managing the current navigation state.
  */
-class NavigationState : StoreState() {
+class NavigationState(val destinations: List<NavigationDestination<*>>) : StoreState() {
 
     /** StoreObject to hold the current navigation destination. */
     val destinationStore = StoreObject<NavigationDestination<*>>()
@@ -44,10 +44,6 @@ class NavigationState : StoreState() {
             strategy = strategy,
             data = data
         ))
-    }
-
-    companion object {
-        val Default by lazy { NavigationState() }
     }
 
 }

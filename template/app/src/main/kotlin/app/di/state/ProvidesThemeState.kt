@@ -14,6 +14,6 @@ internal class ProvidesThemeState {
 
     @Provides
     @Singleton
-    fun theme(): ThemeState = ThemeState(getConfig = { ThemeConfig.Default })
+    fun state(): ThemeState = ThemeState(getConfig = { ThemeConfig.Default })
 
 }

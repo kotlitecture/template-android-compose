@@ -18,21 +18,19 @@ import core.ui.theme.ThemeState
  * command handling, and theme management.
  *
  * @param navigationState The state of navigation in the application.
- * @param commandState The state of command handling in the application.
- * @param themeState The state of the application theme.
- * @param destinations The list of navigation destinations in the application.
  * @param startDestination The start destination for navigation.
+ * @param themeState The state of the application theme.
+ * @param commandState The state of command handling in the application.
  * @param bottomBar The composable function for the bottom bar UI.
  * @param overlay The composable function for the overlay UI.
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AppScaffold(
-    navigationState: NavigationState = NavigationState.Default,
-    commandState: CommandState = CommandState.Default,
-    themeState: ThemeState = ThemeState.Default,
-    destinations: List<NavigationDestination<*>>,
+    navigationState: NavigationState,
     startDestination: NavigationDestination<*>,
+    themeState: ThemeState = ThemeState.Default,
+    commandState: CommandState = CommandState.Default,
     overlay: @Composable () -> Unit = {},
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
@@ -50,9 +48,8 @@ fun AppScaffold(
             content = {
                 NavigationHost(
                     appContext = appContext,
-                    destinations = destinations,
                     navigationState = navigationState,
-                    startDestination = startDestination,
+                    startDestination = startDestination
                 )
             }
         )

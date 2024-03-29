@@ -3,16 +3,14 @@ package app
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
+import app.ui.navigation.bottom.BottomNavigation
 import app.userflow.internet.no.NoInternetProvider
 import app.userflow.loader.data.DataLoaderProvider
 import app.userflow.review.google.GoogleReviewProvider
-import app.userflow.template.TemplateDestination
 import app.userflow.update.google.GoogleUpdateProvider
-import app.userflow.webtonative.WebToNativeDestination
 import core.ui.AppScaffold
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,14 +37,8 @@ private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
         commandState = viewModel.commandState,
         themeState = viewModel.themeState,
         startDestination = destination,
-        destinations = remember {
-            listOf(
-                TemplateDestination,
-                WebToNativeDestination
-            )
-        },
         bottomBar = {
-
+            BottomNavigation()
         },
         overlay = {
             GoogleUpdateProvider()

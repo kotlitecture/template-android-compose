@@ -13,6 +13,6 @@ internal class ProvidesCommandState {
 
     @Provides
     @Singleton
-    fun command(): CommandState = CommandState.Default
+    fun state(): CommandState = CommandState.Default
 
 }

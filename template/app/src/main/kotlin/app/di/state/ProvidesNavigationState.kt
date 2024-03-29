@@ -1,5 +1,7 @@
 package app.di.state
 
+import app.userflow.template.TemplateDestination
+import app.userflow.webtonative.WebToNativeDestination
 import core.ui.navigation.NavigationState
 import dagger.Module
 import dagger.Provides
@@ -13,6 +15,11 @@ internal class ProvidesNavigationState {
 
     @Provides
     @Singleton
-    fun navigation(): NavigationState = NavigationState.Default
+    fun state(): NavigationState = NavigationState(
+        listOf(
+            TemplateDestination,
+            WebToNativeDestination
+        )
+    )
 
 }

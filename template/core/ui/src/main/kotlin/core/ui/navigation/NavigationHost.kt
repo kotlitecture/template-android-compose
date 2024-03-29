@@ -13,16 +13,15 @@ import core.ui.AppContext
 fun NavigationHost(
     appContext: AppContext,
     navigationState: NavigationState,
-    startDestination: NavigationDestination<*>,
-    destinations: List<NavigationDestination<*>>
+    startDestination: NavigationDestination<*>
 ) {
     NavHost(
         modifier = Modifier.fillMaxSize(),
         navController = appContext.navController,
         startDestination = startDestination.route,
-        builder = { destinations.forEach { it.bind(this) } },
         enterTransition = { fadeIn(animationSpec = tween(100)) },
-        exitTransition = { fadeOut(animationSpec = tween(100)) }
+        exitTransition = { fadeOut(animationSpec = tween(100)) },
+        builder = { navigationState.destinations.forEach { it.bind(this) } }
     )
     NavigationProvider(navigationState, appContext)
 }

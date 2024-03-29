@@ -10,8 +10,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import app.provideHiltViewModel
 import app.ui.component.AnyIcon
 import app.ui.navigation.NavigationBarState
+import app.ui.navigation.NavigationBarViewModel
+
+/**
+ * Composable function responsible for rendering the bottom navigation bar.
+ */
+@Composable
+fun BottomNavigation() {
+    val viewModel: NavigationBarViewModel = provideHiltViewModel()
+    BottomNavigation(state = viewModel.navigationBarState)
+}
 
 /**
  * Composable function responsible for rendering the bottom navigation bar.
@@ -25,15 +36,15 @@ fun BottomNavigation(state: NavigationBarState) {
     VisibilityHandler(state, visibilityState)
     AnimatedVisibility(
         visibleState = visibilityState,
-        enter = slideInVertically(),
-        exit = slideOutVertically()
+        enter = slideInVertically { it / 2 },
+        exit = slideOutVertically { it / 2 }
     ) {
         NavigationBar {
             val selected = state.activePageStore.asStateValue()
             pages.forEach { page ->
                 NavigationBarItem(
                     alwaysShowLabel = page.alwaysShowLabel,
-                    selected = page.model == selected?.model,
+                    selected = page.id == selected?.id,
                     onClick = page.onClick,
                     icon = { AnyIcon(model = page.icon) },
                     label = { page.label?.let { Text(text = it) } }

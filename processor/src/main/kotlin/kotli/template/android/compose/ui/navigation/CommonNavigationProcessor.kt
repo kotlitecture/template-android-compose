@@ -14,6 +14,10 @@ class CommonNavigationProcessor : BaseFeatureProcessor() {
             "app/src/main/kotlin/app/ui/navigation",
             RemoveFile()
         )
+        state.onApplyRules(
+            "app/src/main/kotlin/app/di/state/ProvidesNavigationBarState.kt",
+            RemoveFile()
+        )
     }
 
     companion object {
