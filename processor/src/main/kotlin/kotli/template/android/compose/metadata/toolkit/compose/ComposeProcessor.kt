@@ -12,7 +12,7 @@ class ComposeProcessor : BaseFeatureProcessor() {
     override fun getIntegrationEstimate(state: TemplateState): Long = 24.hours.inWholeMilliseconds
 
     companion object {
-        const val ID = "metadata.navigation.jetpack"
+        const val ID = "metadata.toolkit.compose"
     }
 
 }
