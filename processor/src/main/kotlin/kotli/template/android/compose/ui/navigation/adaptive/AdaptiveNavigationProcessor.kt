@@ -5,6 +5,7 @@ import kotli.engine.TemplateState
 import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.engine.template.rule.ReplaceMarkedText
 import kotlin.time.Duration.Companion.hours
 
 class AdaptiveNavigationProcessor : BaseFeatureProcessor() {
@@ -27,7 +28,7 @@ class AdaptiveNavigationProcessor : BaseFeatureProcessor() {
         )
         state.onApplyRules(
             "app/src/main/kotlin/app/ui/navigation/NavigationBarProvider.kt",
-            RemoveMarkedLine("AdaptiveNavigation")
+            ReplaceMarkedText("content()", "content()", "app.ui.navigation.adaptive.AdaptiveNavigation(content)")
         )
     }
 

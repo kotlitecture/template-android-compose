@@ -1,7 +1,6 @@
 package app.ui.navigation
 
 import androidx.compose.runtime.Composable
-import app.ui.navigation.left.ModalLeftNavigation
 
 /**
  * Composable function to provide navigation functionality.
@@ -9,5 +8,5 @@ import app.ui.navigation.left.ModalLeftNavigation
  */
 @Composable
 fun NavigationBarProvider(content: @Composable () -> Unit) {
-    ModalLeftNavigation(content)
+    content()
 }

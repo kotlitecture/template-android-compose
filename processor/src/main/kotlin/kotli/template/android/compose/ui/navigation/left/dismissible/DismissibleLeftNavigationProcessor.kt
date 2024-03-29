@@ -4,6 +4,7 @@ import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.engine.template.rule.ReplaceMarkedText
 import kotlin.time.Duration.Companion.hours
 
 class DismissibleLeftNavigationProcessor : BaseFeatureProcessor() {
@@ -18,7 +19,7 @@ class DismissibleLeftNavigationProcessor : BaseFeatureProcessor() {
         )
         state.onApplyRules(
             "app/src/main/kotlin/app/ui/navigation/NavigationBarProvider.kt",
-            RemoveMarkedLine("DismissibleLeftNavigation")
+            ReplaceMarkedText("content()", "content()", "app.ui.navigation.left.DismissibleLeftNavigation(content)")
         )
     }
 
