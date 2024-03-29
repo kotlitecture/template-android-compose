@@ -36,6 +36,7 @@ import kotli.template.android.compose.testing.unit_testing.UnitTestsProvider
 import kotli.template.android.compose.ui.component.UiComponentProvider
 import kotli.template.android.compose.ui.container.UiContainerProvider
 import kotli.template.android.compose.ui.l10n.L10NProvider
+import kotli.template.android.compose.ui.navigation.NavigationBarProvider
 import kotli.template.android.compose.ui.screen.UiScreenProvider
 import kotli.template.android.compose.unspecified.UnspecifiedProvider
 import kotli.template.android.compose.userflow.ads.AdsProvider
@@ -98,6 +99,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         StartupProvider(),
 
         // ui
+        NavigationBarProvider(),
         UiComponentProvider(),
         UiContainerProvider(),
         UiScreenProvider(),

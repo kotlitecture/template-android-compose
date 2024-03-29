@@ -22,7 +22,7 @@ These methods are **reified**.
 
 ## Example
 
-Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesKeyValueSource`.
+Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.datasource.ProvidesKeyValueSource`.
 
 To start using, just inject it to your DI managed class.
 

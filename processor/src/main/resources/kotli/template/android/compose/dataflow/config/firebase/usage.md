@@ -8,7 +8,7 @@ The API can be accessed through:
 
 ## Example
 
-Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesConfigSource`.
+Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.datasource.ProvidesConfigSource`.
 
 However, it is recommended to use decorator methods instead of directly accessing facade methods, as the latter requires providing an extra parameter `defaultValue`, which might be hidden in the decorator.
 

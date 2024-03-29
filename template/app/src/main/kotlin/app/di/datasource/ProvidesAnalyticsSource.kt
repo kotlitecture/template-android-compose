@@ -1,4 +1,4 @@
-package app.di
+package app.di.datasource
 
 import app.datasource.analytics.AppAnalyticsSource
 import core.data.datasource.analytics.AnalyticsSource

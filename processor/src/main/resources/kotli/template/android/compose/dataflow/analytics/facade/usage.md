@@ -16,7 +16,7 @@ Facade **AnalyticsSource** provides the following methods:
 
 ## Example
 
-Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesAnalyticsSource`.
+Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.datasource.ProvidesAnalyticsSource`.
 
 To start using, just inject any of them to your DI managed class. Recommended to use from `ViewModel` or `Repository` level.
 

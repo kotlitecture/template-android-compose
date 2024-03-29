@@ -1,4 +1,4 @@
-package app.di
+package app.di.datasource
 
 import android.app.Application
 import app.datasource.notifications.AppNotificationsSource

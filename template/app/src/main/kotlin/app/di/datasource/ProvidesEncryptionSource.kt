@@ -1,4 +1,4 @@
-package app.di
+package app.di.datasource
 
 import core.data.datasource.encryption.BasicEncryptionSource
 import core.data.datasource.encryption.EncryptionSource

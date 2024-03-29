@@ -1,4 +1,4 @@
-package app.di
+package app.di.datasource
 
 import app.datasource.config.AppConfigSource
 import core.data.datasource.config.ConfigSource

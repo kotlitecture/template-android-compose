@@ -1,7 +1,5 @@
-package app.di
+package app.di.state
 
-import core.ui.command.CommandState
-import core.ui.navigation.NavigationState
 import core.ui.theme.ThemeConfig
 import core.ui.theme.ThemeState
 import dagger.Module
@@ -12,15 +10,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal class ProvidesState {
-
-    @Provides
-    @Singleton
-    fun navigation(): NavigationState = NavigationState.Default
-
-    @Provides
-    @Singleton
-    fun command(): CommandState = CommandState.Default
+internal class ProvidesThemeState {
 
     @Provides
     @Singleton

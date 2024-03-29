@@ -1,6 +1,6 @@
 ## Overview
 
-The data source is available within the class `core.data.datasource.http.okhttp.OkHttpSource`. An instance of this class can be obtained through dependency injection (DI) as a singleton in `app.di.ProvidesOkHttpSource`.
+The data source is available within the class `core.data.datasource.http.okhttp.OkHttpSource`. An instance of this class can be obtained through dependency injection (DI) as a singleton in `app.di.datasource.ProvidesOkHttpSource`.
 
 The class provides the next functionality:
 

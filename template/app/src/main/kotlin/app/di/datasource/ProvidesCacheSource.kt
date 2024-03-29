@@ -1,4 +1,4 @@
-package app.di
+package app.di.datasource
 
 import app.datasource.cache.AppCacheSource
 import core.data.datasource.cache.CacheSource

@@ -13,7 +13,7 @@ Facade **ClipboardSource** provides the following methods:
 
 ## Example
 
-Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.ProvidesClipboardSource`.
+Both the **facade** and **decorator** are pre-configured via dependency injection (DI) as singletons in `app.di.datasource.ProvidesClipboardSource`.
 
 To start using, just inject it to your DI managed class.
 
