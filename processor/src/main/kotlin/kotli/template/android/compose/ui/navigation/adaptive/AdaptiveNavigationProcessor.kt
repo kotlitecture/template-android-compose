@@ -26,7 +26,7 @@ class AdaptiveNavigationProcessor : BaseFeatureProcessor() {
             )
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/ui/navigation/NavigationProvider.kt",
+            "app/src/main/kotlin/app/ui/navigation/NavigationBarProvider.kt",
             RemoveMarkedLine("AdaptiveNavigation")
         )
     }

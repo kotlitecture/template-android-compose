@@ -17,7 +17,7 @@ class ModalLeftNavigationProcessor : BaseFeatureProcessor() {
             RemoveFile()
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/ui/navigation/NavigationProvider.kt",
+            "app/src/main/kotlin/app/ui/navigation/NavigationBarProvider.kt",
             RemoveMarkedLine("ModalLeftNavigation")
         )
     }
