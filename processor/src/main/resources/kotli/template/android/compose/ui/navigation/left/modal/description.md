@@ -1,0 +1,1 @@
+Modal navigation drawers block interaction with the rest of an app's content with a scrim. They are elevated above most of the app's UI and don't affect the screen's layout grid.

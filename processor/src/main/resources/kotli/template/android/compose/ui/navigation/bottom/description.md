@@ -1,0 +1,1 @@
+Bottom navigation bar let people switch between UI views on smaller devices.

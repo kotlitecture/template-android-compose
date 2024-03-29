@@ -1,0 +1,1 @@
+The Navigation Suite Scaffold allows you to use a Navigation Bar, Navigation Rail, or Navigation Drawer depending on the screen configuration without the need to calculate the screen size or the posture yourself.

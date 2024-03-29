@@ -1,0 +1,1 @@
+Simple API for executing various commands within the application, incorporating UI context.

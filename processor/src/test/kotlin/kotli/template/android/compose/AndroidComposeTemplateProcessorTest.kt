@@ -6,18 +6,23 @@ import kotli.engine.DefaultTemplateRegistry
 import kotli.engine.generator.GradleProjectGenerator
 import kotli.engine.generator.PathOutputGenerator
 import kotli.engine.generator.ZipOutputGenerator
+import kotli.engine.model.Feature
 import kotli.engine.model.Layer
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
+import org.slf4j.LoggerFactory
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.nio.file.Path
+import java.util.Random
 import java.util.UUID
 import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.deleteRecursively
 import kotlin.test.Test
 
 class AndroidComposeTemplateProcessorTest {
+
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     private val processor = AndroidComposeTemplateProcessor()
     private val registry = DefaultTemplateRegistry(processor)
@@ -108,6 +113,31 @@ class AndroidComposeTemplateProcessorTest {
                 name = "app-android",
             )
             val generator = PathOutputGenerator(buildPath(), registry, fat = true)
+            val gradleGenerator = GradleProjectGenerator(arrayOf("signingReport", "assembleDebug"), generator)
+            gradleGenerator.generate(layer)
+        }
+    }
+
+    @Test
+    fun `compose template with random features`() {
+        runBlocking {
+            val processors = processor.getFeatureProviders()
+                .map { it.getProcessors() }
+                .flatten()
+                .filter { !it.isInternal() }
+            val features = mutableSetOf<Feature>()
+            repeat(Random().nextInt(1, processors.size + 1)) {
+                features.add(Feature(processors.random().getId()))
+            }
+            logger.debug("features :: {} -> {}", features.size, features.map { it.id })
+            val layer = Layer(
+                id = UUID.randomUUID().toString(),
+                processorId = processor.getId(),
+                features = features.toList(),
+                namespace = "my.app",
+                name = "app-android",
+            )
+            val generator = PathOutputGenerator(buildPath(), registry)
             val gradleGenerator = GradleProjectGenerator(arrayOf("signingReport", "assembleDebug"), generator)
             gradleGenerator.generate(layer)
         }
