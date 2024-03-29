@@ -2,7 +2,9 @@ package kotli.template.android.compose.ui.navigation.adaptive
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.RemoveFile
+import kotli.engine.template.rule.RemoveMarkedLine
 import kotlin.time.Duration.Companion.hours
 
 class AdaptiveNavigationProcessor : BaseFeatureProcessor() {
@@ -14,6 +16,18 @@ class AdaptiveNavigationProcessor : BaseFeatureProcessor() {
         state.onApplyRules(
             "app/src/main/kotlin/app/ui/navigation/adaptive",
             RemoveFile()
+        )
+        state.onApplyRules(
+            VersionCatalogRules(
+                listOf(
+                    RemoveMarkedLine("adaptiveNavigation"),
+                    RemoveMarkedLine("adaptive-navigation"),
+                )
+            )
+        )
+        state.onApplyRules(
+            "app/src/main/kotlin/app/ui/navigation/NavigationProvider.kt",
+            RemoveMarkedLine("AdaptiveNavigation")
         )
     }
 

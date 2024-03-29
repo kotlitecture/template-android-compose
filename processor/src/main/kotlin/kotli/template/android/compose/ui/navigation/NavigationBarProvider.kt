@@ -6,8 +6,8 @@ import kotli.engine.FeatureType
 import kotli.engine.model.FeatureTypes
 import kotli.template.android.compose.ui.navigation.adaptive.AdaptiveNavigationProcessor
 import kotli.template.android.compose.ui.navigation.bottom.BottomNavigationProcessor
-import kotli.template.android.compose.ui.navigation.left.LeftNavigationProcessor
-import kotli.template.android.compose.ui.navigation.top.TopNavigationProcessor
+import kotli.template.android.compose.ui.navigation.left.dismissible.DismissibleLeftNavigationProcessor
+import kotli.template.android.compose.ui.navigation.left.modal.ModalLeftNavigationProcessor
 
 class NavigationBarProvider : BaseFeatureProvider() {
 
@@ -20,10 +20,11 @@ class NavigationBarProvider : BaseFeatureProvider() {
     )
 
     override fun createProcessors(): List<FeatureProcessor> = listOf(
+        CommonNavigationProcessor(),
         AdaptiveNavigationProcessor(),
         BottomNavigationProcessor(),
-        LeftNavigationProcessor(),
-        TopNavigationProcessor()
+        ModalLeftNavigationProcessor(),
+        DismissibleLeftNavigationProcessor(),
     )
 
 }

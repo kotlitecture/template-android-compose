@@ -7,8 +7,8 @@ import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
 import app.ui.command.CommandProvider
+import app.ui.navigation.NavigationProvider
 import app.ui.navigation.bottom.BottomNavigation
-import app.ui.navigation.left.ModalLeftNavigation
 import app.userflow.internet.no.NoInternetProvider
 import app.userflow.loader.data.DataLoaderProvider
 import app.userflow.review.google.GoogleReviewProvider
@@ -37,14 +37,14 @@ class AppActivity : FragmentActivity() {
 private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
     ThemeProvider(viewModel.themeState) {
         val appContext = rememberAppContext()
-        ModalLeftNavigation {
+        NavigationProvider { // {ui.navigation.common}
             AppScaffold(
                 appContext = appContext,
                 navigationState = viewModel.navigationState,
                 bottomBar = { BottomNavigation() }
             )
-        }
-        CommandProvider(viewModel.commandState, appContext)
+        } // {ui.navigation.common}
+        CommandProvider(appContext)
         DataLoaderProvider(viewModel.appState)
         GoogleUpdateProvider()
         GoogleReviewProvider()

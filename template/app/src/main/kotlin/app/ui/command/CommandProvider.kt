@@ -8,14 +8,13 @@ import core.ui.provideViewModel
 /**
  * Provides functionality for handling commands within a Composable.
  *
- * @param commandState The state of commands.
  * @param appContext The application context.
  */
 @Composable
-fun CommandProvider(commandState: CommandState, appContext: AppContext) {
+fun CommandProvider(appContext: AppContext) {
     val viewModel = provideViewModel<CommandViewModel>(activityScope = true)
-    DisposableEffect(commandState, appContext) {
-        viewModel.onBind(commandState, appContext)
+    DisposableEffect(appContext) {
+        viewModel.onBind(appContext)
         onDispose { }
     }
 }
