@@ -20,7 +20,7 @@ class NavigationViewModel : AppViewModel() {
                 .mapNotNull { it.destination.route }
                 .mapNotNull(NavigationDestination.Companion::getByRoute)
                 .distinctUntilChanged()
-                .collectLatest(navigationState.destinationStore::set)
+                .collectLatest(navigationState.currentDestinationStore::set)
         }
         launchMain("navigationStore") {
             navigationState.navigationStore.asFlow()

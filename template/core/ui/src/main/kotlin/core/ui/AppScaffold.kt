@@ -7,7 +7,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.runtime.Composable
 import core.ui.command.CommandProvider
 import core.ui.command.CommandState
-import core.ui.navigation.NavigationDestination
 import core.ui.navigation.NavigationHost
 import core.ui.navigation.NavigationState
 import core.ui.theme.ThemeProvider
@@ -18,7 +17,6 @@ import core.ui.theme.ThemeState
  * command handling, and theme management.
  *
  * @param navigationState The state of navigation in the application.
- * @param startDestination The start destination for navigation.
  * @param themeState The state of the application theme.
  * @param commandState The state of command handling in the application.
  * @param bottomBar The composable function for the bottom bar UI.
@@ -28,7 +26,6 @@ import core.ui.theme.ThemeState
 @Composable
 fun AppScaffold(
     navigationState: NavigationState,
-    startDestination: NavigationDestination<*>,
     themeState: ThemeState = ThemeState.Default,
     commandState: CommandState = CommandState.Default,
     overlay: @Composable () -> Unit = {},
@@ -37,6 +34,7 @@ fun AppScaffold(
     floatingActionButton: @Composable () -> Unit = {},
     floatingActionButtonPosition: FabPosition = FabPosition.End
 ) {
+    val startDestination = navigationState.startDestinationStore.asStateValue() ?: return
     ThemeProvider(themeState) {
         val appContext = rememberAppContext()
         Scaffold(

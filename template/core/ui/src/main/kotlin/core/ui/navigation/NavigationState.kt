@@ -10,8 +10,11 @@ import core.ui.state.StoreState
  */
 class NavigationState(val destinations: List<NavigationDestination<*>>) : StoreState() {
 
+    /** StoreObject to hold the initial navigation destination. */
+    val startDestinationStore = StoreObject<NavigationDestination<*>>()
+
     /** StoreObject to hold the current navigation destination. */
-    val destinationStore = StoreObject<NavigationDestination<*>>()
+    val currentDestinationStore = StoreObject<NavigationDestination<*>>()
 
     /** StoreObject to hold the current navigation data. */
     val navigationStore = StoreObject<NavigationData<*>>(valueReply = 0, valueBufferCapacity = Int.MAX_VALUE)

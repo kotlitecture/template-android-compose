@@ -19,7 +19,7 @@ class NavigationBarViewModel @Inject constructor(
 
     private val pagesStore = navigationBarState.availablePagesStore
     private val pageStore = navigationBarState.activePageStore
-    private val destStore = navigationState.destinationStore
+    private val destStore = navigationState.currentDestinationStore
 
     override fun doBind() {
         launchAsync("doBind") {

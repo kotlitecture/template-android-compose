@@ -3,9 +3,7 @@ package app
 import app.userflow.template.TemplateDestination
 import core.ui.AppViewModel
 import core.ui.command.CommandState
-import core.ui.navigation.NavigationDestination
 import core.ui.navigation.NavigationState
-import core.ui.state.StoreObject
 import core.ui.theme.ThemeState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -18,11 +16,9 @@ class AppActivityViewModel @Inject constructor(
     val appState: AppState,
 ) : AppViewModel() {
 
-    val startDestinationStore = StoreObject<NavigationDestination<*>>()
-
     override fun doBind() {
         launchAsync("doBind") {
-            startDestinationStore.set(TemplateDestination)
+            navigationState.startDestinationStore.set(TemplateDestination)
         }
     }
 

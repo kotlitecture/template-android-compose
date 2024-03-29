@@ -31,12 +31,10 @@ class AppActivity : FragmentActivity() {
 
 @Composable
 private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
-    val destination = viewModel.startDestinationStore.asStateValue() ?: return
     AppScaffold(
         navigationState = viewModel.navigationState,
         commandState = viewModel.commandState,
         themeState = viewModel.themeState,
-        startDestination = destination,
         bottomBar = {
             BottomNavigation()
         },
@@ -53,7 +51,7 @@ private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
 @Composable
 private fun SplashBlock(splashScreen: SplashScreen, viewModel: AppActivityViewModel) {
     splashScreen.setKeepOnScreenCondition {
-        viewModel.navigationState.destinationStore.asStateValue() == null
+        viewModel.navigationState.currentDestinationStore.asStateValue() == null
     }
 }
 // {userflow.splash.basic}
