@@ -12,8 +12,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import app.provideHiltViewModel
 import app.ui.component.AnyIcon
-import app.ui.navigation.NavigationBarState
+import app.ui.navigation.NavigationBarPage
 import app.ui.navigation.NavigationBarViewModel
+import core.ui.state.StoreObject
 
 /**
  * Composable function responsible for rendering the bottom navigation bar.
@@ -21,26 +22,16 @@ import app.ui.navigation.NavigationBarViewModel
 @Composable
 fun BottomNavigation() {
     val viewModel: NavigationBarViewModel = provideHiltViewModel()
-    BottomNavigation(state = viewModel.navigationBarState)
-}
-
-/**
- * Composable function responsible for rendering the bottom navigation bar.
- *
- * @param state The navigation bar state containing available pages and active page.
- */
-@Composable
-fun BottomNavigation(state: NavigationBarState) {
-    val pages = state.availablePagesStore.asStateValue()?.takeIf { it.isNotEmpty() } ?: return
+    val pages = viewModel.availablePagesStore.asStateValue()?.takeIf { it.isNotEmpty() } ?: return
     val visibilityState = remember { MutableTransitionState(false) }
-    VisibilityHandler(state, visibilityState)
+    VisibilityHandler(viewModel.activePageStore, visibilityState)
     AnimatedVisibility(
         visibleState = visibilityState,
         enter = slideInVertically { it / 2 },
         exit = slideOutVertically { it / 2 }
     ) {
         NavigationBar {
-            val selected = state.activePageStore.asStateValue()
+            val selected = viewModel.activePageStore.asStateValue()
             pages.forEach { page ->
                 NavigationBarItem(
                     label = { page.label?.let { Text(text = it) } },
@@ -55,8 +46,8 @@ fun BottomNavigation(state: NavigationBarState) {
 }
 
 @Composable
-private fun VisibilityHandler(state: NavigationBarState, visibleState: MutableTransitionState<Boolean>) {
-    val visible = state.activePageStore.asStateValue() != null
+private fun VisibilityHandler(activePageStore: StoreObject<NavigationBarPage>, visibleState: MutableTransitionState<Boolean>) {
+    val visible = activePageStore.asStateValue() != null
     LaunchedEffect(visible) {
         visibleState.targetState = visible
     }

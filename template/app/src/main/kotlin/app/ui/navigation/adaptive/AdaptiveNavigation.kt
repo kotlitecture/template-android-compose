@@ -8,7 +8,6 @@ import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffo
 import androidx.compose.runtime.Composable
 import app.provideHiltViewModel
 import app.ui.component.AnyIcon
-import app.ui.navigation.NavigationBarState
 import app.ui.navigation.NavigationBarViewModel
 
 /**
@@ -19,21 +18,10 @@ import app.ui.navigation.NavigationBarViewModel
 @Composable
 fun AdaptiveNavigation(content: @Composable () -> Unit) {
     val viewModel: NavigationBarViewModel = provideHiltViewModel()
-    AdaptiveNavigation(state = viewModel.navigationBarState, content = content)
-}
-
-/**
- * Composable function to display an adaptive navigation.
- *
- * @param state The state of the navigation bar.
- * @param content The content to display.
- */
-@Composable
-fun AdaptiveNavigation(state: NavigationBarState, content: @Composable () -> Unit) {
-    val pages = state.availablePagesStore.asStateValue()?.takeIf { it.isNotEmpty() } ?: return
+    val pages = viewModel.availablePagesStore.asStateValue()?.takeIf { it.isNotEmpty() } ?: return
     NavigationSuiteScaffold(
         navigationSuiteItems = {
-            val selected = state.activePageStore.asStateValue()
+            val selected = viewModel.activePageStore.asStateValue()
             pages.forEach { page ->
                 item(
                     label = { page.label?.let { Text(text = it) } },

@@ -13,21 +13,21 @@ import javax.inject.Inject
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class NavigationBarViewModel @Inject constructor(
-    val navigationBarState: NavigationBarState,
-    navigationState: NavigationState,
+    navigationBarState: NavigationBarState,
+    private val navigationState: NavigationState,
 ) : AppViewModel() {
 
-    private val pagesStore = navigationBarState.availablePagesStore
-    private val pageStore = navigationBarState.activePageStore
-    private val destStore = navigationState.currentDestinationStore
+    val availablePagesStore = navigationBarState.availablePagesStore
+    val activePageStore = navigationBarState.activePageStore
 
     override fun doBind() {
         launchAsync("doBind") {
-            pagesStore.asFlow()
+            val destStore = navigationState.currentDestinationStore
+            availablePagesStore.asFlow()
                 .filterNotNull()
                 .flatMapLatest { pages -> destStore.asFlow().map { pages to it } }
                 .map { pair -> pair.first.find { it.id == pair.second?.id } }
-                .collectLatest(pageStore::set)
+                .collectLatest(activePageStore::set)
         }
     }
 

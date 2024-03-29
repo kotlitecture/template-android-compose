@@ -23,7 +23,7 @@ internal class ProvidesNavigationBarState {
     @Provides
     @Singleton
     fun state(navigationState: NavigationState): NavigationBarState = NavigationBarState(
-        listOf(
+        availablePages = listOf(
             createPage(
                 navigationState = navigationState,
                 destination = TemplateDestination,
