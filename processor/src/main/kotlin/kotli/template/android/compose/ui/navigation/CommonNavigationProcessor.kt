@@ -30,7 +30,7 @@ class CommonNavigationProcessor : BaseFeatureProcessor() {
         state.onApplyRules(
             "app/src/main/kotlin/app/AppActivity.kt",
             RemoveMarkedLine("{ui.navigation.common}"),
-            RemoveMarkedLine("NavigationProvider"),
+            RemoveMarkedLine("NavigationBarProvider"),
         )
     }
 

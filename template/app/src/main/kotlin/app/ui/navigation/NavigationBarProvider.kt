@@ -8,6 +8,6 @@ import app.ui.navigation.left.ModalLeftNavigation
  *
  */
 @Composable
-fun NavigationProvider(content: @Composable () -> Unit) {
+fun NavigationBarProvider(content: @Composable () -> Unit) {
     ModalLeftNavigation(content)
 }

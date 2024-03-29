@@ -6,11 +6,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.LifecycleOwner
 import app.userflow.review.google.data.ReviewConfig
 import app.userflow.review.google.data.ReviewData
+import com.google.android.gms.tasks.Tasks
 import core.ui.AppViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.tasks.await
 import java.util.Date
 import javax.inject.Inject
 
@@ -30,7 +30,7 @@ class GoogleReviewViewModel @Inject constructor(
                         val data = ReviewData()
                         try {
                             val manager = config.reviewManager
-                            val reviewInfo = manager.requestReviewFlow().await()
+                            val reviewInfo = Tasks.await(manager.requestReviewFlow())
                             requestReview(activity, config, data.copy(reviewInfo = reviewInfo))
                         } catch (e: Exception) {
                             state.dataStore.set(data
