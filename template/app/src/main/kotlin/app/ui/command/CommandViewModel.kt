@@ -1,4 +1,4 @@
-package core.ui.command
+package app.ui.command
 
 import core.ui.AppContext
 import core.ui.AppViewModel

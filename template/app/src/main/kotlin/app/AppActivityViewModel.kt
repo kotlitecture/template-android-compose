@@ -2,7 +2,7 @@ package app
 
 import app.userflow.template.TemplateDestination
 import core.ui.AppViewModel
-import core.ui.command.CommandState
+import app.ui.command.CommandState
 import core.ui.navigation.NavigationState
 import core.ui.theme.ThemeState
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,12 +1,12 @@
-package core.ui.command.impl
+package app.ui.command.impl
 
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
 import core.ui.AppContext
-import core.ui.command.Command
-import core.ui.command.CommandState
+import app.ui.command.Command
+import app.ui.command.CommandState
 
 /**
  * Command for opening a URL.

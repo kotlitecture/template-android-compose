@@ -1,4 +1,4 @@
-package core.ui.command
+package app.ui.command
 
 import core.ui.state.StoreObject
 import core.ui.state.StoreState
@@ -20,9 +20,5 @@ class CommandState : StoreState() {
      * @param cmd The command to be executed.
      */
     fun onCommand(cmd: Command) = commandStore.set(cmd)
-
-    companion object {
-        val Default by lazy { CommandState() }
-    }
 
 }

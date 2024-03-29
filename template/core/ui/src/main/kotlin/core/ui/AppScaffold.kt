@@ -5,33 +5,30 @@ import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.runtime.Composable
-import core.ui.command.CommandProvider
-import core.ui.command.CommandState
 import core.ui.navigation.NavigationHost
 import core.ui.navigation.NavigationState
 
 /**
- * Composable function representing the main scaffold of the application, including navigation, snackbar,
- * command handling, and theme management.
+ * Composable function to display the main scaffold of the app.
  *
- * @param navigationState The state of navigation in the application.
- * @param themeState The state of the application theme.
- * @param commandState The state of command handling in the application.
- * @param bottomBar The composable function for the bottom bar UI.
- * @param overlay The composable function for the overlay UI.
+ * @param appContext The context of the app.
+ * @param navigationState The state of the navigation.
+ * @param topBar The composable function to display the top bar.
+ * @param bottomBar The composable function to display the bottom bar.
+ * @param floatingActionButton The composable function to display the floating action button.
+ * @param floatingActionButtonPosition The position of the floating action button.
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AppScaffold(
+    appContext: AppContext,
     navigationState: NavigationState,
-    commandState: CommandState = CommandState.Default,
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
     floatingActionButton: @Composable () -> Unit = {},
     floatingActionButtonPosition: FabPosition = FabPosition.End
 ) {
     val startDestination = navigationState.startDestinationStore.asStateValue() ?: return
-    val appContext = rememberAppContext()
     Scaffold(
         topBar = topBar,
         bottomBar = bottomBar,
@@ -46,5 +43,4 @@ fun AppScaffold(
             )
         }
     )
-    CommandProvider(commandState, appContext)
 }

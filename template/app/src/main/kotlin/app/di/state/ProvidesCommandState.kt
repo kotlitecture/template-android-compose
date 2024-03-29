@@ -1,6 +1,6 @@
 package app.di.state
 
-import core.ui.command.CommandState
+import app.ui.command.CommandState
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,6 +13,6 @@ internal class ProvidesCommandState {
 
     @Provides
     @Singleton
-    fun state(): CommandState = CommandState.Default
+    fun state(): CommandState = CommandState()
 
 }

@@ -1,9 +1,9 @@
-package core.ui.command.impl
+package app.ui.command.impl
 
 import android.widget.Toast
 import core.ui.AppContext
-import core.ui.command.Command
-import core.ui.command.CommandState
+import app.ui.command.Command
+import app.ui.command.CommandState
 import core.ui.misc.utils.WeakReferenceUtils
 
 /**
