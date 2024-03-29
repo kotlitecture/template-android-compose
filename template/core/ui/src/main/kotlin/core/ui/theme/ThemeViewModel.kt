@@ -5,6 +5,8 @@ package core.ui.theme
 import core.ui.AppViewModel
 import core.ui.state.StoreObject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
@@ -25,8 +27,6 @@ class ThemeViewModel : AppViewModel() {
      */
     fun onBind(state: ThemeState) {
         launchAsync("onBind") {
-            val config = state.getConfig()
-            state.configStore.set(config)
             state.systemDarkModeStore.asFlow()
                 .filterNotNull()
                 .flatMapLatest { darkMode ->
@@ -44,6 +44,14 @@ class ThemeViewModel : AppViewModel() {
                     provider.provide(data.config)
                 }
                 .collect(dataStore::set)
+        }
+        launchAsync("config") {
+            val initialConfig = state.getConfig()
+            state.configStore.set(initialConfig)
+            state.configStore.asFlow()
+                .filterNotNull()
+                .filter { it !== initialConfig }
+                .collectLatest(state.setConfig::invoke)
         }
     }
 

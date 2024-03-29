@@ -9,7 +9,10 @@ import core.ui.state.StoreState
  *
  * @property getConfig The config to use.
  */
-data class ThemeState(val getConfig: suspend () -> ThemeConfig) : StoreState() {
+data class ThemeState(
+    val getConfig: suspend () -> ThemeConfig,
+    val setConfig: suspend (config: ThemeConfig) -> Unit
+) : StoreState() {
 
     /** Store object for the font family. */
     val configStore = StoreObject<ThemeConfig>()
@@ -19,7 +22,12 @@ data class ThemeState(val getConfig: suspend () -> ThemeConfig) : StoreState() {
 
     companion object {
         /** Default theme state with Material3Light theme as default. */
-        val Default by lazy { ThemeState(getConfig = { ThemeConfig.Default }) }
+        val Default by lazy {
+            ThemeState(
+                getConfig = { ThemeConfig.Default },
+                setConfig = {}
+            )
+        }
     }
 
 }
