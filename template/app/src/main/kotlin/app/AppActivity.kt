@@ -45,6 +45,9 @@ private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
                 WebToNativeDestination
             )
         },
+        bottomBar = {
+
+        },
         overlay = {
             GoogleUpdateProvider()
             GoogleReviewProvider()

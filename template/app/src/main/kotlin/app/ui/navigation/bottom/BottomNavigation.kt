@@ -13,6 +13,11 @@ import androidx.compose.runtime.remember
 import app.ui.component.AnyIcon
 import app.ui.navigation.NavigationBarState
 
+/**
+ * Composable function responsible for rendering the bottom navigation bar.
+ *
+ * @param state The navigation bar state containing available pages and active page.
+ */
 @Composable
 fun BottomNavigation(state: NavigationBarState) {
     val pages = state.availablePagesStore.asStateValue()?.takeIf { it.isNotEmpty() } ?: return
@@ -23,21 +28,15 @@ fun BottomNavigation(state: NavigationBarState) {
         enter = slideInVertically(),
         exit = slideOutVertically()
     ) {
-        val selected = state.activePageStore.asStateValue()
-        pages.forEach { page ->
-            NavigationBar {
+        NavigationBar {
+            val selected = state.activePageStore.asStateValue()
+            pages.forEach { page ->
                 NavigationBarItem(
                     alwaysShowLabel = page.alwaysShowLabel,
                     selected = page.model == selected?.model,
                     onClick = page.onClick,
-                    icon = {
-                        AnyIcon(model = page.icon)
-                    },
-                    label = {
-                        if (page.label != null) {
-                            Text(text = page.label)
-                        }
-                    }
+                    icon = { AnyIcon(model = page.icon) },
+                    label = { page.label?.let { Text(text = it) } }
                 )
             }
         }
