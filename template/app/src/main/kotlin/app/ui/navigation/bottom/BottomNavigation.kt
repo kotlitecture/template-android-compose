@@ -43,11 +43,11 @@ fun BottomNavigation(state: NavigationBarState) {
             val selected = state.activePageStore.asStateValue()
             pages.forEach { page ->
                 NavigationBarItem(
+                    label = { page.label?.let { Text(text = it) } },
                     alwaysShowLabel = page.alwaysShowLabel,
+                    icon = { AnyIcon(model = page.icon) },
                     selected = page.id == selected?.id,
                     onClick = page.onClick,
-                    icon = { AnyIcon(model = page.icon) },
-                    label = { page.label?.let { Text(text = it) } }
                 )
             }
         }

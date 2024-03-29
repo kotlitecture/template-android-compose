@@ -6,12 +6,16 @@ import androidx.compose.runtime.Composable
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
+import app.ui.navigation.adaptive.AdaptiveNavigation
 import app.ui.navigation.bottom.BottomNavigation
+import app.ui.navigation.left.DismissibleLeftNavigation
+import app.ui.navigation.left.ModalLeftNavigation
 import app.userflow.internet.no.NoInternetProvider
 import app.userflow.loader.data.DataLoaderProvider
 import app.userflow.review.google.GoogleReviewProvider
 import app.userflow.update.google.GoogleUpdateProvider
 import core.ui.AppScaffold
+import core.ui.theme.ThemeProvider
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,20 +35,19 @@ class AppActivity : FragmentActivity() {
 
 @Composable
 private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
-    AppScaffold(
-        navigationState = viewModel.navigationState,
-        commandState = viewModel.commandState,
-        themeState = viewModel.themeState,
-        bottomBar = {
-            BottomNavigation()
-        },
-        overlay = {
-            GoogleUpdateProvider()
-            GoogleReviewProvider()
-            DataLoaderProvider(viewModel.appState)
-            NoInternetProvider()
+    ThemeProvider(viewModel.themeState) {
+        ModalLeftNavigation {
+            AppScaffold(
+                navigationState = viewModel.navigationState,
+                commandState = viewModel.commandState,
+                bottomBar = { BottomNavigation() }
+            )
         }
-    )
+        DataLoaderProvider(viewModel.appState)
+        GoogleUpdateProvider()
+        GoogleReviewProvider()
+        NoInternetProvider()
+    }
 }
 
 // {userflow.splash.basic}

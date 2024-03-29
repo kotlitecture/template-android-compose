@@ -27,13 +27,15 @@ internal class ProvidesNavigationBarState {
             createPage(
                 navigationState = navigationState,
                 destination = TemplateDestination,
-                icon = Icons.Default.Cookie
+                icon = Icons.Default.Cookie,
+                label = "1"
             ),
             createPage(
                 navigationState = navigationState,
                 destination = WebToNativeDestination,
                 data = WebToNativeDestination.Data("https://google.com"),
-                icon = Icons.Default.Web
+                icon = Icons.Default.Web,
+                label = "2"
             )
         )
     )
