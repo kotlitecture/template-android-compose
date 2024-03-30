@@ -1,15 +1,11 @@
-package app.di.state
+## Overview
 
-import core.ui.theme.ThemeConfig
-import core.ui.theme.ThemeState
-import core.ui.theme.material3.Material3Dark
-import core.ui.theme.material3.Material3Light
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+Themes are managed through `core.ui.theme.ThemeState` instance.
+This instance is pre-configured in dependency injection (DI) through the `app.di.state.ProvidesThemeState` class.
 
+You can modify the themes provided and add your own to the configuration easily.
+
+```kotlin
 @Module
 @InstallIn(SingletonComponent::class)
 internal class ProvidesThemeState {
@@ -32,3 +28,5 @@ internal class ProvidesThemeState {
     )
 
 }
+```
+

@@ -34,9 +34,9 @@ fun BottomNavigation() {
             val selected = viewModel.activePageStore.asStateValue()
             pages.forEach { page ->
                 NavigationBarItem(
-                    label = { page.label?.let { Text(text = it) } },
+                    label = { page.getLabel()?.let { Text(text = it) } },
                     alwaysShowLabel = page.alwaysShowLabel,
-                    icon = { AnyIcon(model = page.icon) },
+                    icon = { AnyIcon(model = page.getIcon()) },
                     selected = page.id == selected?.id,
                     onClick = page.onClick,
                 )
@@ -46,7 +46,10 @@ fun BottomNavigation() {
 }
 
 @Composable
-private fun VisibilityHandler(activePageStore: StoreObject<NavigationBarPage>, visibleState: MutableTransitionState<Boolean>) {
+private fun VisibilityHandler(
+    activePageStore: StoreObject<NavigationBarPage>,
+    visibleState: MutableTransitionState<Boolean>
+) {
     val visible = activePageStore.asStateValue() != null
     LaunchedEffect(visible) {
         visibleState.targetState = visible

@@ -25,8 +25,8 @@ internal class ProvidesNavigationBarState {
             createPage(
                 navigationState = navigationState,
                 destination = TemplateDestination,
-                icon = Icons.Default.Cookie,
-                label = "1"
+                getIcon = { Icons.Default.Cookie },
+                getLabel = { "1" }
             )
         )
     )
@@ -35,18 +35,30 @@ internal class ProvidesNavigationBarState {
         navigationState: NavigationState,
         destination: NavigationDestination<D>,
         data: D? = null,
-        icon: Any,
-        label: String? = null,
+        getLabel: () -> String?,
+        getIcon: () -> Any,
         enabled: Boolean = true,
-        alwaysShowLabel: Boolean = label != null,
+        alwaysShowLabel: Boolean = true
     ): NavigationBarPage {
         return NavigationBarPage(
-            icon = icon,
-            label = label,
+            getLabel = getLabel,
+            getIcon = getIcon,
             enabled = enabled,
             id = destination.id,
             alwaysShowLabel = alwaysShowLabel,
-            onClick = { navigationState.onNext(destination, data, NavigationStrategy.SingleInstance) }
+            onClick = { navigate(navigationState, destination, data) }
+        )
+    }
+
+    private fun <D> navigate(
+        navigationState: NavigationState,
+        destination: NavigationDestination<D>,
+        data: D?,
+    ) {
+        navigationState.onNext(
+            destination,
+            data,
+            NavigationStrategy.SingleInstance
         )
     }
 

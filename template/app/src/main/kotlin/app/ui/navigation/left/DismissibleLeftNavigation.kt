@@ -32,8 +32,8 @@ fun DismissibleLeftNavigation(content: @Composable () -> Unit) {
                 val selected = viewModel.activePageStore.asStateValue()
                 pages.forEach { page ->
                     NavigationDrawerItem(
-                        label = { page.label?.let { Text(text = it) } },
-                        icon = { AnyIcon(model = page.icon) },
+                        label = { page.getLabel()?.let { Text(text = it) } },
+                        icon = { AnyIcon(model = page.getIcon()) },
                         selected = page.id == selected?.id,
                         onClick = {
                             page.onClick()

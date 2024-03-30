@@ -1,8 +1,6 @@
 package core.ui.theme
 
 import androidx.compose.ui.text.font.FontFamily
-import core.ui.theme.material3.Material3Dark
-import core.ui.theme.material3.Material3Light
 
 /**
  * Represents the configuration for theming in the application.
@@ -21,13 +19,4 @@ data class ThemeConfig(
     val darkTheme: ThemeDataProvider<*> = defaultTheme,
     val availableThemes: List<ThemeDataProvider<*>>,
     val autoDark: Boolean = true
-) {
-    companion object {
-        val Default = ThemeConfig(
-            availableThemes = listOf(Material3Light, Material3Dark),
-            defaultTheme = Material3Light,
-            lightTheme = Material3Light,
-            darkTheme = Material3Dark,
-        )
-    }
-}
+)

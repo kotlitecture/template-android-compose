@@ -20,14 +20,4 @@ data class ThemeState(
     /** Store object for the theme dark mode state. */
     val systemDarkModeStore = StoreObject<Boolean>()
 
-    companion object {
-        /** Default theme state with Material3Light theme as default. */
-        val Default by lazy {
-            ThemeState(
-                getConfig = { ThemeConfig.Default },
-                setConfig = {}
-            )
-        }
-    }
-
 }

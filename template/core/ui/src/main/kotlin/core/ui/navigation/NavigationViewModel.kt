@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.mapNotNull
 class NavigationViewModel : AppViewModel() {
 
     fun onBind(navigationState: NavigationState, context: AppContext) {
-        launchAsync("destinationStore") {
+        launchAsync("currentDestinationStore") {
             context.navController.currentBackStackEntryFlow
                 .mapNotNull { it.destination.route }
                 .mapNotNull(NavigationDestination.Companion::getByRoute)

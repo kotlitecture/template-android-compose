@@ -7,14 +7,16 @@ import core.ui.state.StoreState
  * Represents the navigation state of the application, managing the destination and navigation data.
  *
  * This class extends [StoreState], providing mechanisms for managing the current navigation state.
+ *
+ * @param destinations A list of navigation destinations available in the application.
+ * @param startDestinationStore StoreObject to hold the initial navigation destination.
+ * @param currentDestinationStore StoreObject to hold the current navigation destination.
  */
-class NavigationState(val destinations: List<NavigationDestination<*>>) : StoreState() {
-
-    /** StoreObject to hold the initial navigation destination. */
-    val startDestinationStore = StoreObject<NavigationDestination<*>>()
-
-    /** StoreObject to hold the current navigation destination. */
-    val currentDestinationStore = StoreObject<NavigationDestination<*>>()
+class NavigationState(
+    val destinations: List<NavigationDestination<*>>,
+    val startDestinationStore: StoreObject<NavigationDestination<*>> = StoreObject(),
+    val currentDestinationStore: StoreObject<NavigationDestination<*>> = StoreObject()
+) : StoreState() {
 
     /** StoreObject to hold the current navigation data. */
     val navigationStore = StoreObject<NavigationData<*>>(valueReply = 0, valueBufferCapacity = Int.MAX_VALUE)
@@ -23,11 +25,13 @@ class NavigationState(val destinations: List<NavigationDestination<*>>) : StoreS
      * Navigate back to the previous screen.
      */
     fun onBack() {
-        navigationStore.set(NavigationData(
-            strategy = NavigationStrategy.Back,
-            destination = null,
-            data = null,
-        ))
+        navigationStore.set(
+            NavigationData(
+                strategy = NavigationStrategy.Back,
+                destination = null,
+                data = null,
+            )
+        )
     }
 
     /**
@@ -42,11 +46,13 @@ class NavigationState(val destinations: List<NavigationDestination<*>>) : StoreS
         data: D? = null,
         strategy: NavigationStrategy = destination.navStrategy
     ) {
-        navigationStore.set(NavigationData(
-            destination = destination,
-            strategy = strategy,
-            data = data
-        ))
+        navigationStore.set(
+            NavigationData(
+                destination = destination,
+                strategy = strategy,
+                data = data
+            )
+        )
     }
 
 }

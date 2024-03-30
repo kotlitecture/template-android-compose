@@ -1,6 +1,9 @@
-## Create Destination
+## Overview
 
-The template provides a simple API for easier integration with Jetpack Navigation. It is available under the `core.ui.navigation` package.
+The integration comes with a simple API for easier usage of Jetpack Navigation.
+The API is available under the package `core.ui.navigation`.
+
+## Create Destination
 
 To create your own destination, utilize the provided template `app.userflow.template.TemplateDestination`.
 

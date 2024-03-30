@@ -16,7 +16,7 @@ internal class ProvidesNavigationState {
     @Provides
     @Singleton
     fun state(): NavigationState = NavigationState(
-        listOf(
+        destinations = listOf(
             TemplateDestination,
             WebToNativeDestination
         )
