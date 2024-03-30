@@ -1,3 +1,31 @@
+## Create Destination
+
+The template provides a simple API for easier integration with Jetpack Navigation. It is available under the `core.ui.navigation` package.
+
+To create your own destination, utilize the provided template `app.userflow.template.TemplateDestination`.
+
+```kotlin
+object TemplateDestination : NavigationDestination<TemplateDestination.Data>() {
+
+    /** Unique identifier for this destination. */
+    override val id: String = "template_screen"
+    /** Strategy for navigation behavior. */
+    override val navStrategy: NavigationStrategy = NavigationStrategy.NewInstance
+    /** Strategy for handling arguments associated with this destination. */
+    override val argsStrategy: ArgsStrategy<Data> = ArgsStrategy.json(Data.serializer())
+    /** Binds this destination to the provided NavGraphBuilder, using one of the available methods (composable, dialog, navigation). */
+    override fun doBind(builder: NavGraphBuilder) = composable(builder) { TemplateScreen(it) }
+    
+    /**
+     * Data class representing the arguments for the template destination.
+     */
+    @Serializable
+    data class Data(
+        val title: String
+    )
+}
+```
+
 ## Register Destinations
 
 All app destinations should be registered within an instance of the class `core.ui.navigation.NavigationState`.

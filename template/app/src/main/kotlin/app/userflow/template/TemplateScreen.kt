@@ -8,6 +8,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import app.provideHiltViewModel
 
+/**
+ * Composable function for the template screen.
+ *
+ * @param data The data for the template screen.
+ */
 @Composable
 fun TemplateScreen(data: TemplateDestination.Data?) {
     val viewModel: TemplateViewModel = provideHiltViewModel()

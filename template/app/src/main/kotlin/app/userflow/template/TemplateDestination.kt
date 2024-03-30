@@ -6,6 +6,9 @@ import core.ui.navigation.NavigationDestination
 import core.ui.navigation.NavigationStrategy
 import kotlinx.serialization.Serializable
 
+/**
+ * Object representing the template destination for navigation.
+ */
 object TemplateDestination : NavigationDestination<TemplateDestination.Data>() {
 
     override val id: String = "template_screen"
