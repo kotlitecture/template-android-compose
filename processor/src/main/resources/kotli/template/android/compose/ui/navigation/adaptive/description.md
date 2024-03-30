@@ -1,1 +1,1 @@
-The Navigation Suite Scaffold allows you to use a Navigation Bar, Navigation Rail, or Navigation Drawer depending on the screen configuration without the need to calculate the screen size or the posture yourself.
+Adaptive navigation enables the use of a Navigation Bar, Navigation Rail, or Navigation Drawer based on the screen configuration, eliminating the need to manually calculate screen size or posture.

@@ -1,1 +1,1 @@
-Bottom App Navigation
+Bottom

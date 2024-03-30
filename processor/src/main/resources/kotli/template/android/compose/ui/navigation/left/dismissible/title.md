@@ -1,1 +1,1 @@
-Material Design dismissible navigation drawer
+Side (Dismissible)

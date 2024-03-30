@@ -1,1 +1,1 @@
-Modal navigation drawers block interaction with the rest of an app's content with a scrim. They are elevated above most of the app's UI and don't affect the screen's layout grid.
+The modal navigation drawer blocks interaction with the remaining content of the app by overlaying a scrim. Positioned above most of the app's UI, it does not affect the screen's layout grid. It is typically accessible with a swipe gesture and should also utilize a visible navigation menu icon for opening and closing the drawer.

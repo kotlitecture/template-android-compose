@@ -1,1 +1,1 @@
-Bottom navigation bar let people switch between UI views on smaller devices.
+Provides a bottom navigation bar for switching between UI views, particularly useful for smaller devices.

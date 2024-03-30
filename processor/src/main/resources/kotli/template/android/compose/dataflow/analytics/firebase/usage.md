@@ -17,29 +17,13 @@ To start using, just inject any of them to your DI managed class. Recommended to
 ```kotlin
 @HiltViewModel
 class TemplateViewModel @Inject constructor(
-    private val navigationState: NavigationState,
     private val analyticsSource: AnalyticsSource // AppAnalyticsSource,
 ) : AppViewModel() {
 
-    private val counter = AtomicInteger(0)
-
-    fun onBack() {
-        navigationState.onBack()
+    fun onSomeAction() {
+        ...
+        analyticsSource.onEvent("my_event")
+        ...
     }
-
-    fun onTop() {
-        val data = TemplateDestination.Data(counter.incrementAndGet().toString())
-        navigationState.onNavigate(TemplateDestination, data)
-        // log click event without params
-        analyticsSource.onEvent("click_top")
-    }
-
-    fun onBottom() {
-        val data = TemplateDestination.Data(counter.incrementAndGet().toString())
-        navigationState.onNavigate(TemplateDestination, data)
-        // log click event with params
-        analyticsSource.onEvent("click_bottom", mapOf("counter" to data.title))
-    }
-
 }
 ```

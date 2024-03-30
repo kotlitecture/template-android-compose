@@ -1,1 +1,1 @@
-Adaptive App Navigation
+Adaptive
