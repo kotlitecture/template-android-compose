@@ -1,1 +1,1 @@
-Gradle (Groovy)
+Gradle (Groovy DSL)

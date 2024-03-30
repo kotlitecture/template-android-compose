@@ -18,6 +18,9 @@ import core.ui.rememberAppContext
 import core.ui.theme.ThemeProvider
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Main activity of the app.
+ */
 @AndroidEntryPoint
 class AppActivity : FragmentActivity() {
 
