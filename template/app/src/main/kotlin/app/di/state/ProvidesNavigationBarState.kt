@@ -25,8 +25,8 @@ internal class ProvidesNavigationBarState {
     fun state(navigationState: NavigationState): NavigationBarState = NavigationBarState(
         pages = listOf(
             createPage(
-                destination = TemplateDestination,
                 navigationState = navigationState,
+                destination = TemplateDestination,
                 getActiveIcon = { Icons.Filled.Cookie },
                 getInactiveIcon = { Icons.Outlined.Cookie },
                 getLabel = { UUID.randomUUID().toString() }
@@ -37,33 +37,28 @@ internal class ProvidesNavigationBarState {
     private fun <D> createPage(
         navigationState: NavigationState,
         destination: NavigationDestination<D>,
-        data: D? = null,
-        getLabel: () -> String?,
-        getActiveIcon: () -> Any,
         getInactiveIcon: () -> Any,
-        enabled: Boolean = true,
-        alwaysShowLabel: Boolean = true
+        getActiveIcon: () -> Any,
+        getLabel: () -> String?,
     ): NavigationBarPage {
         return NavigationBarPage(
-            enabled = enabled,
+            enabled = true,
             id = destination.id,
             getLabel = getLabel,
+            alwaysShowLabel = false,
             getActiveIcon = getActiveIcon,
             getInactiveIcon = getInactiveIcon,
-            alwaysShowLabel = alwaysShowLabel,
-            onClick = { navigate(navigationState, destination, data) }
+            onClick = { navigate(navigationState, destination) }
         )
     }
 
     private fun <D> navigate(
         navigationState: NavigationState,
-        destination: NavigationDestination<D>,
-        data: D?,
+        destination: NavigationDestination<D>
     ) {
         navigationState.onNext(
-            destination,
-            data,
-            NavigationStrategy.SingleInstance
+            destination = destination,
+            strategy = NavigationStrategy.SingleInstance
         )
     }
 
