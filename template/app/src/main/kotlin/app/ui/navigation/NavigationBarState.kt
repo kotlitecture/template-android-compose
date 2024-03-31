@@ -9,8 +9,11 @@ import core.ui.state.StoreState
  * @param pages The list of available pages in the navigation bar.
  */
 data class NavigationBarState(
-    val pages: List<NavigationBarPage>
+    val pages: List<NavigationBarPage>,
 ) : StoreState() {
+
+    /** Store navigation visibility state. */
+    val visibilityStore: StoreObject<Boolean> = StoreObject()
 
     /** Store object for the available pages. */
     val pagesStore: StoreObject<List<NavigationBarPage>> = StoreObject(pages)

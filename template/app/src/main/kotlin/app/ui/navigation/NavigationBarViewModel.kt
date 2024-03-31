@@ -17,17 +17,18 @@ class NavigationBarViewModel @Inject constructor(
     private val navigationState: NavigationState,
 ) : BaseViewModel() {
 
-    val availablePagesStore = navigationBarState.pagesStore
-    val activePageStore = navigationBarState.selectedPageStore
+    val pagesStore = navigationBarState.pagesStore
+    val visibilityStore = navigationBarState.visibilityStore
+    val selectedPageStore = navigationBarState.selectedPageStore
 
     override fun doBind() {
         launchAsync("doBind") {
             val destStore = navigationState.currentDestinationStore
-            availablePagesStore.asFlow()
+            pagesStore.asFlow()
                 .filterNotNull()
                 .flatMapLatest { pages -> destStore.asFlow().map { pages to it } }
                 .map { pair -> pair.first.find { it.id == pair.second?.id } }
-                .collectLatest(activePageStore::set)
+                .collectLatest(selectedPageStore::set)
         }
     }
 

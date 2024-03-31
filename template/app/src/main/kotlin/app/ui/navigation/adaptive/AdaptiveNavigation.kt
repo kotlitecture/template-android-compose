@@ -1,14 +1,23 @@
-@file:OptIn(ExperimentalMaterial3AdaptiveNavigationSuiteApi::class)
+@file:OptIn(
+    ExperimentalMaterial3AdaptiveNavigationSuiteApi::class,
+    ExperimentalMaterial3AdaptiveApi::class
+)
 
 package app.ui.navigation.adaptive
 
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.navigationsuite.ExperimentalMaterial3AdaptiveNavigationSuiteApi
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldDefaults
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import app.provideHiltViewModel
 import app.ui.component.AnyIcon
 import app.ui.navigation.NavigationBarViewModel
+import core.ui.state.StoreObject
 
 /**
  * Composable function to display an adaptive navigation.
@@ -18,10 +27,15 @@ import app.ui.navigation.NavigationBarViewModel
 @Composable
 fun AdaptiveNavigation(content: @Composable () -> Unit) {
     val viewModel: NavigationBarViewModel = provideHiltViewModel()
-    val pages = viewModel.availablePagesStore.asStateValue()?.takeIf { it.isNotEmpty() } ?: return
+    val pages = viewModel.pagesStore.asStateValue()
+    if (pages.isNullOrEmpty()) {
+        content()
+        return
+    }
     NavigationSuiteScaffold(
+        layoutType = getLayoutType(viewModel.visibilityStore),
         navigationSuiteItems = {
-            val selected = viewModel.activePageStore.asStateValue()
+            val selected = viewModel.selectedPageStore.asStateValue()
             pages.forEach { page ->
                 item(
                     label = { page.getLabel()?.let { Text(text = it) } },
@@ -33,4 +47,13 @@ fun AdaptiveNavigation(content: @Composable () -> Unit) {
         },
         content = content
     )
+}
+
+@Stable
+@Composable
+private fun getLayoutType(visibilityStore: StoreObject<Boolean>): NavigationSuiteType {
+    val visible = visibilityStore.asStateValue() != false
+    if (!visible) return NavigationSuiteType.None
+    val adaptiveInfo = currentWindowAdaptiveInfo()
+    return NavigationSuiteScaffoldDefaults.calculateFromAdaptiveInfo(adaptiveInfo)
 }

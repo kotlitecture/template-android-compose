@@ -8,11 +8,11 @@ import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import app.provideHiltViewModel
 import app.ui.component.AnyIcon
+import app.ui.navigation.DrawerVisibilityHandler
 import app.ui.navigation.NavigationBarViewModel
-import kotlinx.coroutines.launch
+import app.ui.navigation.getDrawerValue
 
 /**
  * Composable function to display a modal left navigation.
@@ -22,14 +22,22 @@ import kotlinx.coroutines.launch
 @Composable
 fun ModalLeftNavigation(content: @Composable () -> Unit) {
     val viewModel: NavigationBarViewModel = provideHiltViewModel()
-    val pages = viewModel.availablePagesStore.asStateValue()?.takeIf { it.isNotEmpty() } ?: return
-    val drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
+    val pages = viewModel.pagesStore.asStateValue()
+    if (pages.isNullOrEmpty()) {
+        content()
+        return
+    }
+    val visibilityStore = viewModel.visibilityStore
+    val drawerState: DrawerState = rememberDrawerState(getDrawerValue(visibilityStore)) {
+        visibilityStore.set(it == DrawerValue.Open)
+        true
+    }
+    DrawerVisibilityHandler(visibilityStore, drawerState)
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
-                val selected = viewModel.activePageStore.asStateValue()
+                val selected = viewModel.selectedPageStore.asStateValue()
                 pages.forEach { page ->
                     NavigationDrawerItem(
                         label = { page.getLabel()?.let { Text(text = it) } },
@@ -37,7 +45,7 @@ fun ModalLeftNavigation(content: @Composable () -> Unit) {
                         selected = page.id == selected?.id,
                         onClick = {
                             page.onClick()
-                            scope.launch { drawerState.close() }
+                            visibilityStore.set(false)
                         },
                     )
                 }

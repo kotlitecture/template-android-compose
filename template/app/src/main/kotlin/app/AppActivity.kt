@@ -39,16 +39,16 @@ class AppActivity : FragmentActivity() {
 @Composable
 private fun ScaffoldBlock(viewModel: AppViewModel) {
     ThemeProvider(viewModel.themeState) {
-        val appContext = rememberNavigationContext()
+        val navigationContext = rememberNavigationContext()
         NavigationBarProvider { // {ui.navigation.common}
             AppScaffold(
-                navigationContext = appContext,
+                navigationContext = navigationContext,
                 navigationState = viewModel.navigationState,
                 bottomBar = { BottomNavigation() }
             )
         } // {ui.navigation.common}
-        CommandProvider(appContext)
         DataLoaderProvider(viewModel.appState)
+        CommandProvider(navigationContext)
         GoogleUpdateProvider()
         GoogleReviewProvider()
         NoInternetProvider()

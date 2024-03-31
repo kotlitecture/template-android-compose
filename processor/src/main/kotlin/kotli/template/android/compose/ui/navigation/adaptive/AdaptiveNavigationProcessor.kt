@@ -30,6 +30,8 @@ class AdaptiveNavigationProcessor : BaseFeatureProcessor() {
                 listOf(
                     RemoveMarkedLine("adaptiveNavigation"),
                     RemoveMarkedLine("adaptive-navigation"),
+                    RemoveMarkedLine("material3Adaptive"),
+                    RemoveMarkedLine("material3-adaptive")
                 )
             )
         )
