@@ -1,7 +1,7 @@
 package app.userflow.loader.data
 
 import app.datasource.config.AppConfigSource
-import core.ui.AppViewModel
+import core.ui.BaseViewModel
 import core.ui.state.DataState
 import core.ui.state.StoreObject
 import core.ui.state.StoreState
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DataLoaderViewModel @Inject constructor(
     private val configSource: AppConfigSource
-) : AppViewModel() {
+) : BaseViewModel() {
 
     val isLoadingStore = StoreObject(false)
 

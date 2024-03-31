@@ -24,7 +24,7 @@ To start using, just inject any of them to your DI managed class. Recommended to
 @HiltViewModel
 class TemplateViewModel @Inject constructor(
     private val analyticsSource: AnalyticsSource // AppAnalyticsSource,
-) : AppViewModel() {
+) : BaseViewModel() {
 
     fun onSomeAction() {
         ...

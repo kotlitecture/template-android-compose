@@ -1,6 +1,6 @@
 package app.ui.command
 
-import core.ui.AppContext
+import core.ui.navigation.NavigationContext
 import core.ui.state.DataState
 import kotlinx.coroutines.launch
 
@@ -18,19 +18,19 @@ abstract class Command(val uid: Long = System.currentTimeMillis()) {
      * Executes the command.
      *
      * @param commandState The command state to be modified by the command.
-     * @param appContext The application context providing necessary resources for command execution.
+     * @param navigationContext The application context providing necessary resources for command execution.
      */
-    fun execute(commandState: CommandState, appContext: AppContext) {
-        appContext.scope.launch {
+    fun execute(commandState: CommandState, navigationContext: NavigationContext) {
+        navigationContext.scope.launch {
             try {
-                doExecute(commandState, appContext)
+                doExecute(commandState, navigationContext)
             } catch (e: Exception) {
                 commandState.dataStateStore.set(DataState.Error(uid.toString(), e))
             }
         }
     }
 
-    protected abstract fun doExecute(commandState: CommandState, appContext: AppContext)
+    protected abstract fun doExecute(commandState: CommandState, navigationContext: NavigationContext)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

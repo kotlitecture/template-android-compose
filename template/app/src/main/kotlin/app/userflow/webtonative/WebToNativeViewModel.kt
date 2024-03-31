@@ -3,7 +3,7 @@ package app.userflow.webtonative
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import app.userflow.webtonative.command.WebCommand
-import core.ui.AppViewModel
+import core.ui.BaseViewModel
 import core.ui.navigation.NavigationState
 import core.ui.state.StoreObject
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class WebToNativeViewModel @Inject constructor(
     private val navigationState: NavigationState
-) : AppViewModel() {
+) : BaseViewModel() {
 
     val loadedStore = StoreObject(false)
     val webViewStore = StoreObject<WebView>()

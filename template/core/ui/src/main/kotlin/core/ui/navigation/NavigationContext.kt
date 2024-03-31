@@ -1,4 +1,4 @@
-package core.ui
+package core.ui.navigation
 
 import android.content.Context
 import androidx.compose.material3.SnackbarHostState
@@ -12,7 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
 
 /**
- * Immutable data class representing the application context, including essential components like
+ * Immutable data class representing the navigation context, including essential components like
  * navigation controller, coroutine scope, and context.
  *
  * @param snackbarHostSate The state of the snackbar host.
@@ -21,7 +21,7 @@ import kotlinx.coroutines.CoroutineScope
  * @param context The Android application context.
  */
 @Immutable
-data class AppContext(
+data class NavigationContext(
     val snackbarHostSate: SnackbarHostState,
     val navController: NavHostController,
     val scope: CoroutineScope,
@@ -32,15 +32,15 @@ data class AppContext(
  * Composable function to remember the application context, providing access to essential components
  * like navigation controller, coroutine scope, and context.
  *
- * @return An instance of [AppContext] containing the essential components.
+ * @return An instance of [NavigationContext] containing the essential components.
  */
 @Composable
-fun rememberAppContext(): AppContext {
+fun rememberNavigationContext(): NavigationContext {
     val navController = rememberNavController()
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     return remember(context) {
-        AppContext(
+        NavigationContext(
             snackbarHostSate = SnackbarHostState(),
             navController = navController,
             context = context,

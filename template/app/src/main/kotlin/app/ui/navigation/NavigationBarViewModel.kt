@@ -1,6 +1,6 @@
 package app.ui.navigation
 
-import core.ui.AppViewModel
+import core.ui.BaseViewModel
 import core.ui.navigation.NavigationState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -15,10 +15,10 @@ import javax.inject.Inject
 class NavigationBarViewModel @Inject constructor(
     navigationBarState: NavigationBarState,
     private val navigationState: NavigationState,
-) : AppViewModel() {
+) : BaseViewModel() {
 
-    val availablePagesStore = navigationBarState.availablePagesStore
-    val activePageStore = navigationBarState.activePageStore
+    val availablePagesStore = navigationBarState.pagesStore
+    val activePageStore = navigationBarState.selectedPageStore
 
     override fun doBind() {
         launchAsync("doBind") {

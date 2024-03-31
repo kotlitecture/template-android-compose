@@ -21,7 +21,7 @@ To start using, just inject it to your DI managed class.
 @HiltViewModel
 class NoInternetViewModel @Inject constructor(
     private val networkSource: NetworkSource // AppNetworkSource
-) : AppViewModel() {
+) : BaseViewModel() {
 
     val isOnlineStore = StoreObject(true)
 

@@ -2,7 +2,7 @@
 
 package core.ui.theme
 
-import core.ui.AppViewModel
+import core.ui.BaseViewModel
 import core.ui.state.StoreObject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.mapNotNull
 /**
  * ViewModel responsible for managing the app theme state.
  */
-class ThemeViewModel : AppViewModel() {
+class ThemeViewModel : BaseViewModel() {
 
     /** Store object for the theme data. */
     val dataStore = StoreObject<ThemeData>()

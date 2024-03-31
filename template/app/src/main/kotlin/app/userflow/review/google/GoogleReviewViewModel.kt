@@ -7,7 +7,7 @@ import androidx.lifecycle.LifecycleOwner
 import app.userflow.review.google.data.ReviewConfig
 import app.userflow.review.google.data.ReviewData
 import com.google.android.gms.tasks.Tasks
-import core.ui.AppViewModel
+import core.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filterNotNull
@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class GoogleReviewViewModel @Inject constructor(
     private val state: GoogleReviewState
-) : AppViewModel() {
+) : BaseViewModel() {
 
     @Composable
     override fun doBind(owner: LifecycleOwner) {

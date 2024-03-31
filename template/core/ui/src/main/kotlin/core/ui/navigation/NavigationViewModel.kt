@@ -1,8 +1,7 @@
 package core.ui.navigation
 
 import android.net.Uri
-import core.ui.AppContext
-import core.ui.AppViewModel
+import core.ui.BaseViewModel
 import core.ui.state.DataState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -12,9 +11,9 @@ import kotlinx.coroutines.flow.mapNotNull
 /**
  * ViewModel responsible for managing navigation-related functionality.
  */
-class NavigationViewModel : AppViewModel() {
+class NavigationViewModel : BaseViewModel() {
 
-    fun onBind(navigationState: NavigationState, context: AppContext) {
+    fun onBind(navigationState: NavigationState, context: NavigationContext) {
         launchAsync("currentDestinationStore") {
             context.navController.currentBackStackEntryFlow
                 .mapNotNull { it.destination.route }

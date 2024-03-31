@@ -19,7 +19,7 @@ Simply inject the `app.AppState` instance into your **ViewModel** and call the `
 @HiltViewModel
 class TemplateViewModel @Inject constructor(
     private val appState: AppState
-) : AppViewModel() {
+) : BaseViewModel() {
 
     fun onActionWithLoader() {
         launchAsync("onBottom", appState) {

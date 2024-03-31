@@ -3,7 +3,7 @@ package app.ui.command.impl
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import core.ui.AppContext
+import core.ui.navigation.NavigationContext
 import app.ui.command.Command
 import app.ui.command.CommandState
 
@@ -20,8 +20,8 @@ class CopyTextCommand(
     private val toast: String? = null
 ) : Command() {
 
-    override fun doExecute(commandState: CommandState, appContext: AppContext) {
-        val context = appContext.context
+    override fun doExecute(commandState: CommandState, navigationContext: NavigationContext) {
+        val context = navigationContext.context
         val service = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText(label.orEmpty(), text)
         service.setPrimaryClip(clip)

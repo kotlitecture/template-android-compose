@@ -13,8 +13,8 @@ import app.userflow.internet.no.NoInternetProvider
 import app.userflow.loader.data.DataLoaderProvider
 import app.userflow.review.google.GoogleReviewProvider
 import app.userflow.update.google.GoogleUpdateProvider
-import core.ui.AppScaffold
-import core.ui.rememberAppContext
+import core.ui.navigation.AppScaffold
+import core.ui.navigation.rememberNavigationContext
 import core.ui.theme.ThemeProvider
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,7 +28,7 @@ class AppActivity : FragmentActivity() {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
-            val viewModel: AppActivityViewModel = provideHiltViewModel()
+            val viewModel: AppViewModel = provideHiltViewModel()
             ScaffoldBlock(viewModel)
             SplashBlock(splashScreen, viewModel)
         }
@@ -37,12 +37,12 @@ class AppActivity : FragmentActivity() {
 }
 
 @Composable
-private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
+private fun ScaffoldBlock(viewModel: AppViewModel) {
     ThemeProvider(viewModel.themeState) {
-        val appContext = rememberAppContext()
+        val appContext = rememberNavigationContext()
         NavigationBarProvider { // {ui.navigation.common}
             AppScaffold(
-                appContext = appContext,
+                navigationContext = appContext,
                 navigationState = viewModel.navigationState,
                 bottomBar = { BottomNavigation() }
             )
@@ -57,7 +57,7 @@ private fun ScaffoldBlock(viewModel: AppActivityViewModel) {
 
 // {userflow.splash.basic}
 @Composable
-private fun SplashBlock(splashScreen: SplashScreen, viewModel: AppActivityViewModel) {
+private fun SplashBlock(splashScreen: SplashScreen, viewModel: AppViewModel) {
     splashScreen.setKeepOnScreenCondition {
         viewModel.navigationState.currentDestinationStore.asStateValue() == null
     }

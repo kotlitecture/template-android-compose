@@ -1,17 +1,15 @@
-package core.ui
+package core.ui.navigation
 
 import android.annotation.SuppressLint
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.runtime.Composable
-import core.ui.navigation.NavigationHost
-import core.ui.navigation.NavigationState
 
 /**
  * Composable function to display the main scaffold of the app.
  *
- * @param appContext The context of the app.
+ * @param navigationContext The context of the app.
  * @param navigationState The state of the navigation.
  * @param topBar The composable function to display the top bar.
  * @param bottomBar The composable function to display the bottom bar.
@@ -21,7 +19,7 @@ import core.ui.navigation.NavigationState
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AppScaffold(
-    appContext: AppContext,
+    navigationContext: NavigationContext,
     navigationState: NavigationState,
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
@@ -34,10 +32,10 @@ fun AppScaffold(
         bottomBar = bottomBar,
         floatingActionButton = floatingActionButton,
         floatingActionButtonPosition = floatingActionButtonPosition,
-        snackbarHost = { SnackbarHost(appContext.snackbarHostSate) },
+        snackbarHost = { SnackbarHost(navigationContext.snackbarHostSate) },
         content = {
             NavigationHost(
-                appContext = appContext,
+                navigationContext = navigationContext,
                 navigationState = navigationState,
                 startDestination = startDestination
             )

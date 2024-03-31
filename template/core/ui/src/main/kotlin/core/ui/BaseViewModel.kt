@@ -33,7 +33,7 @@ import kotlin.coroutines.CoroutineContext
  * Abstract class representing a ViewModel with lifecycle-aware coroutine launching capabilities.
  */
 @Immutable
-abstract class AppViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
     private val subscribers = ConcurrentLinkedQueue<Int>()
     private val jobs = ConcurrentHashMap<String, Job>()
@@ -177,7 +177,7 @@ abstract class AppViewModel : ViewModel() {
 
 @Stable
 @Composable
-inline fun <reified VM : AppViewModel> provideViewModel(
+inline fun <reified VM : BaseViewModel> provideViewModel(
     key: String? = null,
     activityScope: Boolean = false
 ): VM {
@@ -186,7 +186,7 @@ inline fun <reified VM : AppViewModel> provideViewModel(
 
 @Stable
 @Composable
-inline fun <reified VM : AppViewModel> createViewModel(
+inline fun <reified VM : BaseViewModel> createViewModel(
     activityScope: Boolean = false,
     provider: @Composable (storeOwner: ViewModelStoreOwner) -> VM
 ): VM {

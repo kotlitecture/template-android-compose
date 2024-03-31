@@ -16,7 +16,7 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
-import core.ui.AppViewModel
+import core.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filterNotNull
@@ -27,7 +27,7 @@ import javax.inject.Inject
 class GoogleUpdateViewModel @Inject constructor(
     app: Application,
     private val state: GoogleUpdateState
-) : AppViewModel(), InstallStateUpdatedListener, LifecycleEventObserver {
+) : BaseViewModel(), InstallStateUpdatedListener, LifecycleEventObserver {
 
     private val manager by lazy { AppUpdateManagerFactory.create(app) }
 

@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.hilt.navigation.compose.hiltViewModel
-import core.ui.AppViewModel
+import core.ui.BaseViewModel
 import core.ui.createViewModel
 import dagger.hilt.android.HiltAndroidApp
 
@@ -24,7 +24,7 @@ class App : Application()
  */
 @Stable
 @Composable
-inline fun <reified VM : AppViewModel> provideHiltViewModel(
+inline fun <reified VM : BaseViewModel> provideHiltViewModel(
     key: String? = null,
     activityScoped: Boolean = false
 ): VM {

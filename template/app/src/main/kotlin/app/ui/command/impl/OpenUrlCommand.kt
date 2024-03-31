@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
-import core.ui.AppContext
+import core.ui.navigation.NavigationContext
 import app.ui.command.Command
 import app.ui.command.CommandState
 
@@ -21,8 +21,8 @@ class OpenUrlCommand(
     private val external: Boolean = false
 ) : Command() {
 
-    override fun doExecute(commandState: CommandState, appContext: AppContext) {
-        val context = appContext.context
+    override fun doExecute(commandState: CommandState, navigationContext: NavigationContext) {
+        val context = navigationContext.context
         if (external) {
             openUrl(context, url, title)
         } else {

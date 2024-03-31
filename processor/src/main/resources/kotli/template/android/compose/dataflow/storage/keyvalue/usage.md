@@ -30,7 +30,7 @@ To start using, just inject it to your DI managed class.
 @HiltViewModel
 class TemplateViewModel @Inject constructor(
     private val keyValueSource: KeyValueSource // AppKeyValueSource
-) : AppViewModel() {
+) : BaseViewModel() {
     ...
 }
 ```

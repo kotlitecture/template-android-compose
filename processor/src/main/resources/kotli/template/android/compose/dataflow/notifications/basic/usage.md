@@ -24,7 +24,7 @@ To start using, just inject it to your DI managed class.
 @HiltViewModel
 class TemplateViewModel @Inject constructor(
     private val notificationsSource: NotificationsSource // AppNotificationsSource
-) : AppViewModel() {
+) : BaseViewModel() {
 
     fun onEnable() {
         notificationsSource.enable()

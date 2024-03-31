@@ -1,7 +1,7 @@
 package app.ui.command.impl
 
 import android.content.Intent
-import core.ui.AppContext
+import core.ui.navigation.NavigationContext
 import app.ui.command.Command
 import app.ui.command.CommandState
 
@@ -14,8 +14,8 @@ class OpenEmailCommand(
     private val title: String? = null
 ) : Command() {
 
-    override fun doExecute(commandState: CommandState, appContext: AppContext) {
-        val context = appContext.context
+    override fun doExecute(commandState: CommandState, navigationContext: NavigationContext) {
+        val context = navigationContext.context
         val intent = Intent(Intent.ACTION_MAIN)
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             .addCategory(Intent.CATEGORY_APP_EMAIL)

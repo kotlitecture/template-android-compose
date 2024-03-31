@@ -29,7 +29,7 @@ object TemplateDestination : NavigationDestination<TemplateDestination.Data>() {
 }
 ```
 
-## Register Destinations
+## Register Destination
 
 All app destinations should be registered within an instance of the class `core.ui.navigation.NavigationState`.
 This instance is already pre-configured in dependency injection (DI) through the `app.di.state.ProvidesNavigationState` class.
@@ -62,7 +62,7 @@ Simply inject `NavigationState` into your `ViewModel` or other dependency inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val navigationState: NavigationState
-) : AppViewModel() {
+) : BaseViewModel() {
 
     fun onBack() {
         navigationState.onBack()
@@ -75,17 +75,17 @@ class HomeViewModel @Inject constructor(
 }
 ```
 
-## Set Initial App Destination
+## Set Initial Destination
 
-When the app is first opened, you need to provide **NavigationState** with an initial destination. It can be done in pre-configured **AppActivityViewModel** class.
+When the app is first opened, you need to provide **NavigationState** with an initial destination. It can be done in pre-configured **AppViewModel** class.
 
 ```kotlin
 @HiltViewModel
-class AppActivityViewModel @Inject constructor(
+class AppViewModel @Inject constructor(
     val navigationState: NavigationState,
     val themeState: ThemeState,
     val appState: AppState,
-) : AppViewModel() {
+) : BaseViewModel() {
 
     override fun doBind() {
         launchAsync("doBind") {

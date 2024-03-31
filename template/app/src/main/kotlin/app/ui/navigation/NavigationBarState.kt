@@ -6,16 +6,16 @@ import core.ui.state.StoreState
 /**
  * Represents the state of the navigation bar.
  *
- * @param availablePages The list of available pages in the navigation bar.
+ * @param pages The list of available pages in the navigation bar.
  */
 data class NavigationBarState(
-    val availablePages: List<NavigationBarPage>
+    val pages: List<NavigationBarPage>
 ) : StoreState() {
 
     /** Store object for the available pages. */
-    val availablePagesStore: StoreObject<List<NavigationBarPage>> = StoreObject(availablePages)
+    val pagesStore: StoreObject<List<NavigationBarPage>> = StoreObject(pages)
 
     /** Store object for the active page. */
-    val activePageStore: StoreObject<NavigationBarPage> = StoreObject()
+    val selectedPageStore: StoreObject<NavigationBarPage> = StoreObject()
 
 }

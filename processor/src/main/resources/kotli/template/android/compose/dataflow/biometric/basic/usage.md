@@ -20,7 +20,7 @@ To start using, just inject it to your DI managed class.
 @HiltViewModel
 class TemplateViewModel @Inject constructor(
     private val biometricSource: BiometricSource // AppBiometricSource
-) : AppViewModel() {
+) : BaseViewModel() {
 
     override fun doBind() {
         launchAsync("isAvailable") {

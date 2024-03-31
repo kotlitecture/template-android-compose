@@ -1,7 +1,7 @@
 package app.ui.command
 
-import core.ui.AppContext
-import core.ui.AppViewModel
+import core.ui.navigation.NavigationContext
+import core.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filterNotNull
@@ -13,9 +13,9 @@ import javax.inject.Inject
 @HiltViewModel
 class CommandViewModel @Inject constructor(
     private val commandState: CommandState
-) : AppViewModel() {
+) : BaseViewModel() {
 
-    fun onBind(context: AppContext) {
+    fun onBind(context: NavigationContext) {
         launchAsync("commandState") {
             commandState.commandStore.asFlow()
                 .filterNotNull()

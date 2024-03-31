@@ -23,7 +23,7 @@ class AppConfigSource : DelegateConfigSource() {
 @HiltViewModel
 class TemplateViewModel @Inject constructor(
     private val configSource: AppConfigSource // ConfigSource
-) : AppViewModel() {
+) : BaseViewModel() {
 
     private val counter by lazy { AtomicInteger(configSource.getCounterInitialValue()) }
     

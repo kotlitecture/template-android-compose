@@ -1,7 +1,7 @@
 package app.userflow.internet.no
 
 import core.data.datasource.network.NetworkSource
-import core.ui.AppViewModel
+import core.ui.BaseViewModel
 import core.ui.state.StoreObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.filterNotNull
@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class NoInternetViewModel @Inject constructor(
     private val networkSource: NetworkSource
-) : AppViewModel() {
+) : BaseViewModel() {
 
     val isOnlineStore = StoreObject(true)
 

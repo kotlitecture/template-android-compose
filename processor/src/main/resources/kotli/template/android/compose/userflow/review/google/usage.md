@@ -14,7 +14,7 @@ To start using, just inject it to your DI managed class and call `review` method
 @HiltViewModel
 class TemplateViewModel @Inject constructor(
     private val googleReviewSource: GoogleReviewSource
-) : AppViewModel() {
+) : BaseViewModel() {
 
     fun onReview() {
         launchAsync("review") {

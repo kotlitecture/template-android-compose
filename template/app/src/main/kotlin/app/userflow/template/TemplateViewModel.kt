@@ -1,7 +1,7 @@
 package app.userflow.template
 
 import app.AppState
-import core.ui.AppViewModel
+import core.ui.BaseViewModel
 import core.ui.navigation.NavigationState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -16,7 +16,7 @@ import javax.inject.Inject
 class TemplateViewModel @Inject constructor(
     private val navigationState: NavigationState,
     private val appState: AppState
-) : AppViewModel() {
+) : BaseViewModel() {
 
     fun onBack() {
         navigationState.onBack()
