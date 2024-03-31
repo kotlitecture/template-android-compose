@@ -18,9 +18,9 @@ import androidx.compose.runtime.Composable
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun AppScaffold(
-    navigationContext: NavigationContext,
+fun NavigationScaffold(
     navigationState: NavigationState,
+    navigationContext: NavigationContext,
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
     floatingActionButton: @Composable () -> Unit = {},

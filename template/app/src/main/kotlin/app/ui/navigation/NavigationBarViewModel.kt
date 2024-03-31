@@ -26,8 +26,9 @@ class NavigationBarViewModel @Inject constructor(
             val destStore = navigationState.currentDestinationStore
             pagesStore.asFlow()
                 .filterNotNull()
+                .map { it.associateBy { it.id } }
                 .flatMapLatest { pages -> destStore.asFlow().map { pages to it } }
-                .map { pair -> pair.first.find { it.id == pair.second?.id } }
+                .map { pair -> pair.second?.id?.let(pair.first::get) }
                 .collectLatest(selectedPageStore::set)
         }
     }

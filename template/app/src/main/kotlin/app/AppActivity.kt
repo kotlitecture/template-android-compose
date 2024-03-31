@@ -13,7 +13,7 @@ import app.userflow.internet.no.NoInternetProvider
 import app.userflow.loader.data.DataLoaderProvider
 import app.userflow.review.google.GoogleReviewProvider
 import app.userflow.update.google.GoogleUpdateProvider
-import core.ui.navigation.AppScaffold
+import core.ui.navigation.NavigationScaffold
 import core.ui.navigation.rememberNavigationContext
 import core.ui.theme.ThemeProvider
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +41,7 @@ private fun ScaffoldBlock(viewModel: AppViewModel) {
     ThemeProvider(viewModel.themeState) {
         val navigationContext = rememberNavigationContext()
         NavigationBarProvider { // {ui.navigation.common}
-            AppScaffold(
+            NavigationScaffold(
                 navigationContext = navigationContext,
                 navigationState = viewModel.navigationState,
                 bottomBar = { BottomNavigation() }

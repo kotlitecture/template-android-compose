@@ -2,6 +2,7 @@ package app.di.state
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cookie
+import androidx.compose.material.icons.outlined.Cookie
 import app.ui.navigation.NavigationBarPage
 import app.ui.navigation.NavigationBarState
 import app.userflow.template.TemplateDestination
@@ -12,6 +13,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import java.util.UUID
 import javax.inject.Singleton
 
 @Module
@@ -23,10 +25,11 @@ internal class ProvidesNavigationBarState {
     fun state(navigationState: NavigationState): NavigationBarState = NavigationBarState(
         pages = listOf(
             createPage(
-                navigationState = navigationState,
                 destination = TemplateDestination,
-                getIcon = { Icons.Default.Cookie },
-                getLabel = { "1" }
+                navigationState = navigationState,
+                getActiveIcon = { Icons.Filled.Cookie },
+                getInactiveIcon = { Icons.Outlined.Cookie },
+                getLabel = { UUID.randomUUID().toString() }
             )
         )
     )
@@ -36,15 +39,17 @@ internal class ProvidesNavigationBarState {
         destination: NavigationDestination<D>,
         data: D? = null,
         getLabel: () -> String?,
-        getIcon: () -> Any,
+        getActiveIcon: () -> Any,
+        getInactiveIcon: () -> Any,
         enabled: Boolean = true,
         alwaysShowLabel: Boolean = true
     ): NavigationBarPage {
         return NavigationBarPage(
-            getLabel = getLabel,
-            getIcon = getIcon,
             enabled = enabled,
             id = destination.id,
+            getLabel = getLabel,
+            getActiveIcon = getActiveIcon,
+            getInactiveIcon = getInactiveIcon,
             alwaysShowLabel = alwaysShowLabel,
             onClick = { navigate(navigationState, destination, data) }
         )

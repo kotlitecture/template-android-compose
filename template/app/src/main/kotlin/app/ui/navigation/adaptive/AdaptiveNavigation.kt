@@ -35,13 +35,14 @@ fun AdaptiveNavigation(content: @Composable () -> Unit) {
     NavigationSuiteScaffold(
         layoutType = getLayoutType(viewModel.visibilityStore),
         navigationSuiteItems = {
-            val selected = viewModel.selectedPageStore.asStateValue()
+            val selectedPage = viewModel.selectedPageStore.asStateValue()
             pages.forEach { page ->
+                val selected = page.id == selectedPage?.id
                 item(
                     label = { page.getLabel()?.let { Text(text = it) } },
-                    icon = { AnyIcon(model = page.getIcon()) },
-                    selected = page.id == selected?.id,
+                    icon = { AnyIcon(model = page.getIcon(selected)) },
                     onClick = page.onClick,
+                    selected = selected
                 )
             }
         },

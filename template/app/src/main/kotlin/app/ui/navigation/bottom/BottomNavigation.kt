@@ -36,14 +36,15 @@ fun BottomNavigation() {
         exit = slideOutVertically(animation, offset)
     ) {
         NavigationBar {
-            val selected = viewModel.selectedPageStore.asStateValue()
+            val selectedPage = viewModel.selectedPageStore.asStateValue()
             pages.forEach { page ->
+                val selected = page.id == selectedPage?.id
                 NavigationBarItem(
                     label = { page.getLabel()?.let { Text(text = it) } },
+                    icon = { AnyIcon(model = page.getIcon(selected)) },
                     alwaysShowLabel = page.alwaysShowLabel,
-                    icon = { AnyIcon(model = page.getIcon()) },
-                    selected = page.id == selected?.id,
                     onClick = page.onClick,
+                    selected = selected
                 )
             }
         }
@@ -56,7 +57,5 @@ private fun VisibilityHandler(
     visibleState: MutableTransitionState<Boolean>
 ) {
     val visible = visibilityStore.asStateValue() != false
-    LaunchedEffect(visible) {
-        visibleState.targetState = visible
-    }
+    LaunchedEffect(visible) { visibleState.targetState = visible }
 }
