@@ -24,13 +24,24 @@ class CommonNavigationProcessor : BaseFeatureProcessor() {
             RemoveFile()
         )
         state.onApplyRules(
+            "app/src/main/kotlin/app/userflow/navigation",
+            RemoveFile()
+        )
+        state.onApplyRules(
             "app/src/main/kotlin/app/di/state/ProvidesNavigationBarState.kt",
             RemoveFile()
         )
         state.onApplyRules(
+            "app/src/main/kotlin/app/di/state/ProvidesNavigationState.kt",
+            RemoveMarkedLine("NavigationADestination"),
+            RemoveMarkedLine("NavigationBDestination"),
+            RemoveMarkedLine("NavigationCDestination"),
+            RemoveMarkedLine("NavigationDDestination")
+        )
+        state.onApplyRules(
             "app/src/main/kotlin/app/AppActivity.kt",
             RemoveMarkedLine("{ui.navigation.common}"),
-            RemoveMarkedLine("NavigationBarProvider"),
+            RemoveMarkedLine("NavigationBarProvider")
         )
     }
 

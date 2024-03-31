@@ -1,11 +1,20 @@
 package app.di.state
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Cookie
-import androidx.compose.material.icons.outlined.Cookie
+import androidx.compose.material.icons.filled.Coffee
+import androidx.compose.material.icons.filled.LocalDrink
+import androidx.compose.material.icons.filled.NoDrinks
+import androidx.compose.material.icons.filled.WineBar
+import androidx.compose.material.icons.outlined.Coffee
+import androidx.compose.material.icons.outlined.LocalDrink
+import androidx.compose.material.icons.outlined.NoDrinks
+import androidx.compose.material.icons.outlined.WineBar
 import app.ui.navigation.NavigationBarPage
 import app.ui.navigation.NavigationBarState
-import app.userflow.template.TemplateDestination
+import app.userflow.navigation.a.NavigationADestination
+import app.userflow.navigation.b.NavigationBDestination
+import app.userflow.navigation.c.NavigationCDestination
+import app.userflow.navigation.d.NavigationDDestination
 import core.ui.navigation.NavigationDestination
 import core.ui.navigation.NavigationState
 import core.ui.navigation.NavigationStrategy
@@ -13,7 +22,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import java.util.UUID
 import javax.inject.Singleton
 
 @Module
@@ -26,10 +34,31 @@ internal class ProvidesNavigationBarState {
         pages = listOf(
             createPage(
                 navigationState = navigationState,
-                destination = TemplateDestination,
-                getActiveIcon = { Icons.Filled.Cookie },
-                getInactiveIcon = { Icons.Outlined.Cookie },
-                getLabel = { UUID.randomUUID().toString() }
+                destination = NavigationADestination,
+                getActiveIcon = { Icons.Filled.WineBar },
+                getInactiveIcon = { Icons.Outlined.WineBar },
+                getLabel = { "A" }
+            ),
+            createPage(
+                navigationState = navigationState,
+                destination = NavigationBDestination,
+                getActiveIcon = { Icons.Filled.LocalDrink },
+                getInactiveIcon = { Icons.Outlined.LocalDrink },
+                getLabel = { "B" }
+            ),
+            createPage(
+                navigationState = navigationState,
+                destination = NavigationCDestination,
+                getActiveIcon = { Icons.Filled.Coffee },
+                getInactiveIcon = { Icons.Outlined.Coffee },
+                getLabel = { "C" }
+            ),
+            createPage(
+                navigationState = navigationState,
+                destination = NavigationDDestination,
+                getActiveIcon = { Icons.Filled.NoDrinks },
+                getInactiveIcon = { Icons.Outlined.NoDrinks },
+                getLabel = { "D" }
             )
         )
     )

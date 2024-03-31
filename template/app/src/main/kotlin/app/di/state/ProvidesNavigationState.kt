@@ -1,5 +1,9 @@
 package app.di.state
 
+import app.userflow.navigation.a.NavigationADestination
+import app.userflow.navigation.b.NavigationBDestination
+import app.userflow.navigation.c.NavigationCDestination
+import app.userflow.navigation.d.NavigationDDestination
 import app.userflow.template.TemplateDestination
 import app.userflow.webtonative.WebToNativeDestination
 import core.ui.navigation.NavigationState
@@ -18,7 +22,11 @@ internal class ProvidesNavigationState {
     fun state(): NavigationState = NavigationState(
         destinations = listOf(
             TemplateDestination,
-            WebToNativeDestination
+            WebToNativeDestination,
+            NavigationADestination,
+            NavigationBDestination,
+            NavigationCDestination,
+            NavigationDDestination
         )
     )
 
