@@ -6,8 +6,7 @@ Component: `app/ui/container/FixedHeaderFooterLayout.kt`
 
 ```kotlin
 @Composable
-fun TemplateScreen(data: TemplateDestination.Data?) {
-    val viewModel: TemplateViewModel = provideHiltViewModel()
+fun TemplateScreen() {
     FixedHeaderFooterLayout(
         header = {
 

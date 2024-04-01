@@ -6,7 +6,7 @@ Component: `app/ui/container/FixedTopBarLayout.kt`
 
 ```kotlin
 @Composable
-fun TemplateScreen(data: TemplateDestination.Data?) {
+fun TemplateScreen() {
     val viewModel: TemplateViewModel = provideHiltViewModel()
     FixedTopBarLayout(
         title = "MyScreen",

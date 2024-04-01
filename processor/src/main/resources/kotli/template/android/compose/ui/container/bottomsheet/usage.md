@@ -6,11 +6,12 @@ Component: `app/ui/container/BottomSheetLayout.kt`
 
 ```kotlin
 @Composable
-fun TemplateScreen(data: TemplateDestination.Data?) {
+fun TemplateScreen() {
     val viewModel: TemplateViewModel = provideHiltViewModel()
-    if (viewModel.bottomSheetStore.asStateValueNotNull()) {
+    val bottomSheetStore = viewModel.bottomSheetStore
+    if (bottomSheetStore.asStateValueNotNull()) {
         BottomSheetLayout(
-            onDismissRequest = viewModel.bottomSheetStore::clear,
+            onDismissRequest = bottomSheetStore::clear,
             content = {
                 // content
             }
