@@ -5,8 +5,6 @@ package core.ui.theme
 import core.ui.BaseViewModel
 import core.ui.state.StoreObject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
@@ -44,14 +42,6 @@ class ThemeViewModel : BaseViewModel() {
                     provider.provide(data.config)
                 }
                 .collect(dataStore::set)
-        }
-        launchAsync("config") {
-            val initialConfig = state.getConfig()
-            state.configStore.set(initialConfig)
-            state.configStore.asFlow()
-                .filterNotNull()
-                .filter { it !== initialConfig }
-                .collectLatest(state.setConfig::invoke)
         }
     }
 
