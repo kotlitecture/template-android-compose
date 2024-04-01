@@ -23,8 +23,7 @@ class AppViewModel @Inject constructor(
 
     override fun doBind() {
         launchAsync("doBind") {
-            // You can perform some logic before setting the initial destination.
-            navigationState.startDestinationStore.set(TemplateDestination)
+            navigationState.setStartDestination(TemplateDestination)
         }
     }
 

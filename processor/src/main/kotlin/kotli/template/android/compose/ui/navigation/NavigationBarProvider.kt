@@ -16,11 +16,11 @@ class NavigationBarProvider : BaseFeatureProvider() {
     override fun getType(): FeatureType = FeatureTypes.UI
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
-        CommonNavigationProcessor::class.java
+        NavigationBarProcessor::class.java
     )
 
     override fun createProcessors(): List<FeatureProcessor> = listOf(
-        CommonNavigationProcessor(),
+        NavigationBarProcessor(),
         AdaptiveNavigationProcessor(),
         BottomNavigationProcessor(),
         ModalLeftNavigationProcessor(),

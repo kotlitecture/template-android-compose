@@ -83,14 +83,12 @@ When the app is first opened, you need to provide **NavigationState** with an in
 @HiltViewModel
 class AppViewModel @Inject constructor(
     val navigationState: NavigationState,
-    val themeState: ThemeState,
-    val appState: AppState,
 ) : BaseViewModel() {
 
     override fun doBind() {
         launchAsync("doBind") {
             // You can perform some logic before setting the initial destination.
-            navigationState.startDestinationStore.set(TemplateDestination)
+            navigationState.setStartDestination(TemplateDestination)
         }
     }
 

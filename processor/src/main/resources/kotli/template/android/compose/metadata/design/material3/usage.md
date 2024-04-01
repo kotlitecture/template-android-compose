@@ -30,3 +30,25 @@ internal class ProvidesThemeState {
 }
 ```
 
+## Provide Theme
+
+To utilize the theme, simply enclose your composable function within `core.ui.theme.ThemeProvider`.
+By default, the entire app scaffold is already enclosed at the `app.AppActivity` level and does not require any changes.
+
+```kotlin
+@AndroidEntryPoint
+class AppActivity : FragmentActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            val viewModel: AppViewModel = provideHiltViewModel()
+            ThemeProvider(viewModel.themeState) {
+                // app scaffold
+            }
+        }
+    }
+
+}
+```
+

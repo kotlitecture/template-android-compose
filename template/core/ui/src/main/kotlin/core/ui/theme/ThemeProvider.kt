@@ -16,7 +16,7 @@ fun ThemeProvider(
     state: ThemeState,
     content: @Composable () -> Unit
 ) {
-    val viewModel = provideViewModel<ThemeViewModel>(activityScope = true)
+    val viewModel = provideViewModel<ThemeViewModel>()
     DisposableEffect(state) {
         viewModel.onBind(state)
         onDispose { }

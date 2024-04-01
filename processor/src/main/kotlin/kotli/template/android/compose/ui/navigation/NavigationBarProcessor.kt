@@ -1,15 +1,21 @@
 package kotli.template.android.compose.ui.navigation
 
 import kotli.engine.BaseFeatureProcessor
+import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.template.android.compose.ui.command.basic.BasicCommandProcessor
 
-class CommonNavigationProcessor : BaseFeatureProcessor() {
+class NavigationBarProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun isInternal(): Boolean = true
+
+    override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
+        BasicCommandProcessor::class.java
+    )
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules(

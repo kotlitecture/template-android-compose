@@ -22,6 +22,15 @@ class NavigationState(
     val navigationStore = StoreObject<NavigationData<*>>(valueReply = 0, valueBufferCapacity = Int.MAX_VALUE)
 
     /**
+     * Sets the start destination for navigation.
+     *
+     * @param startDestination The start destination to be set.
+     */
+    fun setStartDestination(startDestination: NavigationDestination<*>) {
+        startDestinationStore.set(startDestination)
+    }
+
+    /**
      * Navigate back to the previous screen.
      */
     fun onBack() {
