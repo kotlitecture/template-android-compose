@@ -18,6 +18,7 @@ import kotli.template.android.compose.dataflow.http.HttpProvider
 import kotli.template.android.compose.dataflow.messaging.MessagingProvider
 import kotli.template.android.compose.dataflow.network.NetworkProvider
 import kotli.template.android.compose.dataflow.notifications.NotificationsProvider
+import kotli.template.android.compose.dataflow.paging.PagingProvider
 import kotli.template.android.compose.dataflow.storage.StorageProvider
 import kotli.template.android.compose.dataflow.work.WorkProvider
 import kotli.template.android.compose.devops.distribution.DistributionProvider
@@ -84,6 +85,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         ConfigProvider(),
         CacheProvider(),
         StorageProvider(),
+        PagingProvider(),
         HttpProvider(),
         NetworkProvider(),
         ClipboardProvider(),
