@@ -1,0 +1,1 @@
+MotionLayout is a layout type that helps you manage motion and widget animation in your app. MotionLayout is a subclass of ConstraintLayout and builds on its rich layout capabilities.

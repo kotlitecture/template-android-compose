@@ -6,6 +6,7 @@ import kotli.engine.FeatureType
 import kotli.engine.model.FeatureTypes
 import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
 import kotli.template.android.compose.ui.container.bottomsheet.BottomSheetProcessor
+import kotli.template.android.compose.ui.container.motionlayout.MotionLayoutProcessor
 import kotli.template.android.compose.ui.container.fixedheaderfooter.FixedHeaderFooterProcessor
 import kotli.template.android.compose.ui.container.fixedtopbar.FixedTopBarProcessor
 
@@ -23,6 +24,7 @@ class UiContainerProvider : BaseFeatureProvider() {
         FixedHeaderFooterProcessor(),
         FixedTopBarProcessor(),
         BottomSheetProcessor(),
+        MotionLayoutProcessor()
     )
 
 }
