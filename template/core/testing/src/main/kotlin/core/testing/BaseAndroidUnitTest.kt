@@ -2,7 +2,7 @@ package core.testing
 
 import android.os.Build
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.junit.BeforeClass
+import org.junit.Before
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
 import java.io.InputStream
@@ -31,12 +31,9 @@ import javax.crypto.SecretKey
 )
 abstract class BaseAndroidUnitTest : BaseUnitTest() {
 
-    companion object {
-        @JvmStatic
-        @BeforeClass
-        fun beforeClass() {
-            FakeKeyStore.setup
-        }
+    @Before
+    fun setup() {
+        FakeKeyStore.setup
     }
 
     /**

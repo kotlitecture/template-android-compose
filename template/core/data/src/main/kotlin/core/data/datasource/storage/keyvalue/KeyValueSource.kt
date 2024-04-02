@@ -1,6 +1,7 @@
 package core.data.datasource.storage.keyvalue
 
 import core.data.datasource.DataSource
+import core.data.serialization.SerializationStrategy
 
 /**
  * Provides functionality to save, read, remove, and clear key-value pairs.
@@ -12,30 +13,32 @@ interface KeyValueSource : DataSource {
      *
      * @param key The key to save.
      * @param value The value to save.
-     * @param valueType The class type of the value.
-     * @return The saved value.
+     * @param serializationStrategy The serialization strategy used to convert the value to a string.
      */
-    fun <T> save(key: String, value: T, valueType: Class<T>): T
+    suspend fun <T> save(key: String, value: T, serializationStrategy: SerializationStrategy<T>)
 
     /**
      * Reads the value associated with the specified key.
      *
      * @param key The key to read.
-     * @param returnType The class type of the value.
+     * @param serializationStrategy The serialization strategy used to convert the value to a string.
      * @return The value associated with the key, or `null` if the key does not exist.
      */
-    fun <T> read(key: String, returnType: Class<T>): T?
+    suspend fun <T> read(key: String, serializationStrategy: SerializationStrategy<T>): T?
 
     /**
      * Removes the value associated with the specified key.
      *
      * @param key The key to remove.
+     * @param serializationStrategy The serialization strategy used to convert the value to a string.
+     *
+     * @return The removed value associated with the key, or `null` if the key does not exist.
      */
-    fun remove(key: String)
+    suspend fun <T> remove(key: String, serializationStrategy: SerializationStrategy<T>): T?
 
     /**
      * Clears all key-value pairs.
      */
-    fun clear()
+    suspend fun clear()
 
 }

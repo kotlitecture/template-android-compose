@@ -2,6 +2,8 @@ package core.data.datasource.encryption
 
 import core.data.datasource.storage.keyvalue.EncryptedKeyValueSource
 import core.data.misc.utils.EncryptUtils
+import core.data.serialization.ByteArrayStrategy
+import kotlinx.coroutines.runBlocking
 
 /**
  * A basic implementation of [EncryptionSource] that utilizes an [EncryptedKeyValueSource] for handling encryption and decryption of strings.
@@ -10,10 +12,11 @@ import core.data.misc.utils.EncryptUtils
  */
 class BasicEncryptionSource(private val keyValueSource: EncryptedKeyValueSource) : EncryptionSource {
 
-    private val password by lazy {
-        keyValueSource.read(KEY_PASSWORD, ByteArray::class.java) ?: run {
+    private val password: ByteArray by lazy {
+        runBlocking { keyValueSource.read(KEY_PASSWORD, ByteArrayStrategy) } ?: runBlocking {
             val password = EncryptUtils.generatePassword()
-            keyValueSource.save(KEY_PASSWORD, password, ByteArray::class.java)
+            keyValueSource.save(KEY_PASSWORD, password, ByteArrayStrategy)
+            password
         }
     }
 

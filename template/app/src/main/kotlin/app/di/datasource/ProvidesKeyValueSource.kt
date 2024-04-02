@@ -1,7 +1,7 @@
 package app.di.datasource
 
 import android.app.Application
-import app.datasource.storage.keyvalue.AppKeyValueSource
+import app.datasource.storage.AppKeyValueSource
 import core.data.datasource.storage.keyvalue.KeyValueSource
 import dagger.Module
 import dagger.Provides

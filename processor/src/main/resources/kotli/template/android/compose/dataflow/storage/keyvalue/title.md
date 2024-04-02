@@ -1,1 +1,1 @@
-Basic Key-Value Storage
+SharedPreferences

@@ -1,1 +1,1 @@
-Utilizes SharedPreferences for managing encrypted key-value data.
+Key-value storage API utilizing EncryptedSharedPreferences to securely store data of any type encrypted.

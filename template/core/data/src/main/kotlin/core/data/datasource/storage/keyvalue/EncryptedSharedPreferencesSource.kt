@@ -6,19 +6,20 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 
 /**
- * Basic implementation of encrypted key-value data source using EncryptedSharedPreferences.
+ * Key-value implementation of encrypted data using EncryptedSharedPreferences.
  *
  * @param app The application context.
  */
-open class BasicEncryptedKeyValueSource(protected val app: Application) : AbstractKeyValueSource(), EncryptedKeyValueSource {
-
-    private val fileName = "encrypted_key_value_source"
+open class EncryptedSharedPreferencesSource(
+    protected val app: Application,
+    private val name: String = "encrypted_key_value_source"
+) : BaseSharedPreferencesSource(), EncryptedKeyValueSource {
 
     override fun createSharedPreferences(): SharedPreferences {
         return try {
             create()
         } catch (e: Exception) {
-            app.deleteSharedPreferences(fileName)
+            app.deleteSharedPreferences(name)
             create()
         }
     }
@@ -26,7 +27,7 @@ open class BasicEncryptedKeyValueSource(protected val app: Application) : Abstra
     private fun create(): SharedPreferences {
         return EncryptedSharedPreferences.create(
             app,
-            fileName,
+            name,
             MasterKey.Builder(app).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build(),
             EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM

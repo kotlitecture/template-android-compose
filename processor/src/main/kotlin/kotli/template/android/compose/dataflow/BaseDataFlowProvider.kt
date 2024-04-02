@@ -9,7 +9,8 @@ import kotli.template.android.compose.dataflow.common.CommonDataFlowProcessor
 abstract class BaseDataFlowProvider : BaseFeatureProvider() {
 
     final override fun getType(): FeatureType = FeatureTypes.DataFlow
-    final override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
+
+    override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         CommonDataFlowProcessor::class.java
     )
 
