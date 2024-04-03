@@ -16,7 +16,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import app.ui.component.TopBarButton
+import app.ui.component.basic.ActionButton
 import core.ui.theme.ThemeData
 
 /**
@@ -54,7 +54,7 @@ fun FixedTopBarLayout(
                 actions = actions,
                 navigationIcon = {
                     if (onBack != null) {
-                        TopBarButton(
+                        ActionButton(
                             onClick = onBack,
                             icon = Icons.Default.ArrowBackIosNew
                         )

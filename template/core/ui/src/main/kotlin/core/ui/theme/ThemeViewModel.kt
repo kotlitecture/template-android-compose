@@ -3,7 +3,6 @@
 package core.ui.theme
 
 import core.ui.BaseViewModel
-import core.ui.state.StoreObject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
@@ -14,9 +13,6 @@ import kotlinx.coroutines.flow.mapNotNull
  * ViewModel responsible for managing the app theme state.
  */
 class ThemeViewModel : BaseViewModel() {
-
-    /** Store object for the theme data. */
-    val dataStore = StoreObject<ThemeData>()
 
     /**
      * Binds the theme state to the ViewModel.
@@ -35,13 +31,13 @@ class ThemeViewModel : BaseViewModel() {
                 .map { data ->
                     val autoDark = data.config.autoDark
                     val provider = when {
-                        autoDark && data.darkMode -> data.config.darkTheme
                         autoDark && !data.darkMode -> data.config.lightTheme
+                        autoDark && data.darkMode -> data.config.darkTheme
                         else -> data.config.defaultTheme
                     }
                     provider.provide(data.config)
                 }
-                .collect(dataStore::set)
+                .collect(state.dataStore::set)
         }
     }
 

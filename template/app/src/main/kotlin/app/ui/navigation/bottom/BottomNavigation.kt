@@ -14,7 +14,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.IntOffset
 import app.provideHiltViewModel
-import app.ui.component.AnyIcon
+import app.ui.component.basic.AnyIcon
 import app.ui.navigation.NavigationBarViewModel
 import core.ui.state.StoreObject
 

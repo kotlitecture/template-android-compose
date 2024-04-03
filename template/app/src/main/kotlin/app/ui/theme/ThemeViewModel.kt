@@ -12,21 +12,30 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
+/**
+ * ViewModel class responsible for managing the theme state and persistence.
+ *
+ * @param themeState The state of the theme.
+ * @param keyValueSource The key-value source for persistence.
+ */
 @HiltViewModel
 class ThemeViewModel @Inject constructor(
     val themeState: ThemeState,
     private val keyValueSource: AppKeyValueSource
 ) : BaseViewModel() {
 
+    /**
+     * Performs the binding operation.
+     */
     override fun doBind() {
         launchAsync("config") {
             val key = themeState.persistentKey
             if (key == null) {
-                themeState.configStore.set(themeState.initialConfig)
+                themeState.configStore.set(themeState.defaultConfig)
             } else {
                 val strategy = JsonStrategy.create(ThemeConfigData.serializer())
                 val config = keyValueSource.read(key, strategy)?.let { mapToModel(it) }
-                    ?: themeState.initialConfig
+                    ?: themeState.defaultConfig
                 themeState.configStore.set(config)
                 themeState.configStore.asFlow()
                     .filterNotNull()
@@ -37,8 +46,14 @@ class ThemeViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Maps data from [ThemeConfigData] to [ThemeConfig].
+     *
+     * @param from The source data.
+     * @return The mapped [ThemeConfig].
+     */
     private fun mapToModel(from: ThemeConfigData): ThemeConfig {
-        val initial = themeState.initialConfig
+        val initial = themeState.defaultConfig
         return initial.copy(
             defaultTheme = themeState.findProviderById(from.defaultThemeId) ?: initial.defaultTheme,
             lightTheme = themeState.findProviderById(from.lightThemeId) ?: initial.lightTheme,
@@ -47,6 +62,12 @@ class ThemeViewModel @Inject constructor(
         )
     }
 
+    /**
+     * Maps data from [ThemeConfig] to [ThemeConfigData].
+     *
+     * @param from The source data.
+     * @return The mapped [ThemeConfigData].
+     */
     private fun mapToData(from: ThemeConfig): ThemeConfigData {
         return ThemeConfigData(
             defaultThemeId = from.defaultTheme.id,

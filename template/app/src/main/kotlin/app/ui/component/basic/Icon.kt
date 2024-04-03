@@ -1,4 +1,4 @@
-package app.ui.component
+package app.ui.component.basic
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

@@ -15,7 +15,7 @@ abstract class ThemeDataProvider<D : ThemeData> {
     abstract val id: String
 
     /** Indicates whether the theme is dark mode or not. */
-    protected abstract val dark: Boolean
+    abstract val dark: Boolean
 
     protected open fun createSystemBarStyle(): SystemBarStyle {
         return if (dark) {

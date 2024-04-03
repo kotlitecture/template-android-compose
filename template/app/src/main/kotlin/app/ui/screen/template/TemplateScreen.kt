@@ -1,4 +1,4 @@
-package app.userflow.template
+package app.ui.screen.template
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,11 +8,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import app.provideHiltViewModel
 
-/**
- * Composable function for the template screen.
- *
- * @param data The data for the template screen.
- */
 @Composable
 fun TemplateScreen(data: TemplateDestination.Data?) {
     val viewModel: TemplateViewModel = provideHiltViewModel()

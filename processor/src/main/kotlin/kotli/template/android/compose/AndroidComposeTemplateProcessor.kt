@@ -40,7 +40,7 @@ import kotli.template.android.compose.ui.command.UiCommandProvider
 import kotli.template.android.compose.ui.component.UiComponentProvider
 import kotli.template.android.compose.ui.container.UiContainerProvider
 import kotli.template.android.compose.ui.l10n.L10NProvider
-import kotli.template.android.compose.ui.navigation.NavigationBarProvider
+import kotli.template.android.compose.ui.navigation.UiNavigationBarProvider
 import kotli.template.android.compose.ui.screen.UiScreenProvider
 import kotli.template.android.compose.unspecified.UnspecifiedProvider
 import kotli.template.android.compose.userflow.ads.AdsProvider
@@ -54,10 +54,10 @@ import kotli.template.android.compose.userflow.payments.PaymentsProvider
 import kotli.template.android.compose.userflow.review.ReviewProvider
 import kotli.template.android.compose.userflow.splash.SplashProvider
 import kotli.template.android.compose.userflow.support.SupportProvider
+import kotli.template.android.compose.userflow.theme.ThemeProvider
 import kotli.template.android.compose.userflow.update.UpdateProvider
 import kotli.template.android.compose.userflow.webtonative.WebToNativeProvider
 import kotli.template.android.compose.wip.WipProvider
-import kotli.template.android.compose.wip.flow.FlowApiProcessor
 
 class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
 
@@ -108,7 +108,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         StartupProvider(),
 
         // ui
-        NavigationBarProvider(),
+        UiNavigationBarProvider(),
         UiComponentProvider(),
         UiContainerProvider(),
         UiCommandProvider(),
@@ -116,6 +116,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
 
         // userflow
         SplashProvider(),
+        ThemeProvider,
         LoaderProvider(),
         InternetProvider(),
         ReviewProvider(),

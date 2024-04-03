@@ -1,6 +1,6 @@
 package app
 
-import app.userflow.template.TemplateDestination
+import app.ui.screen.template.TemplateDestination
 import core.ui.BaseViewModel
 import core.ui.navigation.NavigationState
 import dagger.hilt.android.lifecycle.HiltViewModel

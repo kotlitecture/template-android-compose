@@ -9,7 +9,7 @@ import kotli.template.android.compose.ui.navigation.bottom.BottomNavigationProce
 import kotli.template.android.compose.ui.navigation.left.dismissible.DismissibleLeftNavigationProcessor
 import kotli.template.android.compose.ui.navigation.left.modal.ModalLeftNavigationProcessor
 
-class NavigationBarProvider : BaseFeatureProvider() {
+class UiNavigationBarProvider : BaseFeatureProvider() {
 
     override fun getId(): String = "ui.navigation"
     override fun isMultiple(): Boolean = false

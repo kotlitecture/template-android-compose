@@ -34,9 +34,8 @@ class GoogleUpdateViewModel @Inject constructor(
     @Composable
     override fun doBind(owner: LifecycleOwner) {
         val activity = owner as Activity
-        owner.lifecycle.removeObserver(this)
-        owner.lifecycle.addObserver(this)
         LaunchedEffect(activity) {
+            owner.lifecycle.addObserver(this@GoogleUpdateViewModel)
             launchAsync("updateFlow") {
                 state.configStore.asFlow()
                     .filterNotNull()
