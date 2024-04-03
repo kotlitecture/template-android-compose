@@ -1,1 +1,1 @@
-Encrypted SharedPreferences
+Encrypted Key-Value Storage

@@ -25,7 +25,7 @@ abstract class BaseSharedPreferencesSource : KeyValueSource {
             else -> editor.putString(key, serializationStrategy.toString(value))
         }
         cache[key] = value
-        editor.apply()
+        editor.commit()
     }
 
     override suspend fun <T> read(key: String, serializationStrategy: SerializationStrategy<T>): T? {
@@ -68,10 +68,10 @@ abstract class BaseSharedPreferencesSource : KeyValueSource {
 
     override suspend fun clear() {
         cache.clear()
-        return prefs
+        prefs
             .edit()
             .clear()
-            .apply()
+            .commit()
     }
 
     /**

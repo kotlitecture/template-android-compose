@@ -1,1 +1,1 @@
-SharedPreferences
+Key-Value Storage
