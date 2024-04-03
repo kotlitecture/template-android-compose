@@ -56,6 +56,8 @@ import kotli.template.android.compose.userflow.splash.SplashProvider
 import kotli.template.android.compose.userflow.support.SupportProvider
 import kotli.template.android.compose.userflow.update.UpdateProvider
 import kotli.template.android.compose.userflow.webtonative.WebToNativeProvider
+import kotli.template.android.compose.wip.WipProvider
+import kotli.template.android.compose.wip.flow.FlowApiProcessor
 
 class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
 
@@ -131,6 +133,9 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         LoggingProvider(),
         HttpTestingProvider(),
         UnitTestsProvider(),
+
+        // wip
+        WipProvider
     )
 
     override fun processBefore(state: TemplateState) {
