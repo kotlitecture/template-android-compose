@@ -1,7 +1,6 @@
 package app.ui.theme
 
 import app.datasource.storage.AppKeyValueSource
-import core.data.serialization.JsonStrategy
 import core.ui.BaseViewModel
 import core.ui.theme.ThemeConfig
 import core.ui.theme.ThemeState
@@ -13,7 +12,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 /**
- * ViewModel class responsible for managing the theme state and persistence.
+ * ViewModel class responsible for managing the theme state.
  *
  * @param themeState The state of the theme.
  * @param keyValueSource The key-value source for persistence.
@@ -33,7 +32,7 @@ class ThemeViewModel @Inject constructor(
             if (key == null) {
                 themeState.configStore.set(themeState.defaultConfig)
             } else {
-                val strategy = JsonStrategy.create(ThemeConfigData.serializer())
+                val strategy = ThemeConfigData.serializationStrategy
                 val config = keyValueSource.read(key, strategy)?.let { mapToModel(it) }
                     ?: themeState.defaultConfig
                 themeState.configStore.set(config)

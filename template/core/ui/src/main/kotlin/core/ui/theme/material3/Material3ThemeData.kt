@@ -4,6 +4,7 @@ import androidx.activity.SystemBarStyle
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
@@ -17,6 +18,7 @@ import core.ui.theme.ThemeData
  * @property colorScheme The color scheme used in the theme.
  * @property typography The typography settings used in the theme.
  */
+@Immutable
 data class Material3ThemeData(
     override val fontFamily: FontFamily,
     override val systemBarStyle: SystemBarStyle,

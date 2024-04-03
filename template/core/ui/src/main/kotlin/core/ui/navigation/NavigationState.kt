@@ -9,14 +9,16 @@ import core.ui.state.StoreState
  * This class extends [StoreState], providing mechanisms for managing the current navigation state.
  *
  * @param destinations A list of navigation destinations available in the application.
- * @param startDestinationStore StoreObject to hold the initial navigation destination.
- * @param currentDestinationStore StoreObject to hold the current navigation destination.
  */
 class NavigationState(
-    val destinations: List<NavigationDestination<*>>,
-    val startDestinationStore: StoreObject<NavigationDestination<*>> = StoreObject(),
-    val currentDestinationStore: StoreObject<NavigationDestination<*>> = StoreObject()
+    val destinations: List<NavigationDestination<*>>
 ) : StoreState() {
+
+    /** StoreObject to hold the initial navigation destination. */
+    val startDestinationStore: StoreObject<NavigationDestination<*>> = StoreObject()
+
+    /** StoreObject to hold the current navigation destination. */
+    val currentDestinationStore: StoreObject<NavigationDestination<*>> = StoreObject()
 
     /** StoreObject to hold the current navigation data. */
     val navigationStore = StoreObject<NavigationData<*>>(valueReply = 0, valueBufferCapacity = Int.MAX_VALUE)

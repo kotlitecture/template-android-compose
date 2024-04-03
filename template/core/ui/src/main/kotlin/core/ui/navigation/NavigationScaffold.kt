@@ -35,9 +35,9 @@ fun NavigationScaffold(
         snackbarHost = { SnackbarHost(navigationContext.snackbarHostSate) },
         content = {
             NavigationHost(
-                navigationContext = navigationContext,
                 navigationState = navigationState,
-                startDestination = startDestination
+                startDestination = startDestination,
+                navigationContext = navigationContext
             )
         }
     )

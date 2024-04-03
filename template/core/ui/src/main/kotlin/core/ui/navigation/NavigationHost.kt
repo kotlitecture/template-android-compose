@@ -10,8 +10,8 @@ import androidx.navigation.compose.NavHost
 
 @Composable
 fun NavigationHost(
-    navigationContext: NavigationContext,
     navigationState: NavigationState,
+    navigationContext: NavigationContext,
     startDestination: NavigationDestination<*>
 ) {
     NavHost(
