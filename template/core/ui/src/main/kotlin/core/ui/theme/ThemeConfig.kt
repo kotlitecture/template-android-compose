@@ -9,7 +9,6 @@ import androidx.compose.ui.text.font.FontFamily
  * @param fontFamily The default font family to be used in the application.
  * @param lightTheme The default light theme to be used.
  * @param darkTheme The default dark theme to be used.
- * @param availableThemes The list of available theme data providers.
  * @param autoDark Whether to enable automatic dark mode based on system settings.
  */
 data class ThemeConfig(
@@ -17,6 +16,5 @@ data class ThemeConfig(
     val fontFamily: FontFamily = FontFamily.Default,
     val lightTheme: ThemeDataProvider<*> = defaultTheme,
     val darkTheme: ThemeDataProvider<*> = defaultTheme,
-    val availableThemes: List<ThemeDataProvider<*>>,
     val autoDark: Boolean = true
 )

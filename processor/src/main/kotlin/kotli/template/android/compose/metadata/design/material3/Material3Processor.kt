@@ -1,18 +1,21 @@
 package kotli.template.android.compose.metadata.design.material3
 
 import kotli.engine.BaseFeatureProcessor
+import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
+import kotli.template.android.compose.dataflow.storage.keyvalue.sharedpreferences.SharedPreferencesProcessor
 import kotlin.time.Duration.Companion.hours
 
-class Material3Processor : BaseFeatureProcessor() {
+object Material3Processor : BaseFeatureProcessor() {
+
+    const val ID = "metadata.design.material3"
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://m3.material.io/"
     override fun getIntegrationUrl(state: TemplateState): String = "https://m3.material.io/develop"
     override fun getIntegrationEstimate(state: TemplateState): Long = 4.hours.inWholeMilliseconds
-
-    companion object {
-        const val ID = "metadata.design.material3"
-    }
+    override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
+        SharedPreferencesProcessor::class.java
+    )
 
 }

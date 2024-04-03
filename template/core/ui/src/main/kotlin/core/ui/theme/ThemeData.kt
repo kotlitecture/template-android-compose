@@ -17,6 +17,8 @@ import androidx.compose.ui.text.font.FontFamily
  */
 abstract class ThemeData {
 
+    abstract val providerId: String?
+
     open val systemBarStyle: SystemBarStyle = SystemBarStyle.auto(0, 0)
     open val navigationBarStyle: SystemBarStyle = SystemBarStyle.auto(0, 0)
     open val fontFamily: FontFamily = FontFamily.Default
@@ -47,7 +49,9 @@ abstract class ThemeData {
     }
 
     /** Represents no theme data. */
-    class NoThemeData : ThemeData()
+    class NoThemeData : ThemeData() {
+        override val providerId: String? = null
+    }
 
     companion object {
         /** Local composition used to access the current theme data. */

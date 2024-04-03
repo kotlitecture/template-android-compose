@@ -8,7 +8,7 @@ class UiDesignSystemProvider : MetadataProvider() {
 
     override fun getId(): String = "metadata.design"
     override fun createProcessors(): List<FeatureProcessor> = listOf(
-        Material3Processor()
+        Material3Processor
     )
 
 }

@@ -8,6 +8,8 @@ import kotli.engine.generator.PathOutputGenerator
 import kotli.engine.generator.ZipOutputGenerator
 import kotli.engine.model.Feature
 import kotli.engine.model.Layer
+import kotli.template.android.compose.dataflow.storage.keyvalue.datastore.DataStoreProcessor
+import kotli.template.android.compose.metadata.design.material3.Material3Processor
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.slf4j.LoggerFactory
@@ -95,7 +97,11 @@ class AndroidComposeTemplateProcessorTest {
                 id = UUID.randomUUID().toString(),
                 processorId = processor.getId(),
                 namespace = "my.app",
-                name = "app-android"
+                name = "app-android",
+                features = listOf(
+                    Feature(DataStoreProcessor.ID),
+                    Feature(Material3Processor.ID)
+                )
             )
             val generator = PathOutputGenerator(buildPath(), registry)
             val gradleGenerator = GradleProjectGenerator(arrayOf("signingReport", "assembleDebug"), generator)

@@ -40,6 +40,7 @@ internal val Teal80 = Color(0xFFA2CED9)
 internal val Teal90 = Color(0xFFBEEAF6)
 
 val Material3Dark = Material3ThemeDataProvider(
+    id = "material_3_dark",
     dark = true,
     colorScheme = darkColorScheme(
         primary = Green80,
@@ -71,6 +72,7 @@ val Material3Dark = Material3ThemeDataProvider(
 )
 
 val Material3Light = Material3ThemeDataProvider(
+    id = "material_3_light",
     dark = false,
     colorScheme = lightColorScheme(
         primary = Green40,

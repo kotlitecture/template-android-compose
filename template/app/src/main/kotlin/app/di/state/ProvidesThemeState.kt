@@ -17,8 +17,8 @@ internal class ProvidesThemeState {
     @Provides
     @Singleton
     fun state(): ThemeState = ThemeState(
-        config = ThemeConfig(
-            availableThemes = listOf(Material3Light, Material3Dark),
+        availableThemes = listOf(Material3Light, Material3Dark),
+        initialConfig = ThemeConfig(
             defaultTheme = Material3Light,
             lightTheme = Material3Light,
             darkTheme = Material3Dark

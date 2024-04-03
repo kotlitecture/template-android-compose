@@ -11,6 +11,9 @@ import androidx.activity.SystemBarStyle
  */
 abstract class ThemeDataProvider<D : ThemeData> {
 
+    /** Unique identifier of the theme provider. */
+    abstract val id: String
+
     /** Indicates whether the theme is dark mode or not. */
     protected abstract val dark: Boolean
 
