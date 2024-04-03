@@ -10,6 +10,7 @@ import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.engine.template.rule.ReplaceText
 import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.minutes
 
 class BaselineProfileProcessor : BaseFeatureProcessor() {
 
@@ -17,6 +18,7 @@ class BaselineProfileProcessor : BaseFeatureProcessor() {
     override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/topic/performance/baselineprofiles/overview"
     override fun getIntegrationUrl(state: TemplateState): String = "https://developer.android.com/topic/performance/baselineprofiles/configure-baselineprofiles"
     override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
+    override fun getConfigurationEstimate(state: TemplateState): Long = 20.minutes.inWholeMilliseconds
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules(

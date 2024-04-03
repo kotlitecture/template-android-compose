@@ -16,6 +16,7 @@ class GooglePlayDistributionProcessor : BaseFeatureProcessor() {
     override fun getWebUrl(state: TemplateState): String = "https://github.com/Triple-T/gradle-play-publisher"
     override fun getIntegrationUrl(state: TemplateState): String = "https://github.com/Triple-T/gradle-play-publisher?tab=readme-ov-file#quickstart-guide"
     override fun getIntegrationEstimate(state: TemplateState): Long = 8.hours.inWholeMilliseconds
+    override fun getConfigurationEstimate(state: TemplateState): Long = 4.hours.inWholeMilliseconds
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules("build.gradle",
