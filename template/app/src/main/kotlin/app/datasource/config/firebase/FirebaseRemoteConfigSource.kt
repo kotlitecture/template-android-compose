@@ -10,7 +10,7 @@ import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
 import core.data.datasource.config.ConfigSource
 import core.data.misc.extensions.ifNotEmpty
-import core.data.misc.utils.GsonUtils
+import core.data.serialization.SerializationStrategy
 import java.util.concurrent.TimeUnit
 
 class FirebaseRemoteConfigSource : ConfigSource {
@@ -26,16 +26,28 @@ class FirebaseRemoteConfigSource : ConfigSource {
         }
     }
 
-    override fun <T> get(key: String, type: Class<T>, defaultValue: () -> T): T {
+    override fun <T> get(key: String, serializationStrategy: SerializationStrategy<T>, defaultValue: () -> T): T {
         val stringValue = config.value.getString(key).ifNotEmpty() ?: return defaultValue()
-        val value: Any? = when (type) {
+        val value: Any? = when (serializationStrategy.getType()) {
+            java.lang.String::class.java,
             String::class.java -> stringValue
+
+            java.lang.Boolean::class.java,
             Boolean::class.java -> stringValue.toBooleanStrictOrNull()
-            Long::class.java -> stringValue.toLongOrNull()
+
+            java.lang.Integer::class.java,
             Int::class.java -> stringValue.toIntOrNull()
-            Double::class.java -> stringValue.toDoubleOrNull()
+
+            java.lang.Long::class.java,
+            Long::class.java -> stringValue.toLongOrNull()
+
+            java.lang.Float::class.java,
             Float::class.java -> stringValue.toFloatOrNull()
-            else -> GsonUtils.toObject(stringValue, type)
+
+            java.lang.Double::class.java,
+            Double::class.java -> stringValue.toDoubleOrNull()
+
+            else -> serializationStrategy.toObject(stringValue)
         }
         return (value as? T) ?: defaultValue()
     }

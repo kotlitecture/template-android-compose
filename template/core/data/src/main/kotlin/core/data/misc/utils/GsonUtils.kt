@@ -19,7 +19,7 @@ import java.util.TimeZone
 
 object GsonUtils {
 
-    val gson: Gson by lazy { configure(GsonBuilder()).create() }
+    private val gson: Gson by lazy { configure(GsonBuilder()).create() }
 
     fun configure(builder: GsonBuilder): GsonBuilder = builder
         .setLenient()

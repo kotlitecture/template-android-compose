@@ -36,6 +36,7 @@ abstract class BaseSharedPreferencesSource : KeyValueSource {
             return null
         }
         val value: Any? = when (serializationStrategy.getType()) {
+            java.lang.String::class.java,
             String::class.java -> prefs.getString(key, null)
 
             java.lang.Boolean::class.java,

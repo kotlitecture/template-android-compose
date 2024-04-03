@@ -65,6 +65,7 @@ open class SharedPreferencesDataStore(
 
     private fun <T> defineKey(key: String, type: Class<T>): Preferences.Key<T>? {
         val prefsKey = when (type) {
+            java.lang.String::class.java,
             String::class.java -> stringPreferencesKey(key)
 
             java.lang.Boolean::class.java,
