@@ -56,7 +56,9 @@ abstract class BaseSharedPreferencesSource : KeyValueSource {
 
             else -> prefs.getString(key, null)?.let(serializationStrategy::toObject)
         }
-        cache[key] = value
+        if (value != null) {
+            cache[key] = value
+        }
         return value as? T
     }
 

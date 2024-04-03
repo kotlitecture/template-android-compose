@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package core.data.serialization
 
 /**
@@ -9,11 +11,17 @@ package core.data.serialization
 data class NoSerializationStrategy<T>(private val type: Class<T>) : SerializationStrategy<T> {
 
     override fun toObject(from: String): T? {
-        throw IllegalStateException("use another SerializationStrategy to perform serialization of type $type")
+        return when (type) {
+            ByteArray::class.java -> ByteArrayStrategy.toObject(from) as? T
+            else -> throw IllegalStateException("use another SerializationStrategy to perform serialization of type $type")
+        }
     }
 
     override fun toString(from: T): String? {
-        throw IllegalStateException("use another SerializationStrategy to perform serialization of type $type")
+        return when (type) {
+            ByteArray::class.java -> ByteArrayStrategy.toString(from as ByteArray)
+            else -> throw IllegalStateException("use another SerializationStrategy to perform serialization of type $type")
+        }
     }
 
     override fun getType(): Class<T> {

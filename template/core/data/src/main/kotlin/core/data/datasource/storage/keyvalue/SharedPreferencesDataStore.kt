@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.byteArrayPreferencesKey
 import androidx.datastore.preferences.core.doublePreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.floatPreferencesKey
@@ -82,6 +83,8 @@ open class SharedPreferencesDataStore(
 
             java.lang.Double::class.java,
             Double::class.java -> doublePreferencesKey(key)
+
+            ByteArray::class.java -> byteArrayPreferencesKey(key)
 
             else -> null
         }

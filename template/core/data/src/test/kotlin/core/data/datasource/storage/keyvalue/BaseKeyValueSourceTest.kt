@@ -6,6 +6,8 @@ import core.data.serialization.NoSerializationStrategy
 import core.testing.BaseAndroidUnitTest
 import kotlinx.serialization.Serializable
 import org.junit.Test
+import java.util.Date
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
@@ -58,11 +60,26 @@ abstract class BaseKeyValueSourceTest : BaseAndroidUnitTest() {
     fun `save primitive`() = performTest {
         val key = "key"
 
-        // when save primitive
         source.save(key, 111, NoSerializationStrategy.create())
-
-        // then it can be read
         assertEquals(111, source.read(key, NoSerializationStrategy.create()))
+
+        source.save(key, "222", NoSerializationStrategy.create())
+        assertEquals("222", source.read(key, NoSerializationStrategy.create()))
+
+        source.save(key, 1f, NoSerializationStrategy.create())
+        assertEquals(1f, source.read(key, NoSerializationStrategy.create()))
+
+        source.save(key, 1.0, NoSerializationStrategy.create())
+        assertEquals(1.0, source.read(key, NoSerializationStrategy.create()))
+
+        source.save(key, 1L, NoSerializationStrategy.create())
+        assertEquals(1L, source.read(key, NoSerializationStrategy.create()))
+
+        source.save(key, true, NoSerializationStrategy.create())
+        assertEquals(true, source.read(key, NoSerializationStrategy.create()))
+
+        source.save(key, "123".toByteArray(), NoSerializationStrategy.create())
+        assertContentEquals("123".toByteArray(), source.read(key, NoSerializationStrategy.create()))
     }
 
     @Test
@@ -71,9 +88,19 @@ abstract class BaseKeyValueSourceTest : BaseAndroidUnitTest() {
 
         // when save object
         source.save(key, TestObject("name"), JsonStrategy.create(TestObject.serializer()))
-
         // then it can be read
         assertEquals(TestObject("name"), source.read(key, GsonStrategy.create()))
+    }
+
+    @Test
+    fun `save date`() = performTest {
+        val key = "key"
+
+        // when save object
+        val date = Date()
+        source.save(key, date, GsonStrategy.create())
+        // then it can be read
+        assertEquals(date, source.read(key, GsonStrategy.create()))
     }
 
     @Serializable

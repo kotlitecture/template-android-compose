@@ -67,7 +67,7 @@ object GsonUtils {
             type: Type,
             jsonSerializationContext: JsonSerializationContext
         ): JsonElement {
-            return JsonPrimitive(dateTimeShortFormatter.format(date))
+            return JsonPrimitive(dateTimeFullFormatter.format(date))
         }
 
         override fun deserialize(
