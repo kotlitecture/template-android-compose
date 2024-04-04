@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
@@ -48,6 +49,7 @@ data class StoreObject<T>(
     /**
      * Returns the store object as a [MutableState] object.
      */
+    @Stable
     fun asState(): MutableState<T?> = valueState.value
 
     /**
@@ -58,17 +60,18 @@ data class StoreObject<T>(
     /**
      * Returns the store object as a non-nullable [MutableState] object.
      */
+    @Stable
     fun asStateNotNull(): MutableState<T> = asState() as MutableState<T>
 
     /**
      * Returns the value of the store object as a non-nullable type [T].
      */
-    fun asStateValueNotNull(): T =
-        runCatching { asStateNotNull().value }.getOrElse { currentValue!! }
+    fun asStateValueNotNull(): T = runCatching { asStateNotNull().value }.getOrElse { currentValue!! }
 
     /**
      * Returns the store object as a flow of type [T].
      */
+    @Stable
     fun asFlow(): Flow<T?> = valueChanges.value
 
     /**

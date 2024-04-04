@@ -1,7 +1,7 @@
 package app.ui.command
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import core.ui.navigation.NavigationContext
 import core.ui.provideViewModel
 
@@ -13,8 +13,7 @@ import core.ui.provideViewModel
 @Composable
 fun CommandProvider(navigationContext: NavigationContext) {
     val viewModel = provideViewModel<CommandViewModel>(activityScope = true)
-    DisposableEffect(navigationContext) {
+    LaunchedEffect(navigationContext) {
         viewModel.onBind(navigationContext)
-        onDispose { }
     }
 }

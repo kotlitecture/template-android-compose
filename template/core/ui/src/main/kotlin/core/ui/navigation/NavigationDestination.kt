@@ -3,6 +3,7 @@ package core.ui.navigation
 import android.net.Uri
 import android.util.SparseArray
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
@@ -19,6 +20,7 @@ import core.ui.misc.extensions.ifIndex
  *
  * @param D The type of data associated with this destination.
  */
+@Immutable
 abstract class NavigationDestination<D> {
 
     /** Unique identifier for this destination. */
@@ -101,7 +103,7 @@ abstract class NavigationDestination<D> {
         builder.composable(
             route = route,
             arguments = createArgs(),
-            content = { entry -> route(entry, content) }
+            content = { entry -> route(RouteData(entry, content)) }
         )
     }
 
@@ -127,18 +129,15 @@ abstract class NavigationDestination<D> {
                 dismissOnBackPress = dismissOnBackPress,
                 dismissOnClickOutside = dismissOnClickOutside
             ),
-            content = { entry -> route(entry, content) }
+            content = { entry -> route(RouteData(entry, content)) }
         )
     }
 
     @Composable
-    private fun route(
-        entry: NavBackStackEntry,
-        content: @Composable (data: D?) -> Unit
-    ) {
-        val value = entry.arguments?.getString(ATTR_DATA)
+    private fun route(routeData: RouteData<D>) {
+        val value = routeData.entry.arguments?.getString(ATTR_DATA)
         val data = value?.let { argsStrategy.toObject(it) }
-        content(data)
+        routeData.content(data)
     }
 
     private fun createArgs() = listOf(
@@ -179,5 +178,11 @@ abstract class NavigationDestination<D> {
                 ?: route
         }
     }
+
+    @Immutable
+    data class RouteData<D>(
+        val entry: NavBackStackEntry,
+        val content: @Composable (data: D?) -> Unit
+    )
 
 }

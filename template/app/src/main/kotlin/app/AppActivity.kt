@@ -3,6 +3,7 @@ package app
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
@@ -41,15 +42,17 @@ class AppActivity : FragmentActivity() {
 @Composable
 private fun ScaffoldBlock(viewModel: AppViewModel) {
     ThemeProvider {
+        val navigationState = remember { viewModel.navigationState }
         val navigationContext = rememberNavigationContext()
+        val appState = remember { viewModel.appState }
         NavigationBarProvider { // {ui.navigation.common}
             NavigationScaffold(
                 navigationContext = navigationContext,
-                navigationState = viewModel.navigationState,
+                navigationState = navigationState,
                 bottomBar = { BottomNavigation() }
             )
         } // {ui.navigation.common}
-        DataLoaderProvider(viewModel.appState)
+        DataLoaderProvider(appState)
         CommandProvider(navigationContext)
         GoogleUpdateProvider()
         GoogleReviewProvider()

@@ -5,6 +5,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import core.ui.misc.extensions.findActivity
 import core.ui.provideViewModel
@@ -17,10 +18,7 @@ fun ThemeProvider(
     content: @Composable () -> Unit
 ) {
     val viewModel = provideViewModel<ThemeViewModel>()
-    DisposableEffect(state) {
-        viewModel.onBind(state)
-        onDispose { }
-    }
+    LaunchedEffect(state) { viewModel.onBind(state) }
     EdgeToEdgeHandler(state)
     SystemDarkModeHandler(state)
     ThemeSwitchHandler(state, content)
@@ -39,12 +37,11 @@ private fun SystemDarkModeHandler(state: ThemeState) {
 private fun EdgeToEdgeHandler(state: ThemeState) {
     val activity = LocalContext.current.findActivity() ?: return
     val data = state.dataStore.asStateValue() ?: return
-    DisposableEffect(data) {
+    LaunchedEffect(data) {
         activity.enableEdgeToEdge(
             statusBarStyle = data.systemBarStyle,
             navigationBarStyle = data.navigationBarStyle
         )
-        onDispose { }
     }
 }
 
