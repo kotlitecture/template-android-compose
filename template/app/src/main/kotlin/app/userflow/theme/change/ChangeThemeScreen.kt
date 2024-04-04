@@ -12,9 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import app.R
 import app.provideHiltViewModel
 import app.ui.component.basic.Spacer8
 import app.ui.container.FixedTopBarLayout
@@ -24,7 +26,7 @@ import core.ui.theme.ThemeData
 fun ChangeThemeScreen() {
     val viewModel: ChangeThemeViewModel = provideHiltViewModel()
     FixedTopBarLayout(
-        title = "Change theme",
+        title = stringResource(R.string.theme_change_title),
         onBack = viewModel::onBack,
         content = {
             ChangeThemeLayout(
@@ -65,15 +67,15 @@ fun ChangeThemeLayout(
 fun DynamicColorBlock(viewModel: ChangeThemeViewModel = provideHiltViewModel()) {
     val use = viewModel.dynamicColorsStore.asStateValue() ?: return
     Column {
-        HeaderBlock("Use Dynamic Color")
+        HeaderBlock(stringResource(R.string.theme_change_dynamic_color))
         Spacer8()
         ToggleBlock(
-            label = "Yes",
+            label = stringResource(R.string.theme_change_dynamic_color_on),
             selected = use,
             onClick = viewModel::onEnableDynamicColors
         )
         ToggleBlock(
-            label = "No",
+            label = stringResource(R.string.theme_change_dynamic_color_off),
             selected = !use,
             onClick = viewModel::onDisableDynamicColors
         )
@@ -84,20 +86,20 @@ fun DynamicColorBlock(viewModel: ChangeThemeViewModel = provideHiltViewModel()) 
 fun DarkModePreferenceBlock(viewModel: ChangeThemeViewModel = provideHiltViewModel()) {
     val config = viewModel.configStore.asStateValue() ?: return
     Column {
-        HeaderBlock("Dark mode preference")
+        HeaderBlock(stringResource(R.string.theme_change_dark_mode))
         Spacer8()
         ToggleBlock(
-            label = "System default",
+            label = stringResource(R.string.theme_change_dark_mode_system),
             selected = config.autoDark,
             onClick = viewModel::onUseSystemDefault
         )
         ToggleBlock(
-            label = "Light",
+            label = stringResource(R.string.theme_change_dark_mode_off),
             selected = !config.autoDark && !config.defaultTheme.dark,
             onClick = viewModel::onUseLight
         )
         ToggleBlock(
-            label = "Dark",
+            label = stringResource(R.string.theme_change_dark_mode_on),
             selected = !config.autoDark && config.defaultTheme.dark,
             onClick = viewModel::onUseDark
         )

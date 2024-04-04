@@ -1,1 +1,1 @@
-Google Play Publisher
+Google Play Distribution
