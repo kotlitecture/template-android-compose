@@ -33,7 +33,7 @@ fun NoInternetProvider(
     textColor: Color = Color.White,
     backgroundColor: Color = Color.Red.copy(alpha = 0.92f)
 ) {
-    val viewModel: NoInternetViewModel = provideHiltViewModel(activityScoped = true)
+    val viewModel: NoInternetViewModel = provideHiltViewModel()
     AnimatedVisibility(
         visible = !viewModel.isOnlineStore.asStateValueNotNull(),
         enter = slideInVertically() + fadeIn(),

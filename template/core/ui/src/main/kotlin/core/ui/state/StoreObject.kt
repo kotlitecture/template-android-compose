@@ -38,8 +38,7 @@ data class StoreObject<T>(
     private var currentValue: T? = value
 
     private val valueChanges = lazy {
-        val processor =
-            MutableSharedFlow<T?>(replay = valueReply, extraBufferCapacity = valueBufferCapacity)
+        val processor = MutableSharedFlow<T?>(replay = valueReply, extraBufferCapacity = valueBufferCapacity)
         processor.tryEmit(currentValue)
         processor
     }

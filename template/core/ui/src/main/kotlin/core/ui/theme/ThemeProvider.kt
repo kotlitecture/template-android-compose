@@ -4,7 +4,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import core.ui.misc.extensions.findActivity
@@ -27,9 +26,8 @@ fun ThemeProvider(
 @Composable
 private fun SystemDarkModeHandler(state: ThemeState) {
     val systemDarkMode = isSystemInDarkTheme()
-    DisposableEffect(systemDarkMode) {
+    LaunchedEffect(systemDarkMode) {
         state.systemDarkModeStore.set(systemDarkMode)
-        onDispose { }
     }
 }
 
