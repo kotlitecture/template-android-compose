@@ -1,5 +1,7 @@
 package core.ui.navigation
 
+import androidx.compose.runtime.Immutable
+
 /**
  * Data class representing navigation data containing information about the destination, navigation strategy,
  * data to be passed, and a unique identifier.
@@ -9,6 +11,7 @@ package core.ui.navigation
  * @param data The data to be passed during navigation.
  * @param uid A unique identifier for the navigation data. Defaults to the current system nano time.
  */
+@Immutable
 data class NavigationData<D>(
     val destination: NavigationDestination<D>?,
     val strategy: NavigationStrategy,

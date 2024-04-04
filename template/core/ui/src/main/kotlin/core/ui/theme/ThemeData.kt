@@ -2,6 +2,7 @@ package core.ui.theme
 
 import androidx.activity.SystemBarStyle
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Brush
@@ -15,6 +16,7 @@ import androidx.compose.ui.text.font.FontFamily
  * @property primary The primary color in the theme.
  * @property onPrimary The color used for texts and icons on the primary background.
  */
+@Immutable
 abstract class ThemeData {
 
     abstract val providerId: String?
