@@ -24,7 +24,7 @@ class NavigationViewModel : BaseViewModel() {
         launchMain("navigationStore") {
             navigationState.navigationStore.asFlow()
                 .filterNotNull()
-                .collectLatest {
+                .collect {
                     try {
                         val strategy = it.strategy
                         val destination = it.destination

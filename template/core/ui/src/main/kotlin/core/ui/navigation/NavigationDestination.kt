@@ -12,7 +12,6 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.navArgument
-import androidx.navigation.navigation
 import core.ui.misc.extensions.ifIndex
 
 /**
@@ -49,6 +48,16 @@ abstract class NavigationDestination<D> {
     fun bind(builder: NavGraphBuilder) {
         register(this)
         doBind(builder)
+    }
+
+    /**
+     * Binds the given navigation destinations to the NavGraphBuilder.
+     *
+     * @param builder The NavGraphBuilder to bind the navigation destinations to.
+     * @param navigation The navigation destinations to bind.
+     */
+    fun bind(builder: NavGraphBuilder, vararg navigation: NavigationDestination<*>) {
+        navigation.forEach { it.bind(builder) }
     }
 
     /**
@@ -120,27 +129,6 @@ abstract class NavigationDestination<D> {
             ),
             content = { entry -> route(entry, content) }
         )
-    }
-
-    /**
-     * Defines navigation routes for this destination.
-     *
-     * @param builder The NavGraphBuilder to bind to.
-     * @param primaryDestination The primary destination for the navigation.
-     * @param destinations Other destinations to include in the navigation.
-     */
-    protected fun navigation(
-        builder: NavGraphBuilder,
-        primaryDestination: NavigationDestination<*>,
-        vararg destinations: NavigationDestination<*>
-    ) {
-        builder.navigation(
-            startDestination = primaryDestination.route,
-            route = route
-        ) {
-            primaryDestination.bind(this)
-            destinations.forEach { it.bind(this) }
-        }
     }
 
     @Composable

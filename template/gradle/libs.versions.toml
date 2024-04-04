@@ -69,7 +69,6 @@ androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = 
 androidx-compose-constraintlayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "androidxComposeConstraintlayout" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
 androidx-compose-foundation-layout = { module = "androidx.compose.foundation:foundation-layout" }
-androidx-compose-material = { module = "androidx.compose.material:material" }
 androidx-compose-material-iconsExtended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material3-adaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "androidxComposeMaterial3Adaptive" }
@@ -169,7 +168,6 @@ androidCommon = [
     "androidx-compose-constraintlayout",
     "androidx-compose-foundation",
     "androidx-compose-foundation-layout",
-    "androidx-compose-material",
     "androidx-compose-material-iconsExtended",
     "androidx-compose-material3",
     "androidx-compose-material3-adaptive",

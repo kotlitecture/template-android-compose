@@ -1,10 +1,10 @@
 package app.di.state
 
+import app.showcases.ShowcasesDestination
 import app.ui.screen.template.TemplateDestination
 import app.userflow.navigation.a.NavigationADestination
 import app.userflow.navigation.b.NavigationBDestination
 import app.userflow.navigation.c.NavigationCDestination
-import app.userflow.navigation.d.NavigationDDestination
 import app.userflow.theme.change.ChangeThemeDestination
 import app.userflow.theme.change.ChangeThemeDialogDestination
 import app.userflow.webtonative.WebToNativeDestination
@@ -23,12 +23,12 @@ internal class ProvidesNavigationState {
     @Singleton
     fun state(): NavigationState = NavigationState(
         destinations = listOf(
+            ShowcasesDestination,
             TemplateDestination,
             WebToNativeDestination,
             NavigationADestination,
             NavigationBDestination,
             NavigationCDestination,
-            NavigationDDestination,
             ChangeThemeDestination,
             ChangeThemeDialogDestination
         )

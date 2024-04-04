@@ -33,6 +33,7 @@ import kotli.template.android.compose.metadata.toolkit.UiToolkitProvider
 import kotli.template.android.compose.quality.crashes.CrashesProvider
 import kotli.template.android.compose.quality.performance.PerformanceProvider
 import kotli.template.android.compose.quality.startup.StartupProvider
+import kotli.template.android.compose.showcases.ShowcasesProvider
 import kotli.template.android.compose.testing.http.HttpTestingProvider
 import kotli.template.android.compose.testing.logging.LoggingProvider
 import kotli.template.android.compose.testing.unit_testing.UnitTestsProvider
@@ -134,6 +135,9 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         LoggingProvider(),
         HttpTestingProvider(),
         UnitTestsProvider(),
+
+        // showcases
+        ShowcasesProvider,
 
         // wip
         WipProvider
