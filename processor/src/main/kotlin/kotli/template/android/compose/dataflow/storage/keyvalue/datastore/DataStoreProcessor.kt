@@ -39,10 +39,8 @@ object DataStoreProcessor : BaseFeatureProcessor() {
 
         state.onApplyRules(
             VersionCatalogRules(
-                listOf(
-                    RemoveMarkedLine("androidx-datastore"),
-                    RemoveMarkedLine("androidxDatastore"),
-                )
+                RemoveMarkedLine("androidx-datastore"),
+                RemoveMarkedLine("androidxDatastore"),
             )
         )
     }

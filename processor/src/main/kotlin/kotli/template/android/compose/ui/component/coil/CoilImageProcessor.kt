@@ -45,9 +45,7 @@ class CoilImageProcessor : BaseFeatureProcessor() {
         )
         state.onApplyRules(
             VersionCatalogRules(
-                listOf(
-                    RemoveMarkedLine("coil")
-                )
+                RemoveMarkedLine("coil")
             )
         )
     }

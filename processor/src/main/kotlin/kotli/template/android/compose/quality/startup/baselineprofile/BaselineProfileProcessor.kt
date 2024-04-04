@@ -60,12 +60,10 @@ class BaselineProfileProcessor : BaseFeatureProcessor() {
         )
         state.onApplyRules(
             VersionCatalogRules(
-                listOf(
-                    RemoveMarkedLine("androidxBenchmarkMacroJunit4"),
-                    RemoveMarkedLine("androidxUiautomator"),
-                    RemoveMarkedLine("androidxEspresso"),
-                    RemoveMarkedLine("baselineprofile")
-                )
+                RemoveMarkedLine("androidxBenchmarkMacroJunit4"),
+                RemoveMarkedLine("androidxUiautomator"),
+                RemoveMarkedLine("androidxEspresso"),
+                RemoveMarkedLine("baselineprofile")
             )
         )
     }
