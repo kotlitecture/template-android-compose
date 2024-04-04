@@ -13,7 +13,7 @@ import core.ui.state.ErrorStateProvider
  */
 @Composable
 fun NavigationProvider(navigationState: NavigationState, navigationContext: NavigationContext) {
-    val viewModel = provideViewModel<NavigationViewModel>(activityScope = true)
+    val viewModel = provideViewModel<NavigationViewModel>()
     LaunchedEffect(navigationState, navigationContext) {
         viewModel.onBind(navigationState, navigationContext)
     }

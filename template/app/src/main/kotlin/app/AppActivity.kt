@@ -16,8 +16,9 @@ import app.userflow.loader.data.DataLoaderProvider
 import app.userflow.review.google.GoogleReviewProvider
 import app.userflow.update.google.GoogleUpdateProvider
 import core.ui.navigation.NavigationScaffold
+import core.ui.navigation.NavigationState
 import core.ui.navigation.rememberNavigationContext
-import core.ui.state.StateProvider
+import core.ui.state.StoreStateProvider
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -30,21 +31,21 @@ class AppActivity : FragmentActivity() {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
-            StateProvider()
+            StoreStateProvider()
             val viewModel: AppViewModel = provideHiltViewModel()
-            ScaffoldBlock(viewModel)
-            SplashBlock(splashScreen, viewModel)
+            val navigationState = remember { viewModel.navigationState }
+            val appState = remember { viewModel.appState }
+            SplashBlock(splashScreen, navigationState)
+            ScaffoldBlock(appState, navigationState)
         }
     }
 
 }
 
 @Composable
-private fun ScaffoldBlock(viewModel: AppViewModel) {
+private fun ScaffoldBlock(appState: AppState, navigationState: NavigationState) {
     ThemeProvider {
-        val navigationState = remember { viewModel.navigationState }
         val navigationContext = rememberNavigationContext()
-        val appState = remember { viewModel.appState }
         NavigationBarProvider { // {ui.navigation.common}
             NavigationScaffold(
                 navigationContext = navigationContext,
@@ -62,9 +63,9 @@ private fun ScaffoldBlock(viewModel: AppViewModel) {
 
 // {userflow.splash.basic}
 @Composable
-private fun SplashBlock(splashScreen: SplashScreen, viewModel: AppViewModel) {
+private fun SplashBlock(splashScreen: SplashScreen, navigationState: NavigationState) {
     splashScreen.setKeepOnScreenCondition {
-        viewModel.navigationState.currentDestinationStore.asStateValue() == null
+        navigationState.currentDestinationStore.get() == null
     }
 }
 // {userflow.splash.basic}
