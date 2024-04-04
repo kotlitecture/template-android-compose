@@ -1,12 +1,17 @@
+@file:OptIn(NavDeepLinkSaveStateControl::class)
+
 package core.ui.navigation
 
 import android.content.Context
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavController
+import androidx.navigation.NavDeepLinkSaveStateControl
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
@@ -34,14 +39,17 @@ data class NavigationContext(
  *
  * @return An instance of [NavigationContext] containing the essential components.
  */
+@Stable
 @Composable
 fun rememberNavigationContext(): NavigationContext {
+    NavController.enableDeepLinkSaveState(false)
+    val snackbarHostSate = remember { SnackbarHostState() }
     val navController = rememberNavController()
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
-    return remember(context) {
+    return remember(navController, context) {
         NavigationContext(
-            snackbarHostSate = SnackbarHostState(),
+            snackbarHostSate = snackbarHostSate,
             navController = navController,
             context = context,
             scope = scope
