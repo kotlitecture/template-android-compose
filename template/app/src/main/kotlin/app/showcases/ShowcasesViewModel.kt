@@ -10,4 +10,10 @@ class ShowcasesViewModel @Inject constructor(
     private val navigationState: NavigationState,
 ) : BaseViewModel() {
 
+    val showcases = ShowcasesDestination.showcases
+
+    fun onOpen(showcase: Showcase) {
+        navigationState.onNext(showcase)
+    }
+
 }

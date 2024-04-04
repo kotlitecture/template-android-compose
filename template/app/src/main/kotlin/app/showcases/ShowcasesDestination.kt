@@ -1,6 +1,7 @@
 package app.showcases
 
 import androidx.navigation.NavGraphBuilder
+import app.showcases.theme.ThemeShowcase
 import core.ui.navigation.ArgsStrategy
 import core.ui.navigation.NavigationDestination
 import core.ui.navigation.NavigationStrategy
@@ -10,8 +11,8 @@ import core.ui.navigation.NavigationStrategy
  */
 object ShowcasesDestination : NavigationDestination<Unit>() {
 
-    val showcases = listOf<ShowcaseDestination>(
-
+    val showcases = listOf<Showcase>(
+        ThemeShowcase
     )
 
     override val id: String = "showcases_flow"
