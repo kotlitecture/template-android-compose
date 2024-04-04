@@ -1,18 +1,26 @@
 package kotli.template.android.compose.showcases.common
 
 import kotli.engine.BaseFeatureProcessor
+import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.rule.CleanupMarkedBlock
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.engine.template.rule.ReplaceMarkedText
+import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
+import kotli.template.android.compose.ui.container.fixedtopbar.FixedTopBarProcessor
 
 object CommonShowcasesProcessor : BaseFeatureProcessor() {
 
     const val ID = "showcases.common"
 
     override fun getId(): String = ID
+
+    override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
+        BasicComponentsProcessor::class.java,
+        FixedTopBarProcessor::class.java
+    )
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules(

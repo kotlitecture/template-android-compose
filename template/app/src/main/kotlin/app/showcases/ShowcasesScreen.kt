@@ -12,7 +12,9 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material3.Card
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -70,7 +72,7 @@ private fun LazyListScope.showcase(
     onClick: (showcase: Showcase) -> Unit
 ) {
     item {
-        ElevatedCard(
+        OutlinedCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 8.dp)

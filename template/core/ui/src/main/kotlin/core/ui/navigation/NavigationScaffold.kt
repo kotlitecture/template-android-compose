@@ -1,10 +1,12 @@
 package core.ui.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 /**
  * Composable function to display the main scaffold of the app.
@@ -28,6 +30,7 @@ fun NavigationScaffold(
 ) {
     val startDestination = navigationState.startDestinationStore.asStateValue() ?: return
     Scaffold(
+        modifier = Modifier.fillMaxSize(),
         topBar = topBar,
         bottomBar = bottomBar,
         floatingActionButton = floatingActionButton,

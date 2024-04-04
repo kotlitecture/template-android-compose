@@ -2,11 +2,19 @@
 
 package core.ui.state
 
+import android.os.Handler
+import android.os.Looper
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.LocalContext
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
 
 /**
  * An immutable store object that holds a value of type [T].
@@ -29,7 +37,8 @@ data class StoreObject<T>(
     private var currentValue: T? = value
 
     private val valueChanges = lazy {
-        val processor = MutableSharedFlow<T?>(replay = valueReply, extraBufferCapacity = valueBufferCapacity)
+        val processor =
+            MutableSharedFlow<T?>(replay = valueReply, extraBufferCapacity = valueBufferCapacity)
         processor.tryEmit(currentValue)
         processor
     }
@@ -54,7 +63,8 @@ data class StoreObject<T>(
     /**
      * Returns the value of the store object as a non-nullable type [T].
      */
-    fun asStateValueNotNull(): T = runCatching { asStateNotNull().value }.getOrElse { currentValue!! }
+    fun asStateValueNotNull(): T =
+        runCatching { asStateNotNull().value }.getOrElse { currentValue!! }
 
     /**
      * Returns the store object as a flow of type [T].
@@ -98,10 +108,28 @@ data class StoreObject<T>(
                 changes.tryEmit(value)
             }
             if (valueState.isInitialized()) {
-                valueState.value.value = value
+                onMain { valueState.value.value = value }
             }
         }
         return changed
+    }
+
+    companion object {
+        private val mainLooper by lazy { Handler(Looper.getMainLooper()) }
+
+        private var mainScope: CoroutineScope? = null
+
+        @Composable
+        internal fun bind() {
+            mainScope = rememberCoroutineScope()
+            DisposableEffect(LocalContext.current) { onDispose { mainScope = null } }
+        }
+
+        internal fun onMain(block: () -> Unit) {
+            mainScope
+                ?.launch { block.invoke() }
+                ?: run { mainLooper.post(block) }
+        }
     }
 
 }
