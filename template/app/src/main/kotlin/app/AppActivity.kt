@@ -2,7 +2,6 @@ package app
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.core.splashscreen.SplashScreen
@@ -47,7 +46,6 @@ private fun ScaffoldBlock(appState: AppState, navigationState: NavigationState) 
         NavigationBarProvider { // {ui.navigation.common}
             NavigationScaffold(
                 navigationContext = navigationContext,
-                navigationState = navigationState,
                 bottomBar = { BottomNavigation() }
             )
         } // {ui.navigation.common}

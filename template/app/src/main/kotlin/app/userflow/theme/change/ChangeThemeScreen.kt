@@ -19,13 +19,13 @@ import androidx.compose.ui.unit.sp
 import app.R
 import app.provideHiltViewModel
 import app.ui.component.basic.Spacer8
-import app.ui.container.FixedTopBarLayout
+import app.ui.container.FixedTopBarColumnLayout
 import core.ui.theme.ThemeData
 
 @Composable
 fun ChangeThemeScreen() {
     val viewModel: ChangeThemeViewModel = provideHiltViewModel()
-    FixedTopBarLayout(
+    FixedTopBarColumnLayout(
         title = stringResource(R.string.theme_change_title),
         onBack = viewModel::onBack,
         content = {

@@ -8,7 +8,7 @@ Component: `app/ui/container/FixedTopBarLayout.kt`
 @Composable
 fun TemplateScreen() {
     val viewModel: TemplateViewModel = provideHiltViewModel()
-    FixedTopBarLayout(
+    FixedTopBarColumnLayout(
         title = "MyScreen",
         onBack = viewModel::onBack,
         actions = {

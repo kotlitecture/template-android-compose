@@ -26,7 +26,7 @@ fun BottomNavigation() {
     val viewModel: NavigationBarViewModel = provideHiltViewModel()
     val pages = viewModel.pagesStore.asStateValue()?.takeIf { it.isNotEmpty() } ?: return
     val visibilityStore = viewModel.visibilityStore
-    val visibilityState = remember { MutableTransitionState(false) }
+    val visibilityState = remember { MutableTransitionState(visibilityStore.get() != false) }
     val animation = remember { tween<IntOffset>(150, easing = LinearEasing) }
     val offset: (fullHeight: Int) -> Int = remember { { it / 2 } }
     VisibilityHandler(visibilityStore, visibilityState)

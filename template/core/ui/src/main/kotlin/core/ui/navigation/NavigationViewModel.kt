@@ -1,6 +1,7 @@
 package core.ui.navigation
 
 import core.ui.BaseViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.mapNotNull
@@ -17,7 +18,11 @@ class NavigationViewModel : BaseViewModel() {
                 .mapNotNull { it.destination.route }
                 .mapNotNull(NavigationDestination.Companion::getByRoute)
                 .distinctUntilChanged()
-                .collectLatest(navigationState.currentDestinationStore::set)
+                .collectLatest {
+                    val store = navigationState.currentDestinationStore
+                    if (store.isNull()) delay(100)
+                    store.set(it)
+                }
         }
     }
 
