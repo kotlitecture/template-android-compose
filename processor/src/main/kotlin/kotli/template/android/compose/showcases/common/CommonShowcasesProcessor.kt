@@ -16,6 +16,7 @@ object CommonShowcasesProcessor : BaseFeatureProcessor() {
     const val ID = "showcases.common"
 
     override fun getId(): String = ID
+    override fun isInternal(): Boolean = true
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         FixedHeaderFooterProcessor::class.java,
