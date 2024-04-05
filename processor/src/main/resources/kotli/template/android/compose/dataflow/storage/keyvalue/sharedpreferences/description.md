@@ -1,0 +1,1 @@
+Key-value storage API utilizing SharedPreferences to store data of any type.

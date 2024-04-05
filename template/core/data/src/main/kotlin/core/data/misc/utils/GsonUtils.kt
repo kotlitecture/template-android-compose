@@ -19,7 +19,7 @@ import java.util.TimeZone
 
 object GsonUtils {
 
-    val gson: Gson by lazy { configure(GsonBuilder()).create() }
+    private val gson: Gson by lazy { configure(GsonBuilder()).create() }
 
     fun configure(builder: GsonBuilder): GsonBuilder = builder
         .setLenient()
@@ -67,7 +67,7 @@ object GsonUtils {
             type: Type,
             jsonSerializationContext: JsonSerializationContext
         ): JsonElement {
-            return JsonPrimitive(dateTimeShortFormatter.format(date))
+            return JsonPrimitive(dateTimeFullFormatter.format(date))
         }
 
         override fun deserialize(

@@ -28,6 +28,8 @@ data class Material3ThemeData(
     val typography: Typography,
 ) : ThemeData() {
 
+    override val providerId: String = provider.id
+
     override val primary: Color = colorScheme.surface
     override val onPrimary: Color = colorScheme.onSurface
 

@@ -13,6 +13,7 @@ import core.ui.theme.ThemeDataProvider
  * @property colorScheme The color scheme used in the theme.
  */
 data class Material3ThemeDataProvider(
+    override val id: String,
     override val dark: Boolean,
     val colorScheme: ColorScheme
 ) : ThemeDataProvider<Material3ThemeData>() {

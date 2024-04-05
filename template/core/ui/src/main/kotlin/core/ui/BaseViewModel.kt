@@ -20,6 +20,7 @@ import core.ui.misc.extensions.findActivity
 import core.ui.state.DataState
 import core.ui.state.StoreState
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
@@ -78,6 +79,10 @@ abstract class BaseViewModel : ViewModel() {
         )
     }
 
+    protected suspend fun <T> withAsync(block: suspend CoroutineScope.() -> T): Deferred<T> {
+        return viewModelScope.async(Dispatchers.IO) { block.invoke(this) }
+    }
+
     private fun launch(
         id: String,
         state: StoreState?,
@@ -101,11 +106,6 @@ abstract class BaseViewModel : ViewModel() {
             }
         }
         jobs[id] = job
-    }
-
-    protected suspend fun <T> withAsync(block: suspend CoroutineScope.() -> T): T {
-        val job = viewModelScope.async(Dispatchers.IO) { block.invoke(this) }
-        return job.await()
     }
 
     /**

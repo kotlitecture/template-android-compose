@@ -3,6 +3,7 @@ package core.ui.navigation
 import android.net.Uri
 import android.util.SparseArray
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
@@ -12,7 +13,6 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.navArgument
-import androidx.navigation.navigation
 import core.ui.misc.extensions.ifIndex
 
 /**
@@ -20,19 +20,20 @@ import core.ui.misc.extensions.ifIndex
  *
  * @param D The type of data associated with this destination.
  */
+@Immutable
 abstract class NavigationDestination<D> {
 
     /** Unique identifier for this destination. */
     abstract val id: String
-
-    /** Route string for navigation. */
-    val route by lazy { "$id?$ATTR_DATA={$ATTR_DATA}" }
 
     /** Strategy for navigation behavior. */
     abstract val navStrategy: NavigationStrategy
 
     /** Strategy for handling arguments associated with this destination. */
     abstract val argsStrategy: ArgsStrategy<D>
+
+    /** Route string for navigation. */
+    val route by lazy { "$id?$ATTR_DATA={$ATTR_DATA}" }
 
     /**
      * Gets the name of this destination.
@@ -49,6 +50,16 @@ abstract class NavigationDestination<D> {
     fun bind(builder: NavGraphBuilder) {
         register(this)
         doBind(builder)
+    }
+
+    /**
+     * Binds the given navigation destinations to the NavGraphBuilder.
+     *
+     * @param builder The NavGraphBuilder to bind the navigation destinations to.
+     * @param navigation The navigation destinations to bind.
+     */
+    fun bind(builder: NavGraphBuilder, vararg navigation: NavigationDestination<*>) {
+        navigation.forEach { it.bind(builder) }
     }
 
     /**
@@ -92,7 +103,7 @@ abstract class NavigationDestination<D> {
         builder.composable(
             route = route,
             arguments = createArgs(),
-            content = { entry -> route(entry, content) }
+            content = { entry -> route(RouteData(entry, content)) }
         )
     }
 
@@ -118,39 +129,15 @@ abstract class NavigationDestination<D> {
                 dismissOnBackPress = dismissOnBackPress,
                 dismissOnClickOutside = dismissOnClickOutside
             ),
-            content = { entry -> route(entry, content) }
+            content = { entry -> route(RouteData(entry, content)) }
         )
     }
 
-    /**
-     * Defines navigation routes for this destination.
-     *
-     * @param builder The NavGraphBuilder to bind to.
-     * @param primaryDestination The primary destination for the navigation.
-     * @param destinations Other destinations to include in the navigation.
-     */
-    protected fun navigation(
-        builder: NavGraphBuilder,
-        primaryDestination: NavigationDestination<*>,
-        vararg destinations: NavigationDestination<*>
-    ) {
-        builder.navigation(
-            startDestination = primaryDestination.route,
-            route = route
-        ) {
-            primaryDestination.bind(this)
-            destinations.forEach { it.bind(this) }
-        }
-    }
-
     @Composable
-    private fun route(
-        entry: NavBackStackEntry,
-        content: @Composable (data: D?) -> Unit
-    ) {
-        val value = entry.arguments?.getString(ATTR_DATA)
+    private fun route(routeData: RouteData<D>) {
+        val value = routeData.entry.arguments?.getString(ATTR_DATA)
         val data = value?.let { argsStrategy.toObject(it) }
-        content(data)
+        routeData.content(data)
     }
 
     private fun createArgs() = listOf(
@@ -191,5 +178,11 @@ abstract class NavigationDestination<D> {
                 ?: route
         }
     }
+
+    @Immutable
+    data class RouteData<D>(
+        val entry: NavBackStackEntry,
+        val content: @Composable (data: D?) -> Unit
+    )
 
 }

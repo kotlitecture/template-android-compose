@@ -5,7 +5,7 @@ The API is available under the package `core.ui.navigation`.
 
 ## Create Destination
 
-To create your own destination, utilize the provided template `app.userflow.template.TemplateDestination`.
+To create your own destination, utilize the provided template `app.ui.screen.template.TemplateDestination`.
 
 ```kotlin
 object TemplateDestination : NavigationDestination<TemplateDestination.Data>() {

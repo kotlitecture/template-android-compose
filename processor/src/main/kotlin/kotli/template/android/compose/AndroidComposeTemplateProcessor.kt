@@ -19,7 +19,9 @@ import kotli.template.android.compose.dataflow.messaging.MessagingProvider
 import kotli.template.android.compose.dataflow.network.NetworkProvider
 import kotli.template.android.compose.dataflow.notifications.NotificationsProvider
 import kotli.template.android.compose.dataflow.paging.PagingProvider
-import kotli.template.android.compose.dataflow.storage.StorageProvider
+import kotli.template.android.compose.dataflow.storage.database.DatabaseProvider
+import kotli.template.android.compose.dataflow.storage.encryptedkeyvalue.EncryptedKeyValueStorageProvider
+import kotli.template.android.compose.dataflow.storage.keyvalue.KeyValueStorageProvider
 import kotli.template.android.compose.dataflow.work.WorkProvider
 import kotli.template.android.compose.devops.distribution.DistributionProvider
 import kotli.template.android.compose.devops.i18n.I18NProvider
@@ -31,14 +33,14 @@ import kotli.template.android.compose.metadata.toolkit.UiToolkitProvider
 import kotli.template.android.compose.quality.crashes.CrashesProvider
 import kotli.template.android.compose.quality.performance.PerformanceProvider
 import kotli.template.android.compose.quality.startup.StartupProvider
+import kotli.template.android.compose.showcases.ShowcasesProvider
 import kotli.template.android.compose.testing.http.HttpTestingProvider
 import kotli.template.android.compose.testing.logging.LoggingProvider
 import kotli.template.android.compose.testing.unit_testing.UnitTestsProvider
-import kotli.template.android.compose.ui.command.UiCommandProvider
 import kotli.template.android.compose.ui.component.UiComponentProvider
 import kotli.template.android.compose.ui.container.UiContainerProvider
 import kotli.template.android.compose.ui.l10n.L10NProvider
-import kotli.template.android.compose.ui.navigation.NavigationBarProvider
+import kotli.template.android.compose.ui.navigation.UiNavigationBarProvider
 import kotli.template.android.compose.ui.screen.UiScreenProvider
 import kotli.template.android.compose.unspecified.UnspecifiedProvider
 import kotli.template.android.compose.userflow.ads.AdsProvider
@@ -52,8 +54,10 @@ import kotli.template.android.compose.userflow.payments.PaymentsProvider
 import kotli.template.android.compose.userflow.review.ReviewProvider
 import kotli.template.android.compose.userflow.splash.SplashProvider
 import kotli.template.android.compose.userflow.support.SupportProvider
+import kotli.template.android.compose.userflow.theme.ThemeProvider
 import kotli.template.android.compose.userflow.update.UpdateProvider
 import kotli.template.android.compose.userflow.webtonative.WebToNativeProvider
+import kotli.template.android.compose.wip.WipProvider
 
 class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
 
@@ -84,7 +88,9 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         AnalyticsProvider(),
         ConfigProvider(),
         CacheProvider(),
-        StorageProvider(),
+        DatabaseProvider(),
+        KeyValueStorageProvider,
+        EncryptedKeyValueStorageProvider,
         PagingProvider(),
         HttpProvider(),
         NetworkProvider(),
@@ -102,14 +108,14 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         StartupProvider(),
 
         // ui
-        NavigationBarProvider(),
+        UiNavigationBarProvider(),
         UiComponentProvider(),
         UiContainerProvider(),
-        UiCommandProvider(),
         UiScreenProvider(),
 
         // userflow
         SplashProvider(),
+        ThemeProvider,
         LoaderProvider(),
         InternetProvider(),
         ReviewProvider(),
@@ -127,6 +133,12 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         LoggingProvider(),
         HttpTestingProvider(),
         UnitTestsProvider(),
+
+        // showcases
+        ShowcasesProvider,
+
+        // wip
+        WipProvider
     )
 
     override fun processBefore(state: TemplateState) {

@@ -3,18 +3,18 @@ package app.di.state
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Coffee
 import androidx.compose.material.icons.filled.LocalDrink
-import androidx.compose.material.icons.filled.NoDrinks
+import androidx.compose.material.icons.filled.School
 import androidx.compose.material.icons.filled.WineBar
 import androidx.compose.material.icons.outlined.Coffee
 import androidx.compose.material.icons.outlined.LocalDrink
-import androidx.compose.material.icons.outlined.NoDrinks
+import androidx.compose.material.icons.outlined.School
 import androidx.compose.material.icons.outlined.WineBar
+import app.showcases.ShowcasesDestination
 import app.ui.navigation.NavigationBarPage
 import app.ui.navigation.NavigationBarState
 import app.userflow.navigation.a.NavigationADestination
 import app.userflow.navigation.b.NavigationBDestination
 import app.userflow.navigation.c.NavigationCDestination
-import app.userflow.navigation.d.NavigationDDestination
 import core.ui.navigation.NavigationDestination
 import core.ui.navigation.NavigationState
 import core.ui.navigation.NavigationStrategy
@@ -32,33 +32,35 @@ internal class ProvidesNavigationBarState {
     @Singleton
     fun state(navigationState: NavigationState): NavigationBarState = NavigationBarState(
         pages = listOf(
+            // start {showcases.common}
+            createPage(
+                navigationState = navigationState,
+                destination = ShowcasesDestination,
+                getActiveIcon = { Icons.Filled.School },
+                getInactiveIcon = { Icons.Outlined.School },
+                getLabel = { "Showcases" }
+            ),
+            // end {showcases.common}
             createPage(
                 navigationState = navigationState,
                 destination = NavigationADestination,
                 getActiveIcon = { Icons.Filled.WineBar },
                 getInactiveIcon = { Icons.Outlined.WineBar },
-                getLabel = { "A" }
+                getLabel = { "Page 1" }
             ),
             createPage(
                 navigationState = navigationState,
                 destination = NavigationBDestination,
                 getActiveIcon = { Icons.Filled.LocalDrink },
                 getInactiveIcon = { Icons.Outlined.LocalDrink },
-                getLabel = { "B" }
+                getLabel = { "Page 2" }
             ),
             createPage(
                 navigationState = navigationState,
                 destination = NavigationCDestination,
                 getActiveIcon = { Icons.Filled.Coffee },
                 getInactiveIcon = { Icons.Outlined.Coffee },
-                getLabel = { "C" }
-            ),
-            createPage(
-                navigationState = navigationState,
-                destination = NavigationDDestination,
-                getActiveIcon = { Icons.Filled.NoDrinks },
-                getInactiveIcon = { Icons.Outlined.NoDrinks },
-                getLabel = { "D" }
+                getLabel = { "Page 3" }
             )
         )
     )

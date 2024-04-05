@@ -27,12 +27,10 @@ class AdaptiveNavigationProcessor : BaseFeatureProcessor() {
         )
         state.onApplyRules(
             VersionCatalogRules(
-                listOf(
-                    RemoveMarkedLine("adaptiveNavigation"),
-                    RemoveMarkedLine("adaptive-navigation"),
-                    RemoveMarkedLine("material3Adaptive"),
-                    RemoveMarkedLine("material3-adaptive")
-                )
+                RemoveMarkedLine("adaptiveNavigation"),
+                RemoveMarkedLine("adaptive-navigation"),
+                RemoveMarkedLine("material3Adaptive"),
+                RemoveMarkedLine("material3-adaptive")
             )
         )
     }

@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(libs.objectbox.plugin) // {dataflow.storage.objectbox}
+        classpath(libs.objectbox.plugin) // {dataflow.storage.database.objectbox}
         classpath(libs.google.play.publisher) // {devops.distribution.google-play}
     }
 }

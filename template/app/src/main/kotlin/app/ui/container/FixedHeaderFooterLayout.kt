@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -22,9 +24,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.onSizeChanged
-import app.ui.component.SpacerDynamic
-import app.ui.component.SpacerNavigationBar
-import app.ui.component.SpacerStatusBar
+import app.ui.component.basic.SpacerDynamic
+import app.ui.component.basic.SpacerNavigationBar
+import app.ui.component.basic.SpacerStatusBar
 import core.ui.theme.ThemeData
 
 /**
@@ -66,7 +68,7 @@ data class FixedHeaderFooterAppearance(
 }
 
 /**
- * Composable function representing a layout.
+ * Composable function representing a Column layout with fixed header and footer.
  *
  * @param modifier The modifier to apply to the layout.
  * @param appearance The appearance configuration for the fixed header layout.
@@ -75,12 +77,38 @@ data class FixedHeaderFooterAppearance(
  * @param content The main content of the fixed header layout.
  */
 @Composable
-fun FixedHeaderFooterLayout(
+fun FixedHeaderFooterColumnLayout(
     modifier: Modifier = Modifier,
     appearance: FixedHeaderFooterAppearance = FixedHeaderFooterAppearance.default(),
     header: @Composable (ColumnScope.() -> Unit)? = null,
     footer: @Composable (ColumnScope.() -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit
+) {
+    val headerHeight = remember { mutableStateOf(-1) }
+    val footerHeight = remember { mutableStateOf(-1) }
+    Box(modifier = modifier.fillMaxSize()) {
+        ContentBlock(appearance, headerHeight, footerHeight, content)
+        HeaderBlock(appearance, headerHeight, header)
+        FooterBlock(appearance, footerHeight, footer)
+    }
+}
+
+/**
+ * Composable function representing a LazyColumn layout with fixed header and footer.
+ *
+ * @param modifier The modifier to apply to the layout.
+ * @param appearance The appearance configuration for the fixed header layout.
+ * @param header The composable content for the header section.
+ * @param footer The composable content for the footer section.
+ * @param content The main content of the fixed header layout.
+ */
+@Composable
+fun FixedHeaderFooterLazyColumnLayout(
+    modifier: Modifier = Modifier,
+    appearance: FixedHeaderFooterAppearance = FixedHeaderFooterAppearance.default(),
+    header: @Composable (ColumnScope.() -> Unit)? = null,
+    footer: @Composable (ColumnScope.() -> Unit)? = null,
+    content: LazyListScope.() -> Unit
 ) {
     val headerHeight = remember { mutableStateOf(-1) }
     val footerHeight = remember { mutableStateOf(-1) }
@@ -144,10 +172,30 @@ private fun ContentBlock(
             .background(appearance.backgroundColor)
             .verticalScroll(rememberScrollState())
     ) {
-        SpacerDynamic(heightState = headerState)
         if (headerState.value >= 0 && footerState.value >= 0) {
+            SpacerDynamic(heightState = headerState)
             content.invoke(this)
+            SpacerDynamic(heightState = footerState)
         }
-        SpacerDynamic(heightState = footerState)
+    }
+}
+
+@Composable
+private fun ContentBlock(
+    appearance: FixedHeaderFooterAppearance,
+    headerState: State<Int>,
+    footerState: State<Int>,
+    content: LazyListScope.() -> Unit
+) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(appearance.backgroundColor)
+    ) {
+        if (headerState.value >= 0 && footerState.value >= 0) {
+            item { SpacerDynamic(heightState = headerState) }
+            content.invoke(this)
+            item { SpacerDynamic(heightState = footerState) }
+        }
     }
 }

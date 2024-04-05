@@ -1,6 +1,6 @@
 package app
 
-import app.userflow.template.TemplateDestination
+import app.showcases.ShowcasesDestination
 import core.ui.BaseViewModel
 import core.ui.navigation.NavigationState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,7 +20,7 @@ class AppViewModel @Inject constructor(
 
     override fun doBind() {
         launchAsync("doBind") {
-            navigationState.setStartDestination(TemplateDestination)
+            navigationState.setStartDestination(ShowcasesDestination)
         }
     }
 

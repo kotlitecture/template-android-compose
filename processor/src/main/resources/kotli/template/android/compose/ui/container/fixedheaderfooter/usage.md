@@ -7,7 +7,7 @@ Component: `app/ui/container/FixedHeaderFooterLayout.kt`
 ```kotlin
 @Composable
 fun TemplateScreen() {
-    FixedHeaderFooterLayout(
+    FixedHeaderFooterColumnLayout(
         header = {
 
         },

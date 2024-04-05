@@ -5,7 +5,7 @@ apply plugin: "com.google.firebase.crashlytics" // {quality.crashes.firebase}
 apply plugin: "com.google.gms.google-services" // {google-services}
 apply plugin: "androidx.baselineprofile" // {quality.startup.baselineprofile}
 apply plugin: "com.github.triplet.play" // {devops.distribution.google-play}
-apply plugin: "io.objectbox" // {dataflow.storage.objectbox}
+apply plugin: "io.objectbox" // {dataflow.storage.database.objectbox}
 
 dependencies {
     implementation platform(libs.firebase.bom) // {firebase}

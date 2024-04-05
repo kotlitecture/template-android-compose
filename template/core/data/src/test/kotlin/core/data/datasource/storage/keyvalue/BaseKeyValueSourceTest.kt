@@ -1,20 +1,26 @@
 package core.data.datasource.storage.keyvalue
 
+import core.data.serialization.GsonStrategy
+import core.data.serialization.JsonStrategy
+import core.data.serialization.NoSerializationStrategy
 import core.testing.BaseAndroidUnitTest
+import kotlinx.serialization.Serializable
 import org.junit.Test
+import java.util.Date
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 abstract class BaseKeyValueSourceTest : BaseAndroidUnitTest() {
 
-    private val cache: KeyValueSource by lazy { provider() }
+    private val source: KeyValueSource by lazy { create() }
 
-    abstract fun provider(): KeyValueSource
+    abstract fun create(): KeyValueSource
 
     @Test
     fun `read not existing value`() = performTest {
         val key = "key"
-        assertNull(cache.read(key, Int::class.java))
+        assertNull(source.read(key, NoSerializationStrategy.create()))
     }
 
     @Test
@@ -22,14 +28,13 @@ abstract class BaseKeyValueSourceTest : BaseAndroidUnitTest() {
         val key = "key"
 
         // for given saved value
-        cache.save(key, 111, Int::class.java)
-        assertEquals(111, cache.read(key, Int::class.java))
-
+        source.save(key, 111, NoSerializationStrategy.create())
+        assertEquals(111, source.read(key, NoSerializationStrategy.create()))
         // when it is deleted
-        cache.remove(key)
-
+        val prev = source.remove<Int>(key, NoSerializationStrategy.create())
         // then it can not be read
-        assertNull(cache.read(key, Int::class.java))
+        assertNull(source.read(key, NoSerializationStrategy.create()))
+        assertEquals(111, prev)
     }
 
     @Test
@@ -38,28 +43,43 @@ abstract class BaseKeyValueSourceTest : BaseAndroidUnitTest() {
         val key2 = "key2"
 
         // for given saved values
-        cache.save(key1, 111, Int::class.java)
-        assertEquals(111, cache.read(key1, Int::class.java))
-        cache.save(key2, 222, Int::class.java)
-        assertEquals(222, cache.read(key2, Int::class.java))
+        source.save(key1, 111, NoSerializationStrategy.create())
+        assertEquals(111, source.read(key1, NoSerializationStrategy.create()))
+        source.save(key2, 222, NoSerializationStrategy.create())
+        assertEquals(222, source.read(key2, NoSerializationStrategy.create()))
 
         // when delete all values
-        cache.clear()
+        source.clear()
 
         // then no values can be read
-        assertNull(cache.read(key1, Int::class.java))
-        assertNull(cache.read(key2, Int::class.java))
+        assertNull(source.read(key1, NoSerializationStrategy.create()))
+        assertNull(source.read(key2, NoSerializationStrategy.create()))
     }
 
     @Test
     fun `save primitive`() = performTest {
         val key = "key"
 
-        // when save primitive
-        cache.save(key, 111, Int::class.java)
+        source.save(key, 111, NoSerializationStrategy.create())
+        assertEquals(111, source.read(key, NoSerializationStrategy.create()))
 
-        // then it can be read
-        assertEquals(111, cache.read(key, Int::class.java))
+        source.save(key, "222", NoSerializationStrategy.create())
+        assertEquals("222", source.read(key, NoSerializationStrategy.create()))
+
+        source.save(key, 1f, NoSerializationStrategy.create())
+        assertEquals(1f, source.read(key, NoSerializationStrategy.create()))
+
+        source.save(key, 1.0, NoSerializationStrategy.create())
+        assertEquals(1.0, source.read(key, NoSerializationStrategy.create()))
+
+        source.save(key, 1L, NoSerializationStrategy.create())
+        assertEquals(1L, source.read(key, NoSerializationStrategy.create()))
+
+        source.save(key, true, NoSerializationStrategy.create())
+        assertEquals(true, source.read(key, NoSerializationStrategy.create()))
+
+        source.save(key, "123".toByteArray(), NoSerializationStrategy.create())
+        assertContentEquals("123".toByteArray(), source.read(key, NoSerializationStrategy.create()))
     }
 
     @Test
@@ -67,12 +87,23 @@ abstract class BaseKeyValueSourceTest : BaseAndroidUnitTest() {
         val key = "key"
 
         // when save object
-        cache.save(key, TestObject("name"), TestObject::class.java)
-
+        source.save(key, TestObject("name"), JsonStrategy.create(TestObject.serializer()))
         // then it can be read
-        assertEquals(TestObject("name"), cache.read(key, TestObject::class.java))
+        assertEquals(TestObject("name"), source.read(key, GsonStrategy.create()))
     }
 
+    @Test
+    fun `save date`() = performTest {
+        val key = "key"
+
+        // when save object
+        val date = Date()
+        source.save(key, date, GsonStrategy.create())
+        // then it can be read
+        assertEquals(date, source.read(key, GsonStrategy.create()))
+    }
+
+    @Serializable
     data class TestObject(
         val name: String
     )

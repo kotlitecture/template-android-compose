@@ -15,7 +15,7 @@ import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import app.provideHiltViewModel
-import app.ui.component.AnyIcon
+import app.ui.component.basic.AnyIcon
 import app.ui.navigation.NavigationBarViewModel
 import core.ui.state.StoreObject
 
@@ -32,10 +32,11 @@ fun AdaptiveNavigation(content: @Composable () -> Unit) {
         content()
         return
     }
+    val selectedPageState = viewModel.selectedPageStore.asState()
     NavigationSuiteScaffold(
         layoutType = getLayoutType(viewModel.visibilityStore),
         navigationSuiteItems = {
-            val selectedPage = viewModel.selectedPageStore.asStateValue()
+            val selectedPage = selectedPageState.value
             pages.forEach { page ->
                 val selected = page.id == selectedPage?.id
                 item(

@@ -1,0 +1,1 @@
+Key-value storage API utilizing EncryptedSharedPreferences to securely store data of any type encrypted.

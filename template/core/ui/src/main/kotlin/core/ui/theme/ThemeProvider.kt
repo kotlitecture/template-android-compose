@@ -4,7 +4,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import core.ui.misc.extensions.findActivity
 import core.ui.provideViewModel
@@ -17,40 +17,35 @@ fun ThemeProvider(
     content: @Composable () -> Unit
 ) {
     val viewModel = provideViewModel<ThemeViewModel>()
-    DisposableEffect(state) {
-        viewModel.onBind(state)
-        onDispose { }
-    }
-    EdgeToEdgeHandler(viewModel)
+    LaunchedEffect(state) { viewModel.onBind(state) }
+    EdgeToEdgeHandler(state)
     SystemDarkModeHandler(state)
-    ThemeSwitchHandler(viewModel, content)
+    ThemeSwitchHandler(state, content)
 }
 
 @Composable
 private fun SystemDarkModeHandler(state: ThemeState) {
     val systemDarkMode = isSystemInDarkTheme()
-    DisposableEffect(systemDarkMode) {
+    LaunchedEffect(systemDarkMode) {
         state.systemDarkModeStore.set(systemDarkMode)
-        onDispose { }
     }
 }
 
 @Composable
-private fun EdgeToEdgeHandler(viewModel: ThemeViewModel) {
+private fun EdgeToEdgeHandler(state: ThemeState) {
     val activity = LocalContext.current.findActivity() ?: return
-    val data = viewModel.dataStore.asStateValue() ?: return
-    DisposableEffect(data) {
+    val data = state.dataStore.asStateValue() ?: return
+    LaunchedEffect(data) {
         activity.enableEdgeToEdge(
             statusBarStyle = data.systemBarStyle,
             navigationBarStyle = data.navigationBarStyle
         )
-        onDispose { }
     }
 }
 
 @Composable
-private fun ThemeSwitchHandler(viewModel: ThemeViewModel, content: @Composable () -> Unit) {
-    val data = viewModel.dataStore.asStateValue() ?: return
+private fun ThemeSwitchHandler(state: ThemeState, content: @Composable () -> Unit) {
+    val data = state.dataStore.asStateValue() ?: return
     CompositionLocalProvider(ThemeData.localThemeData provides data) {
         when {
             data is Material3ThemeData -> Material3ThemeProvider(data, content)

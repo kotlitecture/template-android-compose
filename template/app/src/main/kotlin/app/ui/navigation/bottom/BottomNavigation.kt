@@ -14,7 +14,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.IntOffset
 import app.provideHiltViewModel
-import app.ui.component.AnyIcon
+import app.ui.component.basic.AnyIcon
 import app.ui.navigation.NavigationBarViewModel
 import core.ui.state.StoreObject
 
@@ -26,7 +26,7 @@ fun BottomNavigation() {
     val viewModel: NavigationBarViewModel = provideHiltViewModel()
     val pages = viewModel.pagesStore.asStateValue()?.takeIf { it.isNotEmpty() } ?: return
     val visibilityStore = viewModel.visibilityStore
-    val visibilityState = remember { MutableTransitionState(false) }
+    val visibilityState = remember { MutableTransitionState(visibilityStore.get() != false) }
     val animation = remember { tween<IntOffset>(150, easing = LinearEasing) }
     val offset: (fullHeight: Int) -> Int = remember { { it / 2 } }
     VisibilityHandler(visibilityStore, visibilityState)

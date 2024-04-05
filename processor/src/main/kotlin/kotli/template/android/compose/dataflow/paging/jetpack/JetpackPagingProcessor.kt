@@ -1,7 +1,6 @@
 package kotli.template.android.compose.dataflow.paging.jetpack
 
 import kotli.engine.BaseFeatureProcessor
-import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.RemoveMarkedLine
@@ -18,10 +17,8 @@ class JetpackPagingProcessor : BaseFeatureProcessor() {
     override fun doRemove(state: TemplateState) {
         state.onApplyRules(
             VersionCatalogRules(
-                listOf(
-                    RemoveMarkedLine("androidx-paging"),
-                    RemoveMarkedLine("androidxPaging"),
-                )
+                RemoveMarkedLine("androidx-paging"),
+                RemoveMarkedLine("androidxPaging")
             )
         )
     }

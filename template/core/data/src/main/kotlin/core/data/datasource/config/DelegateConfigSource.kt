@@ -1,5 +1,7 @@
 package core.data.datasource.config
 
+import core.data.serialization.SerializationStrategy
+
 /**
  *
  * Implementation of the [ConfigSource] interface that delegates calls to another [ConfigSource] instance.
@@ -8,8 +10,8 @@ package core.data.datasource.config
  */
 open class DelegateConfigSource(private val source: ConfigSource? = null) : ConfigSource {
 
-    override fun <T> get(key: String, type: Class<T>, defaultValue: () -> T): T {
-        return source?.get(key, type, defaultValue) ?: defaultValue()
+    override fun <T> get(key: String, serializationStrategy: SerializationStrategy<T>, defaultValue: () -> T): T {
+        return source?.get(key, serializationStrategy, defaultValue) ?: defaultValue()
     }
 
 }

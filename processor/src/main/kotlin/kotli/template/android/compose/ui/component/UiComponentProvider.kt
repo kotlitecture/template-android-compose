@@ -13,8 +13,8 @@ class UiComponentProvider : BaseFeatureProvider() {
     override fun isMultiple(): Boolean = true
     override fun getType(): FeatureType = FeatureTypes.UI
     override fun createProcessors(): List<FeatureProcessor> = listOf(
-        CoilImageProcessor(),
-        BasicComponentsProcessor()
+        BasicComponentsProcessor(),
+        CoilImageProcessor()
     )
 
 }

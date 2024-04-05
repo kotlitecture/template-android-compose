@@ -17,10 +17,8 @@ class WorkManagerProcessor : BaseFeatureProcessor() {
     override fun doRemove(state: TemplateState) {
         state.onApplyRules(
             VersionCatalogRules(
-                listOf(
-                    RemoveMarkedLine("androidxWork"),
-                    RemoveMarkedLine("androidx-work")
-                )
+                RemoveMarkedLine("androidxWork"),
+                RemoveMarkedLine("androidx-work")
             )
         )
     }

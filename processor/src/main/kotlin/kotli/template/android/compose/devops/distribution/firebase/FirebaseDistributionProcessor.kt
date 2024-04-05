@@ -18,6 +18,7 @@ class FirebaseDistributionProcessor : BaseFeatureProcessor() {
     override fun getWebUrl(state: TemplateState): String = "https://firebase.google.com/docs/app-distribution"
     override fun getIntegrationUrl(state: TemplateState): String = "https://firebase.google.com/docs/app-distribution/android/distribute-gradle"
     override fun getIntegrationEstimate(state: TemplateState): Long = 8.hours.inWholeMilliseconds
+    override fun getConfigurationEstimate(state: TemplateState): Long = 4.hours.inWholeMilliseconds
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
         GoogleServicesProcessor::class.java,

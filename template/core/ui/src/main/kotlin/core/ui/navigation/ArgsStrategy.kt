@@ -2,6 +2,7 @@ package core.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.Immutable
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 import java.util.UUID
@@ -35,7 +36,7 @@ interface ArgsStrategy<D> {
      *
      * @param serializer The serializer for the object type [D].
      */
-    class JsonString<D>(private val serializer: KSerializer<D>) : ArgsStrategy<D> {
+    data class JsonString<D>(private val serializer: KSerializer<D>) : ArgsStrategy<D> {
 
         @Composable
         override fun toObject(from: String): D {
@@ -51,6 +52,7 @@ interface ArgsStrategy<D> {
     /**
      * A [ArgsStrategy] implementation that stores objects in memory.
      */
+    @Immutable
     object InMemory : ArgsStrategy<Any> {
         private val cache = mutableMapOf<String, Any?>()
 

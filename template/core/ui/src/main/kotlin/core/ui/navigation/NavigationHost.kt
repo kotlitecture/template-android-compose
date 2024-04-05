@@ -10,17 +10,21 @@ import androidx.navigation.compose.NavHost
 
 @Composable
 fun NavigationHost(
-    navigationContext: NavigationContext,
+    modifier: Modifier = Modifier,
     navigationState: NavigationState,
+    navigationContext: NavigationContext,
     startDestination: NavigationDestination<*>
 ) {
     NavHost(
-        modifier = Modifier.fillMaxSize(),
-        navController = navigationContext.navController,
+        modifier = modifier.fillMaxSize(),
         startDestination = startDestination.route,
+        navController = navigationContext.navController,
         enterTransition = { fadeIn(animationSpec = tween(100)) },
         exitTransition = { fadeOut(animationSpec = tween(100)) },
         builder = { navigationState.destinations.forEach { it.bind(this) } }
     )
-    NavigationProvider(navigationState, navigationContext)
+    NavigationProvider(
+        navigationState = navigationState,
+        navigationContext = navigationContext
+    )
 }

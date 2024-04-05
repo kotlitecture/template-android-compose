@@ -4,7 +4,7 @@ import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.rule.RemoveFile
-import kotli.template.android.compose.dataflow.storage.encryptedkeyvalue.EncryptedKeyValueProcessor
+import kotli.template.android.compose.dataflow.storage.encryptedkeyvalue.sharedpreferences.EncryptedSharedPreferencesProcessor
 import kotlin.time.Duration.Companion.hours
 
 class BasicEncryptionProcessor : BaseFeatureProcessor() {
@@ -14,7 +14,7 @@ class BasicEncryptionProcessor : BaseFeatureProcessor() {
     override fun getIntegrationEstimate(state: TemplateState): Long = 2.hours.inWholeMilliseconds
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
-        EncryptedKeyValueProcessor::class.java
+        EncryptedSharedPreferencesProcessor::class.java
     )
 
     override fun doRemove(state: TemplateState) {
