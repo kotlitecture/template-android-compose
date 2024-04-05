@@ -17,7 +17,6 @@ import app.userflow.update.google.GoogleUpdateProvider
 import core.ui.navigation.NavigationScaffold
 import core.ui.navigation.NavigationState
 import core.ui.navigation.rememberNavigationContext
-import core.ui.state.StoreStateProvider
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -30,7 +29,6 @@ class AppActivity : FragmentActivity() {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
-            StoreStateProvider()
             val viewModel: AppViewModel = provideHiltViewModel()
             val navigationState = remember { viewModel.navigationState }
             val appState = remember { viewModel.appState }

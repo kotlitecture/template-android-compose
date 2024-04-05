@@ -32,10 +32,11 @@ fun AdaptiveNavigation(content: @Composable () -> Unit) {
         content()
         return
     }
+    val selectedPageState = viewModel.selectedPageStore.asState()
     NavigationSuiteScaffold(
         layoutType = getLayoutType(viewModel.visibilityStore),
         navigationSuiteItems = {
-            val selectedPage = viewModel.selectedPageStore.asStateValue()
+            val selectedPage = selectedPageState.value
             pages.forEach { page ->
                 val selected = page.id == selectedPage?.id
                 item(

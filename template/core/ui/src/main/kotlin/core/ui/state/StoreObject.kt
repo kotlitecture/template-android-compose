@@ -1,21 +1,14 @@
-@file:Suppress("UNCHECKED_CAST")
-
 package core.ui.state
 
-import android.os.Handler
-import android.os.Looper
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.platform.LocalContext
-import kotlinx.coroutines.CoroutineScope
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.mapNotNull
 
 /**
  * An immutable store object that holds a value of type [T].
@@ -38,34 +31,40 @@ data class StoreObject<T>(
     private var currentValue: T? = value
 
     private val valueChanges = lazy {
-        val processor = MutableSharedFlow<T?>(replay = valueReply, extraBufferCapacity = valueBufferCapacity)
+        val processor = MutableSharedFlow<T?>(
+            replay = valueReply,
+            extraBufferCapacity = valueBufferCapacity
+        )
         processor.tryEmit(currentValue)
         processor
     }
 
-    private val valueState = lazy { mutableStateOf(currentValue) }
-
     /**
      * Returns the store object as a [MutableState] object.
      */
-    @Stable
-    fun asState(): MutableState<T?> = valueState.value
+    @Composable
+    fun asState(): State<T?> = asFlow()
+        .collectAsState(initial = currentValue)
 
     /**
      * Returns the value of the store object as a [MutableState] object.
      */
+    @Composable
     fun asStateValue(): T? = asState().value
 
     /**
      * Returns the store object as a non-nullable [MutableState] object.
      */
-    @Stable
-    fun asStateNotNull(): MutableState<T> = asState() as MutableState<T>
+    @Composable
+    fun asStateNotNull(): State<T> = asFlow()
+        .mapNotNull { it }
+        .collectAsState(initial = currentValue!!)
 
     /**
      * Returns the value of the store object as a non-nullable type [T].
      */
-    fun asStateValueNotNull(): T = runCatching { asStateNotNull().value }.getOrElse { currentValue!! }
+    @Composable
+    fun asStateValueNotNull(): T = asStateNotNull().value
 
     /**
      * Returns the store object as a flow of type [T].
@@ -109,29 +108,8 @@ data class StoreObject<T>(
                 val changes = valueChanges.value
                 changes.tryEmit(value)
             }
-            if (valueState.isInitialized()) {
-                onMain { valueState.value.value = value }
-            }
         }
         return changed
-    }
-
-    companion object {
-        private val mainLooper by lazy { Handler(Looper.getMainLooper()) }
-
-        private var mainScope: CoroutineScope? = null
-
-        @Composable
-        internal fun bind() {
-            mainScope = rememberCoroutineScope()
-            DisposableEffect(LocalContext.current) { onDispose { mainScope = null } }
-        }
-
-        internal fun onMain(block: () -> Unit) {
-            mainScope
-                ?.launch { block.invoke() }
-                ?: run { mainLooper.post(block) }
-        }
     }
 
 }
