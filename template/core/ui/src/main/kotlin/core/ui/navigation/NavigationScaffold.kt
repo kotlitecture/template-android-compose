@@ -1,11 +1,14 @@
 package core.ui.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 
 /**
@@ -36,8 +39,10 @@ fun NavigationScaffold(
         floatingActionButton = floatingActionButton,
         floatingActionButtonPosition = floatingActionButtonPosition,
         snackbarHost = { SnackbarHost(navigationContext.snackbarHostSate) },
+        contentWindowInsets = remember { WindowInsets(0, 0, 0, 0) },
         content = {
             NavigationHost(
+                modifier = Modifier.padding(it),
                 navigationState = navigationState,
                 startDestination = startDestination,
                 navigationContext = navigationContext

@@ -26,7 +26,9 @@ import app.ui.component.basic.SpacerStatusBar
 @Composable
 fun ShowcasesScreen() {
     val viewModel: ShowcasesViewModel = provideHiltViewModel()
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize()
+    ) {
         item { SpacerStatusBar() }
         item { Spacer16() }
         header()

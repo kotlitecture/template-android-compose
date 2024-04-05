@@ -93,6 +93,18 @@ data class StoreObject<T>(
     fun getPrev(): T? = prevValue
 
     /**
+     * Checks if the current value is null.
+     * @return true if the current value is null, false otherwise.
+     */
+    fun isNull():Boolean = currentValue == null
+
+    /**
+     * Checks if the current value is not null.
+     * @return true if the current value is not null, false otherwise.
+     */
+    fun isNotNull():Boolean = !isNull()
+
+    /**
      * Sets the value of the store object and emits it to collectors if it has changed.
      *
      * @param value The new value to set.
