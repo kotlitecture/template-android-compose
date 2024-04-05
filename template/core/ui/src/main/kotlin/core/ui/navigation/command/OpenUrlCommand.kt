@@ -1,12 +1,11 @@
-package app.ui.command.impl
+package core.ui.navigation.command
 
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
+import core.ui.navigation.NavigationCommand
 import core.ui.navigation.NavigationContext
-import app.ui.command.Command
-import app.ui.command.CommandState
 
 /**
  * Command for opening a URL.
@@ -15,13 +14,15 @@ import app.ui.command.CommandState
  * @property title The title of the chooser dialog.
  * @property external Flag indicating whether to open the URL externally or in a Chrome custom tab.
  */
-class OpenUrlCommand(
+data class OpenUrlCommand(
     private val url: String,
     private val title: String? = null,
     private val external: Boolean = false
-) : Command() {
+) : NavigationCommand() {
 
-    override fun doExecute(commandState: CommandState, navigationContext: NavigationContext) {
+    override val id: String = "open_url"
+
+    override fun doExecute(navigationContext: NavigationContext) {
         val context = navigationContext.context
         if (external) {
             openUrl(context, url, title)

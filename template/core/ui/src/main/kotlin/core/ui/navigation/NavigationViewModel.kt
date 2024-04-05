@@ -1,13 +1,9 @@
 package core.ui.navigation
 
-import android.net.Uri
 import core.ui.BaseViewModel
-import core.ui.state.DataState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.mapNotNull
-import kotlinx.coroutines.launch
 
 /**
  * ViewModel responsible for managing navigation-related functionality.
@@ -15,6 +11,7 @@ import kotlinx.coroutines.launch
 class NavigationViewModel : BaseViewModel() {
 
     fun onBind(navigationState: NavigationState, context: NavigationContext) {
+        navigationState.commandHandler = NavigationCommandHandler.create(context)
         launchAsync("currentDestinationStore") {
             context.navController.currentBackStackEntryFlow
                 .mapNotNull { it.destination.route }
@@ -22,25 +19,10 @@ class NavigationViewModel : BaseViewModel() {
                 .distinctUntilChanged()
                 .collectLatest(navigationState.currentDestinationStore::set)
         }
-        launchMain("navigationStore") {
-            navigationState.navigationStore.asFlow()
-                .filterNotNull()
-                .collect {
-                    try {
-                        val strategy = it.strategy
-                        val destination = it.destination
-                        val controller = context.navController
-                        if (destination != null) {
-                            destination.navigate(it.data, strategy, controller)
-                        } else {
-                            strategy.proceed(null, Uri.EMPTY, controller)
-                        }
-                    } catch (e: Exception) {
-                        val dataState = DataState.Error("Navigation", e)
-                        navigationState.dataStateStore.set(dataState)
-                    }
-                }
-        }
+    }
+
+    fun onUnbind(navigationState: NavigationState) {
+        navigationState.commandHandler = NavigationCommandHandler.create()
     }
 
 }

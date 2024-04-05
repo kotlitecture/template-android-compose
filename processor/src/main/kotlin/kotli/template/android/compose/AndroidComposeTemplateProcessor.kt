@@ -37,7 +37,6 @@ import kotli.template.android.compose.showcases.ShowcasesProvider
 import kotli.template.android.compose.testing.http.HttpTestingProvider
 import kotli.template.android.compose.testing.logging.LoggingProvider
 import kotli.template.android.compose.testing.unit_testing.UnitTestsProvider
-import kotli.template.android.compose.ui.command.UiCommandProvider
 import kotli.template.android.compose.ui.component.UiComponentProvider
 import kotli.template.android.compose.ui.container.UiContainerProvider
 import kotli.template.android.compose.ui.l10n.L10NProvider
@@ -112,7 +111,6 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         UiNavigationBarProvider(),
         UiComponentProvider(),
         UiContainerProvider(),
-        UiCommandProvider(),
         UiScreenProvider(),
 
         // userflow

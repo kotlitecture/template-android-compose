@@ -1,9 +1,8 @@
-package app.ui.command.impl
+package core.ui.navigation.command
 
-import core.ui.navigation.NavigationContext
-import app.ui.command.Command
-import app.ui.command.CommandState
 import core.ui.misc.utils.WeakReferenceUtils
+import core.ui.navigation.NavigationCommand
+import core.ui.navigation.NavigationContext
 import kotlinx.coroutines.launch
 
 /**
@@ -11,15 +10,17 @@ import kotlinx.coroutines.launch
  *
  * @property text The text to display in the Snackbar.
  */
-class ShowSnackbarCommand(
+data class ShowSnackbarCommand(
     private val text: String
-) : Command() {
+) : NavigationCommand() {
 
-    override fun doExecute(commandState: CommandState, navigationContext: NavigationContext) {
+    override val id: String = "show_snackbar"
+
+    override fun doExecute(navigationContext: NavigationContext) {
         val host = navigationContext.snackbarHostSate
         val scope = navigationContext.scope
         val job = scope.launch { host.showSnackbar(text) }
-        WeakReferenceUtils.replace("ShowSnackbarCommand", job)?.cancel()
+        WeakReferenceUtils.replace(id, job)?.cancel()
     }
 
 }

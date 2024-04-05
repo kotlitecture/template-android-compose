@@ -1,5 +1,6 @@
 package core.ui.navigation
 
+import core.ui.navigation.command.DestinationCommand
 import core.ui.state.StoreObject
 import core.ui.state.StoreState
 
@@ -21,7 +22,7 @@ class NavigationState(
     val currentDestinationStore: StoreObject<NavigationDestination<*>> = StoreObject()
 
     /** StoreObject to hold the current navigation data. */
-    val navigationStore = StoreObject<NavigationData<*>>(valueReply = 0, valueBufferCapacity = Int.MAX_VALUE)
+    internal var commandHandler: NavigationCommandHandler = NavigationCommandHandler.create()
 
     /**
      * Sets the start destination for navigation.
@@ -33,11 +34,20 @@ class NavigationState(
     }
 
     /**
+     * Executes any command related to navigation.
+     *
+     * @param command The command to execute.
+     */
+    fun onCommand(command: NavigationCommand) {
+        commandHandler.handle(command)
+    }
+
+    /**
      * Navigate back to the previous screen.
      */
     fun onBack() {
-        navigationStore.set(
-            NavigationData(
+        onCommand(
+            DestinationCommand(
                 strategy = NavigationStrategy.Back,
                 destination = null,
                 data = null,
@@ -57,8 +67,8 @@ class NavigationState(
         data: D? = null,
         strategy: NavigationStrategy = destination.navStrategy
     ) {
-        navigationStore.set(
-            NavigationData(
+        onCommand(
+            DestinationCommand(
                 destination = destination,
                 strategy = strategy,
                 data = data

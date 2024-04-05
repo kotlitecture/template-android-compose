@@ -7,7 +7,6 @@ import androidx.compose.runtime.remember
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
-import app.ui.command.CommandProvider
 import app.ui.navigation.NavigationBarProvider
 import app.ui.navigation.bottom.BottomNavigation
 import app.ui.theme.ThemeProvider
@@ -45,7 +44,7 @@ class AppActivity : FragmentActivity() {
 @Composable
 private fun ScaffoldBlock(appState: AppState, navigationState: NavigationState) {
     ThemeProvider {
-        val navigationContext = rememberNavigationContext()
+        val navigationContext = rememberNavigationContext(navigationState)
         NavigationBarProvider { // {ui.navigation.common}
             NavigationScaffold(
                 navigationContext = navigationContext,
@@ -54,7 +53,6 @@ private fun ScaffoldBlock(appState: AppState, navigationState: NavigationState) 
             )
         } // {ui.navigation.common}
         DataLoaderProvider(appState)
-        CommandProvider(navigationContext)
         GoogleUpdateProvider()
         GoogleReviewProvider()
         NoInternetProvider()

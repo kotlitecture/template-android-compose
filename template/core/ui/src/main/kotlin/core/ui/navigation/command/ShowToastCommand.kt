@@ -1,24 +1,25 @@
-package app.ui.command.impl
+package core.ui.navigation.command
 
 import android.widget.Toast
-import core.ui.navigation.NavigationContext
-import app.ui.command.Command
-import app.ui.command.CommandState
 import core.ui.misc.utils.WeakReferenceUtils
+import core.ui.navigation.NavigationCommand
+import core.ui.navigation.NavigationContext
 
 /**
  * Command for showing a Toast.
  *
  * @property text The text to display in the Toast.
  */
-class ShowToastCommand(
+data class ShowToastCommand(
     private val text: String
-) : Command() {
+) : NavigationCommand() {
 
-    override fun doExecute(commandState: CommandState, navigationContext: NavigationContext) {
+    override val id: String = "show_toast"
+
+    override fun doExecute(navigationContext: NavigationContext) {
         val context = navigationContext.context.applicationContext
         val toast = Toast.makeText(context, text, Toast.LENGTH_LONG)
-        WeakReferenceUtils.replace("ShowToastCommand", toast)?.cancel()
+        WeakReferenceUtils.replace(id, toast)?.cancel()
         toast.show()
     }
 }

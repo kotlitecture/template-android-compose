@@ -29,6 +29,7 @@ import kotlinx.coroutines.CoroutineScope
 data class NavigationContext(
     val snackbarHostSate: SnackbarHostState,
     val navController: NavHostController,
+    val navigationState: NavigationState,
     val scope: CoroutineScope,
     val context: Context
 )
@@ -41,7 +42,7 @@ data class NavigationContext(
  */
 @Stable
 @Composable
-fun rememberNavigationContext(): NavigationContext {
+fun rememberNavigationContext(navigationState: NavigationState): NavigationContext {
     NavController.enableDeepLinkSaveState(false)
     val snackbarHostSate = remember { SnackbarHostState() }
     val navController = rememberNavController()
@@ -50,6 +51,7 @@ fun rememberNavigationContext(): NavigationContext {
     return remember(navController, context) {
         NavigationContext(
             snackbarHostSate = snackbarHostSate,
+            navigationState = navigationState,
             navController = navController,
             context = context,
             scope = scope
