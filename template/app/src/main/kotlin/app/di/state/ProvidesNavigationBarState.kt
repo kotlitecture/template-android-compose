@@ -32,13 +32,15 @@ internal class ProvidesNavigationBarState {
     @Singleton
     fun state(navigationState: NavigationState): NavigationBarState = NavigationBarState(
         pages = listOf(
-            createPage( // {showcases.common}
+            // start {showcases.common}
+            createPage(
                 navigationState = navigationState,
                 destination = ShowcasesDestination,
                 getActiveIcon = { Icons.Filled.School },
                 getInactiveIcon = { Icons.Outlined.School },
                 getLabel = { "Showcases" }
-            ), // {showcases.common}
+            ),
+            // end {showcases.common}
             createPage(
                 navigationState = navigationState,
                 destination = NavigationADestination,
