@@ -12,7 +12,7 @@ class ShowcasesViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val hintStore = StoreObject(false)
-    val showcasesStore = StoreObject(ShowcasesDestination.showcases)
+    val showcasesStore = StoreObject(Showcases.all)
 
     fun onShowHint() {
         hintStore.set(true)

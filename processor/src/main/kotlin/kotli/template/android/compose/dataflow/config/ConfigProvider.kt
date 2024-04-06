@@ -8,6 +8,7 @@ import kotli.template.android.compose.dataflow.config.firebase.FirebaseConfigPro
 class ConfigProvider : BaseDataFlowProvider() {
 
     override fun getId(): String = "dataflow.config"
+    override fun isMultiple(): Boolean = false
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         FacadeConfigProcessor(),
         FirebaseConfigProcessor()

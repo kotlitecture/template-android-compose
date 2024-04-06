@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
-import app.showcases.Showcase
+import app.showcases.ShowcaseItem
 import app.showcases.ShowcasesViewModel
 import app.userflow.theme.toggle.ToggleThemeButton
 import core.ui.navigation.ArgsStrategy
@@ -17,9 +17,9 @@ import core.ui.navigation.NavigationDestination
 import core.ui.navigation.NavigationStrategy
 import core.ui.theme.ThemeData
 
-object ToggleThemeShowcase : Showcase {
+object ToggleThemeShowcase : ShowcaseItem {
 
-    override val label: String = "ToggleThemeButton"
+    override val label: String = "Toggle Theme Button"
 
     override fun onClick(viewModel: ShowcasesViewModel) {
         viewModel.navigationState.onNext(ToggleThemeDestination)
