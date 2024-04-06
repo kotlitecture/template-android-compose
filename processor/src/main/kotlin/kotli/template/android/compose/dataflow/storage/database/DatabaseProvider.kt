@@ -10,8 +10,8 @@ class DatabaseProvider : BaseDataFlowProvider() {
     override fun getId(): String = "dataflow.storage.database"
     override fun isMultiple(): Boolean = false
     override fun createProcessors(): List<FeatureProcessor> = listOf(
-        ObjectBoxProcessor,
-        RoomProcessor
+        RoomProcessor,
+        ObjectBoxProcessor
     )
 
 }
