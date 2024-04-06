@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(libs.objectbox.plugin) // {dataflow.storage.database.objectbox}
+        classpath(libs.objectbox.plugin) // {dataflow.database.objectbox}
         classpath(libs.google.play.publisher) // {devops.distribution.google-play}
     }
 }
@@ -12,7 +12,7 @@ buildscript {
 plugins {
     alias(libs.plugins.android.baselineprofile) apply false // {quality.startup.baselineprofile}
     alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.android.room) apply false // {dataflow.storage.database.room}
+    alias(libs.plugins.android.room) apply false // {dataflow.database.room}
     alias(libs.plugins.android.test) apply false
     alias(libs.plugins.firebase.appdistribution) apply false // {devops.distribution.firebase}
     alias(libs.plugins.firebase.crashlytics) apply false // {quality.crashes.firebase}

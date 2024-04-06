@@ -9,7 +9,7 @@ import kotlin.time.Duration.Companion.hours
 
 object ObjectBoxProcessor : BaseFeatureProcessor() {
 
-    const val ID = "dataflow.storage.database.objectbox"
+    const val ID = "dataflow.database.objectbox"
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://objectbox.io"
@@ -19,22 +19,22 @@ object ObjectBoxProcessor : BaseFeatureProcessor() {
     override fun doApply(state: TemplateState) {
         state.onApplyRules(
             "build.gradle",
-            CleanupMarkedLine("{dataflow.storage.database.objectbox}")
+            CleanupMarkedLine("{dataflow.database.objectbox}")
         )
         state.onApplyRules(
             "app/build.gradle",
-            CleanupMarkedLine("{dataflow.storage.database.objectbox}")
+            CleanupMarkedLine("{dataflow.database.objectbox}")
         )
     }
 
     override fun doRemove(state: TemplateState) {
         state.onApplyRules(
             "build.gradle",
-            RemoveMarkedLine("{dataflow.storage.database.objectbox}")
+            RemoveMarkedLine("{dataflow.database.objectbox}")
         )
         state.onApplyRules(
             "app/build.gradle",
-            RemoveMarkedLine("{dataflow.storage.database.objectbox}")
+            RemoveMarkedLine("{dataflow.database.objectbox}")
         )
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("objectbox")))
     }

@@ -6,7 +6,7 @@ import kotli.template.android.compose.dataflow.encryptedkeyvalue.sharedpreferenc
 
 object EncryptedKeyValueStorageProvider : BaseDataFlowProvider() {
 
-    override fun getId(): String = "dataflow.storage.encryptedkeyvalue"
+    override fun getId(): String = "dataflow.encryptedkeyvalue"
 
     override fun isMultiple(): Boolean = false
 

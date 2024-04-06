@@ -10,7 +10,7 @@ import kotlin.time.Duration.Companion.hours
 
 object SharedPreferencesProcessor : BaseFeatureProcessor() {
 
-    const val ID = "dataflow.storage.keyvalue.sharedpreferences"
+    const val ID = "dataflow.keyvalue.sharedpreferences"
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/training/data-storage/shared-preferences"

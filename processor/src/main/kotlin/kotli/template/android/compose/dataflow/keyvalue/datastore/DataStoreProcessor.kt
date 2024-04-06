@@ -12,7 +12,7 @@ import kotlin.time.Duration.Companion.hours
 
 object DataStoreProcessor : BaseFeatureProcessor() {
 
-    const val ID = "dataflow.storage.keyvalue.datastore"
+    const val ID = "dataflow.keyvalue.datastore"
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/topic/libraries/architecture/datastore"
@@ -25,7 +25,7 @@ object DataStoreProcessor : BaseFeatureProcessor() {
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules(
-            "app/src/main/kotlin/app/datasource/storage/AppKeyValueSource.kt",
+            "app/src/main/kotlin/app/datasource/keyvalue/AppKeyValueSource.kt",
             ReplaceMarkedText(
                 text = "SharedPreferencesSource",
                 marker = "SharedPreferencesSource",

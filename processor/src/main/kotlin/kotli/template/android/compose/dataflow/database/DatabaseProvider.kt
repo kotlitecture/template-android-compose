@@ -8,7 +8,7 @@ import kotli.template.android.compose.dataflow.database.room.RoomProcessor
 
 object DatabaseProvider : BaseDataFlowProvider() {
 
-    override fun getId(): String = "dataflow.storage.database"
+    override fun getId(): String = "dataflow.database"
     override fun isMultiple(): Boolean = false
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(

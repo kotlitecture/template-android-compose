@@ -13,7 +13,7 @@ import kotlin.time.Duration.Companion.hours
 
 object EncryptedSharedPreferencesProcessor : BaseFeatureProcessor() {
 
-    const val ID = "dataflow.storage.encryptedkeyvalue.sharedpreferences"
+    const val ID = "dataflow.encryptedkeyvalue.sharedpreferences"
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/reference/androidx/security/crypto/EncryptedSharedPreferences"
@@ -26,11 +26,11 @@ object EncryptedSharedPreferencesProcessor : BaseFeatureProcessor() {
     )
 
     override fun doApply(state: TemplateState) {
-        state.onApplyRules("core/data/build.gradle", CleanupMarkedLine("{dataflow.storage.encryptedkeyvalue.sharedpreferences}"))
+        state.onApplyRules("core/data/build.gradle", CleanupMarkedLine("{dataflow.encryptedkeyvalue.sharedpreferences}"))
     }
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("core/data/build.gradle", RemoveMarkedLine("{dataflow.storage.encryptedkeyvalue.sharedpreferences}"))
+        state.onApplyRules("core/data/build.gradle", RemoveMarkedLine("{dataflow.encryptedkeyvalue.sharedpreferences}"))
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("androidxSecurityCrypto")))
         state.onApplyRules("*/EncryptedSharedPreferencesSource*", RemoveFile())
     }

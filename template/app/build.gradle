@@ -5,11 +5,11 @@ apply plugin: "com.google.firebase.crashlytics" // {quality.crashes.firebase}
 apply plugin: "com.google.gms.google-services" // {google-services}
 apply plugin: "androidx.baselineprofile" // {quality.startup.baselineprofile}
 apply plugin: "com.github.triplet.play" // {devops.distribution.google-play}
-apply plugin: "androidx.room" // {dataflow.storage.database.room}
-apply plugin: "io.objectbox" // {dataflow.storage.database.objectbox}
+apply plugin: "androidx.room" // {dataflow.database.room}
+apply plugin: "io.objectbox" // {dataflow.database.objectbox}
 
 dependencies {
-    ksp libs.androidx.room.compiler // {dataflow.storage.database.room}
+    ksp libs.androidx.room.compiler // {dataflow.database.room}
     implementation project(":core:ui")
     implementation project(":core:data") // {dataflow.common}
     implementation platform(libs.firebase.bom) // {firebase}
@@ -31,25 +31,25 @@ dependencies {
     implementation libs.tinylog.slf4j // {testing.logging.tinylog}
     implementation libs.androidx.core.splashscreen // {userflow.splash.basic}
     implementation libs.google.services.auth // {userflow.auth.google}
-    implementation libs.androidx.room.runtime // {dataflow.storage.database.room}
-    implementation libs.androidx.room.paging // {dataflow.storage.database.room}
-    implementation libs.androidx.room.ktx // {dataflow.storage.database.room}
+    implementation libs.androidx.room.runtime // {dataflow.database.room}
+    implementation libs.androidx.room.paging // {dataflow.database.room}
+    implementation libs.androidx.room.ktx // {dataflow.database.room}
     debugImplementation libs.chucker // {testing.http.okhttp}
     stagingImplementation libs.chucker // {testing.http.okhttp}
     releaseImplementation libs.chucker.release // {testing.http.okhttp}
     testImplementation libs.chucker.release // {testing.http.okhttp}
-    testImplementation libs.androidx.room.testing // {dataflow.storage.database.room}
+    testImplementation libs.androidx.room.testing // {dataflow.database.room}
     testImplementation project(":core:testing") // {testing.unit_testing.robolectric}
     baselineProfile project(':baselineprofile') // {quality.startup.baselineprofile}
 }
 
 android {
     namespace = "app"
-    // {dataflow.storage.database.room.config}
+    // {dataflow.database.room.config}
     room {
         schemaDirectory "$projectDir/schemas"
     }
-    // {dataflow.storage.database.room.config}
+    // {dataflow.database.room.config}
     defaultConfig {
         applicationId = "kotli.app" // {applicationId}
         versionName = System.getProperty("versionNameExt") ?: "0.0.1"

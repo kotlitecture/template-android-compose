@@ -6,7 +6,7 @@ import kotli.engine.template.rule.RemoveFile
 
 object CoreSharedPreferencesKeyValueProcessor : BaseFeatureProcessor() {
 
-    const val ID = "dataflow.storage.keyvalue.coresharedpreferences"
+    const val ID = "dataflow.keyvalue.coresharedpreferences"
 
     override fun getId(): String = ID
     override fun isInternal(): Boolean = true

@@ -8,7 +8,7 @@ import kotli.template.android.compose.dataflow.keyvalue.CoreKeyValueProcessor
 
 object AppEncryptedKeyValueProcessor : BaseFeatureProcessor() {
 
-    const val ID = "dataflow.storage.encryptedkeyvalue.app"
+    const val ID = "dataflow.encryptedkeyvalue.app"
 
     override fun getId(): String = ID
     override fun isInternal(): Boolean = true
