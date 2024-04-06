@@ -4,7 +4,6 @@ import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import app.datasource.database.room.entity.User
@@ -17,14 +16,17 @@ import app.datasource.database.room.entity.User
 @Dao
 interface UserDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg users: User)
+    @Insert
+    fun create(vararg users: User)
 
     @Update
     fun update(vararg users: User)
 
     @Delete
     fun delete(vararg user: User)
+
+    @Query("SELECT * FROM user WHERE id = :id LIMIT 1")
+    fun get(id: Long): User?
 
     @Query("SELECT * FROM user")
     fun getAll(): List<User>

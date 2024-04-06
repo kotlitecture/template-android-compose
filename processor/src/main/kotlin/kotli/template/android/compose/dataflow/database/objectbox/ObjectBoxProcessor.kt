@@ -47,7 +47,7 @@ object ObjectBoxProcessor : BaseFeatureProcessor() {
             RemoveFile()
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/datasource/database/objectbox",
+            "*/database/objectbox/*",
             RemoveFile()
         )
         state.onApplyRules(

@@ -53,7 +53,7 @@ object RoomProcessor : BaseFeatureProcessor() {
             RemoveFile()
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/datasource/database/room",
+            "*/database/room/*",
             RemoveFile()
         )
         state.onApplyRules(
