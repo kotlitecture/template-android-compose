@@ -1,6 +1,6 @@
 package core.data.datasource.encryption
 
-import core.data.datasource.storage.keyvalue.EncryptedKeyValueSource
+import core.data.datasource.keyvalue.EncryptedKeyValueSource
 import core.data.misc.utils.EncryptUtils
 import core.data.serialization.ByteArrayStrategy
 import kotlinx.coroutines.runBlocking

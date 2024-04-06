@@ -3,7 +3,7 @@ package kotli.template.android.compose.metadata.design.material3
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
-import kotli.template.android.compose.dataflow.storage.keyvalue.sharedpreferences.SharedPreferencesProcessor
+import kotli.template.android.compose.dataflow.keyvalue.sharedpreferences.SharedPreferencesProcessor
 import kotlin.time.Duration.Companion.hours
 
 object Material3Processor : BaseFeatureProcessor() {

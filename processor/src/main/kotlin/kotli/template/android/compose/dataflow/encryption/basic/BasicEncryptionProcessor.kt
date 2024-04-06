@@ -4,7 +4,7 @@ import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.rule.RemoveFile
-import kotli.template.android.compose.dataflow.storage.encryptedkeyvalue.sharedpreferences.EncryptedSharedPreferencesProcessor
+import kotli.template.android.compose.dataflow.encryptedkeyvalue.sharedpreferences.EncryptedSharedPreferencesProcessor
 import kotlin.time.Duration.Companion.hours
 
 class BasicEncryptionProcessor : BaseFeatureProcessor() {
