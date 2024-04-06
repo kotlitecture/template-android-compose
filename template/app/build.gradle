@@ -47,7 +47,7 @@ android {
     namespace = "app"
     // {dataflow.database.room.config}
     room {
-        schemaDirectory "$projectDir/schemas"
+        schemaDirectory "$projectDir/room-schemas"
     }
     // {dataflow.database.room.config}
     defaultConfig {

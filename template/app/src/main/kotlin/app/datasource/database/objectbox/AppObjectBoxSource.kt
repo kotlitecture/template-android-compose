@@ -8,11 +8,13 @@ class AppObjectBoxSource(
     private val databaseName: String = "db"
 ) {
 
-    val boxStore by lazy {
+    val store by lazy {
         MyObjectBox.builder()
             .androidContext(app)
             .name(databaseName)
             .build()
     }
+
+    fun <R> withTransaction(block: () -> R): R = store.callInTx(block)
 
 }

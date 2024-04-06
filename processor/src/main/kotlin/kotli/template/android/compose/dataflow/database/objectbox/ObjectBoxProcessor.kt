@@ -4,6 +4,7 @@ import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
+import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotlin.time.Duration.Companion.hours
 
@@ -13,7 +14,9 @@ object ObjectBoxProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://objectbox.io"
-    override fun getIntegrationUrl(state: TemplateState): String = "https://docs.objectbox.io/getting-started"
+    override fun getIntegrationUrl(state: TemplateState): String =
+        "https://docs.objectbox.io/getting-started"
+
     override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
 
     override fun doApply(state: TemplateState) {
@@ -36,7 +39,21 @@ object ObjectBoxProcessor : BaseFeatureProcessor() {
             "app/build.gradle",
             RemoveMarkedLine("{dataflow.database.objectbox}")
         )
-        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("objectbox")))
+        state.onApplyRules(
+            VersionCatalogRules(RemoveMarkedLine("objectbox"))
+        )
+        state.onApplyRules(
+            "app/src/main/kotlin/app/di/datasource/ProvidesObjectBoxSource.kt",
+            RemoveFile()
+        )
+        state.onApplyRules(
+            "app/src/main/kotlin/app/datasource/database/objectbox",
+            RemoveFile()
+        )
+        state.onApplyRules(
+            "app/objectbox-models",
+            RemoveFile()
+        )
     }
 
 }

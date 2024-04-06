@@ -2,6 +2,7 @@ package app.datasource.database.room
 
 import android.app.Application
 import androidx.room.Room
+import androidx.room.withTransaction
 import app.datasource.database.room.dao.UserDao
 
 class AppRoomSource(
@@ -18,6 +19,8 @@ class AppRoomSource(
             )
             .build()
     }
+
+    suspend fun <R> withTransaction(block: suspend () -> R): R = db.withTransaction(block)
 
     fun getUserDao(): UserDao = db.getUserDao()
 

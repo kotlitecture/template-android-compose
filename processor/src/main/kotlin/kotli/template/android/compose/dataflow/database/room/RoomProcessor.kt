@@ -5,6 +5,7 @@ import kotli.engine.TemplateState
 import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedBlock
 import kotli.engine.template.rule.CleanupMarkedLine
+import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotlin.time.Duration.Companion.hours
@@ -14,8 +15,12 @@ object RoomProcessor : BaseFeatureProcessor() {
     const val ID = "dataflow.database.room"
 
     override fun getId(): String = ID
-    override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/training/data-storage/room"
-    override fun getIntegrationUrl(state: TemplateState): String = "https://developer.android.com/training/data-storage/room#setup"
+    override fun getWebUrl(state: TemplateState): String =
+        "https://developer.android.com/training/data-storage/room"
+
+    override fun getIntegrationUrl(state: TemplateState): String =
+        "https://developer.android.com/training/data-storage/room#setup"
+
     override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
 
     override fun doApply(state: TemplateState) {
@@ -42,6 +47,18 @@ object RoomProcessor : BaseFeatureProcessor() {
         )
         state.onApplyRules(
             VersionCatalogRules(RemoveMarkedLine("androidxRoom"))
+        )
+        state.onApplyRules(
+            "app/src/main/kotlin/app/di/datasource/ProvidesRoomSource.kt",
+            RemoveFile()
+        )
+        state.onApplyRules(
+            "app/src/main/kotlin/app/datasource/database/room",
+            RemoveFile()
+        )
+        state.onApplyRules(
+            "app/room-schemas",
+            RemoveFile()
         )
     }
 
