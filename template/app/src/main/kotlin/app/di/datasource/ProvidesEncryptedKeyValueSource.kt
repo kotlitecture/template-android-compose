@@ -1,7 +1,7 @@
 package app.di.datasource
 
 import android.app.Application
-import app.datasource.storage.AppEncryptedKeyValueSource
+import app.datasource.keyvalue.AppEncryptedKeyValueSource
 import core.data.datasource.keyvalue.EncryptedKeyValueSource
 import dagger.Module
 import dagger.Provides
