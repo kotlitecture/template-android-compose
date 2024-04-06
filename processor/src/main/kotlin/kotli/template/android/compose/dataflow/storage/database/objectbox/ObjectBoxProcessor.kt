@@ -12,7 +12,6 @@ object ObjectBoxProcessor : BaseFeatureProcessor() {
     const val ID = "dataflow.storage.database.objectbox"
 
     override fun getId(): String = ID
-    override fun isInternal(): Boolean = false
     override fun getWebUrl(state: TemplateState): String = "https://objectbox.io"
     override fun getIntegrationUrl(state: TemplateState): String = "https://docs.objectbox.io/getting-started"
     override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
