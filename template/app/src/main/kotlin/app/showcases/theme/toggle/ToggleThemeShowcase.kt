@@ -17,6 +17,10 @@ import core.ui.navigation.NavigationDestination
 import core.ui.navigation.NavigationStrategy
 import core.ui.theme.ThemeData
 
+/**
+ * Showcase item representing a toggle theme button.
+ * This button allows toggling between different themes.
+ */
 object ToggleThemeShowcase : ShowcaseItem {
 
     override val label: String = "Toggle Theme Button"
@@ -31,7 +35,7 @@ object ToggleThemeShowcase : ShowcaseItem {
 
 }
 
-object ToggleThemeDestination : NavigationDestination<Unit>() {
+private object ToggleThemeDestination : NavigationDestination<Unit>() {
     override val id: String = "toggle_theme_dialog"
     override val navStrategy: NavigationStrategy = NavigationStrategy.SingleInstance
     override val argsStrategy: ArgsStrategy<Unit> = ArgsStrategy.memory()

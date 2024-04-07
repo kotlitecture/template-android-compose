@@ -13,12 +13,16 @@ import core.data.misc.extensions.ifNotEmpty
 import core.data.serialization.SerializationStrategy
 import java.util.concurrent.TimeUnit
 
+/**
+ * This class represents a configuration source that retrieves configuration values from Firebase Remote Config.
+ */
 class FirebaseRemoteConfigSource : ConfigSource {
 
     private val config = lazy {
         Firebase.remoteConfig.apply {
             await(setConfigSettingsAsync(remoteConfigSettings {
-                minimumFetchIntervalInSeconds = BuildConfig.remoteConfigMinimumFetchIntervalInSeconds
+                minimumFetchIntervalInSeconds =
+                    BuildConfig.remoteConfigMinimumFetchIntervalInSeconds
                 fetchTimeoutInSeconds = BuildConfig.remoteConfigInitTimeoutInSeconds
             }))
             await(fetch(BuildConfig.remoteConfigMinimumFetchIntervalInSeconds))
@@ -26,7 +30,11 @@ class FirebaseRemoteConfigSource : ConfigSource {
         }
     }
 
-    override fun <T> get(key: String, serializationStrategy: SerializationStrategy<T>, defaultValue: () -> T): T {
+    override fun <T> get(
+        key: String,
+        serializationStrategy: SerializationStrategy<T>,
+        defaultValue: () -> T
+    ): T {
         val stringValue = config.value.getString(key).ifNotEmpty() ?: return defaultValue()
         val value: Any? = when (serializationStrategy.getType()) {
             java.lang.String::class.java,

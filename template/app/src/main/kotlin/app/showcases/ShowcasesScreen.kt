@@ -27,6 +27,10 @@ import app.ui.container.FixedHeaderFooterLazyColumnLayout
 import core.ui.state.StoreObject
 import core.ui.theme.material3.Material3ThemeData
 
+/**
+ * Composable function for displaying the showcases screen.
+ * It displays a list of showcases along with a header and a hint block.
+ */
 @Composable
 fun ShowcasesScreen() {
     val viewModel: ShowcasesViewModel = provideHiltViewModel()

@@ -9,9 +9,12 @@ import androidx.room.Update
 import app.datasource.database.room.entity.User
 
 /**
- * Just an example of typical dao to work with the [User] domain.
+ * Represents a DAO (Data Access Object) for interacting with the [User] domain.
  *
- * Anatomy of a DAO: https://developer.android.com/training/data-storage/room/accessing-data#kotlin.
+ * This interface serves as an example of a typical DAO.
+ *
+ * For more information on the anatomy of a DAO, refer to:
+ * [https://developer.android.com/training/data-storage/room/accessing-data#kotlin]
  */
 @Dao
 interface UserDao {
