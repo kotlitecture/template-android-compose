@@ -2,7 +2,7 @@ package app.di.datasource
 
 import core.data.datasource.encryption.BasicEncryptionSource
 import core.data.datasource.encryption.EncryptionSource
-import core.data.datasource.storage.keyvalue.EncryptedKeyValueSource
+import core.data.datasource.keyvalue.EncryptedKeyValueSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

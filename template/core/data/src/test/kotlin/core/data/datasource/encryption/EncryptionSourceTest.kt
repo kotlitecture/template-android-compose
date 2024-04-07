@@ -1,6 +1,6 @@
 package core.data.datasource.encryption
 
-import core.data.datasource.storage.keyvalue.EncryptedSharedPreferencesSource
+import core.data.datasource.keyvalue.EncryptedSharedPreferencesSource
 import core.testing.BaseAndroidUnitTest
 import org.junit.Assert
 import org.robolectric.RuntimeEnvironment

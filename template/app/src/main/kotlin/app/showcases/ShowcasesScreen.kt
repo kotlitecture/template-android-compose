@@ -16,14 +16,21 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import app.provideHiltViewModel
 import app.ui.component.basic.ActionButton
 import app.ui.component.basic.AnyIcon
 import app.ui.component.basic.Spacer16
 import app.ui.container.FixedHeaderFooterLazyColumnLayout
 import core.ui.state.StoreObject
+import core.ui.theme.material3.Material3ThemeData
 
+/**
+ * Composable function for displaying the showcases screen.
+ * It displays a list of showcases along with a header and a hint block.
+ */
 @Composable
 fun ShowcasesScreen() {
     val viewModel: ShowcasesViewModel = provideHiltViewModel()
@@ -41,7 +48,10 @@ fun ShowcasesScreen() {
         content = {
             item { Spacer16() }
             showcasesState.value.forEach { showcase ->
-                showcase(showcase) { showcase.onClick(viewModel) }
+                when (showcase) {
+                    is ShowcaseItem -> showcaseItem(showcase, viewModel)
+                    is ShowcaseItemGroup -> showcaseItemGroup(showcase)
+                }
             }
             item { Spacer16() }
         }
@@ -54,6 +64,11 @@ private fun HintBlock(hintStore: StoreObject<Boolean>) {
     if (!hintStore.asStateValueNotNull()) return
     AlertDialog(
         onDismissRequest = hintStore::clear,
+        title = {
+            Text(
+                text = "Showcases"
+            )
+        },
         text = {
             Text(
                 text = """
@@ -79,9 +94,9 @@ private fun HintBlock(hintStore: StoreObject<Boolean>) {
     )
 }
 
-private fun LazyListScope.showcase(
-    showcase: Showcase,
-    onClick: () -> Unit
+private fun LazyListScope.showcaseItem(
+    showcase: ShowcaseItem,
+    viewModel: ShowcasesViewModel
 ) {
     item {
         OutlinedCard(
@@ -92,7 +107,7 @@ private fun LazyListScope.showcase(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable(onClick = onClick)
+                    .clickable(onClick = { showcase.onClick(viewModel) })
                     .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -101,5 +116,20 @@ private fun LazyListScope.showcase(
                 AnyIcon(model = Icons.Default.ChevronRight)
             }
         }
+    }
+}
+
+private fun LazyListScope.showcaseItemGroup(
+    showcase: ShowcaseItemGroup
+) {
+    item {
+        Text(
+            color = Material3ThemeData.current.colorScheme.primary,
+            modifier = Modifier.padding(16.dp),
+            fontWeight = FontWeight.W600,
+            text = showcase.label,
+            fontSize = 18.sp,
+            maxLines = 1,
+        )
     }
 }

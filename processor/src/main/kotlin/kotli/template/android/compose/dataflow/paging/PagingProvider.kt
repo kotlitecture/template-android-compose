@@ -4,11 +4,11 @@ import kotli.engine.FeatureProcessor
 import kotli.template.android.compose.dataflow.BaseDataFlowProvider
 import kotli.template.android.compose.dataflow.paging.jetpack.JetpackPagingProcessor
 
-class PagingProvider : BaseDataFlowProvider() {
+object PagingProvider : BaseDataFlowProvider() {
 
     override fun getId(): String = "dataflow.paging"
     override fun createProcessors(): List<FeatureProcessor> = listOf(
-        JetpackPagingProcessor()
+        JetpackPagingProcessor
     )
 
 }

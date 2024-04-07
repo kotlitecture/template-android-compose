@@ -1,13 +1,13 @@
 package app.showcases
 
-import core.ui.navigation.NavigationDestination
-
+/**
+ * Represents a showcase item.
+ */
 interface Showcase {
 
+    /**
+     * The label of the showcase item.
+     */
     val label: String
-
-    fun onClick(viewModel: ShowcasesViewModel)
-
-    fun destinations(): List<NavigationDestination<*>> = emptyList()
 
 }

@@ -1,0 +1,1 @@
+High-performance NoSQL database with integrated Data Sync for decentralized Edge Computing. Get fast access to the data you need across Embedded Devices, IoT, and Mobile.
