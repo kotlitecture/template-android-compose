@@ -17,7 +17,7 @@ object ObjectBoxProcessor : BaseFeatureProcessor() {
     override fun getIntegrationUrl(state: TemplateState): String =
         "https://docs.objectbox.io/getting-started"
 
-    override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
+    override fun getIntegrationEstimate(state: TemplateState): Long = 2.hours.inWholeMilliseconds
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules(

@@ -15,13 +15,9 @@ object RoomProcessor : BaseFeatureProcessor() {
     const val ID = "dataflow.database.room"
 
     override fun getId(): String = ID
-    override fun getWebUrl(state: TemplateState): String =
-        "https://developer.android.com/training/data-storage/room"
-
-    override fun getIntegrationUrl(state: TemplateState): String =
-        "https://developer.android.com/training/data-storage/room#setup"
-
-    override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
+    override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/training/data-storage/room"
+    override fun getIntegrationUrl(state: TemplateState): String = "https://developer.android.com/training/data-storage/room#setup"
+    override fun getIntegrationEstimate(state: TemplateState): Long = 2.hours.inWholeMilliseconds
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules(
