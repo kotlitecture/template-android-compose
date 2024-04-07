@@ -33,6 +33,10 @@ object JetpackPagingProcessor : BaseFeatureProcessor() {
             RemoveFile()
         )
         state.onApplyRules(
+            "app/src/main/kotlin/app/di/datasource/ProvidesPagingSource.kt",
+            RemoveFile()
+        )
+        state.onApplyRules(
             "app/src/main/kotlin/app/datasource/config/AppConfigSource.kt",
             RemoveMarkedLine("paging_")
         )
