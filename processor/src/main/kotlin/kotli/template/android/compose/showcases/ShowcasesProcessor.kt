@@ -1,4 +1,4 @@
-package kotli.template.android.compose.showcases.common
+package kotli.template.android.compose.showcases
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
@@ -11,9 +11,9 @@ import kotli.engine.template.rule.ReplaceMarkedText
 import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
 import kotli.template.android.compose.ui.container.fixedheaderfooter.FixedHeaderFooterProcessor
 
-object CommonShowcasesProcessor : BaseFeatureProcessor() {
+object ShowcasesProcessor : BaseFeatureProcessor() {
 
-    const val ID = "showcases.common"
+    const val ID = "showcases"
 
     override fun getId(): String = ID
     override fun isInternal(): Boolean = true
