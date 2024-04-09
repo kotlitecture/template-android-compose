@@ -29,6 +29,10 @@ object RoomProcessor : BaseFeatureProcessor() {
             CleanupMarkedLine("{dataflow.database.room}"),
             CleanupMarkedBlock("{dataflow.database.room.config}")
         )
+        state.onApplyRules(
+            "app/room-schemas",
+            RemoveFile()
+        )
     }
 
     override fun doRemove(state: TemplateState) {

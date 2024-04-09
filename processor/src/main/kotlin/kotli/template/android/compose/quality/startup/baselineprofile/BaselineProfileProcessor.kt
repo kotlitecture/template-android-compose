@@ -63,7 +63,8 @@ class BaselineProfileProcessor : BaseFeatureProcessor() {
                 RemoveMarkedLine("androidxBenchmarkMacroJunit4"),
                 RemoveMarkedLine("androidxUiautomator"),
                 RemoveMarkedLine("androidxEspresso"),
-                RemoveMarkedLine("baselineprofile")
+                RemoveMarkedLine("baselineprofile"),
+                RemoveMarkedLine("androidxJunit"),
             )
         )
     }

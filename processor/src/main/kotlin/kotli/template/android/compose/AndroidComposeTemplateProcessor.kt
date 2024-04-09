@@ -152,6 +152,15 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
             )
         )
         state.onApplyRules(
+            "app/src/main/res/values/strings.xml",
+            ReplaceMarkedText(
+                text = "My App",
+                marker = "app_title",
+                replacer = state.layer.name,
+                singleLine = true
+            )
+        )
+        state.onApplyRules(
             "settings.gradle",
             ReplaceMarkedText(
                 text = "template",

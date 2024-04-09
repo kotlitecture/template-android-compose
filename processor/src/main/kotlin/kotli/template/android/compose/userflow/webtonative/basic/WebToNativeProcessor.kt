@@ -22,6 +22,7 @@ class WebToNativeProcessor : BaseFeatureProcessor() {
         state.onApplyRules("app/src/main/kotlin/app/di/state/ProvidesNavigationState.kt", RemoveMarkedLine("WebToNativeDestination"))
         state.onApplyRules("app/build.gradle", RemoveMarkedLine("{userflow.webtonative.basic}"))
         state.onApplyRules("app/src/main/kotlin/app/userflow/webtonative", RemoveFile())
+        state.onApplyRules("app/src/main/res/raw/sample.html", RemoveFile())
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("androidxWebkit")))
     }
 

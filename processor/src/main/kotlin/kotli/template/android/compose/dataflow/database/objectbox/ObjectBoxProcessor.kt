@@ -28,6 +28,10 @@ object ObjectBoxProcessor : BaseFeatureProcessor() {
             "app/build.gradle",
             CleanupMarkedLine("{dataflow.database.objectbox}")
         )
+        state.onApplyRules(
+            "app/objectbox-models",
+            RemoveFile()
+        )
     }
 
     override fun doRemove(state: TemplateState) {

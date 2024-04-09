@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_title">App</string>
+    <string name="app_title">My App</string>
     <string name="internet_error">No internet</string>
     <string name="theme_change_title">Change theme</string>
     <string name="theme_change_dynamic_color">Use Dynamic Color</string>

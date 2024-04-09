@@ -9,7 +9,9 @@ import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.unspecified.firebase.FirebaseProcessor
 import kotlin.time.Duration.Companion.hours
 
-class FirebasePerformanceProcessor : BaseFeatureProcessor() {
+object FirebasePerformanceProcessor : BaseFeatureProcessor() {
+
+    const val ID = "quality.performance.firebase"
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://firebase.google.com/docs/perf-mon"
@@ -47,10 +49,6 @@ class FirebasePerformanceProcessor : BaseFeatureProcessor() {
                 RemoveMarkedLine("firebase-perf")
             )
         )
-    }
-
-    companion object {
-        const val ID = "quality.performance.firebase"
     }
 
 }
