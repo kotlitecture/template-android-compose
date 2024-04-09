@@ -1,5 +1,6 @@
 package app.ui.navigation
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 
 /**
@@ -17,7 +18,7 @@ data class NavigationBarPage(
     val id: String,
     val enabled: Boolean = true,
     val alwaysShowLabel: Boolean = true,
-    val getLabel: () -> String?,
+    val getLabel: @Composable () -> String?,
     val getActiveIcon: () -> Any,
     val getInactiveIcon: () -> Any,
     val onClick: () -> Unit

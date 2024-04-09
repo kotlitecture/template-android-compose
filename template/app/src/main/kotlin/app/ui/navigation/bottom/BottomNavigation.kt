@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import app.provideHiltViewModel
 import app.ui.component.basic.AnyIcon
@@ -40,7 +41,14 @@ fun BottomNavigation() {
             pages.forEach { page ->
                 val selected = page.id == selectedPage?.id
                 NavigationBarItem(
-                    label = { page.getLabel()?.let { Text(text = it) } },
+                    label = {
+                        page.getLabel()?.let {
+                            Text(
+                                text = it,
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                    },
                     icon = { AnyIcon(model = page.getIcon(selected)) },
                     alwaysShowLabel = page.alwaysShowLabel,
                     onClick = page.onClick,

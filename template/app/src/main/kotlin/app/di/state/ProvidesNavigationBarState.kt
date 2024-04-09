@@ -9,6 +9,7 @@ import androidx.compose.material.icons.outlined.Coffee
 import androidx.compose.material.icons.outlined.LocalDrink
 import androidx.compose.material.icons.outlined.School
 import androidx.compose.material.icons.outlined.WineBar
+import androidx.compose.runtime.Composable
 import app.showcases.ShowcasesDestination
 import app.ui.navigation.NavigationBarPage
 import app.ui.navigation.NavigationBarState
@@ -70,7 +71,7 @@ internal class ProvidesNavigationBarState {
         destination: NavigationDestination<D>,
         getInactiveIcon: () -> Any,
         getActiveIcon: () -> Any,
-        getLabel: () -> String?,
+        getLabel: @Composable () -> String?,
     ): NavigationBarPage {
         return NavigationBarPage(
             enabled = true,

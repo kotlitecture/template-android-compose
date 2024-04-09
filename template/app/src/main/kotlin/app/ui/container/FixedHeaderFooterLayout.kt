@@ -84,8 +84,8 @@ fun FixedHeaderFooterColumnLayout(
     footer: @Composable (ColumnScope.() -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit
 ) {
-    val headerHeight = remember { mutableStateOf(-1) }
-    val footerHeight = remember { mutableStateOf(-1) }
+    val headerHeight = remember { mutableStateOf(getDefaultHeight(header)) }
+    val footerHeight = remember { mutableStateOf(getDefaultHeight(footer)) }
     Box(modifier = modifier.fillMaxSize()) {
         ContentBlock(appearance, headerHeight, footerHeight, content)
         HeaderBlock(appearance, headerHeight, header)
@@ -110,8 +110,8 @@ fun FixedHeaderFooterLazyColumnLayout(
     footer: @Composable (ColumnScope.() -> Unit)? = null,
     content: LazyListScope.() -> Unit
 ) {
-    val headerHeight = remember { mutableStateOf(-1) }
-    val footerHeight = remember { mutableStateOf(-1) }
+    val headerHeight = remember { mutableStateOf(getDefaultHeight(header)) }
+    val footerHeight = remember { mutableStateOf(getDefaultHeight(footer)) }
     Box(modifier = modifier.fillMaxSize()) {
         ContentBlock(appearance, headerHeight, footerHeight, content)
         HeaderBlock(appearance, headerHeight, header)
@@ -125,6 +125,7 @@ private fun BoxScope.HeaderBlock(
     state: MutableState<Int>,
     content: @Composable (ColumnScope.() -> Unit)?
 ) {
+    if (content == null) return
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -135,7 +136,7 @@ private fun BoxScope.HeaderBlock(
         if (appearance.statusSpacer) {
             SpacerStatusBar()
         }
-        content?.invoke(this)
+        content.invoke(this)
     }
 }
 
@@ -145,6 +146,7 @@ private fun BoxScope.FooterBlock(
     state: MutableState<Int>,
     content: @Composable (ColumnScope.() -> Unit)?
 ) {
+    if (content == null) return
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -152,7 +154,7 @@ private fun BoxScope.FooterBlock(
             .background(appearance.footerBrush)
             .onSizeChanged { state.value = it.height }
     ) {
-        content?.invoke(this)
+        content.invoke(this)
         if (appearance.navigationSpacer) {
             SpacerNavigationBar()
         }
@@ -198,4 +200,9 @@ private fun ContentBlock(
             item { SpacerDynamic(heightState = footerState) }
         }
     }
+}
+
+private fun getDefaultHeight(content: @Composable (ColumnScope.() -> Unit)?): Int {
+    if (content == null) return 0
+    return -1
 }
