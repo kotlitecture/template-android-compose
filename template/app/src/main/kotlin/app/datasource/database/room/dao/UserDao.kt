@@ -20,7 +20,7 @@ import app.datasource.database.room.entity.User
 interface UserDao {
 
     @Insert
-    fun create(vararg users: User)
+    fun create(user: User): Long
 
     @Update
     fun update(vararg users: User)
@@ -36,5 +36,8 @@ interface UserDao {
 
     @Query("SELECT * FROM user")
     fun getAllPaginated(): PagingSource<Int, User>
+
+    @Query("SELECT * FROM user WHERE first_name LIKE '%' || :query || '%' OR last_name LIKE '%' || :query || '%'")
+    fun getAllPaginated(query: String): PagingSource<Int, User>
 
 }

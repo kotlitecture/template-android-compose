@@ -1,1 +1,1 @@
-Side (Dismissible)
+Side Navigation (Dismissible)

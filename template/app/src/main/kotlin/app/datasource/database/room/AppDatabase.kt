@@ -2,6 +2,7 @@ package app.datasource.database.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import app.datasource.database.room.dao.UserDao
 import app.datasource.database.room.entity.User
 
@@ -14,6 +15,7 @@ import app.datasource.database.room.entity.User
     ],
     version = 1
 )
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     /**

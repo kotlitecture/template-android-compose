@@ -1,1 +1,1 @@
-Side (Modal)
+Side Navigation (Modal)

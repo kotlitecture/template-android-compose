@@ -1,1 +1,1 @@
-Bottom
+Bottom Navigation
