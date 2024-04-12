@@ -35,6 +35,9 @@ class FirebaseDistributionProcessor : BaseFeatureProcessor() {
         state.onApplyRules("build.gradle",
             CleanupMarkedLine("{devops.distribution.firebase}")
         )
+        state.onApplyRules("*/workflows/*.yml",
+            CleanupMarkedBlock("{devops.distribution.firebase}")
+        )
     }
 
     override fun doRemove(state: TemplateState) {
@@ -49,6 +52,9 @@ class FirebaseDistributionProcessor : BaseFeatureProcessor() {
         )
         state.onApplyRules(
             VersionCatalogRules(RemoveMarkedLine("appdistribution"))
+        )
+        state.onApplyRules("*/workflows/*.yml",
+            RemoveMarkedBlock("{devops.distribution.firebase}")
         )
     }
 

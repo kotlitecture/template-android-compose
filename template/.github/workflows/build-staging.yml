@@ -1,0 +1,41 @@
+name: Build Staging
+on:
+  push:
+    branches:
+      - staging
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    container:
+      image: alvrme/alpine-android:android-34-jdk17
+    steps:
+      - name: Accept Android Terms
+        run: yes | sdkmanager --licenses --sdk_root=$ANDROID_HOME
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Prepare Build
+        run: chmod +x ./gradlew
+      - name: Prepare Version Suffix
+        uses: benjlevesque/short-sha@v2.1
+        id: short-sha
+        with:
+          length: 6
+      - name: Run Unit Tests
+        run: ./gradlew signingReport testStagingUnitTest
+      - name: Build APK
+        run: ./gradlew assembleStaging -DversionCodeExt=${{ github.run_number }} -DversionNameExt="${{ github.ref_name }} (${{ steps.short-sha.outputs.sha }})"
+      # {devops.distribution.firebase}
+      - name: Prepare APK Publishing on Firebase Distribution
+        run: echo '${{ secrets.APP_DISTRIBUTION_CREDENTIALS }}' >> serviceCredentialsFile.json
+      - name: Publish APK on Firebase Distribution
+        run: ./gradlew appDistributionUploadStaging --releaseNotes "${{ github.event.head_commit.message }}"
+      # {devops.distribution.firebase}
+      - name: Publish APK on Github
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-staging.apk
+          path: app/build/outputs/apk/staging/app-staging.apk
+          retention-days: 3

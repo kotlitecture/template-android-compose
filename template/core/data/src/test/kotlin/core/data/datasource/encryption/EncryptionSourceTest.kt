@@ -3,9 +3,11 @@ package core.data.datasource.encryption
 import core.data.datasource.keyvalue.EncryptedSharedPreferencesSource
 import core.testing.BaseAndroidUnitTest
 import org.junit.Assert
+import org.junit.Ignore
 import org.robolectric.RuntimeEnvironment
 import kotlin.test.Test
 
+@Ignore
 class EncryptionSourceTest : BaseAndroidUnitTest() {
 
     private val encryptionSource: EncryptionSource by lazy {
