@@ -7,6 +7,7 @@ androidxAppStartup = "1.1.1"
 androidxBenchmarkMacroJunit4 = "1.2.3"
 androidxBiometric = "1.2.0-alpha05"
 androidxBrowser = "1.8.0"
+androidxCollection = "1.4.0"
 androidxComposeActivity = "1.8.2"
 androidxComposeAdaptiveNavigationSuite = "1.0.0-alpha05"
 androidxComposeBom = "2024.04.00"
@@ -37,7 +38,7 @@ androidxWindowManager = "1.2.0"
 androidxWork = "2.9.0"
 chucker = "4.0.0"
 coil = "2.6.0"
-firebaseBom = "32.8.0"
+firebaseBom = "32.8.1"
 googleAppReview = "2.0.1"
 googleAppUpdate = "2.1.0"
 googleGson = "2.10.1"
@@ -63,6 +64,7 @@ androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "a
 androidx-benchmark-macro-junit4 = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "androidxBenchmarkMacroJunit4" }
 androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "androidxBiometric" }
 androidx-browser = { module = "androidx.browser:browser", version.ref = "androidxBrowser" }
+androidx-collection = { module = "androidx.collection:collection", version.ref = "androidxCollection" }
 androidx-compose-activity = { module = "androidx.activity:activity-compose", version.ref = "androidxComposeActivity" }
 androidx-compose-adaptive-navigation-suite = { module = "androidx.compose.material3:material3-adaptive-navigation-suite", version.ref = "androidxComposeAdaptiveNavigationSuite" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidxComposeBom" }

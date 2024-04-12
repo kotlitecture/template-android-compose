@@ -1,5 +1,6 @@
 package core.ui.navigation
 
+import androidx.collection.MutableScatterMap
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.Immutable
@@ -54,7 +55,7 @@ interface ArgsStrategy<D> {
      */
     @Immutable
     object InMemory : ArgsStrategy<Any> {
-        private val cache = mutableMapOf<String, Any?>()
+        private val cache = MutableScatterMap<String, Any?>()
 
         @Composable
         override fun toObject(from: String): Any? {
