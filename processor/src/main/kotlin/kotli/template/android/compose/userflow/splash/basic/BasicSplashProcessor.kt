@@ -31,7 +31,7 @@ class BasicSplashProcessor : BaseFeatureProcessor() {
         )
         state.onApplyRules(
             "*themes.xml",
-            CleanupMarkedLine("{userflow.splash.basic}")
+            CleanupMarkedBlock("{userflow.splash.basic}")
         )
     }
 
