@@ -1,7 +1,7 @@
 package core.ui.navigation
 
 import android.net.Uri
-import android.util.SparseArray
+import androidx.collection.MutableScatterMap
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.window.DialogProperties
@@ -149,7 +149,7 @@ abstract class NavigationDestination<D> {
 
     companion object {
         private const val ATTR_DATA = "data"
-        private val DESTINATIONS = SparseArray<NavigationDestination<*>>()
+        private val DESTINATIONS = MutableScatterMap<String, NavigationDestination<*>>()
 
         /**
          * Retrieves a navigation destination by its unique identifier.
@@ -157,7 +157,7 @@ abstract class NavigationDestination<D> {
          * @param id The unique identifier of the navigation destination.
          * @return The navigation destination, or null if not found.
          */
-        fun getById(id: String): NavigationDestination<*>? = DESTINATIONS.get(id.hashCode())
+        fun getById(id: String): NavigationDestination<*>? = DESTINATIONS[id]
 
         /**
          * Retrieves a navigation destination by its route.
@@ -168,7 +168,7 @@ abstract class NavigationDestination<D> {
         fun getByRoute(route: String): NavigationDestination<*>? = getById(extractId(route))
 
         internal fun register(destination: NavigationDestination<*>) {
-            DESTINATIONS[destination.id.hashCode()] = destination
+            DESTINATIONS[destination.id] = destination
         }
 
         private fun extractId(route: String): String {

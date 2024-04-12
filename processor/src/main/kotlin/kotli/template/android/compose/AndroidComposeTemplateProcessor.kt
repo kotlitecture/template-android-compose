@@ -23,6 +23,7 @@ import kotli.template.android.compose.dataflow.database.DatabaseProvider
 import kotli.template.android.compose.dataflow.encryptedkeyvalue.EncryptedKeyValueStorageProvider
 import kotli.template.android.compose.dataflow.keyvalue.KeyValueStorageProvider
 import kotli.template.android.compose.dataflow.work.WorkProvider
+import kotli.template.android.compose.devops.cicd.CICDProvider
 import kotli.template.android.compose.devops.distribution.DistributionProvider
 import kotli.template.android.compose.devops.i18n.I18NProvider
 import kotli.template.android.compose.metadata.build.BuildToolProvider
@@ -81,6 +82,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
 
         // devops
         DistributionProvider(),
+        CICDProvider,
         I18NProvider(),
 
         // dataflow

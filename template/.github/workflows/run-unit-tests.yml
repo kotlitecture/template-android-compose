@@ -1,0 +1,29 @@
+name: Run Unit Tests
+on:
+  push:
+    branches-ignore:
+      - debug
+      - staging
+      - release
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    container:
+      image: alvrme/alpine-android:android-34-jdk17
+    steps:
+      - name: Accept Android Terms
+        run: yes | sdkmanager --licenses --sdk_root=$ANDROID_HOME
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Prepare Build
+        run: chmod +x ./gradlew
+      - name: Prepare Version Suffix
+        uses: benjlevesque/short-sha@v2.1
+        id: short-sha
+        with:
+          length: 6
+      - name: Run Unit Tests
+        run: ./gradlew signingReport testDebugUnitTest

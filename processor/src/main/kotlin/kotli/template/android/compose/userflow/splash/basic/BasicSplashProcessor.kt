@@ -14,8 +14,11 @@ class BasicSplashProcessor : BaseFeatureProcessor() {
     override fun getId(): String = ID
     override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
 
-    override fun getWebUrl(state: TemplateState): String = "https://developer.android.com/develop/ui/views/launch/splash-screen"
-    override fun getIntegrationUrl(state: TemplateState): String = "https://developer.android.com/reference/kotlin/androidx/core/splashscreen/SplashScreen"
+    override fun getWebUrl(state: TemplateState): String =
+        "https://developer.android.com/develop/ui/views/launch/splash-screen"
+
+    override fun getIntegrationUrl(state: TemplateState): String =
+        "https://developer.android.com/reference/kotlin/androidx/core/splashscreen/SplashScreen"
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules(
@@ -26,6 +29,10 @@ class BasicSplashProcessor : BaseFeatureProcessor() {
             "app/src/main/kotlin/app/AppActivity.kt",
             CleanupMarkedBlock("{userflow.splash.basic}")
         )
+        state.onApplyRules(
+            "*themes.xml",
+            CleanupMarkedBlock("{userflow.splash.basic}")
+        )
     }
 
     override fun doRemove(state: TemplateState) {
@@ -33,7 +40,8 @@ class BasicSplashProcessor : BaseFeatureProcessor() {
             "app/build.gradle",
             RemoveMarkedLine("{userflow.splash.basic}")
         )
-        state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt",
+        state.onApplyRules(
+            "app/src/main/kotlin/app/AppActivity.kt",
             RemoveMarkedBlock("{userflow.splash.basic}"),
             RemoveMarkedLine("splashScreen")
         )

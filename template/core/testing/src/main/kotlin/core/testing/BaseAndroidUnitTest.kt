@@ -61,7 +61,9 @@ abstract class BaseAndroidUnitTest : BaseUnitTest() {
             override fun engineGetCertificate(alias: String?): Certificate =
                 wrapped.getCertificate(alias)
 
-            override fun engineGetCreationDate(alias: String?): Date = wrapped.getCreationDate(alias)
+            override fun engineGetCreationDate(alias: String?): Date =
+                wrapped.getCreationDate(alias)
+
             override fun engineDeleteEntry(alias: String?) = wrapped.deleteEntry(alias)
             override fun engineSetKeyEntry(
                 alias: String?,

@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 /**
  * Composable function to display the main scaffold of the app.
  *
- * @param navigationState The state of the navigation.
+ * @param navigationContext The navigationContext of the navigation.
  * @param topBar The composable function to display the top bar.
  * @param bottomBar The composable function to display the bottom bar.
  * @param floatingActionButton The composable function to display the floating action button.

@@ -11,7 +11,7 @@ import app.datasource.database.objectbox.entity.User
  * It provides access to all underlying DAO objects as well.
  *
  * @property app The application instance.
- * @property databaseName The name of the ObjectBox database.
+ * @property databaseName The name of the database.
  */
 class AppObjectBoxSource(
     private val app: Application,

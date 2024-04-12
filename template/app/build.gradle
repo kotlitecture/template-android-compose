@@ -79,8 +79,8 @@ android {
             //{devops.distribution.firebase.debug}
             firebaseAppDistribution {
                 artifactType = "APK"
-                groups = "feature-developers"
-                serviceCredentialsFile = "appDistributionCredentials.json"
+                groups = "android-developers"
+                serviceCredentialsFile = "serviceCredentialsFile.json"
             }
             // {devops.distribution.firebase.debug}
         }
@@ -96,8 +96,8 @@ android {
             // {devops.distribution.firebase.staging}
             firebaseAppDistribution {
                 artifactType = "APK"
-                groups = "feature-testers"
-                serviceCredentialsFile = "appDistributionCredentials.json"
+                groups = "android-testers"
+                serviceCredentialsFile = "serviceCredentialsFile.json"
             }
             // {devops.distribution.firebase.staging}
         }
@@ -108,6 +108,13 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            // {devops.distribution.firebase.release}
+            firebaseAppDistribution {
+                artifactType = "APK"
+                groups = "android-testers"
+                serviceCredentialsFile = "serviceCredentialsFile.json"
+            }
+            // {devops.distribution.firebase.release}
         }
     }
 }
