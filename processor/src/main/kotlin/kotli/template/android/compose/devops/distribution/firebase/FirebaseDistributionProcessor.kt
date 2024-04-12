@@ -29,7 +29,8 @@ class FirebaseDistributionProcessor : BaseFeatureProcessor() {
         state.onApplyRules("app/build.gradle",
             CleanupMarkedLine("{devops.distribution.firebase}"),
             CleanupMarkedBlock("{devops.distribution.firebase.debug}"),
-            CleanupMarkedBlock("{devops.distribution.firebase.staging}")
+            CleanupMarkedBlock("{devops.distribution.firebase.staging}"),
+            CleanupMarkedBlock("{devops.distribution.firebase.release}")
         )
         state.onApplyRules("build.gradle",
             CleanupMarkedLine("{devops.distribution.firebase}")
@@ -40,7 +41,8 @@ class FirebaseDistributionProcessor : BaseFeatureProcessor() {
         state.onApplyRules("app/build.gradle",
             RemoveMarkedLine("{devops.distribution.firebase}"),
             RemoveMarkedBlock("{devops.distribution.firebase.debug}"),
-            RemoveMarkedBlock("{devops.distribution.firebase.staging}")
+            RemoveMarkedBlock("{devops.distribution.firebase.staging}"),
+            RemoveMarkedBlock("{devops.distribution.firebase.release}"),
         )
         state.onApplyRules("build.gradle",
             RemoveMarkedLine("{devops.distribution.firebase}")
