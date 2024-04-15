@@ -3,6 +3,7 @@ package app.ui.component.coil
 import android.content.Context
 import android.os.Build
 import app.AppDependencyInitializer
+import app.AppInitializerEntryPoint
 import coil.Coil
 import coil.ImageLoader
 import coil.ImageLoaderFactory
@@ -24,6 +25,7 @@ class CoiIImageLoaderInitializer : AppDependencyInitializer<ImageLoaderFactory>(
     lateinit var httpSource: Lazy<OkHttpSource>
 
     override fun initialize(context: Context): ImageLoaderFactory {
+        AppInitializerEntryPoint.resolve(context).inject(this)
         val factory = ImageLoaderFactory {
             ImageLoader.Builder(context)
                 .components {

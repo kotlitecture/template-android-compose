@@ -1,6 +1,7 @@
 package app
 
 import android.content.Context
+import app.ui.component.coil.CoiIImageLoaderInitializer
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
@@ -12,6 +13,8 @@ import dagger.hilt.components.SingletonComponent
 @EntryPoint
 @InstallIn(SingletonComponent::class)
 interface AppInitializerEntryPoint {
+
+    fun inject(initializer: CoiIImageLoaderInitializer)
 
     companion object {
         /**
