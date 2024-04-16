@@ -49,9 +49,7 @@ fun UnlockPasscodeScreen(data: UnlockPasscodeDestination.Data) {
                 }
             }
         )
-        Spacer16()
         BiometricButtonBlock(viewModel)
-        Spacer16()
     }
     BiometricListener(viewModel)
     if (!data.soft) {
@@ -93,5 +91,6 @@ private fun BiometricButtonBlock(viewModel: UnlockPasscodeViewModel) {
             rippleColor = ThemeData.current.onPrimary,
             onClick = viewModel::onBiometricRequest
         )
+        Spacer16()
     }
 }

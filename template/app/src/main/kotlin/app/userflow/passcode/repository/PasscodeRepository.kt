@@ -3,6 +3,7 @@ package app.userflow.passcode.repository
 import app.userflow.passcode.PasscodeState
 import app.userflow.passcode.data.PasscodeData
 import app.userflow.passcode.data.PasscodeLockData
+import app.userflow.passcode.ui.unlock.UnlockPasscodeDestination
 import core.data.datasource.biometric.BiometricSource
 import core.data.datasource.keyvalue.EncryptedKeyValueSource
 import core.data.datasource.keyvalue.KeyValueSource
@@ -14,6 +15,7 @@ import javax.inject.Singleton
 @Singleton
 class PasscodeRepository @Inject constructor(
     private val encryptedKeyValueSource: EncryptedKeyValueSource,
+    private val navigationState: NavigationState,
     private val biometricSource: BiometricSource,
     private val keyValueSource: KeyValueSource,
     private val passcodeState: PasscodeState,
@@ -56,7 +58,9 @@ class PasscodeRepository @Inject constructor(
     }
 
     suspend fun tryLock(foreground: Boolean) {
-        if (!isEnabled()) return
+        if (!isEnabled()) {
+            return
+        }
         if (!foreground) {
             val lockData = PasscodeLockData()
             keyValueSource.save(lockDataKey, lockData, lockDataStrategy)
@@ -65,6 +69,9 @@ class PasscodeRepository @Inject constructor(
             val resumeTimeout = passcodeState.resumeTimeout
             val currentTime = System.currentTimeMillis()
             val needLock = pauseTime == null || currentTime - pauseTime >= resumeTimeout
+            if (needLock) {
+                navigationState.onNext(UnlockPasscodeDestination)
+            }
         }
     }
 

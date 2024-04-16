@@ -119,15 +119,15 @@ class UnlockPasscodeViewModel @Inject constructor(
 
     private fun registerWrongAttempt(code: String) {
         val attempts = attemptsStore.getNotNull() + 1
-        enteredCodeStore.clear()
         attemptsStore.set(attempts)
+        enteredCodeStore.clear()
         app.vibrateWrong()
         val remaining = passcodeState.unlockAttemptsCount - attempts
         if (remaining <= 0) {
             reset()
         } else {
             errorStore.set(app.getString(R.string.passcode_unlock_error, remaining))
-            launchAsync("registerAttempt") {
+            launchAsync("registerWrongAttempt") {
                 passcodeState.unlockHandler.onWrongAttempt(attempts, code)
             }
         }
@@ -135,6 +135,7 @@ class UnlockPasscodeViewModel @Inject constructor(
 
     private fun reset() {
         launchAsync("reset", appState) {
+            passcodeRepository.reset()
             passcodeState.unlockHandler.onReset()
         }
     }

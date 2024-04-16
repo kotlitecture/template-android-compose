@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import app.R
 import app.provideHiltViewModel
-import app.ui.component.basic.Spacer16
 import app.ui.container.FixedTopBarColumnLayout
 import app.userflow.passcode.ui.common.PasscodeLayout
 
@@ -20,6 +19,5 @@ fun SetPasscodeScreen() {
             codeLength = viewModel.passcodeLength,
             onCodeChange = viewModel::onCodeChanged
         )
-        Spacer16()
     }
 }
