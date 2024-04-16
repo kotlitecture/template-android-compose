@@ -42,6 +42,7 @@ data class StoreObject<T>(
     /**
      * Returns the store object as a [MutableState] object.
      */
+    @Stable
     @Composable
     fun asState(): State<T?> = asFlow()
         .collectAsState(initial = currentValue)
@@ -55,6 +56,7 @@ data class StoreObject<T>(
     /**
      * Returns the store object as a non-nullable [MutableState] object.
      */
+    @Stable
     @Composable
     fun asStateNotNull(): State<T> = asFlow()
         .mapNotNull { it }
@@ -96,13 +98,13 @@ data class StoreObject<T>(
      * Checks if the current value is null.
      * @return true if the current value is null, false otherwise.
      */
-    fun isNull():Boolean = currentValue == null
+    fun isNull(): Boolean = currentValue == null
 
     /**
      * Checks if the current value is not null.
      * @return true if the current value is not null, false otherwise.
      */
-    fun isNotNull():Boolean = !isNull()
+    fun isNotNull(): Boolean = !isNull()
 
     /**
      * Sets the value of the store object and emits it to collectors if it has changed.

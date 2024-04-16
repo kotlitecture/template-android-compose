@@ -8,7 +8,7 @@
 
 ## Configuration
 
-Configure your destinations via `ProvidesNavigationBarState`.
+Configure your destinations using `ProvidesNavigationBarState`, and if necessary, specify any restricted or allowed destinations which will force navigation to show/hide the navigation bar in some cases.
 
 ```kotlin
 @Module
@@ -27,6 +27,12 @@ internal class ProvidesNavigationBarState {
                 getLabel = { "Showcases" }
             ),
             ...
+        ),
+        restrictedDestinations = setOf(
+            UnlockPasscodeDestination
+        ),
+        allowedDestinations = setOf(
+            ShowcasesDestination
         )
     )
 }

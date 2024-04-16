@@ -2,6 +2,7 @@ package app
 
 import android.content.Context
 import app.ui.component.coil.CoiIImageLoaderInitializer
+import app.userflow.passcode.PasscodeInitializer
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
@@ -15,6 +16,8 @@ import dagger.hilt.components.SingletonComponent
 interface AppInitializerEntryPoint {
 
     fun inject(initializer: CoiIImageLoaderInitializer)
+
+    fun inject(initializer: PasscodeInitializer)
 
     companion object {
         /**

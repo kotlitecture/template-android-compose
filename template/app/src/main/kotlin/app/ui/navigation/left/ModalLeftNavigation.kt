@@ -27,7 +27,7 @@ import core.ui.state.StoreObject
 fun ModalLeftNavigation(content: @Composable () -> Unit) {
     val viewModel: NavigationBarViewModel = provideHiltViewModel()
     val pages = viewModel.pagesStore.asStateValue()
-    if (pages.isNullOrEmpty()) {
+    if (pages.isNullOrEmpty() || viewModel.restrictionStore.asStateValueNotNull()) {
         content()
         return
     }

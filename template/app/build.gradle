@@ -19,6 +19,7 @@ dependencies {
     implementation libs.firebase.perf // {quality.performance.firebase}
     implementation libs.androidx.startup // {startup-initializer}
     implementation libs.androidx.webkit // {userflow.webtonative.basic}
+    implementation libs.androidx.biometric // {userflow.passcode}
     implementation libs.google.app.update // {userflow.update.google}
     implementation libs.google.app.review // {userflow.review.google}
     implementation libs.coil.kt // {ui.component.coil}

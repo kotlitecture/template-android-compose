@@ -10,4 +10,13 @@
     <string name="theme_change_dark_mode_system">System default</string>
     <string name="theme_change_dark_mode_on">Dark</string>
     <string name="theme_change_dark_mode_off">Light</string>
+    <string name="passcode_biometric_title">Unlock the app with your fingerprint</string>
+    <string name="passcode_biometric_confirm">Confirm</string>
+    <string name="passcode_biometric_cancel">Cancel</string>
+    <string name="passcode_forgot">Forgot?</string>
+    <string name="passcode_unlock">Enter PIN</string>
+    <string name="passcode_enable_set">Set new PIN code</string>
+    <string name="passcode_enable_confirm">Confirm new PIN code</string>
+    <string name="passcode_unlock_error">Wrong PIN (%d more attempts)</string>
+    <string name="passcode_enable_confirm_error">PIN code don\'t match. Try again.</string>
 </resources>

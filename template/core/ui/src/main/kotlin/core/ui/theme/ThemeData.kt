@@ -25,6 +25,7 @@ abstract class ThemeData {
     open val navigationBarStyle: SystemBarStyle = SystemBarStyle.auto(0, 0)
     open val fontFamily: FontFamily = FontFamily.Default
 
+    open val negative: Color = Color.Red
     open val primary: Color = Color.White
     open val onPrimary: Color = Color.Black
 
