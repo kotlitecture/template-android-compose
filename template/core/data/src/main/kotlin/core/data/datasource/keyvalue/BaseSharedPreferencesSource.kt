@@ -63,18 +63,18 @@ abstract class BaseSharedPreferencesSource : KeyValueSource {
     }
 
     override suspend fun <T> remove(key: String, serializationStrategy: SerializationStrategy<T>): T? {
-        cache.remove(key)
         val prev = read(key, serializationStrategy)
+        cache.remove(key)
         prefs.edit().remove(key).commit()
         return prev
     }
 
     override suspend fun clear() {
-        cache.clear()
         prefs
             .edit()
             .clear()
             .commit()
+        cache.clear()
     }
 
     /**

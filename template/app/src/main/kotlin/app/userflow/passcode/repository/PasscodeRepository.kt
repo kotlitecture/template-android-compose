@@ -43,7 +43,7 @@ class PasscodeRepository @Inject constructor(
     }
 
     suspend fun enablePasscode(code: String) {
-        val data = getData()?.copy(code = code) ?: PasscodeData(code = code)
+        val data = getData()?.copy(code = code) ?: PasscodeData(code = code, biometric = false)
         encryptedKeyValueSource.save(dataKey, data, dataStrategy)
     }
 
@@ -62,7 +62,7 @@ class PasscodeRepository @Inject constructor(
             return
         }
         if (!foreground) {
-            val lockData = PasscodeLockData()
+            val lockData = PasscodeLockData(System.currentTimeMillis())
             keyValueSource.save(lockDataKey, lockData, lockDataStrategy)
         } else {
             val pauseTime = keyValueSource.remove(lockDataKey, lockDataStrategy)?.pauseTime
@@ -70,7 +70,15 @@ class PasscodeRepository @Inject constructor(
             val currentTime = System.currentTimeMillis()
             val needLock = pauseTime == null || currentTime - pauseTime >= resumeTimeout
             if (needLock) {
-                navigationState.onNext(UnlockPasscodeDestination)
+                val currentDestinationStore = navigationState.currentDestinationStore
+                if (currentDestinationStore.get() !is UnlockPasscodeDestination) {
+                    navigationState.onNext(
+                        UnlockPasscodeDestination,
+                        UnlockPasscodeDestination.Data(
+                            back = currentDestinationStore.isNotNull()
+                        )
+                    )
+                }
             }
         }
     }

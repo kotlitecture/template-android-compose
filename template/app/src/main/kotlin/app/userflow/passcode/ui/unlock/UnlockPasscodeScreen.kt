@@ -28,18 +28,15 @@ import kotlinx.coroutines.flow.filterNotNull
 fun UnlockPasscodeScreen(data: UnlockPasscodeDestination.Data) {
     val viewModel: UnlockPasscodeViewModel = provideHiltViewModel()
     LaunchedEffect(data) { viewModel.onBind(data) }
-    FixedTopBarColumnLayout(
-        title = data.title,
-        onBack = viewModel::onBack.takeIf { data.soft }
-    ) {
+    FixedTopBarColumnLayout(onBack = viewModel::onBack.takeIf { data.nextRoute != null }) {
         PasscodeLayout(
-            title = stringResource(R.string.passcode_unlock),
+            title = data.title ?: stringResource(R.string.passcode_unlock),
             errorState = viewModel.errorStore.asState(),
             codeState = viewModel.enteredCodeStore.asState(),
             codeLength = viewModel.passcodeLength,
             onCodeChange = viewModel::onCodeChanged,
             bottomLeftBlock = {
-                if (viewModel.canForgetPPasscode) {
+                if (viewModel.canForgetPasscode) {
                     PadTextButton(
                         text = stringResource(R.string.passcode_forgot),
                         onClick = viewModel::onForgot
@@ -52,7 +49,7 @@ fun UnlockPasscodeScreen(data: UnlockPasscodeDestination.Data) {
         BiometricButtonBlock(viewModel)
     }
     BiometricListener(viewModel)
-    if (!data.soft) {
+    if (data.nextRoute == null) {
         BackHandler {}
     }
 }

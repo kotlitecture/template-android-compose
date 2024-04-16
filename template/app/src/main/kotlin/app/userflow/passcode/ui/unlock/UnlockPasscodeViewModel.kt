@@ -24,7 +24,7 @@ class UnlockPasscodeViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val passcodeLength = passcodeState.passcodeLength
-    val canForgetPPasscode = passcodeState.canForgetPasscode
+    val canForgetPasscode = passcodeState.canForgetPasscode
     val biometricAvailable = StoreObject(false)
     val biometricEnabled = StoreObject(false)
     val enteredCodeStore = StoreObject<String>()
@@ -102,7 +102,7 @@ class UnlockPasscodeViewModel @Inject constructor(
                     navigationState.onNext(destination, strategy = strategy)
                 }
 
-                data.soft -> {
+                data.back -> {
                     onBack()
                 }
 

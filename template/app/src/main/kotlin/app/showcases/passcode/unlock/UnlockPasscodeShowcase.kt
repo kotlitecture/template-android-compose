@@ -9,7 +9,7 @@ object UnlockPasscodeShowcase : ShowcaseItem {
     override val label: String = "Unlock Passcode"
 
     override fun onClick(viewModel: ShowcasesViewModel) {
-        val data = UnlockPasscodeDestination.Data(soft = true)
+        val data = UnlockPasscodeDestination.Data(back = true)
         viewModel.navigationState.onNext(UnlockPasscodeDestination, data)
     }
 

@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PasscodeLockData(
-    val pauseTime: Long = System.currentTimeMillis()
+    val pauseTime: Long
 )

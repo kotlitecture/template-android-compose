@@ -9,6 +9,6 @@ data class PasscodeState(
     val passcodeLength: Int = 4,
     val canForgetPasscode: Boolean = true,
     val unlockAttemptsCount: Int = 5,
-    val resumeTimeout: Long = 5.seconds.inWholeMilliseconds,
+    val resumeTimeout: Long = 2.seconds.inWholeMilliseconds,
     val unlockHandler: UnlockPasscodeHandler
 ) : StoreState()

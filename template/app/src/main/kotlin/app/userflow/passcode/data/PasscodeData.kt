@@ -5,6 +5,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class PasscodeData(
     val code: String,
-    val biometric: Boolean = false,
-    val createTime: Long = System.currentTimeMillis()
+    val biometric: Boolean
 )

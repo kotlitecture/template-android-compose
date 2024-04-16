@@ -17,7 +17,7 @@ object UnlockPasscodeDestination : NavigationDestination<UnlockPasscodeDestinati
     data class Data(
         val nextRoute: String? = null,
         val title: String? = null,
-        val soft:Boolean = false
+        val back: Boolean = false,
     )
 
 }
