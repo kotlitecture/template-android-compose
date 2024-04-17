@@ -41,6 +41,17 @@ private val numberSize = 48.sp
 private val actionSize = 72.dp
 private val actionSpace = 24.dp
 
+/**
+ * Composable function representing the passcode layout.
+ *
+ * @param modifier Modifier to be applied to the layout.
+ * @param title Optional title for the passcode layout.
+ * @param errorState State representing any error message to display.
+ * @param codeState State representing the current passcode.
+ * @param codeLength Length of the passcode.
+ * @param onCodeChange Callback function invoked when the passcode changes.
+ * @param bottomLeftBlock Composable block for the bottom left area of the layout.
+ */
 @Composable
 fun PasscodeLayout(
     modifier: Modifier = Modifier,
@@ -85,30 +96,6 @@ fun PasscodeLayout(
             bottomLeftBlock(actionSize)
             PadNumberButton(0, codeLength, codeState, onCodeChange)
             EraseBlock(codeState, onCodeChange)
-        }
-    }
-}
-
-@Composable
-private fun EraseBlock(codeState: State<String?>, onCodeChange: (code: String) -> Unit) {
-    Box(modifier = Modifier.size(actionSize)) {
-        AnimatedVisibility(
-            modifier = Modifier.size(actionSize),
-            enter = scaleIn() + fadeIn(),
-            exit = scaleOut() + fadeOut(),
-            visible = !codeState.value.isNullOrEmpty()
-        ) {
-            PadIconButton(
-                iconRes = Icons.AutoMirrored.Outlined.Backspace,
-                rippleColor = ThemeData.current.onPrimary,
-                onClick = {
-                    val code = codeState.value
-                    if (!code.isNullOrEmpty()) {
-                        val newCode = code.take(code.length - 1)
-                        onCodeChange(newCode)
-                    }
-                }
-            )
         }
     }
 }
@@ -206,5 +193,29 @@ fun PadButton(
                 )
         )
         content()
+    }
+}
+
+@Composable
+private fun EraseBlock(codeState: State<String?>, onCodeChange: (code: String) -> Unit) {
+    Box(modifier = Modifier.size(actionSize)) {
+        AnimatedVisibility(
+            modifier = Modifier.size(actionSize),
+            enter = scaleIn() + fadeIn(),
+            exit = scaleOut() + fadeOut(),
+            visible = !codeState.value.isNullOrEmpty()
+        ) {
+            PadIconButton(
+                iconRes = Icons.AutoMirrored.Outlined.Backspace,
+                rippleColor = ThemeData.current.onPrimary,
+                onClick = {
+                    val code = codeState.value
+                    if (!code.isNullOrEmpty()) {
+                        val newCode = code.take(code.length - 1)
+                        onCodeChange(newCode)
+                    }
+                }
+            )
+        }
     }
 }

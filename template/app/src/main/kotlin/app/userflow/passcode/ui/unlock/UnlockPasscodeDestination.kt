@@ -15,9 +15,9 @@ object UnlockPasscodeDestination : NavigationDestination<UnlockPasscodeDestinati
 
     @Serializable
     data class Data(
+        val nextRouteIsPrevious: Boolean = false,
         val nextRoute: String? = null,
         val title: String? = null,
-        val back: Boolean = false,
     )
 
 }

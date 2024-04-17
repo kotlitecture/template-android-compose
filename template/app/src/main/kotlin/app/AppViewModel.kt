@@ -1,6 +1,5 @@
 package app
 
-import app.showcases.ShowcasesDestination
 import core.ui.BaseViewModel
 import core.ui.navigation.NavigationState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,13 +13,15 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class AppViewModel @Inject constructor(
+    private val navigationRouter: AppNavigationRouter,
     val navigationState: NavigationState,
     val appState: AppState,
 ) : BaseViewModel() {
 
     override fun doBind() {
         launchAsync("doBind") {
-            navigationState.setStartDestination(ShowcasesDestination)
+            val startDestination = navigationRouter.getStartDestination()
+            navigationState.setStartDestination(startDestination)
         }
     }
 

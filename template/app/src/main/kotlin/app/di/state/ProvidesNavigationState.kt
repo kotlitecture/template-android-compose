@@ -7,6 +7,7 @@ import app.userflow.navigation.b.NavigationBDestination
 import app.userflow.navigation.c.NavigationCDestination
 import app.userflow.passcode.ui.enable.confirm.ConfirmPasscodeDestination
 import app.userflow.passcode.ui.enable.set.SetPasscodeDestination
+import app.userflow.passcode.ui.reset.ResetPasscodeDestination
 import app.userflow.passcode.ui.unlock.UnlockPasscodeDestination
 import app.userflow.theme.change.ChangeThemeDestination
 import app.userflow.theme.change.ChangeThemeDialogDestination
@@ -37,6 +38,7 @@ internal class ProvidesNavigationState {
             UnlockPasscodeDestination,
             SetPasscodeDestination,
             ConfirmPasscodeDestination,
+            ResetPasscodeDestination
         )
     )
 

@@ -8,18 +8,25 @@ import android.os.Bundle
 import app.AppDependencyInitializer
 import app.AppInitializerEntryPoint
 import app.userflow.passcode.repository.PasscodeRepository
+import app.userflow.passcode.ui.unlock.UnlockPasscodeDestination
 import core.data.misc.extensions.globalAsync
+import core.ui.navigation.NavigationState
 import dagger.Lazy
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 import kotlin.math.max
 
 /**
- * Initializes the PasscodeState for the application to handle foreground state of the app.
+ * Initializes passcode-related functionality and manages its state through activity lifecycle events.
  */
 class PasscodeInitializer : AppDependencyInitializer<Unit>(), ActivityLifecycleCallbacks {
 
     @Inject
-    lateinit var repository: Lazy<PasscodeRepository>
+    lateinit var repositoryLazy: Lazy<PasscodeRepository>
+
+    @Inject
+    lateinit var navigationStateLazy: Lazy<NavigationState>
 
     private var activityCounter = 0
 
@@ -50,7 +57,25 @@ class PasscodeInitializer : AppDependencyInitializer<Unit>(), ActivityLifecycleC
     private fun tryLock() {
         globalAsync("tryLock") {
             val foreground = activityCounter > 0
-            repository.get().tryLock(foreground)
+            val canLock = repositoryLazy.get().canLock(foreground)
+            if (canLock) {
+                lock()
+            }
+        }
+    }
+
+    private suspend fun lock() {
+        val navigationState = navigationStateLazy.get()
+        val destination = navigationState.currentDestinationStore.asFlow()
+            .filterNotNull()
+            .first()
+        if (destination !is UnlockPasscodeDestination) {
+            navigationState.onNext(
+                UnlockPasscodeDestination,
+                UnlockPasscodeDestination.Data(
+                    nextRouteIsPrevious = true
+                )
+            )
         }
     }
 

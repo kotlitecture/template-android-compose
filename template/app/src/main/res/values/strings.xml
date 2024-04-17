@@ -19,4 +19,8 @@
     <string name="passcode_enable_confirm">Confirm new PIN code</string>
     <string name="passcode_unlock_error">Wrong PIN (%d more attempts)</string>
     <string name="passcode_enable_confirm_error">PIN code don\'t match. Try again.</string>
+    <string name="passcode_reset_title">Reset your pin code?</string>
+    <string name="passcode_reset_text">All local data will be lost</string>
+    <string name="passcode_reset_yes">Yes</string>
+    <string name="passcode_reset_no">No</string>
 </resources>

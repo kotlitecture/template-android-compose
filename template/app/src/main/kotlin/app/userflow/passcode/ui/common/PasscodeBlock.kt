@@ -23,6 +23,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import core.ui.theme.ThemeData
 
+/**
+ * Composable function representing the passcode block.
+ *
+ * @param modifier Modifier to be applied to the passcode block.
+ * @param codeState State representing the current passcode.
+ * @param title Optional title for the passcode block.
+ * @param errorState State representing any error message to display.
+ * @param codeLength Length of the passcode.
+ */
 @Composable
 fun PasscodeBlock(
     modifier: Modifier = Modifier,
