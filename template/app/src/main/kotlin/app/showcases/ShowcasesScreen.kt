@@ -78,7 +78,7 @@ private fun HintBlock(hintStore: StoreObject<Boolean>) {
 
                 1. Package `app/showcases`.
                 
-                2. Usage of `ShowcasesDestination` in `app.AppViewModel`.
+                2. Usage of `ShowcasesDestination` in `app.AppNavigationRouter`.
                 
                 3. Usage of `ShowcasesDestination` in `app.di.state.ProvidesNavigationState`.
                 
