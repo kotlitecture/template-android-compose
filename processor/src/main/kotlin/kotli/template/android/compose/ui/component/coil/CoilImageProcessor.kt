@@ -7,6 +7,7 @@ import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.template.android.compose.AppInitializerEntryPointRuleRules
 import kotli.template.android.compose.AppStartupInitializerRules
 import kotli.template.android.compose.dataflow.http.okhttp.OkHttpProcessor
 import kotli.template.android.compose.unspecified.startup.StartupInitializerProcessor
@@ -40,8 +41,9 @@ class CoilImageProcessor : BaseFeatureProcessor() {
             )
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/AppInitializerEntryPoint.kt",
-            RemoveMarkedLine("CoiIImageLoaderInitializer")
+            AppInitializerEntryPointRuleRules(
+                RemoveMarkedLine("CoiIImageLoaderInitializer")
+            )
         )
         state.onApplyRules(
             "app/src/main/kotlin/app/ui/component/coil",

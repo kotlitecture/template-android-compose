@@ -14,9 +14,7 @@ import dagger.hilt.components.SingletonComponent
 @EntryPoint
 @InstallIn(SingletonComponent::class)
 interface AppInitializerEntryPoint {
-
     fun inject(initializer: CoiIImageLoaderInitializer)
-
     fun inject(initializer: PasscodeInitializer)
 
     companion object {

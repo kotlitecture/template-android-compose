@@ -7,7 +7,9 @@ import kotli.engine.template.rule.CleanupMarkedBlock
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.engine.template.rule.ReplaceMarkedBlock
+import kotli.template.android.compose.AppInitializerEntryPointRuleRules
 import kotli.template.android.compose.AppNavigationRouterRules
+import kotli.template.android.compose.AppStartupInitializerRules
 import kotli.template.android.compose.NavigationStateRules
 import kotli.template.android.compose.dataflow.biometric.basic.BasicBiometricProcessor
 import kotli.template.android.compose.dataflow.encryptedkeyvalue.sharedpreferences.EncryptedSharedPreferencesProcessor
@@ -65,6 +67,16 @@ object LocalPasscodeProcessor : BaseFeatureProcessor() {
                 RemoveMarkedLine("ConfirmPasscodeDestination"),
                 RemoveMarkedLine("ResetPasscodeDestination"),
                 RemoveMarkedLine("SetBiometricDestination"),
+            )
+        )
+        state.onApplyRules(
+            AppInitializerEntryPointRuleRules(
+                RemoveMarkedLine("PasscodeInitializer")
+            )
+        )
+        state.onApplyRules(
+            AppStartupInitializerRules(
+                RemoveMarkedLine("PasscodeInitializer")
             )
         )
         state.onApplyRules(
