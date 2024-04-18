@@ -8,6 +8,7 @@ import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.template.android.compose.AppStartupInitializerRules
 import kotlin.time.Duration.Companion.hours
 
 class StartupInitializerProcessor : BaseFeatureProcessor() {
@@ -30,7 +31,7 @@ class StartupInitializerProcessor : BaseFeatureProcessor() {
         state.onApplyRules("app/src/main/AndroidManifest.xml", RemoveMarkedBlock("{startup-initializer}"))
         state.onApplyRules("app/src/main/kotlin/app/AppInitializerEntryPoint.kt", RemoveFile())
         state.onApplyRules("app/src/main/kotlin/app/AppDependencyInitializer.kt", RemoveFile())
-        state.onApplyRules("app/src/main/kotlin/app/AppStartupInitializer.kt", RemoveFile())
+        state.onApplyRules(AppStartupInitializerRules(RemoveFile()))
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("androidxAppStartup")))
     }
 

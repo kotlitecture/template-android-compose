@@ -1,13 +1,14 @@
-package kotli.template.android.compose.showcases.theme
+package kotli.template.android.compose.showcases.passcode
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
+import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.ShowcasesRules
 
-object ThemeShowcasesProcessor : BaseFeatureProcessor() {
+object PasscodeShowcasesProcessor : BaseFeatureProcessor() {
 
-    const val ID = "showcases.theme"
+    const val ID = "showcases.passcode"
 
     override fun getId(): String = ID
     override fun isInternal(): Boolean = true
@@ -15,8 +16,12 @@ object ThemeShowcasesProcessor : BaseFeatureProcessor() {
     override fun doRemove(state: TemplateState) {
         state.onApplyRules(
             ShowcasesRules(
-                RemoveMarkedLine("Userflow :: Theme")
+                RemoveMarkedLine("Passcode")
             )
+        )
+        state.onApplyRules(
+            "app/src/main/kotlin/app/showcases/passcode",
+            RemoveFile()
         )
     }
 

@@ -6,7 +6,7 @@ import kotli.engine.TemplateState
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.AndroidStringsRules
-import kotli.template.android.compose.showcases.ShowcasesProcessor
+import kotli.template.android.compose.NavigationStateRules
 import kotli.template.android.compose.showcases.theme.change.ChangeThemeShowcasesProcessor
 import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
 import kotli.template.android.compose.ui.container.fixedtopbar.FixedTopBarProcessor
@@ -27,9 +27,10 @@ object ChangeThemeProcessor : BaseFeatureProcessor() {
 
     override fun doRemove(state: TemplateState) {
         state.onApplyRules(
-            "app/src/main/kotlin/app/di/state/ProvidesNavigationState.kt",
-            RemoveMarkedLine("ChangeThemeDialogDestination"),
-            RemoveMarkedLine("ChangeThemeDestination")
+            NavigationStateRules(
+                RemoveMarkedLine("ChangeThemeDialogDestination"),
+                RemoveMarkedLine("ChangeThemeDestination")
+            )
         )
         state.onApplyRules(
             "app/src/main/kotlin/app/userflow/theme/change",

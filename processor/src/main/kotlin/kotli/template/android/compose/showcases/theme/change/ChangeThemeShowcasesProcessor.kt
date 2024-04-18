@@ -5,6 +5,7 @@ import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.template.android.compose.ShowcasesRules
 import kotli.template.android.compose.showcases.theme.ThemeShowcasesProcessor
 
 object ChangeThemeShowcasesProcessor : BaseFeatureProcessor() {
@@ -24,9 +25,10 @@ object ChangeThemeShowcasesProcessor : BaseFeatureProcessor() {
             RemoveFile()
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/showcases/Showcases.kt",
-            RemoveMarkedLine("ChangeThemeScreenShowcase"),
-            RemoveMarkedLine("ChangeThemeDialogShowcase"),
+            ShowcasesRules(
+                RemoveMarkedLine("ChangeThemeScreenShowcase"),
+                RemoveMarkedLine("ChangeThemeDialogShowcase"),
+            )
         )
     }
 
