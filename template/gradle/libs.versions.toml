@@ -165,6 +165,7 @@ tinylog-slf4j = { module = "org.tinylog:slf4j-tinylog", version.ref = "tinylog" 
 [bundles]
 androidCommon = [
     "androidx-appcompat",
+    "androidx-biometric",
     "androidx-browser",
     "androidx-compose-activity",
     "androidx-compose-adaptive-navigation-suite",
