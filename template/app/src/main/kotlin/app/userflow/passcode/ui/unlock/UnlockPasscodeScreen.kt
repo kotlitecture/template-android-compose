@@ -57,6 +57,7 @@ fun UnlockPasscodeScreen(data: UnlockPasscodeDestination.Data) {
 
 @Composable
 private fun BiometricListener(viewModel: UnlockPasscodeViewModel) {
+    if (!viewModel.biometricEnabledStore.asStateValueNotNull()) return
     val activity = LocalContext.current.findActivity() ?: return
     LaunchedEffect(activity, viewModel) {
         viewModel.biometricFlowStore.asFlow()

@@ -20,9 +20,9 @@ class UnlockPasscodeViewModel @Inject constructor(
     private val passcodeRepository: PasscodeRepository,
     private val navigationRouter: AppNavigationRouter,
     private val navigationState: NavigationState,
-    private val passcodeState: PasscodeState,
     private val appState: AppState,
-    private val app: Application
+    private val app: Application,
+    passcodeState: PasscodeState,
 ) : BaseViewModel() {
 
     val canForgetPasscode = passcodeState.canForgetPasscode
@@ -47,6 +47,10 @@ class UnlockPasscodeViewModel @Inject constructor(
                 biometricEnabledStore.set(true)
             }
         }
+    }
+
+    override fun doResume() {
+        biometricFlowStore.set(System.nanoTime())
     }
 
     fun onCodeChanged(enteredCode: String) {
