@@ -6,6 +6,9 @@ import core.ui.navigation.NavigationDestination
 import core.ui.navigation.NavigationStrategy
 import kotlinx.serialization.Serializable
 
+/**
+ * Represents the destination for the confirm passcode screen.
+ */
 object ConfirmPasscodeDestination : NavigationDestination<ConfirmPasscodeDestination.Data>() {
 
     override val id: String = "confirm_passcode_screen"

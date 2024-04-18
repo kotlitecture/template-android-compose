@@ -73,7 +73,7 @@ class PasscodeInitializer : AppDependencyInitializer<Unit>(), ActivityLifecycleC
             navigationState.onNext(
                 UnlockPasscodeDestination,
                 UnlockPasscodeDestination.Data(
-                    nextRouteIsPrevious = true
+                    nextDestinationIsPrevious = true
                 )
             )
         }

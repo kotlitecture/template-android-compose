@@ -9,7 +9,6 @@ import app.userflow.passcode.repository.PasscodeRepository
 import app.userflow.passcode.ui.reset.ResetPasscodeDestination
 import core.ui.BaseViewModel
 import core.ui.misc.extensions.vibrateWrong
-import core.ui.navigation.NavigationDestination
 import core.ui.navigation.NavigationState
 import core.ui.navigation.NavigationStrategy
 import core.ui.state.StoreObject
@@ -28,8 +27,8 @@ class UnlockPasscodeViewModel @Inject constructor(
 
     val canForgetPasscode = passcodeState.canForgetPasscode
     val passcodeLength = passcodeState.passcodeLength
-    val biometricAvailable = StoreObject(false)
-    val biometricEnabled = StoreObject(false)
+    val biometricEnabledStore = StoreObject(false)
+    val biometricFlowStore = StoreObject<Long>()
     val enteredCodeStore = StoreObject<String>()
     val errorStore = StoreObject<String>()
 
@@ -43,9 +42,9 @@ class UnlockPasscodeViewModel @Inject constructor(
         enteredCodeStore.clear()
         dataStore.set(data)
         launchAsync("isBiometricEnabled") {
-            if (passcodeRepository.isBiometricEnabled()) {
-                biometricEnabled.set(true)
-                biometricAvailable.set(passcodeRepository.isBiometricAvailable())
+            if (passcodeRepository.isBiometricEnabled() && passcodeRepository.isBiometricAvailable()) {
+                biometricFlowStore.set(System.nanoTime())
+                biometricEnabledStore.set(true)
             }
         }
     }
@@ -71,8 +70,8 @@ class UnlockPasscodeViewModel @Inject constructor(
         }
     }
 
-    fun onBiometricRequest() {
-        biometricAvailable.set(true)
+    fun onBiometricFlow() {
+        biometricFlowStore.set(System.nanoTime())
     }
 
     fun onBiometricUnlock() {
@@ -89,16 +88,15 @@ class UnlockPasscodeViewModel @Inject constructor(
         passcodeRepository.unlock()
         val data = dataStore.get()
         when {
-            data?.nextRoute != null -> unlockRoute(data.nextRoute)
-            data?.nextRouteIsPrevious == true -> onBack()
+            data?.nextDestinationUri != null -> unlockUri(data.nextDestinationUri)
+            data?.nextDestinationIsPrevious == true -> unlockPrevious()
             else -> unlockDefault()
         }
     }
 
-    private suspend fun unlockRoute(route: String) {
+    private suspend fun unlockUri(uriString: String) {
         val strategy = NavigationStrategy.ReplacePrevious
-        val destination = NavigationDestination.getByRoute(route)!!
-        navigationState.onNext(destination, strategy = strategy)
+        navigationState.onNext(uriString, strategy)
     }
 
     private suspend fun unlockFailed() {
@@ -113,6 +111,10 @@ class UnlockPasscodeViewModel @Inject constructor(
             destination = navigationRouter.getStartDestination(),
             strategy = NavigationStrategy.ClearHistory
         )
+    }
+
+    private suspend fun unlockPrevious() {
+        onBack()
     }
 
 }

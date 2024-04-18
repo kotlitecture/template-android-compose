@@ -13,22 +13,21 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import app.R
 import app.provideHiltViewModel
-import app.ui.component.basic.Spacer16
 import app.ui.container.FixedTopBarColumnLayout
+import app.userflow.passcode.ui.common.EraseBlock
 import app.userflow.passcode.ui.common.PadIconButton
 import app.userflow.passcode.ui.common.PadTextButton
 import app.userflow.passcode.ui.common.PasscodeLayout
 import core.ui.misc.extensions.findActivity
 import core.ui.theme.ThemeData
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
 
 @Composable
 fun UnlockPasscodeScreen(data: UnlockPasscodeDestination.Data) {
     val viewModel: UnlockPasscodeViewModel = provideHiltViewModel()
     LaunchedEffect(data) { viewModel.onBind(data) }
-    FixedTopBarColumnLayout(onBack = viewModel::onBack.takeIf { data.nextRoute != null }) {
+    FixedTopBarColumnLayout(onBack = viewModel::onBack.takeIf { data.canNavigateBack }) {
         PasscodeLayout(
             title = data.title ?: stringResource(R.string.passcode_unlock),
             errorState = viewModel.errorStore.asState(),
@@ -44,12 +43,14 @@ fun UnlockPasscodeScreen(data: UnlockPasscodeDestination.Data) {
                 } else {
                     Box(modifier = Modifier.size(it))
                 }
+            },
+            bottomRightBlock = {
+                BiometricButtonBlock(viewModel)
             }
         )
-        BiometricButtonBlock(viewModel)
     }
     BiometricListener(viewModel)
-    if (data.nextRoute == null) {
+    if (!data.canNavigateBack) {
         BackHandler {}
     }
 }
@@ -58,9 +59,8 @@ fun UnlockPasscodeScreen(data: UnlockPasscodeDestination.Data) {
 private fun BiometricListener(viewModel: UnlockPasscodeViewModel) {
     val activity = LocalContext.current.findActivity() ?: return
     LaunchedEffect(activity, viewModel) {
-        viewModel.biometricAvailable.asFlow()
+        viewModel.biometricFlowStore.asFlow()
             .filterNotNull()
-            .filter { it }
             .collectLatest {
                 val prompt = BiometricPrompt(
                     activity,
@@ -81,13 +81,14 @@ private fun BiometricListener(viewModel: UnlockPasscodeViewModel) {
 
 @Composable
 private fun BiometricButtonBlock(viewModel: UnlockPasscodeViewModel) {
-    val biometricEnabled = viewModel.biometricEnabled.asStateValueNotNull()
-    if (biometricEnabled) {
+    val codeState = viewModel.enteredCodeStore.asState()
+    if (!codeState.value.isNullOrEmpty()) {
+        EraseBlock(codeState, viewModel::onCodeChanged)
+    } else if (viewModel.biometricEnabledStore.asStateValueNotNull()) {
         PadIconButton(
             iconRes = Icons.Default.Fingerprint,
             rippleColor = ThemeData.current.onPrimary,
-            onClick = viewModel::onBiometricRequest
+            onClick = viewModel::onBiometricFlow
         )
-        Spacer16()
     }
 }

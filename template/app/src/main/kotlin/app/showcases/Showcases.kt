@@ -1,5 +1,7 @@
 package app.showcases
 
+import app.showcases.passcode.navigate.NavigateWithPasscodeShowcase
+import app.showcases.passcode.reset.ResetPasscodeShowcase
 import app.showcases.passcode.set.SetPasscodeShowcase
 import app.showcases.passcode.unlock.UnlockPasscodeShowcase
 import app.showcases.theme.change.ChangeThemeDialogShowcase
@@ -21,7 +23,9 @@ object Showcases {
         ToggleThemeShowcase,
         ShowcaseItemGroup("Userflow :: Passcode"),
         SetPasscodeShowcase,
-        UnlockPasscodeShowcase
+        ResetPasscodeShowcase,
+        UnlockPasscodeShowcase,
+        NavigateWithPasscodeShowcase
     )
 
 }

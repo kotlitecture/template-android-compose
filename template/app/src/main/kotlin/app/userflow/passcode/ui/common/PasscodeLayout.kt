@@ -60,8 +60,9 @@ fun PasscodeLayout(
     codeState: State<String?>,
     codeLength: Int,
     onCodeChange: (code: String) -> Unit,
-    bottomLeftBlock: @Composable (size: Dp) -> Unit = {
-        Box(modifier = Modifier.size(it))
+    bottomLeftBlock: @Composable (size: Dp) -> Unit = {},
+    bottomRightBlock: @Composable (size: Dp) -> Unit = {
+        EraseBlock(codeState, onCodeChange)
     }
 ) {
     Column(
@@ -93,9 +94,13 @@ fun PasscodeLayout(
             PadNumberButton(9, codeLength, codeState, onCodeChange)
         }
         Row(horizontalArrangement = Arrangement.spacedBy(actionSpace)) {
-            bottomLeftBlock(actionSize)
+            Box(modifier = Modifier.size(actionSize)) {
+                bottomLeftBlock(actionSize)
+            }
             PadNumberButton(0, codeLength, codeState, onCodeChange)
-            EraseBlock(codeState, onCodeChange)
+            Box(modifier = Modifier.size(actionSize)) {
+                bottomRightBlock(actionSize)
+            }
         }
     }
 }
@@ -197,7 +202,7 @@ fun PadButton(
 }
 
 @Composable
-private fun EraseBlock(codeState: State<String?>, onCodeChange: (code: String) -> Unit) {
+fun EraseBlock(codeState: State<String?>, onCodeChange: (code: String) -> Unit) {
     Box(modifier = Modifier.size(actionSize)) {
         AnimatedVisibility(
             modifier = Modifier.size(actionSize),

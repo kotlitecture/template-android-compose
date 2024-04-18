@@ -5,6 +5,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.launch
 
 /**
  * ViewModel responsible for managing navigation-related functionality.
@@ -20,8 +21,11 @@ class NavigationViewModel : BaseViewModel() {
                 .distinctUntilChanged()
                 .collectLatest {
                     val store = navigationState.currentDestinationStore
-                    if (store.isNull()) delay(100)
-                    store.set(it)
+                    if (store.isNull()) {
+                        context.scope.launch { store.set(it) }
+                    } else {
+                        store.set(it)
+                    }
                 }
         }
     }

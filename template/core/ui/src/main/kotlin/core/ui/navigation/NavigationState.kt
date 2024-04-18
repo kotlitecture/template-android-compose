@@ -1,6 +1,8 @@
 package core.ui.navigation
 
+import android.net.Uri
 import core.ui.navigation.command.DestinationCommand
+import core.ui.navigation.command.DestinationUriCommand
 import core.ui.state.StoreObject
 import core.ui.state.StoreState
 
@@ -72,6 +74,24 @@ class NavigationState(
                 destination = destination,
                 strategy = strategy,
                 data = data
+            )
+        )
+    }
+
+    /**
+     * Navigates to the specified URI using the provided navigation strategy.
+     *
+     * @param uriString The Uri string of the destination.
+     * @param strategy The navigation strategy to use.
+     */
+    fun onNext(
+        uriString: String,
+        strategy: NavigationStrategy
+    ) {
+        onCommand(
+            DestinationUriCommand(
+                uriString = uriString,
+                strategy = strategy
             )
         )
     }

@@ -63,23 +63,39 @@ abstract class NavigationDestination<D> {
     }
 
     /**
+     * Converts the navigation destination data to a Uri.
+     *
+     * @param data The data to be included in the Uri.
+     * @return The URI representing the navigation destination.
+     */
+    @Suppress("RestrictedApi")
+    fun toUri(data: D? = null): Uri {
+        return Uri.Builder()
+            .encodedPath(NavDestination.createRoute(id))
+            .apply { data?.let { appendQueryParameter(ATTR_DATA, argsStrategy.toString(it)) } }
+            .build()
+    }
+
+    /**
+     * Converts the navigation destination data to a Uri string.
+     *
+     * @param data The data to be included in the Uri string.
+     * @return The URI representing the navigation destination.
+     */
+    fun toUriString(data: D? = null): String? {
+        return toUri(data).encodedPath
+    }
+
+    /**
      * Navigates to this destination.
      *
      * @param data The data associated with the navigation.
      * @param strategy The navigation strategy to use.
      * @param controller The NavHostController for navigation.
      */
-    @Suppress("UNCHECKED_CAST", "RestrictedApi")
+    @Suppress("UNCHECKED_CAST")
     internal fun navigate(data: Any?, strategy: NavigationStrategy, controller: NavHostController) {
-        val uri = Uri.Builder()
-            .encodedPath(NavDestination.createRoute(id))
-            .apply {
-                data?.let {
-                    it as D
-                    appendQueryParameter(ATTR_DATA, argsStrategy.toString(it))
-                }
-            }
-            .build()
+        val uri = toUri(data as? D)
         strategy.proceed(route, uri, controller)
     }
 

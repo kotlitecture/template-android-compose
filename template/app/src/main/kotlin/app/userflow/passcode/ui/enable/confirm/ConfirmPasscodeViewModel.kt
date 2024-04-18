@@ -4,9 +4,11 @@ import android.app.Application
 import app.AppState
 import app.R
 import app.userflow.passcode.repository.PasscodeRepository
+import app.userflow.passcode.ui.enable.biometric.SetBiometricDestination
 import core.ui.BaseViewModel
 import core.ui.misc.extensions.vibrateWrong
 import core.ui.navigation.NavigationState
+import core.ui.navigation.NavigationStrategy
 import core.ui.state.StoreObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -50,7 +52,12 @@ class ConfirmPasscodeViewModel @Inject constructor(
         }
         launchAsync("onCodeChanged", appState) {
             passcodeRepository.enablePasscode(expectedCode)
-            navigationState.onBack()
+            if (passcodeRepository.isBiometricAvailable()) {
+                val strategy = NavigationStrategy.ReplacePrevious
+                navigationState.onNext(SetBiometricDestination, strategy = strategy)
+            } else {
+                navigationState.onBack()
+            }
         }
     }
 
