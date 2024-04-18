@@ -8,7 +8,6 @@ import kotli.engine.generator.PathOutputGenerator
 import kotli.engine.generator.ZipOutputGenerator
 import kotli.engine.model.Feature
 import kotli.engine.model.Layer
-import kotli.template.android.compose.userflow.passcode.full.FullPasscodeProcessor
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.slf4j.LoggerFactory
@@ -96,10 +95,7 @@ class AndroidComposeTemplateProcessorTest {
                 id = UUID.randomUUID().toString(),
                 processorId = processor.getId(),
                 namespace = "my.app",
-                name = "app-android",
-                features = listOf(
-                    Feature(FullPasscodeProcessor.ID)
-                )
+                name = "app-android"
             )
             val generator = PathOutputGenerator(buildPath(), registry)
             val gradleGenerator =

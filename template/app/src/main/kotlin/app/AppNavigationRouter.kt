@@ -21,12 +21,12 @@ class AppNavigationRouter @Inject constructor(
      * @return The start destination.
      */
     suspend fun getStartDestination(): NavigationDestination<*> {
-        // {userflow.passcode.full}
+        // {userflow.passcode}
         return when {
             passcodeRepository.isLocked() -> UnlockPasscodeDestination
             else -> ShowcasesDestination
         }
-        // {userflow.passcode.full}
+        // {userflow.passcode}
     }
 
 }
