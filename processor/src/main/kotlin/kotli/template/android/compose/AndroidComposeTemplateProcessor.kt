@@ -120,6 +120,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         ThemeProvider,
         LoaderProvider(),
         InternetProvider(),
+        PasscodeProvider,
         ReviewProvider(),
         UpdateProvider(),
         AdsProvider(),
@@ -127,7 +128,6 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         KycProvider(),
         OnboardingProvider(),
         PaymentsProvider(),
-        PasscodeProvider(),
         SupportProvider(),
         WebToNativeProvider(),
 

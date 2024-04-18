@@ -77,19 +77,14 @@ class HomeViewModel @Inject constructor(
 
 ## Set Initial Destination
 
-When the app is first opened, you need to provide **NavigationState** with an initial destination. It can be done in pre-configured **AppViewModel** class.
+When the app is first opened, you need to provide **NavigationState** with an initial destination. It can be done in pre-configured **AppNavigationRouter** class.
 
 ```kotlin
-@HiltViewModel
-class AppViewModel @Inject constructor(
-    val navigationState: NavigationState,
-) : BaseViewModel() {
+@ViewModelScoped
+class AppNavigationRouter @Inject constructor() {
 
-    override fun doBind() {
-        launchAsync("doBind") {
-            // You can perform some logic before setting the initial destination.
-            navigationState.setStartDestination(TemplateDestination)
-        }
+    suspend fun getStartDestination(): NavigationDestination<*> {
+        return ShowcasesDestination
     }
 
 }

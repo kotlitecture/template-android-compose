@@ -3,6 +3,7 @@ package kotli.template.android.compose.showcases.theme
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.template.android.compose.ShowcasesRules
 
 object ThemeShowcasesProcessor : BaseFeatureProcessor() {
 
@@ -13,8 +14,9 @@ object ThemeShowcasesProcessor : BaseFeatureProcessor() {
 
     override fun doRemove(state: TemplateState) {
         state.onApplyRules(
-            "app/src/main/kotlin/app/showcases/Showcases.kt",
-            RemoveMarkedLine("Userflow :: Theme")
+            ShowcasesRules(
+                RemoveMarkedLine("Userflow :: Theme")
+            )
         )
     }
 

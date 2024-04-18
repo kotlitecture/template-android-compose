@@ -1,5 +1,6 @@
 package app.ui.navigation
 
+import core.ui.navigation.NavigationDestination
 import core.ui.state.StoreObject
 import core.ui.state.StoreState
 
@@ -10,6 +11,8 @@ import core.ui.state.StoreState
  */
 data class NavigationBarState(
     val pages: List<NavigationBarPage>,
+    val allowedDestinations: Set<NavigationDestination<*>> = emptySet(),
+    val restrictedDestinations: Set<NavigationDestination<*>> = emptySet(),
 ) : StoreState() {
 
     /** Store navigation visibility state. */

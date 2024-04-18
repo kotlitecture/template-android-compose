@@ -4,19 +4,19 @@ androidMaxSdkVersion = "34"
 androidMinSdkVersion = "24"
 androidxAppCompat = "1.7.0-alpha03"
 androidxAppStartup = "1.1.1"
-androidxBenchmarkMacroJunit4 = "1.2.3"
+androidxBenchmarkMacroJunit4 = "1.2.4"
 androidxBiometric = "1.2.0-alpha05"
 androidxBrowser = "1.8.0"
 androidxCollection = "1.4.0"
-androidxComposeActivity = "1.8.2"
-androidxComposeAdaptiveNavigationSuite = "1.0.0-alpha05"
-androidxComposeBom = "2024.04.00"
+androidxComposeActivity = "1.9.0"
+androidxComposeAdaptiveNavigationSuite = "1.0.0-alpha06"
+androidxComposeBom = "2024.04.01"
 androidxComposeCompiler = "1.5.11"
 androidxComposeConstraintlayout = "1.1.0-alpha13"
-androidxComposeMaterial3Adaptive = "1.0.0-alpha10"
-androidxCore = "1.12.0"
+androidxComposeMaterial3Adaptive = "1.0.0-alpha11"
+androidxCore = "1.13.0"
 androidxCoreSplashscreen = "1.0.1"
-androidxDatastore = "1.1.0-rc01"
+androidxDatastore = "1.1.0"
 androidxEspresso = "3.6.0-alpha03"
 androidxHiltNavigationCompose = "1.2.0"
 androidxJunit = "1.1.5"
@@ -44,7 +44,7 @@ googleAppUpdate = "2.1.0"
 googleGson = "2.10.1"
 googleHilt = "2.51.1"
 googlePlayPublisher = "3.9.1"
-googleServicesAuth = "21.0.0"
+googleServicesAuth = "21.1.0"
 javaxInject = "1"
 junit4 = "4.13.2"
 kotlin = "1.9.23"
@@ -165,6 +165,7 @@ tinylog-slf4j = { module = "org.tinylog:slf4j-tinylog", version.ref = "tinylog" 
 [bundles]
 androidCommon = [
     "androidx-appcompat",
+    "androidx-biometric",
     "androidx-browser",
     "androidx-compose-activity",
     "androidx-compose-adaptive-navigation-suite",
@@ -229,7 +230,7 @@ kotlinTest = [
 
 [plugins]
 android-application = "com.android.application:8.2.2"
-android-baselineprofile = "androidx.baselineprofile:1.2.3"
+android-baselineprofile = "androidx.baselineprofile:1.2.4"
 android-room = { id = "androidx.room", version.ref = "androidxRoom" }
 android-test = "com.android.test:8.2.2"
 firebase-appdistribution = "com.google.firebase.appdistribution:4.2.0"

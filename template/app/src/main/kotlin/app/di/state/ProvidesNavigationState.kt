@@ -5,6 +5,11 @@ import app.ui.screen.template.TemplateDestination
 import app.userflow.navigation.a.NavigationADestination
 import app.userflow.navigation.b.NavigationBDestination
 import app.userflow.navigation.c.NavigationCDestination
+import app.userflow.passcode.ui.enable.biometric.SetBiometricDestination
+import app.userflow.passcode.ui.enable.confirm.ConfirmPasscodeDestination
+import app.userflow.passcode.ui.enable.set.SetPasscodeDestination
+import app.userflow.passcode.ui.reset.ResetPasscodeDestination
+import app.userflow.passcode.ui.unlock.UnlockPasscodeDestination
 import app.userflow.theme.change.ChangeThemeDestination
 import app.userflow.theme.change.ChangeThemeDialogDestination
 import app.userflow.webtonative.WebToNativeDestination
@@ -30,7 +35,12 @@ internal class ProvidesNavigationState {
             NavigationBDestination,
             NavigationCDestination,
             ChangeThemeDestination,
-            ChangeThemeDialogDestination
+            ChangeThemeDialogDestination,
+            UnlockPasscodeDestination,
+            SetPasscodeDestination,
+            ConfirmPasscodeDestination,
+            ResetPasscodeDestination,
+            SetBiometricDestination
         )
     )
 

@@ -63,6 +63,12 @@ internal class ProvidesNavigationBarState {
                 getInactiveIcon = { Icons.Outlined.Coffee },
                 getLabel = { "Page 3" }
             )
+        ),
+        allowedDestinations = setOf(
+            ShowcasesDestination,
+            NavigationADestination,
+            NavigationBDestination,
+            NavigationCDestination
         )
     )
 

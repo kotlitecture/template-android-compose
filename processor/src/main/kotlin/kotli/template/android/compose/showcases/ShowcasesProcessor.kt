@@ -8,6 +8,9 @@ import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.engine.template.rule.ReplaceMarkedText
+import kotli.template.android.compose.NavigationBarStateRules
+import kotli.template.android.compose.AppNavigationRouterRules
+import kotli.template.android.compose.NavigationStateRules
 import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
 import kotli.template.android.compose.ui.container.fixedheaderfooter.FixedHeaderFooterProcessor
 
@@ -25,8 +28,9 @@ object ShowcasesProcessor : BaseFeatureProcessor() {
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules(
-            "app/src/main/kotlin/app/di/state/ProvidesNavigationBarState.kt",
-            CleanupMarkedBlock("{showcases.common}")
+            NavigationBarStateRules(
+                CleanupMarkedBlock("{showcases.common}")
+            )
         )
     }
 
@@ -36,22 +40,25 @@ object ShowcasesProcessor : BaseFeatureProcessor() {
             RemoveFile()
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/di/state/ProvidesNavigationState.kt",
-            RemoveMarkedLine("ShowcasesDestination")
+            NavigationStateRules(
+                RemoveMarkedLine("ShowcasesDestination")
+            )
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/di/state/ProvidesNavigationBarState.kt",
-            RemoveMarkedBlock("{showcases.common}"),
-            RemoveMarkedLine("ShowcasesDestination")
+            NavigationBarStateRules(
+                RemoveMarkedBlock("{showcases.common}"),
+                RemoveMarkedLine("ShowcasesDestination")
+            )
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/AppViewModel.kt",
-            ReplaceMarkedText(
-                text = "ShowcasesDestination",
-                marker = "setStartDestination",
-                replacer = "app.ui.screen.template.TemplateDestination"
-            ),
-            RemoveMarkedLine("ShowcasesDestination")
+            AppNavigationRouterRules(
+                RemoveMarkedLine("import app.showcases.ShowcasesDestination"),
+                ReplaceMarkedText(
+                    text = "ShowcasesDestination",
+                    marker = "ShowcasesDestination",
+                    replacer = "app.ui.screen.template.TemplateDestination"
+                )
+            )
         )
     }
 

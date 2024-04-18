@@ -14,13 +14,27 @@ class BasicBiometricProcessor : BaseFeatureProcessor() {
     override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
 
     override fun doApply(state: TemplateState) {
-        state.onApplyRules("core/data/build.gradle", CleanupMarkedLine("{dataflow.biometric.basic}"))
+        state.onApplyRules(
+            "core/data/build.gradle",
+            CleanupMarkedLine("{dataflow.biometric.basic}")
+        )
     }
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("core/data/build.gradle", RemoveMarkedLine("{dataflow.biometric.basic}"))
-        state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("androidxBiometric")))
-        state.onApplyRules("*BiometricSource*", RemoveFile())
+        state.onApplyRules(
+            "core/data/build.gradle",
+            RemoveMarkedLine("{dataflow.biometric.basic}")
+        )
+        state.onApplyRules(
+            VersionCatalogRules(
+                RemoveMarkedLine("androidxBiometric"),
+                RemoveMarkedLine("androidx-biometric"),
+            )
+        )
+        state.onApplyRules(
+            "*BiometricSource*",
+            RemoveFile()
+        )
     }
 
     companion object {

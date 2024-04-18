@@ -6,6 +6,8 @@ import kotli.engine.TemplateState
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.template.android.compose.NavigationBarStateRules
+import kotli.template.android.compose.NavigationStateRules
 import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
 
 class NavigationBarProcessor : BaseFeatureProcessor() {
@@ -34,15 +36,17 @@ class NavigationBarProcessor : BaseFeatureProcessor() {
             RemoveFile()
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/di/state/ProvidesNavigationBarState.kt",
-            RemoveFile()
+            NavigationBarStateRules(
+                RemoveFile()
+            )
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/di/state/ProvidesNavigationState.kt",
-            RemoveMarkedLine("NavigationADestination"),
-            RemoveMarkedLine("NavigationBDestination"),
-            RemoveMarkedLine("NavigationCDestination"),
-            RemoveMarkedLine("NavigationDDestination")
+            NavigationStateRules(
+                RemoveMarkedLine("NavigationADestination"),
+                RemoveMarkedLine("NavigationBDestination"),
+                RemoveMarkedLine("NavigationCDestination"),
+                RemoveMarkedLine("NavigationDDestination")
+            )
         )
         state.onApplyRules(
             "app/src/main/kotlin/app/AppActivity.kt",

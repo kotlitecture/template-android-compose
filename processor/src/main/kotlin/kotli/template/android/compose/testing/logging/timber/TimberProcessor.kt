@@ -7,6 +7,7 @@ import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.template.android.compose.AppStartupInitializerRules
 import kotli.template.android.compose.unspecified.startup.StartupInitializerProcessor
 import kotlin.time.Duration.Companion.minutes
 
@@ -37,8 +38,9 @@ class TimberProcessor : BaseFeatureProcessor() {
             )
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/AppStartupInitializer.kt",
-            RemoveMarkedLine("TimberInitializer")
+            AppStartupInitializerRules(
+                RemoveMarkedLine("TimberInitializer")
+            )
         )
         state.onApplyRules(
             "app/src/main/kotlin/app/datasource/logging/TimberInitializer.kt",

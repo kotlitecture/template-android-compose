@@ -17,7 +17,6 @@ abstract class AppDependencyInitializer<T> : Initializer<T> {
      * @return The initialized dependency.
      */
     override fun create(context: Context): T & Any {
-        AppInitializerEntryPoint.resolve(context)
         return initialize(context)
     }
 

@@ -2,6 +2,7 @@ package app.ui.navigation
 
 import core.ui.BaseViewModel
 import core.ui.navigation.NavigationState
+import core.ui.state.StoreObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
@@ -13,10 +14,11 @@ import javax.inject.Inject
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class NavigationBarViewModel @Inject constructor(
-    navigationBarState: NavigationBarState,
+    private val navigationBarState: NavigationBarState,
     private val navigationState: NavigationState,
 ) : BaseViewModel() {
 
+    val restrictionStore = StoreObject(false)
     val pagesStore = navigationBarState.pagesStore
     val visibilityStore = navigationBarState.visibilityStore
     val selectedPageStore = navigationBarState.selectedPageStore
@@ -26,10 +28,20 @@ class NavigationBarViewModel @Inject constructor(
             val destStore = navigationState.currentDestinationStore
             pagesStore.asFlow()
                 .filterNotNull()
-                .map { it.associateBy { it.id } }
+                .map { pages -> pages.associateBy { it.id } }
                 .flatMapLatest { pages -> destStore.asFlow().map { pages to it } }
-                .map { pair -> pair.second?.id?.let(pair.first::get) }
-                .collectLatest(selectedPageStore::set)
+                .collectLatest { pair ->
+                    val restricted = navigationBarState.restrictedDestinations
+                    val allowed = navigationBarState.allowedDestinations
+                    val destination = pair.second
+                    if (allowed.isNotEmpty()) {
+                        restrictionStore.set(!allowed.contains(destination))
+                    } else if (restricted.isNotEmpty()) {
+                        restrictionStore.set(restricted.contains(destination))
+                    }
+                    val page = destination?.id?.let(pair.first::get)
+                    selectedPageStore.set(page)
+                }
         }
     }
 
