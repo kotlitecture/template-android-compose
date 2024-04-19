@@ -1,6 +1,7 @@
 package app.ui.theme
 
 import app.datasource.keyvalue.AppKeyValueSource
+import core.data.serialization.JsonStrategy
 import core.ui.BaseViewModel
 import core.ui.theme.ThemeConfig
 import core.ui.theme.ThemeState
@@ -32,7 +33,7 @@ class ThemeViewModel @Inject constructor(
             if (key == null) {
                 themeState.configStore.set(themeState.defaultConfig)
             } else {
-                val strategy = ThemeConfigData.serializationStrategy
+                val strategy = JsonStrategy.create(ThemeConfigData.serializer())
                 val config = keyValueSource.read(key, strategy)?.let { mapToModel(it) }
                     ?: themeState.defaultConfig
                 themeState.configStore.set(config)
