@@ -1,5 +1,6 @@
 package app.ui.navigation.left
 
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.DismissibleDrawerSheet
@@ -41,7 +42,9 @@ fun DismissibleLeftNavigation(content: @Composable () -> Unit) {
         drawerState = drawerState,
         drawerContent = {
             DismissibleDrawerSheet(
-                modifier = Modifier.verticalScroll(rememberScrollState())
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .verticalScroll(rememberScrollState())
             ) {
                 val selectedPage = viewModel.selectedPageStore.asStateValue()
                 pages.forEach { page ->
