@@ -17,7 +17,7 @@ object ShowcasesDestination : NavigationDestination<Unit>() {
         composable(builder) { ShowcasesScreen() }
         Showcases.all
             .filterIsInstance<ShowcaseItem>()
-            .map { it.destinations() }
+            .map { it.dependsOn() }
             .flatten()
             .onEach { it.bind(builder) }
     }

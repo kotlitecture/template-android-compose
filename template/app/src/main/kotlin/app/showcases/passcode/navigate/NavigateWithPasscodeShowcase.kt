@@ -14,7 +14,7 @@ object NavigateWithPasscodeShowcase : ShowcaseItem {
         viewModel.navigationState.onNext(NavigateWithPasscodeFromDestination)
     }
 
-    override fun destinations(): List<NavigationDestination<*>> = listOf(
+    override fun dependsOn(): List<NavigationDestination<*>> = listOf(
         NavigateWithPasscodeFromDestination,
         NavigateWithPasscodeToDestination
     )
