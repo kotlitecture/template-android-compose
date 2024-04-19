@@ -3,6 +3,7 @@ package app.showcases.theme.toggle
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,7 +30,7 @@ object ToggleThemeShowcase : ShowcaseItem {
         viewModel.navigationState.onNext(ToggleThemeDestination)
     }
 
-    override fun destinations(): List<NavigationDestination<*>> = listOf(
+    override fun dependsOn(): List<NavigationDestination<*>> = listOf(
         ToggleThemeDestination
     )
 
@@ -37,11 +38,12 @@ object ToggleThemeShowcase : ShowcaseItem {
 
 private object ToggleThemeDestination : NavigationDestination<Unit>() {
     override val id: String = "toggle_theme_dialog"
-    override val navStrategy: NavigationStrategy = NavigationStrategy.SingleInstance
+    override val navStrategy: NavigationStrategy = NavigationStrategy.NewInstance
     override val argsStrategy: ArgsStrategy<Unit> = ArgsStrategy.memory()
     override fun doBind(builder: NavGraphBuilder) = dialog(builder) {
         Box(
             modifier = Modifier
+                .sizeIn(minWidth = 100.dp, minHeight = 100.dp)
                 .clip(RoundedCornerShape(24.dp))
                 .background(ThemeData.current.primary)
                 .padding(24.dp),

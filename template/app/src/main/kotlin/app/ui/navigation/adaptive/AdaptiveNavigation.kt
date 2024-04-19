@@ -5,6 +5,7 @@
 
 package app.ui.navigation.adaptive
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -14,6 +15,7 @@ import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffo
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
+import androidx.compose.ui.Modifier
 import app.provideHiltViewModel
 import app.ui.component.basic.AnyIcon
 import app.ui.navigation.NavigationBarViewModel
@@ -34,6 +36,7 @@ fun AdaptiveNavigation(content: @Composable () -> Unit) {
     }
     val selectedPageState = viewModel.selectedPageStore.asState()
     NavigationSuiteScaffold(
+        modifier = Modifier.fillMaxSize(),
         layoutType = getLayoutType(viewModel.visibilityStore),
         navigationSuiteItems = {
             val selectedPage = selectedPageState.value

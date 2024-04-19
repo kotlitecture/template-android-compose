@@ -24,7 +24,7 @@ fun NavigateWithPasscodeFromScreen() {
                 Text(
                     modifier = Modifier.padding(16.dp),
                     text = """
-                    If the passcode is enabled, the user will first be navigated to the [NavigateWithPasscodeToDestination] to confirm their credentials.
+                    If the passcode is enabled, the user will first be navigated to the [UnlockPasscodeDestination] to confirm their credentials.
                     
                     Either way, they will then be navigated to the provided destination.
                     """.trimIndent()

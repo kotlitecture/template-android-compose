@@ -23,6 +23,6 @@ interface ShowcaseItem : Showcase {
      *
      * @return A list of navigation destinations.
      */
-    fun destinations(): List<NavigationDestination<*>> = emptyList()
+    fun dependsOn(): List<NavigationDestination<*>> = emptyList()
 
 }

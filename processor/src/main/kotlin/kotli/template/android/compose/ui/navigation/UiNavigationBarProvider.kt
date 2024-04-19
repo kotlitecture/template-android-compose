@@ -21,10 +21,10 @@ class UiNavigationBarProvider : BaseFeatureProvider() {
 
     override fun createProcessors(): List<FeatureProcessor> = listOf(
         NavigationBarProcessor(),
-        AdaptiveNavigationProcessor(),
         BottomNavigationProcessor(),
         ModalLeftNavigationProcessor(),
         DismissibleLeftNavigationProcessor(),
+        AdaptiveNavigationProcessor(),
     )
 
 }
