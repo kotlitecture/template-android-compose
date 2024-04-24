@@ -10,6 +10,7 @@ import kotli.template.android.compose.NavigationStateRules
 import kotli.template.android.compose.showcases.theme.change.ChangeThemeShowcasesProcessor
 import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
 import kotli.template.android.compose.ui.container.fixedtopbar.FixedTopBarProcessor
+import kotli.template.android.compose.ui.theme.advanced.AdvancedThemeProcessor
 import kotlin.time.Duration.Companion.hours
 
 object ChangeThemeProcessor : BaseFeatureProcessor() {
@@ -20,6 +21,7 @@ object ChangeThemeProcessor : BaseFeatureProcessor() {
     override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
+        AdvancedThemeProcessor::class.java,
         ChangeThemeShowcasesProcessor::class.java,
         BasicComponentsProcessor::class.java,
         FixedTopBarProcessor::class.java,

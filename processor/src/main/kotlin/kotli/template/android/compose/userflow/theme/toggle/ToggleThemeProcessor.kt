@@ -6,6 +6,7 @@ import kotli.engine.TemplateState
 import kotli.engine.template.rule.RemoveFile
 import kotli.template.android.compose.showcases.theme.toggle.ToggleThemeShowcasesProcessor
 import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
+import kotli.template.android.compose.ui.theme.advanced.AdvancedThemeProcessor
 import kotlin.time.Duration.Companion.hours
 
 object ToggleThemeProcessor : BaseFeatureProcessor() {
@@ -16,6 +17,7 @@ object ToggleThemeProcessor : BaseFeatureProcessor() {
     override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
+        AdvancedThemeProcessor::class.java,
         ToggleThemeShowcasesProcessor::class.java,
         BasicComponentsProcessor::class.java
     )

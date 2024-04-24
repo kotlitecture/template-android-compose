@@ -4,6 +4,8 @@ import kotli.engine.BaseTemplateProcessor
 import kotli.engine.FeatureProvider
 import kotli.engine.LayerType
 import kotli.engine.TemplateState
+import kotli.engine.model.Feature
+import kotli.engine.model.Layer
 import kotli.engine.model.LayerTypes
 import kotli.engine.provider.dependencies.DependenciesUpdateProvider
 import kotli.engine.template.rule.ReplaceMarkedText
@@ -43,6 +45,8 @@ import kotli.template.android.compose.ui.container.UiContainerProvider
 import kotli.template.android.compose.ui.l10n.L10NProvider
 import kotli.template.android.compose.ui.navigation.UiNavigationBarProvider
 import kotli.template.android.compose.ui.screen.UiScreenProvider
+import kotli.template.android.compose.ui.theme.UiThemeProvider
+import kotli.template.android.compose.ui.theme.basic.BasicThemeProcessor
 import kotli.template.android.compose.unspecified.UnspecifiedProvider
 import kotli.template.android.compose.userflow.ads.AdsProvider
 import kotli.template.android.compose.userflow.auth.AuthProvider
@@ -54,6 +58,7 @@ import kotli.template.android.compose.userflow.passcode.PasscodeProvider
 import kotli.template.android.compose.userflow.payments.PaymentsProvider
 import kotli.template.android.compose.userflow.review.ReviewProvider
 import kotli.template.android.compose.userflow.splash.SplashProvider
+import kotli.template.android.compose.userflow.splash.basic.BasicSplashProcessor
 import kotli.template.android.compose.userflow.support.SupportProvider
 import kotli.template.android.compose.userflow.theme.ThemeProvider
 import kotli.template.android.compose.userflow.update.UpdateProvider
@@ -65,6 +70,15 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
     override fun getId(): String = ID
     override fun getType(): LayerType = LayerTypes.Android
     override fun getWebUrl(): String = "https://github.com/kotlitecture/template-android-compose"
+
+    override fun createPresets(): List<Layer> = listOf(
+        createPreset(
+            features = listOf(
+                Feature(BasicSplashProcessor.ID),
+                Feature(BasicThemeProcessor.ID)
+            )
+        )
+    )
 
     override fun createProviders(): List<FeatureProvider> = listOf(
         // unspecified
@@ -110,6 +124,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         StartupProvider(),
 
         // ui
+        UiThemeProvider,
         UiNavigationBarProvider(),
         UiComponentProvider(),
         UiContainerProvider(),

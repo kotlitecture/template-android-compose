@@ -9,7 +9,9 @@ import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotlin.time.Duration.Companion.hours
 
-class BasicSplashProcessor : BaseFeatureProcessor() {
+object BasicSplashProcessor : BaseFeatureProcessor() {
+
+    const val ID = "userflow.splash.basic"
 
     override fun getId(): String = ID
     override fun getIntegrationEstimate(state: TemplateState): Long = 1.hours.inWholeMilliseconds
@@ -58,10 +60,6 @@ class BasicSplashProcessor : BaseFeatureProcessor() {
                 RemoveMarkedLine("splashscreen")
             )
         )
-    }
-
-    companion object {
-        const val ID = "userflow.splash.basic"
     }
 
 }

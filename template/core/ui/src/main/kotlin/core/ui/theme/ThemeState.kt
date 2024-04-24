@@ -7,15 +7,12 @@ import core.ui.state.StoreState
  * Represents the state of the theme settings within the application.
  * This state includes the font family, available theme providers, and the current theme provider.
  *
- * @property persistentKey If the configuration needs to be automatically saved across app restarts,
- * this property represents the key of the value in the key-value storage.
- * A null value indicates that the configuration is not persistent.
  * @property defaultConfig the default config to use.
  * @property dynamicConfig the dynamic config to use if such can be provided.
  * @property availableThemes The list of all available theme data providers.
  */
 data class ThemeState(
-    val persistentKey: String? = "theme_config",
+    val persistentKey: String = "theme_config",
     val defaultConfig: ThemeConfig,
     val dynamicConfig: ThemeConfig? = null,
     val availableThemes: List<ThemeDataProvider<*>> = emptyList(),

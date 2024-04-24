@@ -1,0 +1,1 @@
+When included, the app will offer a general state management API to automatically adjust the current theme based on system preferences, without persisting it across app restarts.

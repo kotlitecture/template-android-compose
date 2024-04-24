@@ -18,7 +18,7 @@ class NavigationBarViewModel @Inject constructor(
     private val navigationState: NavigationState,
 ) : BaseViewModel() {
 
-    val restrictionStore = StoreObject(false)
+    val restrictionStore = StoreObject(true)
     val pagesStore = navigationBarState.pagesStore
     val visibilityStore = navigationBarState.visibilityStore
     val selectedPageStore = navigationBarState.selectedPageStore
@@ -38,6 +38,8 @@ class NavigationBarViewModel @Inject constructor(
                         restrictionStore.set(!allowed.contains(destination))
                     } else if (restricted.isNotEmpty()) {
                         restrictionStore.set(restricted.contains(destination))
+                    } else {
+                        restrictionStore.set(false)
                     }
                     val page = destination?.id?.let(pair.first::get)
                     selectedPageStore.set(page)

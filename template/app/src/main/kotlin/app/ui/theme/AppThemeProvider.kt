@@ -11,6 +11,6 @@ import core.ui.theme.ThemeProvider
  */
 @Composable
 fun AppThemeProvider(content: @Composable () -> Unit) {
-    val viewModel: AppThemeViewModel = provideHiltViewModel()
+    val viewModel: AppThemePersistenceViewModel = provideHiltViewModel()
     ThemeProvider(viewModel.themeState, content)
 }

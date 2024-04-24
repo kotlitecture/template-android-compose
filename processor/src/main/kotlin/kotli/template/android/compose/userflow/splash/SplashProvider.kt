@@ -8,7 +8,7 @@ class SplashProvider : BaseUserFlowProvider() {
 
     override fun getId(): String = "userflow.splash"
     override fun createProcessors(): List<FeatureProcessor> = listOf(
-        BasicSplashProcessor()
+        BasicSplashProcessor
     )
 
 }

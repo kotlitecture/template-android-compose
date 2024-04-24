@@ -24,6 +24,8 @@ class AndroidComposeTemplateProcessorTest {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
 
+    private val testCommands = arrayOf("signingReport", "assembleDebug")
+
     private val processor = AndroidComposeTemplateProcessor()
     private val registry = DefaultTemplateRegistry(processor)
 
@@ -98,8 +100,7 @@ class AndroidComposeTemplateProcessorTest {
                 name = "app-android"
             )
             val generator = PathOutputGenerator(buildPath(), registry)
-            val gradleGenerator =
-                GradleProjectGenerator(arrayOf("signingReport", "assembleDebug"), generator)
+            val gradleGenerator = GradleProjectGenerator(testCommands, generator)
             gradleGenerator.generate(layer)
         }
     }
@@ -114,8 +115,7 @@ class AndroidComposeTemplateProcessorTest {
                 name = "app-android",
             )
             val generator = PathOutputGenerator(buildPath(), registry, fat = true)
-            val gradleGenerator =
-                GradleProjectGenerator(arrayOf("signingReport", "assembleDebug"), generator)
+            val gradleGenerator = GradleProjectGenerator(testCommands, generator)
             gradleGenerator.generate(layer)
         }
     }
@@ -140,8 +140,7 @@ class AndroidComposeTemplateProcessorTest {
                 name = "app-android",
             )
             val generator = PathOutputGenerator(buildPath(), registry)
-            val gradleGenerator =
-                GradleProjectGenerator(arrayOf("signingReport", "assembleDebug"), generator)
+            val gradleGenerator = GradleProjectGenerator(testCommands, generator)
             gradleGenerator.generate(layer)
         }
     }
