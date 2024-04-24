@@ -9,7 +9,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
 import app.ui.navigation.NavigationBarProvider
 import app.ui.navigation.bottom.BottomNavigation
-import app.ui.theme.ThemeProvider
+import app.ui.theme.AppThemeProvider
 import app.userflow.internet.no.NoInternetProvider
 import app.userflow.loader.data.DataLoaderProvider
 import app.userflow.review.google.GoogleReviewProvider
@@ -41,7 +41,7 @@ class AppActivity : FragmentActivity() {
 
 @Composable
 private fun ScaffoldBlock(appState: AppState, navigationState: NavigationState) {
-    ThemeProvider {
+    AppThemeProvider {
         val navigationContext = rememberNavigationContext(navigationState)
         NavigationBarProvider { // {ui.navigation.common}
             NavigationScaffold(

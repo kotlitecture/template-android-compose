@@ -10,7 +10,7 @@ import core.ui.theme.ThemeProvider
  * @param content The composable content to be themed.
  */
 @Composable
-fun ThemeProvider(content: @Composable () -> Unit) {
-    val viewModel: ThemeViewModel = provideHiltViewModel()
+fun AppThemeProvider(content: @Composable () -> Unit) {
+    val viewModel: AppThemeViewModel = provideHiltViewModel()
     ThemeProvider(viewModel.themeState, content)
 }

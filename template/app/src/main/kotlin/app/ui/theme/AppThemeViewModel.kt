@@ -14,12 +14,9 @@ import javax.inject.Inject
 
 /**
  * ViewModel class responsible for managing the theme state.
- *
- * @param themeState The state of the theme.
- * @param keyValueSource The key-value source for persistence.
  */
 @HiltViewModel
-class ThemeViewModel @Inject constructor(
+class AppThemeViewModel @Inject constructor(
     val themeState: ThemeState,
     private val keyValueSource: AppKeyValueSource
 ) : BaseViewModel() {
@@ -33,7 +30,7 @@ class ThemeViewModel @Inject constructor(
             if (key == null) {
                 themeState.configStore.set(themeState.defaultConfig)
             } else {
-                val strategy = JsonStrategy.create(ThemeConfigData.serializer())
+                val strategy = JsonStrategy.create(AppThemeConfigData.serializer())
                 val config = keyValueSource.read(key, strategy)?.let { mapToModel(it) }
                     ?: themeState.defaultConfig
                 themeState.configStore.set(config)
@@ -47,12 +44,12 @@ class ThemeViewModel @Inject constructor(
     }
 
     /**
-     * Maps data from [ThemeConfigData] to [ThemeConfig].
+     * Maps data from [AppThemeConfigData] to [ThemeConfig].
      *
      * @param from The source data.
      * @return The mapped [ThemeConfig].
      */
-    private fun mapToModel(from: ThemeConfigData): ThemeConfig {
+    private fun mapToModel(from: AppThemeConfigData): ThemeConfig {
         val initial = themeState.defaultConfig
         return initial.copy(
             defaultTheme = themeState.findProviderById(from.defaultThemeId) ?: initial.defaultTheme,
@@ -63,13 +60,13 @@ class ThemeViewModel @Inject constructor(
     }
 
     /**
-     * Maps data from [ThemeConfig] to [ThemeConfigData].
+     * Maps data from [ThemeConfig] to [AppThemeConfigData].
      *
      * @param from The source data.
-     * @return The mapped [ThemeConfigData].
+     * @return The mapped [AppThemeConfigData].
      */
-    private fun mapToData(from: ThemeConfig): ThemeConfigData {
-        return ThemeConfigData(
+    private fun mapToData(from: ThemeConfig): AppThemeConfigData {
+        return AppThemeConfigData(
             defaultThemeId = from.defaultTheme.id,
             lightThemeId = from.lightTheme.id,
             darkThemeId = from.darkTheme.id,
