@@ -7,7 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class TemplateViewModel @Inject constructor(
+class TemplateNoArgsViewModel @Inject constructor(
     private val navigationState: NavigationState,
     private val appState: AppState
 ) : BaseViewModel() {

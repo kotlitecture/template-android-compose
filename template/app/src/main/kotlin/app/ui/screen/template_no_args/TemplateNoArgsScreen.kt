@@ -9,8 +9,8 @@ import androidx.compose.ui.Modifier
 import app.provideHiltViewModel
 
 @Composable
-fun TemplateScreen() {
-    val viewModel: TemplateViewModel = provideHiltViewModel()
+fun TemplateNoArgsScreen() {
+    val viewModel: TemplateNoArgsViewModel = provideHiltViewModel()
     Box(Modifier.fillMaxSize()) {
         Text(
             modifier = Modifier.align(Alignment.Center),

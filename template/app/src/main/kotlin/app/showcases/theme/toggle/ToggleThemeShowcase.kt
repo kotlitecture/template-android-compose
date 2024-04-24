@@ -39,7 +39,7 @@ object ToggleThemeShowcase : ShowcaseItem {
 private object ToggleThemeDestination : NavigationDestination<Unit>() {
     override val id: String = "toggle_theme_dialog"
     override val navStrategy: NavigationStrategy = NavigationStrategy.NewInstance
-    override val argsStrategy: ArgsStrategy<Unit> = ArgsStrategy.memory()
+    override val argsStrategy: ArgsStrategy<Unit> = ArgsStrategy.noArgs()
     override fun doBind(builder: NavGraphBuilder) = dialog(builder) {
         Box(
             modifier = Modifier

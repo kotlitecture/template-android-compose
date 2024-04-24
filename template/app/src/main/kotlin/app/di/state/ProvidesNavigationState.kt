@@ -2,6 +2,7 @@ package app.di.state
 
 import app.showcases.ShowcasesDestination
 import app.ui.screen.template.TemplateDestination
+import app.ui.screen.template_no_args.TemplateNoArgsDestination
 import app.userflow.navigation.a.NavigationADestination
 import app.userflow.navigation.b.NavigationBDestination
 import app.userflow.navigation.c.NavigationCDestination
@@ -30,6 +31,7 @@ internal class ProvidesNavigationState {
         destinations = listOf(
             ShowcasesDestination,
             TemplateDestination,
+            TemplateNoArgsDestination,
             WebToNativeDestination,
             NavigationADestination,
             NavigationBDestination,

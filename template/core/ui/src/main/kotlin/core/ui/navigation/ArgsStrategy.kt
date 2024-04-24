@@ -1,12 +1,8 @@
 package core.ui.navigation
 
-import androidx.collection.MutableScatterMap
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.Immutable
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
-import java.util.UUID
 
 /**
  * A strategy interface for converting objects of type [D] to and from strings.
@@ -21,7 +17,6 @@ interface ArgsStrategy<D> {
      * @param from The string to convert.
      * @return An object of type [D], or null if conversion fails.
      */
-    @Composable
     fun toObject(from: String): D?
 
     /**
@@ -37,9 +32,9 @@ interface ArgsStrategy<D> {
      *
      * @param serializer The serializer for the object type [D].
      */
+    @Immutable
     data class JsonString<D>(private val serializer: KSerializer<D>) : ArgsStrategy<D> {
 
-        @Composable
         override fun toObject(from: String): D {
             return Json.decodeFromString(serializer, from)
         }
@@ -54,25 +49,9 @@ interface ArgsStrategy<D> {
      * A [ArgsStrategy] implementation that stores objects in memory.
      */
     @Immutable
-    object InMemory : ArgsStrategy<Any> {
-        private val cache = MutableScatterMap<String, Any?>()
-
-        @Composable
-        override fun toObject(from: String): Any? {
-            val data = cache[from]
-            DisposableEffect(from) {
-                onDispose {
-                    cache.remove(from)
-                }
-            }
-            return data
-        }
-
-        override fun toString(from: Any): String {
-            val id = UUID.randomUUID().toString()
-            cache[id] = from
-            return id
-        }
+    object NoArgs : ArgsStrategy<Any> {
+        override fun toObject(from: String): Any? = null
+        override fun toString(from: Any): String? = null
     }
 
     companion object {
@@ -88,11 +67,11 @@ interface ArgsStrategy<D> {
         fun <D> json(serializer: KSerializer<D>): ArgsStrategy<D> = JsonString(serializer)
 
         /**
-         * Creates a [ArgsStrategy] that stores objects in memory.
+         * Creates a [ArgsStrategy] that do nothing.
          *
-         * @return An instance of [InMemory].
+         * @return An instance of [NoArgs].
          */
         @Suppress("UNCHECKED_CAST")
-        fun <D> memory(): ArgsStrategy<D> = InMemory as ArgsStrategy<D>
+        fun <D> noArgs(): ArgsStrategy<D> = NoArgs as ArgsStrategy<D>
     }
 }

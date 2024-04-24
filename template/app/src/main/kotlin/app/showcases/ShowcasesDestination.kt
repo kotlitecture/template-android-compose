@@ -12,7 +12,7 @@ object ShowcasesDestination : NavigationDestination<Unit>() {
 
     override val id: String = "showcases_screen"
     override val navStrategy: NavigationStrategy = NavigationStrategy.SingleInstance
-    override val argsStrategy: ArgsStrategy<Unit> = ArgsStrategy.memory()
+    override val argsStrategy: ArgsStrategy<Unit> = ArgsStrategy.noArgs()
     override fun doBind(builder: NavGraphBuilder) {
         composable(builder) { ShowcasesScreen() }
         Showcases.all

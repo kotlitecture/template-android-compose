@@ -10,7 +10,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelStoreOwner
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -24,7 +23,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.collections.set
 import kotlin.coroutines.CoroutineContext
 
@@ -36,7 +34,7 @@ import kotlin.coroutines.CoroutineContext
 abstract class BaseViewModel : ViewModel() {
 
     private val jobs = ConcurrentHashMap<String, Job>()
-    private val initialized = AtomicBoolean(false)
+    private var initialized = false
 
     /**
      * Launches a coroutine in the main thread context, managing the loading state and error handling.
@@ -82,7 +80,7 @@ abstract class BaseViewModel : ViewModel() {
         return viewModelScope.async(Dispatchers.IO) { block.invoke(this) }
     }
 
-    private fun launch(
+    protected fun launch(
         id: String,
         state: StoreState?,
         context: CoroutineContext,
@@ -102,6 +100,7 @@ abstract class BaseViewModel : ViewModel() {
                     }
                     state.dataStateStore.set(nextState)
                 }
+                jobs.remove(id, job)
             }
         }
         jobs[id] = job
@@ -131,6 +130,11 @@ abstract class BaseViewModel : ViewModel() {
     protected open fun doResume() = Unit
 
     /**
+     * Lifecycle-aware method called when the ViewModel is paused.
+     */
+    protected open fun doPause() = Unit
+
+    /**
      * Lifecycle-aware method called when disposing the ViewModel.
      */
     protected open fun doDispose() = Unit
@@ -144,17 +148,29 @@ abstract class BaseViewModel : ViewModel() {
     fun bind(owner: LifecycleOwner) {
         val ownerId = owner.hashCode()
         LaunchedEffect(ownerId) {
-            if (initialized.compareAndSet(false, true)) {
+            val initial = !initialized
+            initialized = true
+            if (initial) {
                 doInit()
             }
             doBind()
             var initialRequest = true
-            owner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                viewModelScope.launch {
-                    if (!initialRequest) {
-                        doResume()
+            owner.lifecycle.currentStateFlow.collect {
+                when (it) {
+                    Lifecycle.State.RESUMED -> {
+                        if (!initialRequest) {
+                            doResume()
+                        }
+                        initialRequest = false
                     }
-                    initialRequest = false
+
+                    Lifecycle.State.STARTED -> {
+                        if (!initialRequest) {
+                            doPause()
+                        }
+                    }
+
+                    else -> Unit
                 }
             }
         }

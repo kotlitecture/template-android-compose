@@ -27,8 +27,8 @@ class DataLoaderViewModel @Inject constructor(
                 .map { it is DataState.Loading }
                 .distinctUntilChanged()
                 .collectLatest { loading ->
-                    delay(configSource.getUiLoadingDelay())
                     if (loading) {
+                        delay(configSource.getUiLoadingDelay())
                         isLoadingStore.set(true)
                         delay(configSource.getUiLoadingTimeout())
                         isLoadingStore.set(false)
