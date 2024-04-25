@@ -1,0 +1,1 @@
+This composable provides a simple solution for lazy loading and displaying paged data with Jetpack Paging. It comes with default behavior for handling loading, empty, and append states, which can be easily customized either directly through parameters or globally within the composable itself.

@@ -5,6 +5,7 @@ import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.template.android.compose.AndroidStringsRules
 import kotli.template.android.compose.dataflow.network.basic.BasicNetworkProcessor
 import kotlin.time.Duration.Companion.hours
 
@@ -19,7 +20,7 @@ class NoInternetProcessor : BaseFeatureProcessor() {
 
     override fun doRemove(state: TemplateState) {
         state.onApplyRules("*NoInternet*", RemoveFile())
-        state.onApplyRules("*strings.xml", RemoveMarkedLine("internet_error"))
+        state.onApplyRules(AndroidStringsRules(RemoveMarkedLine("internet_error")))
         state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", RemoveMarkedLine("NoInternetProvider"))
     }
 

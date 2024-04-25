@@ -1,4 +1,4 @@
-package kotli.template.android.compose.showcases.useflow.theme.change
+package kotli.template.android.compose.showcases.userflow.theme.toggle
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
@@ -6,11 +6,11 @@ import kotli.engine.TemplateState
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.ShowcasesRules
-import kotli.template.android.compose.showcases.useflow.theme.ThemeShowcasesProcessor
+import kotli.template.android.compose.showcases.userflow.theme.ThemeShowcasesProcessor
 
-object ChangeThemeShowcasesProcessor : BaseFeatureProcessor() {
+object ToggleThemeShowcasesProcessor : BaseFeatureProcessor() {
 
-    const val ID = "showcases.theme.change"
+    const val ID = "showcases.useflow.theme.toggle"
 
     override fun getId(): String = ID
     override fun isInternal(): Boolean = true
@@ -21,13 +21,12 @@ object ChangeThemeShowcasesProcessor : BaseFeatureProcessor() {
 
     override fun doRemove(state: TemplateState) {
         state.onApplyRules(
-            "app/src/main/kotlin/app/showcases/userflow/theme/change",
+            "app/src/main/kotlin/app/showcases/userflow/theme/toggle",
             RemoveFile()
         )
         state.onApplyRules(
             ShowcasesRules(
-                RemoveMarkedLine("ChangeThemeScreenShowcase"),
-                RemoveMarkedLine("ChangeThemeDialogShowcase"),
+                RemoveMarkedLine("ToggleThemeShowcase")
             )
         )
     }

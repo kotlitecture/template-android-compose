@@ -7,7 +7,7 @@ Component: `app/ui/container/FixedTopBarLayout.kt`
 ```kotlin
 @Composable
 fun TemplateScreen() {
-    val viewModel: TemplateViewModel = provideHiltViewModel()
+    val viewModel: TemplateViewModel = appViewModel()
     FixedTopBarColumnLayout(
         title = "MyScreen",
         onBack = viewModel::onBack,

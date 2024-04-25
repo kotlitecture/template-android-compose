@@ -15,15 +15,17 @@ import kotli.template.android.compose.dataflow.cache.CacheProvider
 import kotli.template.android.compose.dataflow.clipboard.ClipboardProvider
 import kotli.template.android.compose.dataflow.common.CommonDataFlowProvider
 import kotli.template.android.compose.dataflow.config.ConfigProvider
+import kotli.template.android.compose.dataflow.database.DatabaseProvider
+import kotli.template.android.compose.dataflow.encryptedkeyvalue.EncryptedKeyValueStorageProvider
 import kotli.template.android.compose.dataflow.encryption.EncryptionProvider
 import kotli.template.android.compose.dataflow.http.HttpProvider
+import kotli.template.android.compose.dataflow.http.okhttp.OkHttpProcessor
+import kotli.template.android.compose.dataflow.keyvalue.KeyValueStorageProvider
 import kotli.template.android.compose.dataflow.messaging.MessagingProvider
 import kotli.template.android.compose.dataflow.network.NetworkProvider
 import kotli.template.android.compose.dataflow.notifications.NotificationsProvider
 import kotli.template.android.compose.dataflow.paging.PagingProvider
-import kotli.template.android.compose.dataflow.database.DatabaseProvider
-import kotli.template.android.compose.dataflow.encryptedkeyvalue.EncryptedKeyValueStorageProvider
-import kotli.template.android.compose.dataflow.keyvalue.KeyValueStorageProvider
+import kotli.template.android.compose.dataflow.paging.jetpack.JetpackPagingProcessor
 import kotli.template.android.compose.dataflow.work.WorkProvider
 import kotli.template.android.compose.devops.cicd.CICDProvider
 import kotli.template.android.compose.devops.distribution.DistributionProvider
@@ -44,15 +46,18 @@ import kotli.template.android.compose.ui.component.UiComponentProvider
 import kotli.template.android.compose.ui.container.UiContainerProvider
 import kotli.template.android.compose.ui.l10n.L10NProvider
 import kotli.template.android.compose.ui.navigation.UiNavigationBarProvider
+import kotli.template.android.compose.ui.paging.UiPagingProvider
+import kotli.template.android.compose.ui.paging.jetpack.JetpackComposePagingProcessor
 import kotli.template.android.compose.ui.screen.UiScreenProvider
 import kotli.template.android.compose.ui.theme.UiThemeProvider
-import kotli.template.android.compose.ui.theme.basic.BasicThemeProcessor
 import kotli.template.android.compose.unspecified.UnspecifiedProvider
 import kotli.template.android.compose.userflow.ads.AdsProvider
 import kotli.template.android.compose.userflow.auth.AuthProvider
 import kotli.template.android.compose.userflow.internet.InternetProvider
+import kotli.template.android.compose.userflow.internet.no.NoInternetProcessor
 import kotli.template.android.compose.userflow.kyc.KycProvider
 import kotli.template.android.compose.userflow.loader.LoaderProvider
+import kotli.template.android.compose.userflow.loader.data.DataLoaderProcessor
 import kotli.template.android.compose.userflow.onboarding.OnboardingProvider
 import kotli.template.android.compose.userflow.passcode.PasscodeProvider
 import kotli.template.android.compose.userflow.payments.PaymentsProvider
@@ -61,6 +66,8 @@ import kotli.template.android.compose.userflow.splash.SplashProvider
 import kotli.template.android.compose.userflow.splash.basic.BasicSplashProcessor
 import kotli.template.android.compose.userflow.support.SupportProvider
 import kotli.template.android.compose.userflow.theme.ThemeProvider
+import kotli.template.android.compose.userflow.theme.change.ChangeThemeProcessor
+import kotli.template.android.compose.userflow.theme.toggle.ToggleThemeProcessor
 import kotli.template.android.compose.userflow.update.UpdateProvider
 import kotli.template.android.compose.userflow.webtonative.WebToNativeProvider
 import kotli.template.android.compose.wip.WipProvider
@@ -75,7 +82,13 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         createPreset(
             features = listOf(
                 Feature(BasicSplashProcessor.ID),
-                Feature(BasicThemeProcessor.ID)
+                Feature(ChangeThemeProcessor.ID),
+                Feature(ToggleThemeProcessor.ID),
+                Feature(JetpackPagingProcessor.ID),
+                Feature(JetpackComposePagingProcessor.ID),
+                Feature(OkHttpProcessor.ID),
+                Feature(NoInternetProcessor.ID),
+                Feature(DataLoaderProcessor.ID)
             )
         )
     )
@@ -128,6 +141,7 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
         UiNavigationBarProvider(),
         UiComponentProvider(),
         UiContainerProvider(),
+        UiPagingProvider,
         UiScreenProvider(),
 
         // userflow
@@ -169,12 +183,13 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
             )
         )
         state.onApplyRules(
-            "app/src/main/res/values/strings.xml",
-            ReplaceMarkedText(
-                text = "My App",
-                marker = "app_title",
-                replacer = state.layer.name,
-                singleLine = true
+            AndroidStringsRules(
+                ReplaceMarkedText(
+                    text = "My App",
+                    marker = "app_title",
+                    replacer = state.layer.name,
+                    singleLine = true
+                )
             )
         )
         state.onApplyRules(

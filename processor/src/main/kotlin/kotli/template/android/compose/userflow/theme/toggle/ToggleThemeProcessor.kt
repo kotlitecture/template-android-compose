@@ -4,7 +4,7 @@ import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
 import kotli.engine.TemplateState
 import kotli.engine.template.rule.RemoveFile
-import kotli.template.android.compose.showcases.useflow.theme.toggle.ToggleThemeShowcasesProcessor
+import kotli.template.android.compose.showcases.userflow.theme.toggle.ToggleThemeShowcasesProcessor
 import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
 import kotli.template.android.compose.ui.theme.advanced.AdvancedThemeProcessor
 import kotlin.time.Duration.Companion.hours

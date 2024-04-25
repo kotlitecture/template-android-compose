@@ -19,6 +19,16 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import app.R
 
+/**
+ * Creates a LazyListScope.SimpleLazyPagingList composable for lazy loading and displaying paged data.
+ *
+ * @param items The LazyPagingItems representing the data to be displayed.
+ * @param itemKey A function to provide unique keys for items based on their index. Defaults to null.
+ * @param itemContent The composable function to display each item in the list.
+ * @param emptyContent The composable function to display when no data is found. Defaults to a centered column displaying a sad face and a message.
+ * @param refreshContent The composable function to display when refreshing data. Defaults to a centered CircularProgressIndicator.
+ * @param appendContent The composable function to display when loading additional data. Defaults to the same as refreshContent.
+ */
 fun <I : Any> LazyListScope.SimpleLazyPagingList(
     items: LazyPagingItems<I>?,
     itemKey: ((index: Int) -> Any)? = null,

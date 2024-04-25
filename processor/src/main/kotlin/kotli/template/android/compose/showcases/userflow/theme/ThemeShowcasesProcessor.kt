@@ -1,4 +1,4 @@
-package kotli.template.android.compose.showcases.useflow.theme
+package kotli.template.android.compose.showcases.userflow.theme
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
@@ -7,7 +7,7 @@ import kotli.template.android.compose.ShowcasesRules
 
 object ThemeShowcasesProcessor : BaseFeatureProcessor() {
 
-    const val ID = "showcases.theme"
+    const val ID = "showcases.userflow.theme"
 
     override fun getId(): String = ID
     override fun isInternal(): Boolean = true

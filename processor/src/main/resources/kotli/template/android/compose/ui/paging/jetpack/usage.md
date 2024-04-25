@@ -1,9 +1,6 @@
 ## Overview
 
-- Component package: `app.datasource.paging`
-- DI integration: `app.di.datasource.ProvidesPagingSource`
-
-The integration includes an `AppPagingSource` class located in `app.datasource.paging` to facilitate working with the Paging Library.
+- Component package: `app.ui.paging`
 
 ## Example
 
@@ -34,9 +31,10 @@ fun TemplateScreen() {
     val users = viewModel.usersStore.asStateValue()
     val items = users?.collectAsLazyPagingItems()
     FixedTopBarLazyColumnLayout {
-        items(items?.itemCount ?: 0) {
-            UserItem(items?.get(it))
-        }
+        SimpleLazyPagingList(
+            items = items,
+            itemContent = { UserItem(it) }
+        )
     }
 }
 

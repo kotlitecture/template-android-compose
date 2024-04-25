@@ -7,6 +7,7 @@ import kotli.engine.template.rule.CleanupMarkedBlock
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.engine.template.rule.ReplaceMarkedBlock
+import kotli.template.android.compose.AndroidStringsRules
 import kotli.template.android.compose.AppInitializerEntryPointRuleRules
 import kotli.template.android.compose.AppNavigationRouterRules
 import kotli.template.android.compose.AppStartupInitializerRules
@@ -14,7 +15,7 @@ import kotli.template.android.compose.NavigationStateRules
 import kotli.template.android.compose.dataflow.biometric.basic.BasicBiometricProcessor
 import kotli.template.android.compose.dataflow.encryptedkeyvalue.sharedpreferences.EncryptedSharedPreferencesProcessor
 import kotli.template.android.compose.dataflow.keyvalue.sharedpreferences.SharedPreferencesProcessor
-import kotli.template.android.compose.showcases.useflow.passcode.PasscodeShowcasesProcessor
+import kotli.template.android.compose.showcases.userflow.passcode.PasscodeShowcasesProcessor
 import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
 import kotli.template.android.compose.ui.container.fixedtopbar.FixedTopBarProcessor
 import kotli.template.android.compose.unspecified.startup.StartupInitializerProcessor
@@ -53,8 +54,9 @@ object LocalPasscodeProcessor : BaseFeatureProcessor() {
             RemoveFile()
         )
         state.onApplyRules(
-            "*strings.xml",
-            RemoveMarkedLine("passcode_")
+            AndroidStringsRules(
+                RemoveMarkedLine("passcode_")
+            )
         )
         state.onApplyRules(
             "app/src/main/kotlin/app/di/state/ProvidesPasscodeState.kt",

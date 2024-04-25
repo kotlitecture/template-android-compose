@@ -7,7 +7,7 @@ Component: `app/ui/container/BottomSheetLayout.kt`
 ```kotlin
 @Composable
 fun TemplateScreen() {
-    val viewModel: TemplateViewModel = provideHiltViewModel()
+    val viewModel: TemplateViewModel = appViewModel()
     val bottomSheetStore = viewModel.bottomSheetStore
     if (bottomSheetStore.asStateValueNotNull()) {
         BottomSheetLayout(
