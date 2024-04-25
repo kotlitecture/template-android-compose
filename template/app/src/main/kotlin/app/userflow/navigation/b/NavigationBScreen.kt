@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import app.appViewModel
 
 @Composable
-fun NavigationBScreen(data: NavigationBDestination.Data?) {
+fun NavigationBScreen() {
     val viewModel: NavigationBViewModel = appViewModel()
     Box(Modifier.fillMaxSize()) {
         Text(
