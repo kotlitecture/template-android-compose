@@ -36,7 +36,9 @@ fun FixedTopBarColumnLayout(
 ) {
     FixedHeaderFooterColumnLayout(
         modifier = Modifier.fillMaxSize(),
-        appearance = FixedHeaderFooterAppearance.default(),
+        appearance = FixedHeaderFooterAppearance.default(
+            footerBrush = null
+        ),
         header = { HeaderBlock(title, onBack, actions) },
         content = content,
         footer = {}
@@ -59,7 +61,9 @@ fun FixedTopBarLazyColumnLayout(
 ) {
     FixedHeaderFooterLazyColumnLayout(
         modifier = Modifier.fillMaxSize(),
-        appearance = FixedHeaderFooterAppearance.default(),
+        appearance = FixedHeaderFooterAppearance.default(
+            footerBrush = null
+        ),
         header = { HeaderBlock(title, onBack, actions) },
         content = content,
         footer = {}
