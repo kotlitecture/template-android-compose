@@ -3,7 +3,6 @@ package core.ui.theme.material3
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 
-
 internal val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,

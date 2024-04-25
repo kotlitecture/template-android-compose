@@ -6,14 +6,7 @@ import core.data.misc.utils.GsonUtils
 import core.testing.BaseUnitTest
 import io.ktor.client.call.body
 import io.ktor.client.plugins.HttpRequestTimeoutException
-import io.ktor.client.plugins.websocket.wss
 import io.ktor.client.request.get
-import io.ktor.client.request.parameter
-import io.ktor.websocket.close
-import io.ktor.websocket.readBytes
-import kotlinx.coroutines.flow.consumeAsFlow
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.mapNotNull
 import okhttp3.Request
 import org.junit.Assert
 import kotlin.test.Test

@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material.icons.filled.QuestionMark
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -23,7 +23,7 @@ import app.provideHiltViewModel
 import app.ui.component.basic.ActionButton
 import app.ui.component.basic.AnyIcon
 import app.ui.component.basic.Spacer16
-import app.ui.container.FixedHeaderFooterLazyColumnLayout
+import app.ui.container.FixedTopBarLazyColumnLayout
 import core.ui.state.StoreObject
 import core.ui.theme.material3.Material3ThemeData
 
@@ -35,13 +35,13 @@ import core.ui.theme.material3.Material3ThemeData
 fun ShowcasesScreen() {
     val viewModel: ShowcasesViewModel = provideHiltViewModel()
     val showcasesState = viewModel.showcasesStore.asStateNotNull()
-    FixedHeaderFooterLazyColumnLayout(
-        header = {
+    FixedTopBarLazyColumnLayout(
+        title = "Showcases",
+        actions = {
             ActionButton(
                 modifier = Modifier
-                    .padding(horizontal = 8.dp)
-                    .align(Alignment.End),
-                icon = Icons.Default.QuestionMark,
+                    .padding(horizontal = 8.dp),
+                icon = Icons.Outlined.Info,
                 onClick = viewModel::onShowHint,
             )
         },

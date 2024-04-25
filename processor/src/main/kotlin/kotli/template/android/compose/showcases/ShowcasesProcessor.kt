@@ -13,6 +13,7 @@ import kotli.template.android.compose.AppNavigationRouterRules
 import kotli.template.android.compose.NavigationStateRules
 import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
 import kotli.template.android.compose.ui.container.fixedheaderfooter.FixedHeaderFooterProcessor
+import kotli.template.android.compose.ui.container.fixedtopbar.FixedTopBarProcessor
 
 object ShowcasesProcessor : BaseFeatureProcessor() {
 
@@ -22,7 +23,7 @@ object ShowcasesProcessor : BaseFeatureProcessor() {
     override fun isInternal(): Boolean = true
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
-        FixedHeaderFooterProcessor::class.java,
+        FixedTopBarProcessor::class.java,
         BasicComponentsProcessor::class.java,
     )
 
