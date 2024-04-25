@@ -11,7 +11,7 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.decode.SvgDecoder
 import coil.request.CachePolicy
-import core.data.datasource.http.okhttp.OkHttpSource
+import core.data.datasource.http.HttpSource
 import dagger.Lazy
 import javax.inject.Inject
 
@@ -22,7 +22,7 @@ import javax.inject.Inject
 class CoiIImageLoaderInitializer : AppDependencyInitializer<ImageLoaderFactory>() {
 
     @Inject
-    lateinit var httpSource: Lazy<OkHttpSource>
+    lateinit var httpSource: Lazy<HttpSource>
 
     override fun initialize(context: Context): ImageLoaderFactory {
         AppInitializerEntryPoint.resolve(context).inject(this)

@@ -1,7 +1,6 @@
 package core.data.datasource.http
 
 import com.google.gson.annotations.SerializedName
-import core.data.datasource.http.okhttp.OkHttpSource
 import core.data.misc.utils.GsonUtils
 import core.testing.BaseUnitTest
 import io.ktor.client.call.body
@@ -11,9 +10,9 @@ import okhttp3.Request
 import org.junit.Assert
 import kotlin.test.Test
 
-class OkHttpSourceTest : BaseUnitTest() {
+class HttpSourceTest : BaseUnitTest() {
 
-    private val httpSource = OkHttpSource()
+    private val httpSource = HttpSource()
     private val okhttp = httpSource.okhttp
     private val ktor = httpSource.ktor
 
@@ -31,7 +30,7 @@ class OkHttpSourceTest : BaseUnitTest() {
 
     @Test
     fun `ktor - check read timeout is applied`() = performTest {
-        val source = OkHttpSource(timeout = 10L)
+        val source = HttpSource(timeout = 10L)
         try {
             source.ktor.get("https://api64.ipify.org?format=json").body<IpData>()
             Assert.fail()

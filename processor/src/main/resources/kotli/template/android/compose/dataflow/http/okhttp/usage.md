@@ -1,6 +1,6 @@
 ## Overview
 
-The data source is available within the class `core.data.datasource.http.okhttp.OkHttpSource`. An instance of this class can be obtained through dependency injection (DI) as a singleton in `app.di.datasource.ProvidesOkHttpSource`.
+The data source is available within the class `core.data.datasource.http.HttpSource`. An instance of this class can be obtained through dependency injection (DI) as a singleton in `app.di.datasource.ProvidesHttpSource`.
 
 The class provides the next functionality:
 
@@ -13,7 +13,7 @@ To start using, just inject it to your DI managed class.
 
 ```kotlin
 @Singleton
-class ApiSource @Inject constructor(private val httpSource: OkHttpSource) {
+class ApiSource @Inject constructor(private val httpSource: HttpSource) {
 
     suspend fun getIp(): String {
         val ktor = httpSource.ktor
@@ -29,7 +29,7 @@ The data source also offers an API to acquire WebSocket connections, which can r
 
 ```kotlin
 @Singleton
-class ApiSource @Inject constructor(private val httpSource: OkHttpSource) {
+class ApiSource @Inject constructor(private val httpSource: HttpSource) {
 
     suspend fun getStockChanges(id:String): Flow<String> {
         return httpSource.get(id) {

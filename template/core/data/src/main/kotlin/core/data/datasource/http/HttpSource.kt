@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package core.data.datasource.http.okhttp
+package core.data.datasource.http
 
 import core.data.datasource.DataSource
 import core.data.misc.extensions.globalSharedFlow
@@ -39,7 +39,7 @@ import java.util.concurrent.TimeUnit
  * @param wsStopTimeout The timeout for WebSocket connections to stop gracefully, in milliseconds.
  * @param interceptors List of interceptors to be applied to the OkHttp client.
  */
-class OkHttpSource(
+class HttpSource(
     private val retries: Int = 3,
     private val timeout: Long = 15_000L,
     private val retryInterval: Long = 3_000L,

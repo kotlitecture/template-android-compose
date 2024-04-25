@@ -13,6 +13,7 @@ class OkHttpProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = ID
     override fun getWebUrl(state: TemplateState): String = "https://square.github.io/okhttp/"
+    override fun getIntegrationUrl(state: TemplateState): String = "https://ktor.io/docs/client-create-new-application.html"
     override fun getIntegrationEstimate(state: TemplateState): Long = 30.minutes.inWholeMilliseconds
 
     override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
@@ -20,7 +21,7 @@ class OkHttpProcessor : BaseFeatureProcessor() {
     )
 
     override fun doRemove(state: TemplateState) {
-        state.onApplyRules("*OkHttpSource*", RemoveFile())
+        state.onApplyRules("*HttpSource*", RemoveFile())
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("okhttp")))
         state.onApplyRules("app/src/main/kotlin/app/datasource/config/AppConfigSource.kt",
             RemoveMarkedLine("http_")
