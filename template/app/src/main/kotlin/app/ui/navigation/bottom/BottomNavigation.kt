@@ -14,7 +14,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
-import app.provideHiltViewModel
+import app.appViewModel
 import app.ui.component.basic.AnyIcon
 import app.ui.navigation.NavigationBarViewModel
 import core.ui.state.StoreObject
@@ -24,7 +24,7 @@ import core.ui.state.StoreObject
  */
 @Composable
 fun BottomNavigation() {
-    val viewModel: NavigationBarViewModel = provideHiltViewModel()
+    val viewModel: NavigationBarViewModel = appViewModel()
     val pages = viewModel.pagesStore.asStateValue()?.takeIf { it.isNotEmpty() } ?: return
     if (viewModel.restrictionStore.asStateValueNotNull()) return
     val visibilityStore = viewModel.visibilityStore

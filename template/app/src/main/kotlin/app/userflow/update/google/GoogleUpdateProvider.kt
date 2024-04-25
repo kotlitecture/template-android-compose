@@ -1,9 +1,9 @@
 package app.userflow.update.google
 
 import androidx.compose.runtime.Composable
-import app.provideHiltViewModel
+import app.appViewModel
 
 @Composable
 fun GoogleUpdateProvider() {
-    provideHiltViewModel<GoogleUpdateViewModel>()
+    appViewModel<GoogleUpdateViewModel>()
 }

@@ -24,7 +24,7 @@ class App : Application()
  */
 @Stable
 @Composable
-inline fun <reified VM : BaseViewModel> provideHiltViewModel(
+inline fun <reified VM : BaseViewModel> appViewModel(
     key: String? = null,
     activityScoped: Boolean = false
 ): VM {

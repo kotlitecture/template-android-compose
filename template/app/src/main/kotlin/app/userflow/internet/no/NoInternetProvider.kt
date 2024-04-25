@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import app.R
-import app.provideHiltViewModel
+import app.appViewModel
 
 /**
  * Composable function responsible for displaying UI elements indicating no internet connection.
@@ -33,7 +33,7 @@ fun NoInternetProvider(
     textColor: Color = Color.White,
     backgroundColor: Color = Color.Red.copy(alpha = 0.92f)
 ) {
-    val viewModel: NoInternetViewModel = provideHiltViewModel()
+    val viewModel: NoInternetViewModel = appViewModel()
     AnimatedVisibility(
         visible = !viewModel.isOnlineStore.asStateValueNotNull(),
         enter = slideInVertically() + fadeIn(),

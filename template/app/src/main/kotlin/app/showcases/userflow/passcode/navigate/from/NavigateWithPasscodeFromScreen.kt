@@ -7,13 +7,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import app.provideHiltViewModel
+import app.appViewModel
 import app.showcases.ShowcaseHintBlock
 import app.ui.container.FixedTopBarColumnLayout
 
 @Composable
 fun NavigateWithPasscodeFromScreen() {
-    val viewModel: NavigateWithPasscodeFromViewModel = provideHiltViewModel()
+    val viewModel: NavigateWithPasscodeFromViewModel = appViewModel()
     FixedTopBarColumnLayout(
         title = "Source Destination",
         onBack = viewModel::onBack

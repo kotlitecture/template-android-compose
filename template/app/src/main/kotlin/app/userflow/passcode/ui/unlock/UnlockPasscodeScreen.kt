@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import app.R
-import app.provideHiltViewModel
+import app.appViewModel
 import app.ui.container.FixedTopBarColumnLayout
 import app.userflow.passcode.ui.common.EraseBlock
 import app.userflow.passcode.ui.common.PadIconButton
@@ -25,7 +25,7 @@ import kotlinx.coroutines.flow.filterNotNull
 
 @Composable
 fun UnlockPasscodeScreen(data: UnlockPasscodeDestination.Data) {
-    val viewModel: UnlockPasscodeViewModel = provideHiltViewModel()
+    val viewModel: UnlockPasscodeViewModel = appViewModel()
     LaunchedEffect(data) { viewModel.onBind(data) }
     FixedTopBarColumnLayout(onBack = viewModel::onBack.takeIf { data.canNavigateBack }) {
         PasscodeLayout(

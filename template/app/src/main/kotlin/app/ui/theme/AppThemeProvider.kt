@@ -1,7 +1,7 @@
 package app.ui.theme
 
 import androidx.compose.runtime.Composable
-import app.provideHiltViewModel
+import app.appViewModel
 import core.ui.theme.ThemeProvider
 
 /**
@@ -11,6 +11,6 @@ import core.ui.theme.ThemeProvider
  */
 @Composable
 fun AppThemeProvider(content: @Composable () -> Unit) {
-    val viewModel: AppThemePersistenceViewModel = provideHiltViewModel()
+    val viewModel: AppThemePersistenceViewModel = appViewModel()
     ThemeProvider(viewModel.themeState, content)
 }

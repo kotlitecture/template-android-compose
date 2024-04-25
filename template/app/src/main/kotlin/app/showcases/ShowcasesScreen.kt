@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import app.provideHiltViewModel
+import app.appViewModel
 import app.ui.component.basic.ActionButton
 import app.ui.component.basic.AnyIcon
 import app.ui.component.basic.Spacer16
@@ -33,7 +33,7 @@ import core.ui.theme.material3.Material3ThemeData
  */
 @Composable
 fun ShowcasesScreen() {
-    val viewModel: ShowcasesViewModel = provideHiltViewModel()
+    val viewModel: ShowcasesViewModel = appViewModel()
     val showcasesState = viewModel.showcasesStore.asStateNotNull()
     FixedTopBarLazyColumnLayout(
         title = "Showcases",

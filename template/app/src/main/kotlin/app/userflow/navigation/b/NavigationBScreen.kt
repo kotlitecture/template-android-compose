@@ -6,11 +6,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import app.provideHiltViewModel
+import app.appViewModel
 
 @Composable
 fun NavigationBScreen(data: NavigationBDestination.Data?) {
-    val viewModel: NavigationBViewModel = provideHiltViewModel()
+    val viewModel: NavigationBViewModel = appViewModel()
     Box(Modifier.fillMaxSize()) {
         Text(
             modifier = Modifier.align(Alignment.Center),

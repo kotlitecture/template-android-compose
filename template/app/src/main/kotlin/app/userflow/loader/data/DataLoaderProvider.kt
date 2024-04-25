@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import app.provideHiltViewModel
+import app.appViewModel
 import core.ui.state.StoreState
 
 /**
@@ -21,7 +21,7 @@ import core.ui.state.StoreState
  */
 @Composable
 fun DataLoaderProvider(state: StoreState) {
-    val viewModel: DataLoaderViewModel = provideHiltViewModel()
+    val viewModel: DataLoaderViewModel = appViewModel()
     LaunchedEffect(state) { viewModel.onBind(state) }
     DataLoaderBlock(viewModel)
 }

@@ -29,7 +29,7 @@ class AppActivity : FragmentActivity() {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
-            val viewModel: AppViewModel = provideHiltViewModel()
+            val viewModel: AppViewModel = appViewModel()
             val navigationState = remember { viewModel.navigationState }
             val appState = remember { viewModel.appState }
             SplashBlock(splashScreen, navigationState)

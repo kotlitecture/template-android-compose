@@ -1,9 +1,9 @@
 package app.userflow.review.google
 
 import androidx.compose.runtime.Composable
-import app.provideHiltViewModel
+import app.appViewModel
 
 @Composable
 fun GoogleReviewProvider() {
-    provideHiltViewModel<GoogleReviewViewModel>()
+    appViewModel<GoogleReviewViewModel>()
 }

@@ -17,14 +17,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.R
-import app.provideHiltViewModel
+import app.appViewModel
 import app.ui.component.basic.Spacer8
 import app.ui.container.FixedTopBarColumnLayout
 import core.ui.theme.ThemeData
 
 @Composable
 fun ChangeThemeScreen() {
-    val viewModel: ChangeThemeViewModel = provideHiltViewModel()
+    val viewModel: ChangeThemeViewModel = appViewModel()
     FixedTopBarColumnLayout(
         title = stringResource(R.string.theme_change_title),
         onBack = viewModel::onBack,
@@ -39,7 +39,7 @@ fun ChangeThemeScreen() {
 
 @Composable
 fun ChangeThemeDialog() {
-    val viewModel: ChangeThemeViewModel = provideHiltViewModel()
+    val viewModel: ChangeThemeViewModel = appViewModel()
     ChangeThemeLayout(
         modifier = Modifier
             .clip(RoundedCornerShape(24.dp))
@@ -52,7 +52,7 @@ fun ChangeThemeDialog() {
 @Composable
 fun ChangeThemeLayout(
     modifier: Modifier = Modifier,
-    viewModel: ChangeThemeViewModel = provideHiltViewModel()
+    viewModel: ChangeThemeViewModel = appViewModel()
 ) {
     Column(
         modifier = modifier,
@@ -64,7 +64,7 @@ fun ChangeThemeLayout(
 }
 
 @Composable
-fun DynamicColorBlock(viewModel: ChangeThemeViewModel = provideHiltViewModel()) {
+fun DynamicColorBlock(viewModel: ChangeThemeViewModel = appViewModel()) {
     val use = viewModel.dynamicColorsStore.asStateValue() ?: return
     Column {
         HeaderBlock(stringResource(R.string.theme_change_dynamic_color))
@@ -83,7 +83,7 @@ fun DynamicColorBlock(viewModel: ChangeThemeViewModel = provideHiltViewModel()) 
 }
 
 @Composable
-fun DarkModePreferenceBlock(viewModel: ChangeThemeViewModel = provideHiltViewModel()) {
+fun DarkModePreferenceBlock(viewModel: ChangeThemeViewModel = appViewModel()) {
     val config = viewModel.configStore.asStateValue() ?: return
     Column {
         HeaderBlock(stringResource(R.string.theme_change_dark_mode))

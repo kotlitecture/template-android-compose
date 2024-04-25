@@ -16,7 +16,7 @@ import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
-import app.provideHiltViewModel
+import app.appViewModel
 import app.ui.component.basic.AnyIcon
 import app.ui.navigation.NavigationBarViewModel
 import core.ui.state.StoreObject
@@ -28,7 +28,7 @@ import core.ui.state.StoreObject
  */
 @Composable
 fun AdaptiveNavigation(content: @Composable () -> Unit) {
-    val viewModel: NavigationBarViewModel = provideHiltViewModel()
+    val viewModel: NavigationBarViewModel = appViewModel()
     val pages = viewModel.pagesStore.asStateValue()
     if (pages.isNullOrEmpty() || viewModel.restrictionStore.asStateValueNotNull()) {
         content()

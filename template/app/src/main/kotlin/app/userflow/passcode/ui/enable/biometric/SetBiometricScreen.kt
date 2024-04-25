@@ -14,13 +14,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.R
-import app.provideHiltViewModel
+import app.appViewModel
 import app.ui.component.basic.Spacer16
 import app.ui.container.FixedTopBarColumnLayout
 
 @Composable
 fun SetBiometricScreen() {
-    val viewModel: SetBiometricViewModel = provideHiltViewModel()
+    val viewModel: SetBiometricViewModel = appViewModel()
     FixedTopBarColumnLayout(
         onBack = viewModel::onBack
     ) {

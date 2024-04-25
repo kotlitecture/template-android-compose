@@ -3,13 +3,13 @@ package app.userflow.passcode.ui.enable.confirm
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import app.R
-import app.provideHiltViewModel
+import app.appViewModel
 import app.ui.container.FixedTopBarColumnLayout
 import app.userflow.passcode.ui.common.PasscodeLayout
 
 @Composable
 fun ConfirmPasscodeScreen(data: ConfirmPasscodeDestination.Data) {
-    val viewModel: ConfirmPasscodeViewModel = provideHiltViewModel()
+    val viewModel: ConfirmPasscodeViewModel = appViewModel()
     FixedTopBarColumnLayout(
         onBack = viewModel::onBack
     ) {

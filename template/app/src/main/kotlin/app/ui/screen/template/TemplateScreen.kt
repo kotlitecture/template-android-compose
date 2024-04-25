@@ -6,11 +6,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import app.provideHiltViewModel
+import app.appViewModel
 
 @Composable
 fun TemplateScreen(data: TemplateDestination.Data?) {
-    val viewModel: TemplateViewModel = provideHiltViewModel()
+    val viewModel: TemplateViewModel = appViewModel()
     Box(Modifier.fillMaxSize()) {
         Text(
             modifier = Modifier.align(Alignment.Center),
