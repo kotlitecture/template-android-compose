@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import kotlinx.coroutines.delay
 
-class BasicPagingSource(private val loadDelay: Long = 500) : PagingSource<Int, String>() {
+class BasicPagingSource(private val loadDelay: Long = 1000) : PagingSource<Int, String>() {
 
     private val allItems = (1..300).map { "Item-$it" }
 
