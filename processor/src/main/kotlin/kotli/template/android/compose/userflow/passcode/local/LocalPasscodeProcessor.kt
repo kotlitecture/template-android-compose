@@ -14,7 +14,7 @@ import kotli.template.android.compose.NavigationStateRules
 import kotli.template.android.compose.dataflow.biometric.basic.BasicBiometricProcessor
 import kotli.template.android.compose.dataflow.encryptedkeyvalue.sharedpreferences.EncryptedSharedPreferencesProcessor
 import kotli.template.android.compose.dataflow.keyvalue.sharedpreferences.SharedPreferencesProcessor
-import kotli.template.android.compose.showcases.passcode.PasscodeShowcasesProcessor
+import kotli.template.android.compose.showcases.useflow.passcode.PasscodeShowcasesProcessor
 import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
 import kotli.template.android.compose.ui.container.fixedtopbar.FixedTopBarProcessor
 import kotli.template.android.compose.unspecified.startup.StartupInitializerProcessor

@@ -7,7 +7,7 @@ import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
 import kotli.template.android.compose.AndroidStringsRules
 import kotli.template.android.compose.NavigationStateRules
-import kotli.template.android.compose.showcases.theme.change.ChangeThemeShowcasesProcessor
+import kotli.template.android.compose.showcases.useflow.theme.change.ChangeThemeShowcasesProcessor
 import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
 import kotli.template.android.compose.ui.container.fixedtopbar.FixedTopBarProcessor
 import kotli.template.android.compose.ui.theme.advanced.AdvancedThemeProcessor
