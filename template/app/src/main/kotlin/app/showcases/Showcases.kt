@@ -1,6 +1,7 @@
 package app.showcases
 
 import app.showcases.datasource.http.basic.BasicHttpShowcase
+import app.showcases.datasource.paging.basic.BasicPagingShowcase
 import app.showcases.userflow.passcode.navigate.NavigateWithPasscodeShowcase
 import app.showcases.userflow.passcode.reset.ResetPasscodeShowcase
 import app.showcases.userflow.passcode.set.SetPasscodeShowcase
@@ -20,6 +21,8 @@ object Showcases {
     val all = listOf(
         ShowcaseItemGroup("Datasource :: Http"),
         BasicHttpShowcase,
+        ShowcaseItemGroup("Datasource :: Paging"),
+        BasicPagingShowcase,
         ShowcaseItemGroup("Userflow :: Theme"),
         ChangeThemeScreenShowcase,
         ChangeThemeDialogShowcase,
