@@ -40,7 +40,7 @@ import java.util.concurrent.TimeUnit
  * @param interceptors List of interceptors to be applied to the OkHttp client.
  */
 class HttpSource(
-    private val retries: Int = 3,
+    private val retries: Int = 0,
     private val timeout: Long = 15_000L,
     private val retryInterval: Long = 3_000L,
     private val wsStopTimeout: Long = 60_000L,
@@ -78,9 +78,11 @@ class HttpSource(
                 connectTimeoutMillis = timeout
                 socketTimeoutMillis = timeout
             }
-            install(HttpRequestRetry) {
-                retryOnServerErrors(retries)
-                retryOnException(retries, true)
+            if (retries > 0) {
+                install(HttpRequestRetry) {
+                    retryOnServerErrors(retries)
+                    retryOnException(retries, true)
+                }
             }
             BrowserUserAgent()
             defaultRequest {
