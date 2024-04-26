@@ -1,5 +1,6 @@
 package app.ui.navigation.left
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -13,11 +14,13 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import app.appViewModel
 import app.ui.component.basic.AnyIcon
 import app.ui.navigation.NavigationBarViewModel
 import core.ui.state.StoreObject
+import kotlinx.coroutines.launch
 
 /**
  * Composable function to display a modal left navigation.
@@ -86,6 +89,12 @@ private fun DrawerVisibilityHandler(
                 visible -> drawerState.open()
                 else -> drawerState.close()
             }
+        }
+    }
+    if (visible) {
+        val scope = rememberCoroutineScope()
+        BackHandler {
+            scope.launch { drawerState.close() }
         }
     }
 }
