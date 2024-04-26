@@ -50,6 +50,7 @@ import kotli.template.android.compose.ui.paging.UiPagingProvider
 import kotli.template.android.compose.ui.paging.jetpack.JetpackComposePagingProcessor
 import kotli.template.android.compose.ui.screen.UiScreenProvider
 import kotli.template.android.compose.ui.theme.UiThemeProvider
+import kotli.template.android.compose.ui.theme.advanced.AdvancedThemeProcessor
 import kotli.template.android.compose.unspecified.UnspecifiedProvider
 import kotli.template.android.compose.userflow.ads.AdsProvider
 import kotli.template.android.compose.userflow.auth.AuthProvider
@@ -60,6 +61,7 @@ import kotli.template.android.compose.userflow.loader.LoaderProvider
 import kotli.template.android.compose.userflow.loader.data.DataLoaderProcessor
 import kotli.template.android.compose.userflow.onboarding.OnboardingProvider
 import kotli.template.android.compose.userflow.passcode.PasscodeProvider
+import kotli.template.android.compose.userflow.passcode.local.LocalPasscodeProcessor
 import kotli.template.android.compose.userflow.payments.PaymentsProvider
 import kotli.template.android.compose.userflow.review.ReviewProvider
 import kotli.template.android.compose.userflow.splash.SplashProvider
@@ -88,7 +90,9 @@ class AndroidComposeTemplateProcessor : BaseTemplateProcessor() {
                 Feature(JetpackComposePagingProcessor.ID),
                 Feature(OkHttpProcessor.ID),
                 Feature(NoInternetProcessor.ID),
-                Feature(DataLoaderProcessor.ID)
+                Feature(DataLoaderProcessor.ID),
+                Feature(AdvancedThemeProcessor.ID),
+                Feature(LocalPasscodeProcessor.ID),
             )
         )
     )

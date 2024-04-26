@@ -7,7 +7,6 @@ androidxAppStartup = "1.1.1"
 androidxBenchmarkMacroJunit4 = "1.2.4"
 androidxBiometric = "1.2.0-alpha05"
 androidxBrowser = "1.8.0"
-androidxCollection = "1.4.0"
 androidxComposeActivity = "1.9.0"
 androidxComposeBom = "2024.04.01"
 androidxComposeCompiler = "1.5.12"
@@ -62,7 +61,6 @@ androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "a
 androidx-benchmark-macro-junit4 = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "androidxBenchmarkMacroJunit4" }
 androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "androidxBiometric" }
 androidx-browser = { module = "androidx.browser:browser", version.ref = "androidxBrowser" }
-androidx-collection = { module = "androidx.collection:collection", version.ref = "androidxCollection" }
 androidx-compose-activity = { module = "androidx.activity:activity-compose", version.ref = "androidxComposeActivity" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-constraintlayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "androidxComposeConstraintlayout" }

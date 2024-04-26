@@ -1,1 +1,1 @@
-Adaptive Navigation (Experimental)
+Adaptive Navigation
