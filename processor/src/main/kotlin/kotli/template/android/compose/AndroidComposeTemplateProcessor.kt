@@ -30,11 +30,11 @@ import kotli.template.android.compose.dataflow.work.WorkProvider
 import kotli.template.android.compose.devops.cicd.CICDProvider
 import kotli.template.android.compose.devops.distribution.DistributionProvider
 import kotli.template.android.compose.devops.i18n.I18NProvider
-import kotli.template.android.compose.metadata.build.BuildToolProvider
-import kotli.template.android.compose.metadata.design.UiDesignSystemProvider
-import kotli.template.android.compose.metadata.di.DependencyInjectionProvider
-import kotli.template.android.compose.metadata.navigation.UiNavigationProvider
-import kotli.template.android.compose.metadata.toolkit.UiToolkitProvider
+import kotli.template.android.compose.essentials.build.BuildToolProvider
+import kotli.template.android.compose.essentials.design.UiDesignSystemProvider
+import kotli.template.android.compose.essentials.di.DependencyInjectionProvider
+import kotli.template.android.compose.essentials.navigation.UiNavigationProvider
+import kotli.template.android.compose.essentials.toolkit.UiToolkitProvider
 import kotli.template.android.compose.quality.crashes.CrashesProvider
 import kotli.template.android.compose.quality.performance.PerformanceProvider
 import kotli.template.android.compose.quality.startup.StartupProvider

@@ -1,4 +1,4 @@
-package kotli.template.android.compose.metadata.toolkit.compose
+package kotli.template.android.compose.essentials.toolkit.compose
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState

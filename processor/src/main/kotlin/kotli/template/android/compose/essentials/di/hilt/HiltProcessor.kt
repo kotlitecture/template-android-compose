@@ -1,4 +1,4 @@
-package kotli.template.android.compose.metadata.di.hilt
+package kotli.template.android.compose.essentials.di.hilt
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState

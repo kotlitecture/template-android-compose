@@ -1,4 +1,4 @@
-package kotli.template.android.compose.metadata.navigation.jetpack
+package kotli.template.android.compose.essentials.navigation.jetpack
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState

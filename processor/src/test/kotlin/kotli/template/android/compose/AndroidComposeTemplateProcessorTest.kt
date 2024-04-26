@@ -98,10 +98,7 @@ class AndroidComposeTemplateProcessorTest {
                 id = UUID.randomUUID().toString(),
                 processorId = processor.getId(),
                 namespace = "my.app",
-                name = "app-android",
-                features = listOf(
-                    Feature(JetpackPagingProcessor.ID)
-                )
+                name = "app-android"
             )
             val generator = PathOutputGenerator(buildPath(), registry)
             val gradleGenerator = GradleProjectGenerator(testCommands, generator)

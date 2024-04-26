@@ -1,4 +1,4 @@
-package kotli.template.android.compose.metadata.build.gradle_groovy
+package kotli.template.android.compose.essentials.build.gradle_groovy
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState

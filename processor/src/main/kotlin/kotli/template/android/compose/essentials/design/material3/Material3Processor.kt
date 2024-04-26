@@ -1,4 +1,4 @@
-package kotli.template.android.compose.metadata.design.material3
+package kotli.template.android.compose.essentials.design.material3
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
