@@ -1,4 +1,4 @@
-package kotli.template.android.compose.ui.navigation.left.dismissible
+package kotli.template.android.compose.ui.navigation.left.permanent
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.TemplateState
@@ -8,9 +8,9 @@ import kotli.template.android.compose.ui.navigation.NavigationBarProviderRules
 import kotli.template.android.compose.ui.navigation.adaptive.AdaptiveNavigationProcessor
 import kotlin.time.Duration.Companion.hours
 
-object DismissibleLeftNavigationProcessor : BaseFeatureProcessor() {
+object PermanentLeftNavigationProcessor : BaseFeatureProcessor() {
 
-    const val ID = "ui.navigation.left.dismissible"
+    const val ID = "ui.navigation.left.permanent"
 
     override fun getId(): String = ID
     override fun getIntegrationEstimate(state: TemplateState): Long = 2.hours.inWholeMilliseconds
@@ -22,7 +22,7 @@ object DismissibleLeftNavigationProcessor : BaseFeatureProcessor() {
                     ReplaceMarkedText(
                         "content()",
                         "content()",
-                        "app.ui.navigation.left.DismissibleLeftNavigation(content)"
+                        "app.ui.navigation.left.PermanentLeftNavigation(content)"
                     )
                 )
             )
@@ -31,7 +31,7 @@ object DismissibleLeftNavigationProcessor : BaseFeatureProcessor() {
 
     override fun doRemove(state: TemplateState) {
         state.onApplyRules(
-            "app/src/main/kotlin/app/ui/navigation/left/DismissibleLeftNavigation.kt",
+            "app/src/main/kotlin/app/ui/navigation/left/PermanentLeftNavigation.kt",
             RemoveFile()
         )
     }

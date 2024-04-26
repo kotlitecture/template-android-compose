@@ -5,7 +5,6 @@
 - State management: `app.ui.navigation.NavigationBarState`
 - Pre-configured destinations package: `app.userflow.navigation`
 
-
 ## Configuration
 
 Configure your destinations using `ProvidesNavigationBarState`, and if necessary, specify any restricted or allowed destinations which will force navigation to show/hide the navigation bar in some cases.

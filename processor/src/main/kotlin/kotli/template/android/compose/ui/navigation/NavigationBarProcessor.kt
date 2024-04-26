@@ -6,11 +6,14 @@ import kotli.engine.TemplateState
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.template.android.compose.AppActivityRules
 import kotli.template.android.compose.NavigationBarStateRules
 import kotli.template.android.compose.NavigationStateRules
 import kotli.template.android.compose.ui.component.basic.BasicComponentsProcessor
 
-class NavigationBarProcessor : BaseFeatureProcessor() {
+object NavigationBarProcessor : BaseFeatureProcessor() {
+
+    const val ID = "ui.navigation.common"
 
     override fun getId(): String = ID
     override fun isInternal(): Boolean = true
@@ -21,8 +24,9 @@ class NavigationBarProcessor : BaseFeatureProcessor() {
 
     override fun doApply(state: TemplateState) {
         state.onApplyRules(
-            "app/src/main/kotlin/app/AppActivity.kt",
-            CleanupMarkedLine("{ui.navigation.common}")
+            AppActivityRules(
+                CleanupMarkedLine("{ui.navigation.common}")
+            )
         )
     }
 
@@ -49,14 +53,11 @@ class NavigationBarProcessor : BaseFeatureProcessor() {
             )
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/AppActivity.kt",
-            RemoveMarkedLine("{ui.navigation.common}"),
-            RemoveMarkedLine("NavigationBarProvider")
+            AppActivityRules(
+                RemoveMarkedLine("{ui.navigation.common}"),
+                RemoveMarkedLine("NavigationBarProvider")
+            )
         )
-    }
-
-    companion object {
-        const val ID = "ui.navigation.common"
     }
 
 }

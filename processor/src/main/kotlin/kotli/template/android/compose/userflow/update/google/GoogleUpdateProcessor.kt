@@ -6,6 +6,7 @@ import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.template.android.compose.AppActivityRules
 import kotlin.time.Duration.Companion.hours
 
 class GoogleUpdateProcessor : BaseFeatureProcessor() {
@@ -21,7 +22,7 @@ class GoogleUpdateProcessor : BaseFeatureProcessor() {
 
     override fun doRemove(state: TemplateState) {
         state.onApplyRules("app/build.gradle", RemoveMarkedLine("{userflow.update.google}"))
-        state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", RemoveMarkedLine("GoogleUpdateProvider"))
+        state.onApplyRules(AppActivityRules(RemoveMarkedLine("GoogleUpdateProvider")))
         state.onApplyRules("app/src/main/kotlin/app/userflow/update/google", RemoveFile())
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("googleAppUpdate")))
     }

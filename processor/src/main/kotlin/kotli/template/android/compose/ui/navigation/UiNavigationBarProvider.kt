@@ -8,6 +8,8 @@ import kotli.template.android.compose.ui.navigation.adaptive.AdaptiveNavigationP
 import kotli.template.android.compose.ui.navigation.bottom.BottomNavigationProcessor
 import kotli.template.android.compose.ui.navigation.left.dismissible.DismissibleLeftNavigationProcessor
 import kotli.template.android.compose.ui.navigation.left.modal.ModalLeftNavigationProcessor
+import kotli.template.android.compose.ui.navigation.left.permanent.PermanentLeftNavigationProcessor
+import kotli.template.android.compose.ui.navigation.left.rail.RailNavigationProcessor
 
 class UiNavigationBarProvider : BaseFeatureProvider() {
 
@@ -20,11 +22,13 @@ class UiNavigationBarProvider : BaseFeatureProvider() {
     )
 
     override fun createProcessors(): List<FeatureProcessor> = listOf(
-        NavigationBarProcessor(),
-        BottomNavigationProcessor(),
-        ModalLeftNavigationProcessor(),
-        DismissibleLeftNavigationProcessor(),
-        AdaptiveNavigationProcessor(),
+        AdaptiveNavigationProcessor,
+        NavigationBarProcessor,
+        BottomNavigationProcessor,
+        ModalLeftNavigationProcessor,
+        DismissibleLeftNavigationProcessor,
+        PermanentLeftNavigationProcessor,
+        RailNavigationProcessor
     )
 
 }

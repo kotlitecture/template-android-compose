@@ -7,6 +7,7 @@ import kotli.engine.template.rule.CleanupMarkedBlock
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveMarkedBlock
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.template.android.compose.AppActivityRules
 import kotlin.time.Duration.Companion.hours
 
 object BasicSplashProcessor : BaseFeatureProcessor() {
@@ -28,8 +29,9 @@ object BasicSplashProcessor : BaseFeatureProcessor() {
             CleanupMarkedLine("{userflow.splash.basic}")
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/AppActivity.kt",
-            CleanupMarkedBlock("{userflow.splash.basic}")
+            AppActivityRules(
+                CleanupMarkedBlock("{userflow.splash.basic}")
+            )
         )
         state.onApplyRules(
             "*themes.xml",
@@ -43,9 +45,10 @@ object BasicSplashProcessor : BaseFeatureProcessor() {
             RemoveMarkedLine("{userflow.splash.basic}")
         )
         state.onApplyRules(
-            "app/src/main/kotlin/app/AppActivity.kt",
-            RemoveMarkedBlock("{userflow.splash.basic}"),
-            RemoveMarkedLine("splashScreen")
+            AppActivityRules(
+                RemoveMarkedBlock("{userflow.splash.basic}"),
+                RemoveMarkedLine("splashScreen")
+            )
         )
         state.onApplyRules(
             "app/src/main/AndroidManifest.xml",

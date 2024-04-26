@@ -6,6 +6,7 @@ import kotli.engine.template.VersionCatalogRules
 import kotli.engine.template.rule.CleanupMarkedLine
 import kotli.engine.template.rule.RemoveFile
 import kotli.engine.template.rule.RemoveMarkedLine
+import kotli.template.android.compose.AppActivityRules
 import kotlin.time.Duration.Companion.hours
 
 class GoogleReviewProcessor : BaseFeatureProcessor() {
@@ -22,7 +23,7 @@ class GoogleReviewProcessor : BaseFeatureProcessor() {
 
     override fun doRemove(state: TemplateState) {
         state.onApplyRules("app/build.gradle", RemoveMarkedLine("{userflow.review.google}"))
-        state.onApplyRules("app/src/main/kotlin/app/AppActivity.kt", RemoveMarkedLine("GoogleReviewProvider"))
+        state.onApplyRules(AppActivityRules(RemoveMarkedLine("GoogleReviewProvider")))
         state.onApplyRules("app/src/main/kotlin/app/userflow/review/google", RemoveFile())
         state.onApplyRules(VersionCatalogRules(RemoveMarkedLine("googleAppReview")))
     }

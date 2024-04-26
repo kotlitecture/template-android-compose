@@ -1,6 +1,6 @@
 ## Overview
 
-- Component package: `app.ui.navigation.left.modal`
+- Component package: `app.ui.navigation.left.rail`
 - DI integration: `app.di.state.ProvidesNavigationBarState`
 - State management: `app.ui.navigation.NavigationBarState`
 - Pre-configured destinations package: `app.userflow.navigation`
