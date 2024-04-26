@@ -25,14 +25,6 @@ class AdaptiveNavigationProcessor : BaseFeatureProcessor() {
             "app/src/main/kotlin/app/ui/navigation/adaptive",
             RemoveFile()
         )
-        state.onApplyRules(
-            VersionCatalogRules(
-                RemoveMarkedLine("adaptiveNavigation"),
-                RemoveMarkedLine("adaptive-navigation"),
-                RemoveMarkedLine("material3Adaptive"),
-                RemoveMarkedLine("material3-adaptive")
-            )
-        )
     }
 
     companion object {
