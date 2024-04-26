@@ -11,6 +11,7 @@ import kotli.template.android.compose.AndroidStringsRules
 import kotli.template.android.compose.AppInitializerEntryPointRuleRules
 import kotli.template.android.compose.AppNavigationRouterRules
 import kotli.template.android.compose.AppStartupInitializerRules
+import kotli.template.android.compose.NavigationBarStateRules
 import kotli.template.android.compose.NavigationStateRules
 import kotli.template.android.compose.dataflow.biometric.basic.BasicBiometricProcessor
 import kotli.template.android.compose.dataflow.encryptedkeyvalue.sharedpreferences.EncryptedSharedPreferencesProcessor
@@ -64,6 +65,15 @@ object LocalPasscodeProcessor : BaseFeatureProcessor() {
         )
         state.onApplyRules(
             NavigationStateRules(
+                RemoveMarkedLine("UnlockPasscodeDestination"),
+                RemoveMarkedLine("SetPasscodeDestination"),
+                RemoveMarkedLine("ConfirmPasscodeDestination"),
+                RemoveMarkedLine("ResetPasscodeDestination"),
+                RemoveMarkedLine("SetBiometricDestination"),
+            )
+        )
+        state.onApplyRules(
+            NavigationBarStateRules(
                 RemoveMarkedLine("UnlockPasscodeDestination"),
                 RemoveMarkedLine("SetPasscodeDestination"),
                 RemoveMarkedLine("ConfirmPasscodeDestination"),

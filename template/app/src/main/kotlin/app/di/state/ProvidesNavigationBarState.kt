@@ -16,6 +16,11 @@ import app.ui.navigation.NavigationBarState
 import app.userflow.navigation.a.NavigationADestination
 import app.userflow.navigation.b.NavigationBDestination
 import app.userflow.navigation.c.NavigationCDestination
+import app.userflow.passcode.ui.enable.biometric.SetBiometricDestination
+import app.userflow.passcode.ui.enable.confirm.ConfirmPasscodeDestination
+import app.userflow.passcode.ui.enable.set.SetPasscodeDestination
+import app.userflow.passcode.ui.reset.ResetPasscodeDestination
+import app.userflow.passcode.ui.unlock.UnlockPasscodeDestination
 import core.ui.navigation.NavigationDestination
 import core.ui.navigation.NavigationState
 import core.ui.navigation.NavigationStrategy
@@ -65,10 +70,13 @@ internal class ProvidesNavigationBarState {
             )
         ),
         allowedDestinations = setOf(
-            ShowcasesDestination,
-            NavigationADestination,
-            NavigationBDestination,
-            NavigationCDestination
+        ),
+        restrictedDestinations = setOf(
+            UnlockPasscodeDestination,
+            SetPasscodeDestination,
+            ConfirmPasscodeDestination,
+            ResetPasscodeDestination,
+            SetBiometricDestination
         )
     )
 
